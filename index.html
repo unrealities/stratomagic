@@ -10,7 +10,12 @@
         </div>
         <script>
             function roll() {
-                document.getElementById("result").innerHTML = "20";
+                let diceRollResult = randomPositiveInteger(20)
+                document.getElementById("result").innerHTML = diceRollResult;
+            }
+            function randomPositiveInteger(max) {
+                let randomDecimal = Math.random() * max;
+                return Math.floor(randomDecimal) + 1;
             }
         </script>
     </body>
