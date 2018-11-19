@@ -2,11 +2,16 @@
     <body>
         <div>
             <div>
-                <button>Roll Dice</button>
+                <button onClick="roll()">Roll Dice</button>
             </div>
             <div id="result">
                 dice result
             </div>
         </div>
+        <script>
+            function roll() {
+                document.getElementById("result").innerHTML = "20";
+            }
+        </script>
     </body>
 </html>
