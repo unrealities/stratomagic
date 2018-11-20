@@ -10,3 +10,11 @@ let BB = { "name": "Barry Bonds", "onBase": 14,
 let PM = { "name": "Pedro Martinez", "control": 6,
         "chart": ["PU","PU","SO","SO","SO","SO","SO","SO","SO","SO",
                     "SO","GB","GB","GB","FB","FB","FB","BB","1B","1B"]};
+
+// Evaluate "replacement level" hitters. The best hitter for only 10 points
+
+// 2005 Charles Johnson : 2005 MLB Showdown #110
+// Rockies | Pos: C : 5 | Bats: R | Points: 10 | Speed: 10
+let CJ = { "name": "Charles Johnson", "onBase": 10,
+        "chart" : ["SO","SO","GB","GB","GB","FB","FB","BB","BB","BB",
+                    "BB","BB","BB","1B","1B","1B","1B","2B","2B","HR"]};
