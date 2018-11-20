@@ -2,9 +2,9 @@
 // The dice result can be passed in as separate logic.
 function controllingPlayer(batter, pitcher, diceResult) {
     if ((diceResult + pitcher["control"]) > batter["onBase"]) {
-        return batter;
+        return pitcher;
     }
-    return pitcher;
+    return batter;
 }
 
 // Lookup on the controlling player's chart the outcome of the at-bat
