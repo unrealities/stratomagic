@@ -4,15 +4,20 @@
             <div>
                 <button onClick="roll()">Roll Dice</button>
             </div>
-            <div id="result">
-                dice result
-            </div>
+            <div>Results</div>
+            <div id="results"></div>
         </div>
         <script>
+            // Roll initiates an at-bat and displays the results
             function roll() {
-                let winner = controllingPlayer(BB, PM)
-                document.getElementById("result").innerHTML = winner["name"];
+                let ab = atBat(BB, PM)
+                let display = ab["initRoll"] + " | " + ab["controllingPlayer"].name +
+                              " | " + ab["outcomeRoll"] + " | " + ab["outcome"] + "</br>";
+                document.getElementById("results").innerHTML += display;
             }
+
+            // Basic helper function to return a positive integer less than or
+            // equal to the max value passed.
             function randomPositiveInteger(max) {
                 let randomDecimal = Math.random() * max;
                 return Math.floor(randomDecimal) + 1;
@@ -30,12 +35,42 @@
                        "chart": ["PU","PU","SO","SO","SO","SO","SO","SO","SO","SO",
                                   "SO","GB","GB","GB","FB","FB","FB","BB","1B","1B"]};
 
-            function controllingPlayer(batter, pitcher) {
-                let diceRollResult = randomPositiveInteger(20);
-                if ((diceRollResult + pitcher["control"]) > batter["onBase"]) {
+            // Since diceRoll is such a major component of the game, I wanted
+            // to give it a simple definition, but since randomPositiveInteger()
+            // is such a small function, we could also get rid of it.
+            function diceRoll() {
+                return randomPositiveInteger(20);
+            }
+
+            // Limit this logic to only determining if who the controlling player
+            // is. The dice result can be passed in as separate logic.
+            function controllingPlayer(batter, pitcher, diceResult) {
+                if ((diceResult + pitcher["control"]) > batter["onBase"]) {
                     return batter;
                 }
                 return pitcher;
+            }
+
+            // Lookup on the controlling player's chart the outcome of the at-bat
+            function outcome(controllingPlayer, diceResult) {
+                // since arrays start at zero, we cannot just take the diceResult
+                // we have to subtract one to stay in the range of 0-19.
+                return controllingPlayer["chart"][diceResult-1];
+            }
+
+            // The linear events of an at-bat between a batter and a pitcher
+            // returns an atBat object containing the dice rolls, the controlling
+            // player and the outcome.
+            function atBat(batter, pitcher) {
+                let initRoll = diceRoll();
+                let cp = controllingPlayer(batter, pitcher, initRoll);
+                let outcomeRoll = diceRoll();
+                let result = outcome(cp, outcomeRoll);
+                
+                return { "initRoll": initRoll,
+                         "outcomeRoll": outcomeRoll,
+                         "controllingPlayer": cp,
+                         "outcome": result };
             }
         </script>
     </body>
