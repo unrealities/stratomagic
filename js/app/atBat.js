@@ -27,3 +27,10 @@ function atBat(batter, pitcher) {
             "controllingPlayer": cp,
             "outcome": result };
 }
+
+// How many bases will the batter advance given the outcome of the at-bat
+function outcomeNumberOfBases(outcome) {
+    let outcomesToBases = { "SO": 0, "PU": 0, "GB": 0, "FB": 0, "BB": 1,
+        "1B": 1, "2B": 2, "3B": 3, "HR": 4 };
+    return outcomesToBases[outcome];
+}

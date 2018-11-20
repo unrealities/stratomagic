@@ -1,8 +1,12 @@
 // Roll initiates an at-bat and displays the results
 function roll() {
-    let ab = atBat(BB, PM)
-    let display = ab["initRoll"] + " | " + ab["controllingPlayer"].name +
-        " | " + ab["outcomeRoll"] + " | " + ab["outcome"] + "</br>";
+    let hi = halfInning(BB, PM);
+    
+    let display = hi["runs"] + "</br>" + JSON.stringify(hi["atBats"]) + "</br>"
+        + hi["baseRunners"] + "</br>";
+    // let ab = atBat(BB, PM)
+    // let display = ab["initRoll"] + " | " + ab["controllingPlayer"].name +
+    //     " | " + ab["outcomeRoll"] + " | " + ab["outcome"] + "</br>";
     document.getElementById("results").innerHTML += display;
 }
 
