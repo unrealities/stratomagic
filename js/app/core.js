@@ -1,13 +1,16 @@
-// Roll initiates an at-bat and displays the results
-function roll() {
-    let hi = halfInning(BB, PM);
-    
-    let display = hi["runs"] + "</br>" + JSON.stringify(hi["atBats"]) + "</br>"
-        + hi["baseRunners"] + "</br>";
-    // let ab = atBat(BB, PM)
-    // let display = ab["initRoll"] + " | " + ab["controllingPlayer"].name +
-    //     " | " + ab["outcomeRoll"] + " | " + ab["outcome"] + "</br>";
-    document.getElementById("results").innerHTML += display;
+// calc calculates the number of runs per game score by the given batter/pitcher
+function calc() {
+    let trials = 10000000;
+    let totalRuns = 0;
+
+    for (let i=0; i<trials; i++){
+        let hi = halfInning(BB, PM);
+        totalRuns += hi["runs"];
+    }
+
+    let averageGameRuns = 9 * (totalRuns/trials);
+
+    document.getElementById("results").innerHTML = averageGameRuns;
 }
 
 // Since diceRoll is such a major component of the game, I wanted
