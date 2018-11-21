@@ -6,6 +6,14 @@
 let BB = { "name": "Barry Bonds", "onBase": 14,
         "chart": ["SO","SO","GB","FB","FB","BB","BB","BB","BB","BB",
                     "BB","BB","BB","BB","1B","2B","HR","HR","HR","HR"]};
+
+// 2003 Barry Bonds : 2003 MLB Showdown #252
+// Giants | Pos: LF-RF : 0 | Bats: L | Points: 900 | Speed: 12
+// 12.67 RPG against Pedro
+let BB2 = { "name": "Barry Bonds", "onBase": 16,
+        "chart": ["SO","GB","FB","BB","BB","BB","BB","BB","BB","BB",
+                    "BB","BB","1B","1B","1B","1B","2B","2B","HR","HR"]}
+
 // 1997 Pedro Martinez : 2002 MLB Showdown Pennant Run Super Season #112
 // Expos | Pos: SP | Throws: R | Points: 830 | IP: 7
 let PM = { "name": "Pedro Martinez", "control": 6,

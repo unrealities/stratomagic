@@ -4,7 +4,7 @@ function calc() {
     let totalRuns = 0;
 
     for (let i=0; i<trials; i++){
-        let hi = halfInning(RO, PM);
+        let hi = halfInning(BB2, PM);
         totalRuns += hi["runs"];
     }
 
