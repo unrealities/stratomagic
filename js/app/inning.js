@@ -24,7 +24,7 @@ function halfInning(batter, pitcher) {
             afterAtBatResult[i+bases] = baseRunners[i];
         }
         // Put the batter on their appropriate base
-        afterAtBatResult[bases-1] = batter["name"];
+        afterAtBatResult[bases-1] = batter["Name"];
 
         // Check for baserunners that have scored.
         for (let i=afterAtBatResult.length-1; i>2; i--) {

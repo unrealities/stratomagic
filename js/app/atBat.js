@@ -1,7 +1,7 @@
 // Limit this logic to only determining if who the controlling player is.
 // The dice result can be passed in as separate logic.
 function controllingPlayer(batter, pitcher, diceResult) {
-    if ((diceResult + pitcher["control"]) > batter["onBase"]) {
+    if ((diceResult + pitcher["OB/C"]) > batter["OB/C"]) {
         return pitcher;
     }
     return batter;
@@ -11,7 +11,7 @@ function controllingPlayer(batter, pitcher, diceResult) {
 function outcome(controllingPlayer, diceResult) {
     // since arrays start at zero, we cannot just take the diceResult
     // we have to subtract one to stay in the range of 0-19.
-    return controllingPlayer["chart"][diceResult-1];
+    return controllingPlayer["Chart"][diceResult-1];
 }
 
 // The linear events of an at-bat between a batter and a pitcher returns an 
@@ -31,6 +31,6 @@ function atBat(batter, pitcher) {
 // How many bases will the batter advance given the outcome of the at-bat
 function outcomeNumberOfBases(outcome) {
     let outcomesToBases = { "SO": 0, "PU": 0, "GB": 0, "FB": 0, "BB": 1,
-        "1B": 1, "2B": 2, "3B": 3, "HR": 4 };
+        "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4 };
     return outcomesToBases[outcome];
 }
