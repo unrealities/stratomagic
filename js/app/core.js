@@ -1,21 +1,36 @@
 // calc calculates the number of runs per game score by the given batter/pitcher
 function calc() {
-    let trials = 1000000;
-    let totalRuns = 0;
+    for (let b=0; b<Players.length-1; b++) {
+        let trials = 10000;
+        let totalRuns = 0;
 
-    for (let i=0; i<trials; i++){
-        // 3460 2003 Barry
-        // 3589 2005 Barry
-        // 1545 Jeff Bagwell '94
-        // 1574 Frank Thomas '94
-        // 1565 Pedro Martinez
-        let hi = halfInning(Players[3589], Players[1565]);
-        totalRuns += hi["runs"];
+        if (isPitcher(Players[b])) {
+            continue;
+        }
+        for (let i=0; i<trials; i++){
+            let hi = halfInning(Players[b], Players[1565]);
+            totalRuns += hi["runs"];
+        }
+        let averageGameRuns = 9 * (totalRuns/trials);
+
+        // slowdown appears to occur on the ammount of data being displayed
+        // since we're just interested in the best performing players, created
+        // a cutoff point
+        if (averageGameRuns < 7) {
+            continue;
+        }
+
+        let display = b + "," + Players[b]["Name"] + "," + Players[b]["OB/C"] +
+                    "," + Players[b]["Pts."] + "," + averageGameRuns + "</br>";
+
+        document.getElementById("results").innerHTML += display;
+        // Against 1565 PM
+        // 1295,Barry Bonds,14,910,7.83
+        // 1545,Jeff Bagwell '94,14,800,7.40
+        // 3460,Barry Bonds,16,900,12.73
+        // 3589,Barry Bonds,14,860,8.09
     }
 
-    let averageGameRuns = 9 * (totalRuns/trials);
-
-    document.getElementById("results").innerHTML = averageGameRuns;
 }
 
 // Since diceRoll is such a major component of the game, I wanted
@@ -23,4 +38,18 @@ function calc() {
 // is such a small function, we could also get rid of it.
 function diceRoll() {
     return randomPositiveInteger(20);
+}
+
+// determine if a player is a pitcher or not (a hitter)
+function isPitcher(player) {
+    for (let i=0; i<player["Positions"].length; i++) {
+        // Positions uses standard baseball scoring numbering. With the
+        // following modifications: 0: DH, 1: SP, 10: RP, 11: CL
+        if (i === 1 || i > 9) {
+            if (player["Positions"][i] >= 0) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
