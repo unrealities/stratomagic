@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 class PlayerCard extends React.Component {
     render() {
         return (

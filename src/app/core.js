@@ -31,7 +31,13 @@ function calc() {
         // 3460,Barry Bonds,16,900,12.73
         // 3589,Barry Bonds,14,860,8.09
     }
+}
 
+window.onload = function () {
+    var button = document.querySelector("#calc-button");
+    button.addEventListener("click", function(){
+        calc();
+    });
 }
 
 // Since diceRoll is such a major component of the game, I wanted

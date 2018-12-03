@@ -1,7 +1,14 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['./src/index.js', 
+          './src/app/atBat.js', 
+          './src/app/core.js',
+          './src/app/game.js',
+          './src/app/inning.js',
+          './src/components/playerCard.js',
+          './src/data/players.js',
+          './src/lib/math.js'],
   module: {
     rules: [
       {
