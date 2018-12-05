@@ -1,4 +1,4 @@
-let Players = [
+export const Players = [
     {
       "ID": 1,
       "Year": 2000,
@@ -61488,4 +61488,3 @@ let Players = [
       "Chart": ["PU","PU","SO","SO","SO","SO","GB","GB","GB","GB","GB","FB","FB","FB","FB","1B","1B","1B","1B","2B","2B","2B","2B","2B","2B","2B","2B","2B","2B","2B"]
     }
   ];
-  

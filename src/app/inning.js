@@ -1,12 +1,13 @@
-function halfInning(batter, pitcher) {
+import { newAtBat, outcomeNumberOfBases } from './atBat.js';
+
+export function halfInning(batter, pitcher) {
     let outs = 0;
     let runs = 0;
     let baseRunners = ["", "", ""];
-
-    atBats = [];
+    let atBats = [];
 
     while (outs < 3) {
-        let ab = atBat(batter, pitcher);
+        let ab = newAtBat(batter, pitcher);
         atBats.push(ab);
         
         let bases = outcomeNumberOfBases(ab["outcome"]);

@@ -1,10 +1,17 @@
+import { Players } from '../data/players.js';
+import { halfInning } from './inning.js';
+import { PlayerCard } from '../components/playerCard.js';
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 // calc calculates the number of runs per game score by the given batter/pitcher
 function calc() {
     for (let b=0; b<Players.length-1; b++) {
         let trials = 100;
         let totalRuns = 0;
 
-        if (isPitcher(Players[b])) {
+        if (isPitcher(Players[b])) {    
             continue;
         }
         for (let i=0; i<trials; i++){
@@ -20,11 +27,13 @@ function calc() {
             continue;
         }
 
-        let display = "<PlayerCard name=" + Players[b]["Name"] + " obc=" +
-                    Players[b]["OB/C"] + " points=" + Players[b]["Pts."] +
-                    " avgGameRuns=" + averageGameRuns;
+        let display = <PlayerCard name={Players[b]["Name"]}
+                    obc={Players[b]["OB/C"]}
+                    points={Players[b]["Pts."]}
+                    avgGameRuns={averageGameRuns} />;
+        ReactDOM.render(display, document.getElementById("results"));
 
-        document.getElementById("results").innerHTML += display;
+        // document.getElementById("results").innerHTML += display;
         // Against 1565 PM
         // 1295,Barry Bonds,14,910,7.83
         // 1545,Jeff Bagwell '94,14,800,7.40
@@ -38,13 +47,6 @@ window.onload = function () {
     button.addEventListener("click", function(){
         calc();
     });
-}
-
-// Since diceRoll is such a major component of the game, I wanted
-// to give it a simple definition, but since randomPositiveInteger()
-// is such a small function, we could also get rid of it.
-function diceRoll() {
-    return randomPositiveInteger(20);
 }
 
 // determine if a player is a pitcher or not (a hitter)

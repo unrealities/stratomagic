@@ -1,3 +1,5 @@
+import { RandomPositiveInteger } from '../lib/math.js';
+
 // Limit this logic to only determining if who the controlling player is.
 // The dice result can be passed in as separate logic.
 function controllingPlayer(batter, pitcher, diceResult) {
@@ -14,9 +16,16 @@ function outcome(controllingPlayer, diceResult) {
     return controllingPlayer["Chart"][diceResult-1];
 }
 
+// Since diceRoll is such a major component of the game, I wanted
+// to give it a simple definition, but since randomPositiveInteger()
+// is such a small function, we could also get rid of it.
+function diceRoll() {
+    return RandomPositiveInteger(20);
+}
+
 // The linear events of an at-bat between a batter and a pitcher returns an 
 // atBat object containing the dice rolls, the controlling player and the outcome.
-function atBat(batter, pitcher) {
+export function newAtBat(batter, pitcher) {
     let initRoll = diceRoll();
     let cp = controllingPlayer(batter, pitcher, initRoll);
     let outcomeRoll = diceRoll();
@@ -29,7 +38,7 @@ function atBat(batter, pitcher) {
 }
 
 // How many bases will the batter advance given the outcome of the at-bat
-function outcomeNumberOfBases(outcome) {
+export function outcomeNumberOfBases(outcome) {
     let outcomesToBases = { "SO": 0, "PU": 0, "GB": 0, "FB": 0, "BB": 1,
         "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4 };
     return outcomesToBases[outcome];
