@@ -1,6 +1,6 @@
 import { Players } from '../data/players.js';
 import { halfInning } from './inning.js';
-import { PlayerCard } from '../components/playerCard.js';
+import { PlayerCard, PlayerCardContainer } from '../components/playerCard.js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -27,11 +27,13 @@ function calc() {
             continue;
         }
 
-        let display = <PlayerCard name={Players[b]["Name"]}
+        let card = <PlayerCard name={Players[b]["Name"]}
                     obc={Players[b]["OB/C"]}
                     points={Players[b]["Pts."]}
                     avgGameRuns={averageGameRuns} />;
-        ReactDOM.render(display, document.getElementById("results"));
+        // TODO: Append cards to the container to display all cards
+        // PlayerCardContainer.addCard(card);
+        ReactDOM.render(card, document.getElementById("results"));
 
         // document.getElementById("results").innerHTML += display;
         // Against 1565 PM
