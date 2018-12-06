@@ -7,6 +7,8 @@ import ReactDOM from 'react-dom';
 
 // calc calculates the number of runs per game score by the given batter/pitcher
 function calc() {
+    ReactDOM.render(<PlayerCardContainer />, document.getElementById("results"));
+
     for (let b=0; b<Players.length-1; b++) {
         let trials = 100;
         let totalRuns = 0;
@@ -32,8 +34,7 @@ function calc() {
                     points={Players[b]["Pts."]}
                     avgGameRuns={averageGameRuns} />;
         // TODO: Append cards to the container to display all cards
-        // PlayerCardContainer.addCard(card);
-        ReactDOM.render(card, document.getElementById("results"));
+        PlayerCardContainer.addCard(card)
 
         // document.getElementById("results").innerHTML += display;
         // Against 1565 PM
