@@ -54,7 +54,8 @@ export class PlayerCardContainer extends React.Component {
             this.setState({
                 ...this.state,
                 cards: goodCards,
-            });
+            },
+            console.log(this.state, goodCards));
     
             // Against 1565 PM
             // 1295,Barry Bonds,14,910,7.83
