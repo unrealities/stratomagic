@@ -30,7 +30,7 @@ export class PlayerCardContainer extends React.Component {
 
         // TODO: Update DOM async?
         for (let b=0; b<Players.length-1; b++) {
-            let trials = 10000;
+            let trials = 100;
             let totalRuns = 0;
     
             if (this.isPitcher(Players[b])) {    
@@ -55,7 +55,7 @@ export class PlayerCardContainer extends React.Component {
                 ...this.state,
                 cards: goodCards,
             },
-            console.log(this.state, goodCards));
+            console.log(this.state));
     
             // Against 1565 PM
             // 1295,Barry Bonds,14,910,7.83
