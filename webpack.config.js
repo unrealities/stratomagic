@@ -19,11 +19,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract(
-          {
-            fallback: 'style-loader',
-            use: ['css-loader']
-          })
+        use: ['style-loader', 'css-loader'],
       }
     ]
   },
@@ -36,8 +32,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin({filename: 'style.css'})
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     contentBase: './src/public',

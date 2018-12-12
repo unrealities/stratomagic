@@ -2,6 +2,8 @@ import { Players } from '../data/players.js';
 import { halfInning } from '../app/inning.js';
 import React from 'react';
 
+import style from "../style/index.css";
+
 export class PlayerCard extends React.Component {
     constructor(props) {
         super(props);
