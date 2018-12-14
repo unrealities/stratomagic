@@ -51,7 +51,7 @@ export class PlayerCardContainer extends React.Component {
                 continue;
             }
 
-            Players[b]["avgGameRuns"] = averageGameRuns;
+            Players[b]["avgGameRuns"] = averageGameRuns.toFixed(1);
             goodCards = [...goodCards, Players[b]];
             this.setState({
                 ...this.state,
