@@ -24,8 +24,17 @@ body {
 .playerCard h1 {
     border-bottom: 2px solid;
     border-color: #e71d36;
-    color: #2ec4b6;
+    color: #e71d36;
     font-family: 'Bowlby One SC', serif;
     font-size: 20px;
     line-height: 20px;
+}
+
+.playerCard .avgGameRuns {
+    background-color: #2ec4b6;
+    border-radius: 8px;
+    color: #fdfffc;
+    float: right;
+    font-size: 30px;
+    padding: 4%;
 }
