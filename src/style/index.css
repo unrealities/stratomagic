@@ -13,7 +13,7 @@ body {
     color: #011627;
     display: inline;
     float: left;
-    font-family: 'Unica One', cursive;
+    font-family: 'Unica One', sans-serif;
     font-weight: bold;
     font-size: 18px;
     margin: 2%;
@@ -25,7 +25,7 @@ body {
     border-bottom: 2px solid;
     border-color: #e71d36;
     color: #e71d36;
-    font-family: 'Bowlby One SC', serif;
+    font-family: 'Bowlby One SC', sans-serif;
     font-size: 20px;
     line-height: 20px;
 }
@@ -35,6 +35,20 @@ body {
     border-radius: 8px;
     color: #fdfffc;
     float: right;
+    font-size: 30px;
+    padding: 4%;
+}
+
+.playerCard .onBase {
+    margin: 4% 0%;
+}
+
+.playerCard .points {
+    border: 2px solid;
+    border-color: #2ec4b6;
+    border-radius : 8px;
+    color: #2ec4b6;
+    float: left;
     font-size: 30px;
     padding: 4%;
 }
