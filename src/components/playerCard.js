@@ -1,5 +1,6 @@
 import { Players } from '../data/players.js';
 import { halfInning } from '../app/inning.js';
+import { RandomPositiveInteger } from '../lib/math.js';
 import React from 'react';
 
 import style from "../style/index.css";
@@ -28,6 +29,24 @@ export class PlayerCardContainer extends React.Component {
     }
 
     componentDidMount(){
+        this.randomHitters();
+    }
+
+    // determine if a player is a pitcher or not (a hitter)
+    isPitcher(player) {
+        for (let i=0; i<player["Positions"].length; i++) {
+            // Positions uses standard baseball scoring numbering. With the
+            // following modifications: 0: DH, 1: SP, 10: RP, 11: CL
+            if (i === 1 || i > 9) {
+                if (player["Positions"][i] >= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    goodHitters() {
         let goodCards = [];
 
         // TODO: Update DOM async?
@@ -56,8 +75,7 @@ export class PlayerCardContainer extends React.Component {
             this.setState({
                 ...this.state,
                 cards: goodCards,
-            },
-            console.log(this.state));
+            });
     
             // Against 1565 PM
             // 1295,Barry Bonds,14,910,7.83
@@ -65,22 +83,23 @@ export class PlayerCardContainer extends React.Component {
             // 3460,Barry Bonds,16,900,12.73
             // 3589,Barry Bonds,14,860,8.09
         }
-
-        // this.setState({ cards: goodCards });
     }
 
-    // determine if a player is a pitcher or not (a hitter)
-    isPitcher(player) {
-        for (let i=0; i<player["Positions"].length; i++) {
-            // Positions uses standard baseball scoring numbering. With the
-            // following modifications: 0: DH, 1: SP, 10: RP, 11: CL
-            if (i === 1 || i > 9) {
-                if (player["Positions"][i] >= 0) {
-                    return true;
-                }
+    randomHitters() {
+        let randomHitters = [];
+
+        while (randomHitters.length < 9) {
+            let randomCardIndex = RandomPositiveInteger(Players.length-1);
+            if (this.isPitcher(Players[randomCardIndex])) {    
+                continue;
             }
+
+            randomHitters = [...randomHitters, Players[randomCardIndex]];
+            this.setState({
+                ...this.state,
+                cards: randomHitters,
+            });
         }
-        return false;
     }
 
     render() {
