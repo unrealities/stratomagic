@@ -14,9 +14,9 @@ export class PlayerCard extends React.Component {
         return (
             <div className="playerCard">
                 <h1>{this.props.name}</h1>
+                <div className="pos">{this.props.pos}</div>
                 <div className="onBase">{this.props.obc}</div>
                 <div className="points">{this.props.points}</div>
-                <div className="pos">{this.props.pos}</div>
             </div>
         );
     }
@@ -46,12 +46,12 @@ export class PlayerCardContainer extends React.Component {
         return false;
     }
 
-    positions(posArray) {
+    positions(posArr) {
         let posStrArr = ['DH','SP','C','1B','2B','3B','SS','LF','CF','RF','RP','CL'];
         let playerPosStrArr = [];
         for (let i=0; i<posStrArr.length; i++) {
-            if (posArray[i] > 0) {
-                playerPosStrArr.push(posStrArr[i]);
+            if (posArr[i] >= 0) {
+                playerPosStrArr.push(`${posStrArr[i]}+${posArr[i]}`);
             }
         }
 
@@ -106,9 +106,9 @@ export class PlayerCardContainer extends React.Component {
                 continue;
             }
 
-            console.log(Players[i].ID, Players[i].Name);
-            console.log(this.positions(Players[i].Positions));
-            // Players[i].pos = this.positions(Players[i].Positions);
+            let prettyPos = this.positions(Players[i].Positions).join(' | ');
+            Players[i].Pos = prettyPos;
+            console.log(Players[i]);
 
             randomHitters = [...randomHitters, Players[i]];
             this.setState({
@@ -127,6 +127,7 @@ export class PlayerCardContainer extends React.Component {
                         name={ c["Name"] }
                         obc={ c["OB/C"] }
                         points={ c["Pts."] }
+                        pos={ c["Pos"]}
                         avgGameRuns={ c["avgGameRuns"] } />
                     )
                 })}

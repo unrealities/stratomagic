@@ -52,3 +52,8 @@ body {
     font-size: 30px;
     padding: 4%;
 }
+
+.playerCard .pos {
+    color: #ff9f1c;
+    font-style: italic;
+}
