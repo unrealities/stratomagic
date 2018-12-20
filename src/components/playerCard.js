@@ -101,10 +101,8 @@ export class PlayerCardContainer extends React.Component {
         let randomHitters = [];
         let lineup = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
         let c = 0;
-        console.log(this.lineupFull(lineup));
 
-        while (!this.lineupFull(lineup) && c <100) {
-            console.log(lineup);
+        while (!this.lineupFull(lineup)) {
             c++;
             let i = RandomPositiveInteger(Players.length-1);
             let player = Players[i];
@@ -117,8 +115,6 @@ export class PlayerCardContainer extends React.Component {
             for (let l=0; l<lineup.length; l++) {
                 if ((player.Positions[l] >= 0) && (lineup[l] == 0)) {
                     lineup[l] = player.ID;
-                    console.log(player.ID);
-                    console.log(this.lineupFull(lineup));
 
                     player.Pos = this.positions(player.Positions).join(' | ');;
 
@@ -134,8 +130,8 @@ export class PlayerCardContainer extends React.Component {
     }
 
     lineupFull(lineup) {
-        for (let l in lineup) {
-            if (l == 0) {
+        for (let l=0; l < lineup.length; l++) {
+            if (lineup[l] == 0) {
                 return false;
             }
         }
