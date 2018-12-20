@@ -113,6 +113,7 @@ export class PlayerCardContainer extends React.Component {
             // Determine if our lineup has this all of this player's
             // positions filled
             for (let l=0; l<lineup.length; l++) {
+                // TODO: Need to allow for any position in the DH spot
                 if ((player.Positions[l] >= 0) && (lineup[l] == 0)) {
                     lineup[l] = player.ID;
 
