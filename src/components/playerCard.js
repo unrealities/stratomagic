@@ -99,23 +99,47 @@ export class PlayerCardContainer extends React.Component {
 
     randomHitters() {
         let randomHitters = [];
+        let lineup = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
+        let c = 0;
+        console.log(this.lineupFull(lineup));
 
-        while (randomHitters.length < 9) {
+        while (!this.lineupFull(lineup) && c <100) {
+            console.log(lineup);
+            c++;
             let i = RandomPositiveInteger(Players.length-1);
-            if (this.isPitcher(Players[i])) {    
+            let player = Players[i];
+            if (this.isPitcher(player)) {    
                 continue;
             }
 
-            let prettyPos = this.positions(Players[i].Positions).join(' | ');
-            Players[i].Pos = prettyPos;
-            console.log(Players[i]);
+            // Determine if our lineup has this all of this player's
+            // positions filled
+            for (let l=0; l<lineup.length; l++) {
+                if ((player.Positions[l] >= 0) && (lineup[l] == 0)) {
+                    lineup[l] = player.ID;
+                    console.log(player.ID);
+                    console.log(this.lineupFull(lineup));
 
-            randomHitters = [...randomHitters, Players[i]];
-            this.setState({
-                ...this.state,
-                cards: randomHitters,
-            });
+                    player.Pos = this.positions(player.Positions).join(' | ');;
+
+                    randomHitters = [...randomHitters, player];
+                    this.setState({
+                        ...this.state,
+                        cards: randomHitters,
+                    });
+                    continue;
+                }
+            }
         }
+    }
+
+    lineupFull(lineup) {
+        for (let l in lineup) {
+            if (l == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     render() {
@@ -127,6 +151,7 @@ export class PlayerCardContainer extends React.Component {
                         name={ c["Name"] }
                         obc={ c["OB/C"] }
                         points={ c["Pts."] }
+                        positions={ c["Positions"] }
                         pos={ c["Pos"]}
                         avgGameRuns={ c["avgGameRuns"] } />
                     )
