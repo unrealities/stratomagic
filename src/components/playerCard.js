@@ -114,6 +114,7 @@ export class PlayerCardContainer extends React.Component {
             // positions filled
             for (let l=0; l<lineup.length; l++) {
                 // TODO: Need to allow for any position in the DH spot
+                // TODO: BUG: One player should not be able to fill multiple positions
                 if ((player.Positions[l] >= 0) && (lineup[l] == 0)) {
                     lineup[l] = player.ID;
 
@@ -124,7 +125,7 @@ export class PlayerCardContainer extends React.Component {
                         ...this.state,
                         cards: randomHitters,
                     });
-                    continue;
+                    break;
                 }
             }
         }
