@@ -100,6 +100,7 @@ export class PlayerCardContainer extends React.Component {
     randomHitters() {
         let randomHitters = [];
         let lineup = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
+        let salary = 0;
         let c = 0;
 
         while (!this.lineupFull(lineup)) {
@@ -114,16 +115,17 @@ export class PlayerCardContainer extends React.Component {
             // positions filled
             for (let l=0; l<lineup.length; l++) {
                 // TODO: Need to allow for any position in the DH spot
-                // TODO: BUG: One player should not be able to fill multiple positions
                 if ((player.Positions[l] >= 0) && (lineup[l] == 0)) {
                     lineup[l] = player.ID;
 
                     player.Pos = this.positions(player.Positions).join(' | ');;
 
                     randomHitters = [...randomHitters, player];
+                    salary = salary + player['Pts.'];
                     this.setState({
                         ...this.state,
                         cards: randomHitters,
+                        salary: salary
                     });
                     break;
                 }
@@ -143,6 +145,9 @@ export class PlayerCardContainer extends React.Component {
     render() {
         return(
             <div className="playerCardContainer">
+                <div className="totalSalary">
+                    {this.state.salary}
+                </div>
                 {this.state.cards.map( (c,i) => { 
                     return(
                         <PlayerCard key={i}

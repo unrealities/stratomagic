@@ -57,3 +57,11 @@ body {
     color: #ff9f1c;
     font-style: italic;
 }
+
+.totalSalary {
+    color: #fdfffc;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 4%;
+    text-align: center;
+}
