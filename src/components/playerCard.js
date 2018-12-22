@@ -146,7 +146,7 @@ export class PlayerCardContainer extends React.Component {
         return(
             <div className="playerCardContainer">
                 <div className="totalSalary">
-                    {this.state.salary}
+                Total Salary: {this.state.salary}
                 </div>
                 {this.state.cards.map( (c,i) => { 
                     return(

@@ -17,6 +17,8 @@ body {
     font-weight: bold;
     font-size: 18px;
     margin: 2%;
+    min-height: 200px;
+    min-width: 100px;
     padding: 2%;
     width: 18%;
 }
@@ -28,6 +30,7 @@ body {
     font-family: 'Bowlby One SC', sans-serif;
     font-size: 20px;
     line-height: 20px;
+    min-height: 40px;
 }
 
 .playerCard .avgGameRuns {
@@ -50,7 +53,11 @@ body {
     color: #2ec4b6;
     float: left;
     font-size: 30px;
+    margin-top: 10%;
+    min-height: 100%;
     padding: 4%;
+    text-align: center;
+    width: 40%;
 }
 
 .playerCard .pos {
@@ -58,10 +65,16 @@ body {
     font-style: italic;
 }
 
+.playerCardContainer {
+    min-width: 100%;
+}
+
 .totalSalary {
     color: #fdfffc;
+    float: left;
     font-size: 32px;
     font-weight: bold;
     padding: 4%;
     text-align: center;
+    width: 100%;
 }
