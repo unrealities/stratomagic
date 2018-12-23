@@ -22,7 +22,7 @@
 //
 // Predictions? After lineups have been set, show the win probabilities.
 //
-class game {
+class Game {
     constructor(hTeam, aTeam, hLineup, aLineup, dh) {
         this.hTeam = hTeam;
         this.aTeam = aTeam;
@@ -32,7 +32,7 @@ class game {
     }
 }
 
-class team {
+class Team {
     constructor(name, owner, roster) {
         this.name = name;
         this.owner = owner;
@@ -40,20 +40,37 @@ class team {
     }
 }
 
-class owner {
+class Owner {
     constructor(firstName, lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 }
 
-class roster {
+/*  Roster
+
+Rules taken from: http://www.wizards.com/dci/downloads/MLB_FLR_06may05_EN.doc
+
+TODO: Need to make these rules dynamic. Research best design pattern, composition with validator class?
+
+Each team has a roster.
+- 25 players
+- 4 starting pitchers
+- 9 non-pitchers in a lineup (DH, C, 1B, 2B, 3B, SS, LF, CF, RF)
+-- Any hitter can be a DH
+-- Any hitter can be a 1B (get -1 fielding)
+- 12 backups / relief pitchers
+
+- total points < 5000
+
+*/
+class Roster {
     constructor(players) {
         this.players = players;
     }
 }
 
-class lineup {
+class Lineup {
     constructor(hitters, startingPitcher) {
         this.hitters = hitters;
         this.startingPitcher = startingPitcher;
