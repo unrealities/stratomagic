@@ -66,8 +66,24 @@ Each team has a roster.
 */
 class Roster {
     constructor(players) {
-        this.players = players;
-    }
+        this.name = {
+            value: players,
+            validator: ['hasLength25']
+        };
+    };
+
+    // validate values before setting
+    set = function(value, key) {
+        if (this.validator.validate(value, key.validator)) {
+            key.value = value;
+            return true;
+        }
+        return false;
+    };
+    
+    setName = function(name) {
+        this.set(name, this.name);
+    };
 }
 
 class Lineup {
@@ -76,3 +92,19 @@ class Lineup {
         this.startingPitcher = startingPitcher;
     }
 }
+
+var Validator = function() {};
+
+Validator.prototype.validate = function(value, rules) {
+    var self = this;
+    return rules.every(function(rule) {
+        return self[rule](value);
+    });
+};
+
+Validator.prototype.hasLength25 = function(value) {
+    if (value.length() == 25) {
+        return true;
+    }
+    return false;
+};
