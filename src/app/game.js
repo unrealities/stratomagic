@@ -64,26 +64,17 @@ Each team has a roster.
 - total points < 5000
 
 */
-class Roster {
+export class Roster {
     constructor(players) {
-        this.name = {
-            value: players,
-            validator: ['hasLength25']
-        };
+        this.players = players;
     };
 
-    // validate values before setting
-    set = function(value, key) {
-        if (this.validator.validate(value, key.validator)) {
-            key.value = value;
+    isValid() {
+        if (this.players.length == 9) {
             return true;
         }
         return false;
-    };
-    
-    setName = function(name) {
-        this.set(name, this.name);
-    };
+    }
 }
 
 class Lineup {
@@ -92,19 +83,3 @@ class Lineup {
         this.startingPitcher = startingPitcher;
     }
 }
-
-var Validator = function() {};
-
-Validator.prototype.validate = function(value, rules) {
-    var self = this;
-    return rules.every(function(rule) {
-        return self[rule](value);
-    });
-};
-
-Validator.prototype.hasLength25 = function(value) {
-    if (value.length() == 25) {
-        return true;
-    }
-    return false;
-};

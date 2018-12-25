@@ -1,6 +1,8 @@
-import { Players } from '../data/players.js';
+import { Roster } from '../app/game.js';
 import { halfInning } from '../app/inning.js';
 import { RandomPositiveInteger } from '../lib/math.js';
+import { Players } from '../data/players.js';
+
 import React from 'react';
 
 import style from "../style/index.css";
@@ -131,6 +133,8 @@ export class PlayerCardContainer extends React.Component {
                 }
             }
         }
+        let r = new Roster(randomHitters);
+        console.log(r.isValid());
     }
 
     lineupFull(lineup) {
@@ -146,19 +150,21 @@ export class PlayerCardContainer extends React.Component {
         return(
             <div className="playerCardContainer">
                 <div className="totalSalary">
-                Total Salary: {this.state.salary}
+                    Total Salary: {this.state.salary}
                 </div>
-                {this.state.cards.map( (c,i) => { 
-                    return(
-                        <PlayerCard key={i}
-                        name={ c["Name"] }
-                        obc={ c["OB/C"] }
-                        points={ c["Pts."] }
-                        positions={ c["Positions"] }
-                        pos={ c["Pos"]}
-                        avgGameRuns={ c["avgGameRuns"] } />
-                    )
-                })}
+                <div className="playerCardWrapper">
+                    {this.state.cards.map( (c,i) => { 
+                        return(
+                            <PlayerCard key={i}
+                            name={ c["Name"] }
+                            obc={ c["OB/C"] }
+                            points={ c["Pts."] }
+                            positions={ c["Positions"] }
+                            pos={ c["Pos"]}
+                            avgGameRuns={ c["avgGameRuns"] } />
+                        )
+                    })}
+                </div>
             </div>
         );
     }
