@@ -31,7 +31,7 @@ export class PlayerCardContainer extends React.Component {
     }
 
     componentDidMount(){
-        this.randomHitters();
+        this.randomRoster();
     }
 
     // determine if a player is a pitcher or not (a hitter)
@@ -99,51 +99,28 @@ export class PlayerCardContainer extends React.Component {
         }
     }
 
-    randomHitters() {
-        let randomHitters = [];
-        let lineup = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
+    // TODO: Split out starting pitchers to ensure you always get 4
+    randomRoster() {
+        let randomRoster = [];
         let salary = 0;
-        let c = 0;
+        let r = new Roster(randomRoster);
 
-        while (!this.lineupFull(lineup)) {
-            c++;
+        for(let c=0; c<25; c++) {
             let i = RandomPositiveInteger(Players.length-1);
             let player = Players[i];
-            if (this.isPitcher(player)) {    
-                continue;
-            }
 
-            // Determine if our lineup has this all of this player's
-            // positions filled
-            for (let l=0; l<lineup.length; l++) {
-                // TODO: Need to allow for any position in the DH spot
-                if ((player.Positions[l] >= 0) && (lineup[l] == 0)) {
-                    lineup[l] = player.ID;
+            player.Pos = this.positions(player.Positions).join(' | ');;
 
-                    player.Pos = this.positions(player.Positions).join(' | ');;
-
-                    randomHitters = [...randomHitters, player];
-                    salary = salary + player['Pts.'];
-                    this.setState({
-                        ...this.state,
-                        cards: randomHitters,
-                        salary: salary
-                    });
-                    break;
-                }
-            }
+            randomRoster = [...randomRoster, player];
+            salary = salary + player['Pts.'];
+            this.setState({
+                ...this.state,
+                cards: randomRoster,
+                salary: salary
+            });
         }
-        let r = new Roster(randomHitters);
+        r = new Roster(randomRoster);
         console.log(r.isValid());
-    }
-
-    lineupFull(lineup) {
-        for (let l=0; l < lineup.length; l++) {
-            if (lineup[l] == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
     render() {
