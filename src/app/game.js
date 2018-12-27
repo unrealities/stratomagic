@@ -119,11 +119,26 @@ export class Roster {
             return false;
         }
 
+        let interestingLineup = {'2': -1, '4': -1, '5': -1, '6': -1, '7': -1, '8': -1, '9': -1};
+        let usableHitters = [];
+        for(let h of hitters) {
+            // Identify what position each player can play
+            for(let p=0; p<h["Positions"].length; p++) {
+                if (h["Positions"][p] >= 0) {
+                    h["ActivePositions"].push(p);
+                }
+            }
+            // Fill in positions for players who can only play one position
+            if (h["ActivePositions"].length === 1) {
+                if (interestingLineup[h["ActivePositions"][0].toString()] === -1) {
+                    interestingLineup[h["ActivePositions"][0].toString()] = h["ID"];
+                }
+            } else { // Identify remaining positions and players
+                usableHitters.push(h);
+            }
+        }
+
         // TODO:
-        // Identify what position each player can play
-        // Sort by count, least to most
-        // Fill in positions for players who can only play one position
-        // Identify remaining positions and players
         // Determine if the remaining players can fill the remaining slots
         // If only one player can fill the position, use them
         // Else need to keep a pool of possible positions and players and loop
