@@ -101,6 +101,7 @@ export class Roster {
 
         // Need at least 9 hitters
         if (hitters.length < 9) {
+            console.log("less than 9 hitters");
             return false;
         }
 
@@ -111,17 +112,24 @@ export class Roster {
         // Ensure we have at least one player that qualifies at each position
         // This does not prevent a player from illegally filling multiple positions
         for(let p of interestingPositions) {
+            let flag = 0;
             for(let h of hitters) {
                 if (h["Positions"][p] >= 0) {
-                    continue;
+                    flag = 1;
+                    break;
                 }
             }
-            return false;
+            if (flag == 0) {
+                console.log(p);
+                console.log("can't fill all positions");
+                return false;
+            }
         }
 
-        let interestingLineup = {'2': -1, '4': -1, '5': -1, '6': -1, '7': -1, '8': -1, '9': -1};
+        let interestingLineup = {'2': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': []};
         let usableHitters = [];
         for(let h of hitters) {
+            h["ActivePositions"] = [];
             // Identify what position each player can play
             for(let p=0; p<h["Positions"].length; p++) {
                 if (h["Positions"][p] >= 0) {
@@ -131,15 +139,33 @@ export class Roster {
             // Fill in positions for players who can only play one position
             if (h["ActivePositions"].length === 1) {
                 if (interestingLineup[h["ActivePositions"][0].toString()] === -1) {
-                    interestingLineup[h["ActivePositions"][0].toString()] = h["ID"];
+                    interestingLineup[h["ActivePositions"][0].toString()].push(h["ID"]);
                 }
             } else { // Identify remaining positions and players
                 usableHitters.push(h);
             }
         }
 
-        // TODO:
+        if (usableHitters.length == 0) {
+            console.log("no usable hitters left");
+            return false;
+        }
+
         // Determine if the remaining players can fill the remaining slots
+        // TODO: Uncaught TypeError: interestingLineup[Symbol.iterator] is not a function
+        for(let i of interestingLineup) {
+            if (interestingLineup[i].length == 0) {
+                for(let u of usableHitters) {
+                    for(let a of u["ActivePositions"]) {
+                        if (a == parseInt(i)) {
+                            interestingLineup[i].push(u["ID"]);
+                        }
+                    }
+                }
+            }
+        }
+
+        console.log(interestingLineup);
         // If only one player can fill the position, use them
         // Else need to keep a pool of possible positions and players and loop
 
@@ -156,9 +182,9 @@ export class Roster {
     }
 
     isValid() {
-        return this.isValidSize(25) &&
+        return this.canFieldValidLineup() &&
         this.hasStartingPitchers(4) &&
-        this.canFieldValidLineup() &&
+        this.isValidSize(25) &&
         this.underSalaryCap(5000);
     }
 
