@@ -111,21 +111,6 @@ export class Roster {
 
         // Ensure we have at least one player that qualifies at each position
         // This does not prevent a player from illegally filling multiple positions
-        for(let p of interestingPositions) {
-            let flag = 0;
-            for(let h of hitters) {
-                if (h["Positions"][p] >= 0) {
-                    flag = 1;
-                    break;
-                }
-            }
-            if (flag == 0) {
-                console.log(p);
-                console.log("can't fill all positions");
-                return false;
-            }
-        }
-
         let interestingLineup = {'2': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': []};
         let usableHitters = [];
         for(let h of hitters) {
@@ -152,20 +137,32 @@ export class Roster {
         }
 
         // Determine if the remaining players can fill the remaining slots
-        // TODO: Uncaught TypeError: interestingLineup[Symbol.iterator] is not a function
-        for(let i of interestingLineup) {
-            if (interestingLineup[i].length == 0) {
+        for(let [pos, players] of Object.entries(interestingLineup)) {
+            if (players.length == 0) {
                 for(let u of usableHitters) {
                     for(let a of u["ActivePositions"]) {
-                        if (a == parseInt(i)) {
-                            interestingLineup[i].push(u["ID"]);
+                        if (a == parseInt(pos)) {
+                            interestingLineup[pos].push(u["ID"]);
                         }
                     }
                 }
             }
         }
 
+        // If there is a position with no available players, the roster is invalid
+        // When run against pure randomness Catchers are lacking, may need to ensure
+        // that a catcher is taken along with starting pitchers to reduce cycles
         console.log(interestingLineup);
+        for(let [pos, players] of Object.entries(interestingLineup)) {
+            if (players.length == 0) {
+                console.log(`can't fill position: ${pos}`);
+                return false;
+            } else {
+                // TODO: check if there is one player, if so remove that player from all other positions
+                
+            }
+        }
+        
         // If only one player can fill the position, use them
         // Else need to keep a pool of possible positions and players and loop
 
@@ -175,7 +172,7 @@ export class Roster {
     // Total points < (5000)
     underSalaryCap(capNumber) {
         let salary = 0;
-        for(let player of this.player) {
+        for(let player of Object.entries(this.player)) {
             salary += player["Pts."];
         }
         return salary <= capNumber;
