@@ -114,6 +114,7 @@ export class Roster {
         let interestingLineup = {'2': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': []};
         let usableHitters = [];
         for(let h of hitters) {
+            console.log(`${h.Name} (${h.ID}): ${h.Positions}`);
             h["ActivePositions"] = [];
             // Identify what position each player can play
             for(let p=0; p<h["Positions"].length; p++) {
@@ -121,15 +122,20 @@ export class Roster {
                     h["ActivePositions"].push(p);
                 }
             }
+            console.log(`${h.Name} (${h.ID}): ${h.ActivePositions}`);
             // Fill in positions for players who can only play one position
-            if (h["ActivePositions"].length === 1) {
-                if (interestingLineup[h["ActivePositions"][0].toString()] === -1) {
-                    interestingLineup[h["ActivePositions"][0].toString()].push(h["ID"]);
+            // TODO: this doesn't seem to be restricting updating the interestingLineup
+            // Still seeing mutiple positions get filled that are not interesting.
+            if (h["ActivePositions"].length === 1 && h["ActivePositions"] in interestingPositions) {
+                if (interestingLineup[h["ActivePositions"][0].toString()] === undefined || 
+                interestingLineup[h["ActivePositions"][0].toString()].length == 0) {
+                    interestingLineup[h["ActivePositions"][0].toString()] = [h["ID"]];
                 }
             } else { // Identify remaining positions and players
                 usableHitters.push(h);
             }
         }
+        console.log(interestingLineup);
 
         if (usableHitters.length == 0) {
             console.log("no usable hitters left");
@@ -159,7 +165,15 @@ export class Roster {
                 return false;
             } else {
                 // TODO: check if there is one player, if so remove that player from all other positions
-                
+                if (players.length == 1) {
+                    for(let players of Object.entries(interestingLineup)) {
+                        for(let p of players) {
+                            if (p == players[0]) {
+
+                            }
+                        }
+                    }
+                }
             }
         }
         
