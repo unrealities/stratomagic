@@ -114,7 +114,6 @@ export class Roster {
         let interestingLineup = {'2': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': []};
         let usableHitters = [];
         for(let h of hitters) {
-            console.log(`${h.Name} (${h.ID}): ${h.Positions}`);
             h["ActivePositions"] = [];
             // Identify what position each player can play
             for(let p=0; p<h["Positions"].length; p++) {
@@ -122,19 +121,24 @@ export class Roster {
                     h["ActivePositions"].push(p);
                 }
             }
-            console.log(`${h.Name} (${h.ID}): ${h.ActivePositions}`);
+
             // Fill in positions for players who can only play one position
-            // TODO: this doesn't seem to be restricting updating the interestingLineup
-            // Still seeing mutiple positions get filled that are not interesting.
-            if (h["ActivePositions"].length === 1 && h["ActivePositions"] in interestingPositions) {
+            if (h["ActivePositions"].length === 1 && interestingPositions.includes(h["ActivePositions"])) {
                 if (interestingLineup[h["ActivePositions"][0].toString()] === undefined || 
                 interestingLineup[h["ActivePositions"][0].toString()].length == 0) {
                     interestingLineup[h["ActivePositions"][0].toString()] = [h["ID"]];
                 }
             } else { // Identify remaining positions and players
-                usableHitters.push(h);
+                for(let a of h["ActivePositions"]) {
+                    if (interestingPositions.includes(a)) {
+                        usableHitters.push(h);
+                        break;
+                    }
+                }
             }
         }
+        // TODO: Used hitters still appear to be getting added
+        console.log(usableHitters);
         console.log(interestingLineup);
 
         if (usableHitters.length == 0) {
@@ -158,7 +162,6 @@ export class Roster {
         // If there is a position with no available players, the roster is invalid
         // When run against pure randomness Catchers are lacking, may need to ensure
         // that a catcher is taken along with starting pitchers to reduce cycles
-        console.log(interestingLineup);
         for(let [pos, players] of Object.entries(interestingLineup)) {
             if (players.length == 0) {
                 console.log(`can't fill position: ${pos}`);
