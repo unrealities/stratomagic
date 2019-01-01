@@ -123,12 +123,12 @@ export class Roster {
             }
 
             // Fill in positions for players who can only play one position
-            if (h["ActivePositions"].length === 1 && interestingPositions.includes(h["ActivePositions"])) {
+            if (h["ActivePositions"].length === 1 && interestingPositions.includes(h["ActivePositions"][0])) {
                 if (interestingLineup[h["ActivePositions"][0].toString()] === undefined || 
                 interestingLineup[h["ActivePositions"][0].toString()].length == 0) {
                     interestingLineup[h["ActivePositions"][0].toString()] = [h["ID"]];
                 }
-            } else { // Identify remaining positions and players
+            } else {
                 for(let a of h["ActivePositions"]) {
                     if (interestingPositions.includes(a)) {
                         usableHitters.push(h);
@@ -137,7 +137,6 @@ export class Roster {
                 }
             }
         }
-        // TODO: Used hitters still appear to be getting added
         console.log(usableHitters);
         console.log(interestingLineup);
 
