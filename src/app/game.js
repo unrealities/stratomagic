@@ -74,6 +74,7 @@ export class Roster {
                 c++;
             }
         }
+        console.log(`${c} starting pitchers`)
         return c === count;
     }
 
@@ -123,10 +124,21 @@ export class Roster {
             }
 
             // Fill in positions for players who can only play one position
+            // Also account for players who play LF/RF. Pure LF or RF generally do not exist
             if (h["ActivePositions"].length === 1 && interestingPositions.includes(h["ActivePositions"][0])) {
                 if (interestingLineup[h["ActivePositions"][0].toString()] === undefined || 
                 interestingLineup[h["ActivePositions"][0].toString()].length == 0) {
                     interestingLineup[h["ActivePositions"][0].toString()] = [h["ID"]];
+                }
+            } else if (h["ActivePositions"].length === 2 && 
+                       h["ActivePositions"][0] === 7 &&
+                       h["ActivePositions"][1] === 9){ 
+                if (interestingLineup[h["ActivePositions"][0].toString()] === undefined || 
+                interestingLineup[h["ActivePositions"][0].toString()].length == 0) {
+                    interestingLineup[h["ActivePositions"][0].toString()] = [h["ID"]];
+                } else if (interestingLineup[h["ActivePositions"][1].toString()] === undefined || 
+                interestingLineup[h["ActivePositions"][1].toString()].length == 0) {
+                    interestingLineup[h["ActivePositions"][1].toString()] = [h["ID"]];
                 }
             } else {
                 for(let a of h["ActivePositions"]) {
@@ -137,8 +149,6 @@ export class Roster {
                 }
             }
         }
-        console.log(usableHitters);
-        console.log(interestingLineup);
 
         if (usableHitters.length == 0) {
             console.log("no usable hitters left");
@@ -146,18 +156,20 @@ export class Roster {
         }
 
         // Determine if the remaining players can fill the remaining slots
-        for(let [pos, players] of Object.entries(interestingLineup)) {
-            if (players.length == 0) {
-                for(let u of usableHitters) {
-                    for(let a of u["ActivePositions"]) {
-                        if (a == parseInt(pos)) {
-                            interestingLineup[pos].push(u["ID"]);
-                        }
-                    }
-                }
-            }
-        }
-
+        // for(let [pos, players] of Object.entries(interestingLineup)) {
+        //     if (players.length == 0) {
+        //         for(let u of usableHitters) {
+        //             for(let a of u["ActivePositions"]) {
+        //                 if (a == parseInt(pos)) {
+        //                     interestingLineup[pos].push(u["ID"]);
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+    
+        console.log(usableHitters);
+        console.log(interestingLineup);
         // If there is a position with no available players, the roster is invalid
         // When run against pure randomness Catchers are lacking, may need to ensure
         // that a catcher is taken along with starting pitchers to reduce cycles
@@ -165,17 +177,6 @@ export class Roster {
             if (players.length == 0) {
                 console.log(`can't fill position: ${pos}`);
                 return false;
-            } else {
-                // TODO: check if there is one player, if so remove that player from all other positions
-                if (players.length == 1) {
-                    for(let players of Object.entries(interestingLineup)) {
-                        for(let p of players) {
-                            if (p == players[0]) {
-
-                            }
-                        }
-                    }
-                }
             }
         }
         
@@ -188,17 +189,18 @@ export class Roster {
     // Total points < (5000)
     underSalaryCap(capNumber) {
         let salary = 0;
-        for(let player of Object.entries(this.player)) {
-            salary += player["Pts."];
+        for(let player of this.players) {
+            salary += player['Pts.'];
         }
+        console.log(`Salary is ${salary}`)
         return salary <= capNumber;
     }
 
     isValid() {
-        return this.canFieldValidLineup() &&
-        this.hasStartingPitchers(4) &&
-        this.isValidSize(25) &&
-        this.underSalaryCap(5000);
+        return this.isValidSize(25) &&
+        this.underSalaryCap(10000) &&
+        this.canFieldValidLineup();
+        // this.hasStartingPitchers(4);
     }
 
 }

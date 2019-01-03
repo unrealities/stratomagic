@@ -102,33 +102,37 @@ export class PlayerCardContainer extends React.Component {
     // TODO: Split out starting pitchers to ensure you always get 4
     randomRoster() {
         let randomRoster = [];
-        let salary = 0;
         let r = new Roster(randomRoster);
-
-        for(let c=0; c<25; c++) {
-            let i = RandomPositiveInteger(Players.length-1);
-            let player = Players[i];
-
-            player.Pos = this.positions(player.Positions).join(' | ');;
-
-            randomRoster = [...randomRoster, player];
-            salary = salary + player['Pts.'];
-            this.setState({
-                ...this.state,
-                cards: randomRoster,
-                salary: salary
-            });
-        }
-        r = new Roster(randomRoster);
         console.log(r.isValid());
+
+        // even without removing starting pitchers qualification, it is still
+        // difficult to find a valid roster without multi-position players.
+        for(let i=0; i<1000; i++) {
+            for(let c=0; c<25; c++) {
+                let i = RandomPositiveInteger(Players.length-1);
+                let player = Players[i];
+
+                player.Pos = this.positions(player.Positions).join(' | ');;
+
+                randomRoster = [...randomRoster, player];
+            }
+            r = new Roster(randomRoster);
+            console.log(r.isValid());
+            if (r.isValid()) {
+                console.log(`found valid roster`);
+                break;
+            }
+        }
+
+        this.setState({
+            ...this.state,
+            cards: randomRoster,
+        });
     }
 
     render() {
         return(
             <div className="playerCardContainer">
-                <div className="totalSalary">
-                    Total Salary: {this.state.salary}
-                </div>
                 <div className="playerCardWrapper">
                     {this.state.cards.map( (c,i) => { 
                         return(
