@@ -61488,3 +61488,14 @@ export const Players = [
       "Chart": ["PU","PU","SO","SO","SO","SO","GB","GB","GB","GB","GB","FB","FB","FB","FB","1B","1B","1B","1B","2B","2B","2B","2B","2B","2B","2B","2B","2B","2B","2B"]
     }
   ];
+
+export const StartingPitchers = () => {
+  const sps = [];
+  for (p of Players) {
+    if (p.Positions[1] >= 0) {
+      sps.push(p);
+    }
+  }
+  console.log(sps);
+  return sps;
+};
