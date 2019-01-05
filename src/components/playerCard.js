@@ -1,7 +1,7 @@
 import { Roster } from '../app/game.js';
 import { halfInning } from '../app/inning.js';
 import { RandomPositiveInteger } from '../lib/math.js';
-import { Players, StartingPitchers } from '../data/players.js';
+import { Players, PlayersByPosition } from '../data/players.js';
 
 import React from 'react';
 
@@ -103,18 +103,20 @@ export class PlayerCardContainer extends React.Component {
     randomRoster() {
         let randomRoster = [];
         let r = new Roster(randomRoster);
-        console.log(r.isValid());
+        let pbp = PlayersByPosition;
+        console.log(pbp[0]);
 
         // even without removing starting pitchers qualification, it is still
         // difficult to find a valid roster without multi-position players.
         for(let i=0; i<100; i++) {
             for(let p=0; p<4; p++) {
-                let i = RandomPositiveInteger(StartingPitchers.length-1);
-                let player = Players[i];
+                
+                // let i = RandomPositiveInteger(PlayersByPosition['1'].length-1);
+                // let player = Players[i];
 
-                player.Pos = this.positions(player.Positions).join(' | ');;
+                // player.Pos = this.positions(player.Positions).join(' | ');;
 
-                randomRoster = [...randomRoster, player];
+                // randomRoster = [...randomRoster, player];
             }
 
             for(let c=0; c<21; c++) {

@@ -61489,13 +61489,19 @@ export const Players = [
     }
   ];
 
-export const StartingPitchers = () => {
-  const sps = [];
+export const PlayersByPosition = () => {
+  const pbp = new Array();
+  for (let i=0; i<12; i++) {
+    pbp[i] = new Array();
+  }
   for (p of Players) {
-    if (p.Positions[1] >= 0) {
-      sps.push(p);
+    for (let i=0; i<12; i++) {
+      if (p.Positions[i] >= 0) {
+        pbp[i].push(p);
+      }
     }
   }
-  console.log(sps);
-  return sps;
+  console.log(pbp);
+  return pbp;
 };
+
