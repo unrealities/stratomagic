@@ -103,29 +103,36 @@ export class PlayerCardContainer extends React.Component {
     randomRoster() {
         let randomRoster = [];
         let r = new Roster(randomRoster);
-        let pbp = PlayersByPosition;
-        console.log(pbp[0]);
+        let pbp = PlayersByPosition();
 
-        // even without removing starting pitchers qualification, it is still
-        // difficult to find a valid roster without multi-position players.
         for(let i=0; i<100; i++) {
+            // Get Exactly 4 SPs
             for(let p=0; p<4; p++) {
-                
-                // let i = RandomPositiveInteger(PlayersByPosition['1'].length-1);
-                // let player = Players[i];
-
-                // player.Pos = this.positions(player.Positions).join(' | ');;
-
-                // randomRoster = [...randomRoster, player];
+                let i = RandomPositiveInteger(pbp[1].length-1);
+                let player = pbp[1][i];
+                player.Pos = this.positions(player.Positions).join(' | ');;
+                randomRoster = [...randomRoster, player];
             }
 
-            for(let c=0; c<21; c++) {
-                let i = RandomPositiveInteger(Players.length-1);
-                let player = Players[i];
+            // Get At Least 1 C
+            let i = RandomPositiveInteger(pbp[2].length-1);
+            let player = pbp[2][i];
+            player.Pos = this.positions(player.Positions).join(' | ');;
+            randomRoster = [...randomRoster, player];
 
-                player.Pos = this.positions(player.Positions).join(' | ');;
+            // Get 20 other players (besides SPs)
+            for(let c=0; c<20; c++) {
+                let nonSP = null;
+                while (nonSP === null) {
+                    let i = RandomPositiveInteger(Players.length-1);
+                    // exclude SP
+                    if (Players[i].Positions[1] == -1) {
+                        nonSP = Players[i];
+                    }
+                }
+                nonSP.Pos = this.positions(nonSP.Positions).join(' | ');;
 
-                randomRoster = [...randomRoster, player];
+                randomRoster = [...randomRoster, nonSP];
             }
             r = new Roster(randomRoster);
             console.log(r.isValid());

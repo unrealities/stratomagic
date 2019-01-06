@@ -199,8 +199,8 @@ export class Roster {
     isValid() {
         return this.isValidSize(25) &&
         this.underSalaryCap(10000) &&
+        this.hasStartingPitchers(4) &&
         this.canFieldValidLineup();
-        // this.hasStartingPitchers(4);
     }
 
 }

@@ -61494,14 +61494,13 @@ export const PlayersByPosition = () => {
   for (let i=0; i<12; i++) {
     pbp[i] = new Array();
   }
-  for (p of Players) {
+  for (let p of Players) {
     for (let i=0; i<12; i++) {
       if (p.Positions[i] >= 0) {
         pbp[i].push(p);
       }
     }
   }
-  console.log(pbp);
   return pbp;
 };
 
