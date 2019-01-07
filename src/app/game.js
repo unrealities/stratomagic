@@ -155,21 +155,20 @@ export class Roster {
             return false;
         }
 
-        // Determine if the remaining players can fill the remaining slots
-        // for(let [pos, players] of Object.entries(interestingLineup)) {
-        //     if (players.length == 0) {
-        //         for(let u of usableHitters) {
-        //             for(let a of u["ActivePositions"]) {
-        //                 if (a == parseInt(pos)) {
-        //                     interestingLineup[pos].push(u["ID"]);
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+        // Determine remaining positions to be filled
+        let remainingPositions = [];
+        for(let [pos, players] of Object.entries(interestingLineup)) {
+            if (players.length == 0) {
+                remainingPositions.push(pos);
+            }
+        }
     
-        console.log(usableHitters);
-        console.log(interestingLineup);
+        console.log(`Remaining Positions: ${remainingPositions.toString()}`)
+        console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
+        console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
+
+        // TODO: Loop through remaining positions and usable hitters
+
         // If there is a position with no available players, the roster is invalid
         // When run against pure randomness Catchers are lacking, may need to ensure
         // that a catcher is taken along with starting pitchers to reduce cycles
