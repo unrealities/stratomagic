@@ -105,7 +105,7 @@ export class PlayerCardContainer extends React.Component {
         let r = new Roster(randomRoster);
         let pbp = PlayersByPosition();
 
-        for(let i=0; i<100; i++) {
+        for(let i=0; i<1; i++) {
             // Get Exactly 4 SPs
             for(let p=0; p<4; p++) {
                 let i = RandomPositiveInteger(pbp[1].length-1);

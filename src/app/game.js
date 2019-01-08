@@ -150,11 +150,6 @@ export class Roster {
             }
         }
 
-        if (usableHitters.length == 0) {
-            console.log("no usable hitters left");
-            return false;
-        }
-
         // Determine remaining positions to be filled
         let remainingPositions = [];
         for(let [pos, players] of Object.entries(interestingLineup)) {
@@ -162,12 +157,36 @@ export class Roster {
                 remainingPositions.push(pos);
             }
         }
+
+        // valid roster
+        if (remainingPositions.length == 0) {
+            return true;
+        }
+
+        if (usableHitters.length == 0 && remainingPositions.length > 0) {
+            console.log("no usable hitters left");
+            return false;
+        }
     
+        // Loop through remaining positions and usable hitters
+        // This is a naive approach, it grabs the first match and doesn't
+        // allow for a situation where you need to fill multiple positions
+        // i.e. you need 2B and SS
+        // Player A plays 2B/SS, Player B plays 2B/3B.
+        // Player A fills 2B, but since Player B can't fill SS, illegal lineup
+        for(let rp of remainingPositions) {
+            console.log(`looking for position: ${rp}`);
+            for(let hitter of usableHitters) {
+                if (hitter.ActivePositions.includes(parseInt(rp))) {
+                    interestingLineup[rp] = hitter.ID;
+                    break;
+                }
+            }
+        }
+
         console.log(`Remaining Positions: ${remainingPositions.toString()}`)
         console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
         console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
-
-        // TODO: Loop through remaining positions and usable hitters
 
         // If there is a position with no available players, the roster is invalid
         // When run against pure randomness Catchers are lacking, may need to ensure
