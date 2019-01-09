@@ -163,25 +163,40 @@ export class Roster {
             return true;
         }
 
-        if (usableHitters.length == 0 && remainingPositions.length > 0) {
-            console.log("no usable hitters left");
+        if ((usableHitters.length == 0 && remainingPositions.length > 0) ||
+            (usableHitters.length < remainingPositions.length)) {
+            console.log("not enough hitters left");
             return false;
         }
     
         // Loop through remaining positions and usable hitters
-        // This is a naive approach, it grabs the first match and doesn't
-        // allow for a situation where you need to fill multiple positions
-        // i.e. you need 2B and SS
-        // Player A plays 2B/SS, Player B plays 2B/3B.
-        // Player A fills 2B, but since Player B can't fill SS, illegal lineup
+
+        // Prepare possible solutions
+        let possibleSolutions = {};
         for(let rp of remainingPositions) {
-            console.log(`looking for position: ${rp}`);
+            possibleSolutions[rp] = new Array();
             for(let hitter of usableHitters) {
                 if (hitter.ActivePositions.includes(parseInt(rp))) {
-                    interestingLineup[rp] = hitter.ID;
-                    break;
+                    possibleSolutions[rp].push(hitter.ID);
                 }
             }
+        }
+        console.log(`Possible Solutions: ${JSON.stringify(possibleSolutions)}`);
+
+        for(let [pos, players] of Object.entries(possibleSolutions)) {
+            if(players.length == 0) {
+                return false
+            }
+            if(players.length == 1 || Object.keys(possibleSolutions).length == 1){
+                interestingLineup[pos] = [players[0]];
+                delete possibleSolutions[pos];
+                continue;
+            }
+            // TODO: There are multiple remaining positions
+            // with multiple remaining players
+            console.log(`Remaining Positions: ${remainingPositions.toString()}`)
+            console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
+            console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
         }
 
         console.log(`Remaining Positions: ${remainingPositions.toString()}`)
