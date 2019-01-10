@@ -192,8 +192,30 @@ export class Roster {
                 delete possibleSolutions[pos];
                 continue;
             }
+            
+            let playerPos = {};
+            for(let player of players) {
+                playerPos[player.ID.toString()] = new Array();
+                for(let [pos2, players] of Object.entries(possibleSolutions)) {
+                    if(players.include(player)) {
+                        playerPos[player.ID.toString()].push(pos2);
+                    }
+                }
+            }
+
+            // If there is a player that can only fill one position
+            // Fill that position with that player
+            for(let [id, pos3] of Object.entries(playerPos)) {
+                if(pos3.length == 1 && pos3[0] == pos) {
+                    interestingLineup[pos] = [id];
+                    delete possibleSolutions[pos];
+                    continue;
+                }
+            }
+
             // TODO: There are multiple remaining positions
             // with multiple remaining players
+
             console.log(`Remaining Positions: ${remainingPositions.toString()}`)
             console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
             console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
