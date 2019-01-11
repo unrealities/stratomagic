@@ -183,6 +183,16 @@ export class Roster {
         }
         console.log(`Possible Solutions: ${JSON.stringify(possibleSolutions)}`);
 
+        let playerPos = {};
+        for(let player of usableHitters) {
+            playerPos[player.ID.toString()] = new Array();
+            for(let [pos, players] of Object.entries(possibleSolutions)) {
+                if(players.includes(player)) {
+                    playerPos[player.ID.toString()].push(pos);
+                }
+            }
+        }
+        
         for(let [pos, players] of Object.entries(possibleSolutions)) {
             if(players.length == 0) {
                 return false
@@ -191,16 +201,6 @@ export class Roster {
                 interestingLineup[pos] = [players[0]];
                 delete possibleSolutions[pos];
                 continue;
-            }
-            
-            let playerPos = {};
-            for(let player of players) {
-                playerPos[player.ID.toString()] = new Array();
-                for(let [pos2, players] of Object.entries(possibleSolutions)) {
-                    if(players.include(player)) {
-                        playerPos[player.ID.toString()].push(pos2);
-                    }
-                }
             }
 
             // If there is a player that can only fill one position
@@ -215,6 +215,9 @@ export class Roster {
 
             // TODO: There are multiple remaining positions
             // with multiple remaining players
+            // TODO: Make combinations of remaining players/positions.
+            // Loop through these and if a solution is found: break & true, else
+            // return false at the end.
 
             console.log(`Remaining Positions: ${remainingPositions.toString()}`)
             console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
