@@ -213,18 +213,14 @@ export class Roster {
                 }
             }
 
-            // TODO: There are multiple remaining positions
-            // with multiple remaining players
-            // TODO: Make combinations of remaining players/positions.
-            // Loop through these and if a solution is found: break & true, else
-            // return false at the end.
-
-            console.log(`Remaining Positions: ${remainingPositions.toString()}`)
-            console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
-            console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
+            // else there are multiple players and positions to match
         }
+        // TODO: Make combinations of remaining players/positions.
+        // TODO: Can we use recursion here?
+        // Loop through these and if a solution is found: break & true, else
+        // return false at the end.
 
-        console.log(`Remaining Positions: ${remainingPositions.toString()}`)
+        console.log(`Remaining Positions: ${remainingPositions.toString()}`);
         console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
         console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
 
