@@ -220,6 +220,19 @@ export class Roster {
         // Loop through these and if a solution is found: break & true, else
         // return false at the end.
 
+        // Not efficient, but...
+        // Grab the first player for the first position
+        // Delete that player from all other positions
+        // Check to see if you can still fill all positions
+        // If you cannot fill all positions...
+        //   re-add the player to all positions
+        //   grab a different player
+        //   if no players are left, there are no valid solutions
+        // If you can fill the position...
+        //   grab the first player and follow the same steps
+
+        // Need to keep track of previous lineup to allow for re-do.
+
         console.log(`Remaining Positions: ${remainingPositions.toString()}`);
         console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
         console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
