@@ -232,6 +232,21 @@ export class Roster {
         //   grab the first player and follow the same steps
 
         // Need to keep track of previous lineup to allow for re-do.
+        let tempPossibleSolutions = {};
+        let previousPossibleSolution = {};
+        for(let [pos, players] of Object.entries(possibleSolutions)) {
+            if(players.length == 0) {
+                if(previousPossibleSolution[pos]) {
+                    console.log("No possible solutions remaining");
+                    return false;
+                }
+                possibleSolutions[pos] = previousPossibleSolution[pos];
+                break;
+            }
+            tempPossibleSolutions[pos] = player[0];
+            previousPossibleSolution[pos] = players;
+            delete possibleSolutions[pos];
+        }
 
         console.log(`Remaining Positions: ${remainingPositions.toString()}`);
         console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
