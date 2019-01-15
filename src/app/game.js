@@ -232,21 +232,12 @@ export class Roster {
         //   grab the first player and follow the same steps
 
         // Need to keep track of previous lineup to allow for re-do.
-        let tempPossibleSolutions = {};
-        let previousPossibleSolution = {};
-        for(let [pos, players] of Object.entries(possibleSolutions)) {
-            if(players.length == 0) {
-                if(previousPossibleSolution[pos]) {
-                    console.log("No possible solutions remaining");
-                    return false;
-                }
-                possibleSolutions[pos] = previousPossibleSolution[pos];
-                break;
-            }
-            tempPossibleSolutions[pos] = player[0];
-            previousPossibleSolution[pos] = players;
-            delete possibleSolutions[pos];
-        }
+        
+        // TODO: Research maze searching algorithms
+        // I think this is most like a maze where we keep traversing the tree
+        // and all of it's possibilities and if we reach a dead end, then we
+        // need to backtrack up the tree.
+        // Need to figure out how our tree and objects are actually stored
 
         console.log(`Remaining Positions: ${remainingPositions.toString()}`);
         console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
