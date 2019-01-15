@@ -239,6 +239,12 @@ export class Roster {
         // need to backtrack up the tree.
         // Need to figure out how our tree and objects are actually stored
 
+        // Make a graph where the nodes are positions and the edges are players...
+        // But this is a dynamic maze, once you have traversed over a player you
+        // need to mark any other player edges as visited.
+        // Or we do some type of scoring where traversing that path will now cost
+        // infinitely more than it did before?
+
         console.log(`Remaining Positions: ${remainingPositions.toString()}`);
         console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
         console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
