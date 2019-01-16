@@ -290,3 +290,24 @@ class Lineup {
         this.startingPitcher = startingPitcher;
     }
 }
+
+
+// create a graph class 
+class PossibleLineup { 
+    // defining vertex array and 
+    // adjacent list 
+    constructor(noOfPositions) 
+    { 
+        this.noOfVertices = noOfVertices; 
+        this.AdjList = new Map(); 
+    } 
+  
+    // functions to be implemented 
+  
+    // addPosition(v) 
+    // addPlayer(v, w) 
+    // printGraph() 
+  
+    // bfs(v) 
+    // dfs(v) 
+} 
