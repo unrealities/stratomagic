@@ -292,22 +292,30 @@ class Lineup {
 }
 
 
-// create a graph class 
+// Create a graph of lineup possibilities
+// Positions are the vertices
+// Players are the edges
+// A player can exist on multiple edges
 class PossibleLineup { 
-    // defining vertex array and 
-    // adjacent list 
     constructor(noOfPositions) 
     { 
-        this.noOfVertices = noOfVertices; 
+        this.noOfPositions = noOfPositions; 
         this.AdjList = new Map(); 
     } 
   
-    // functions to be implemented 
-  
-    // addPosition(v) 
-    // addPlayer(v, w) 
+    addPosition(pos) 
+    {
+        this.AdjList.set(pos, []); 
+    } 
+
+    // add an edge and track the player's id for that edge
+    addPlayer(pos1, pos2, id) 
+    { 
+        this.AdjList.get(pos1).push({dest: pos2, player: id}); 
+        this.AdjList.get(pos2).push({dest: pos1, player: id}); 
+    } 
     // printGraph() 
   
     // bfs(v) 
     // dfs(v) 
-} 
+}
