@@ -308,14 +308,60 @@ class PossibleLineup {
         this.AdjList.set(pos, []); 
     } 
 
-    // add an edge and track the player's id for that edge
+    // add an edge and track the player's id
     addPlayer(pos1, pos2, id) 
     { 
         this.AdjList.get(pos1).push({dest: pos2, player: id}); 
         this.AdjList.get(pos2).push({dest: pos1, player: id}); 
-    } 
-    // printGraph() 
+    }
+
+    // remove an edge
+    // when a player id has been used as a different edge
+    removePlayer(pos1, pos2, id)
+    {
+        this.AdjList.get(pos1).pop({dest: pos2, player: id}); 
+        this.AdjList.get(pos2).pop({dest: pos1, player: id}); 
+    }
   
-    // bfs(v) 
-    // dfs(v) 
+    // Breadth First Search
+    // without accounting for one player per position
+    bfs(pos) 
+    { 
+        // create a visited array 
+        var visited = []; 
+        for (var i = 0; i < this.noOfPositions; i++) 
+            visited[i] = false; 
+    
+        // Create an object for queue 
+        var q = new Queue(); 
+    
+        // add the starting position to the queue 
+        visited[pos] = true; 
+        q.enqueue(pos); 
+    
+        // loop until queue is element 
+        while (!q.isEmpty()) { 
+            // get the element from the queue 
+            var getQueueElement = q.dequeue(); 
+    
+            // passing the current vertex to callback funtion 
+            console.log(getQueueElement); 
+    
+            // get the adjacent list for current vertex 
+            var get_List = this.AdjList.get(getQueueElement); 
+    
+            // loop through the list and add the elemnet to the 
+            // queue if it is not processed yet 
+            for (var i in get_List) { 
+                var neigh = get_List[i]; 
+    
+                if (!visited[neigh]) { 
+                    visited[neigh] = true; 
+                    q.enqueue(neigh); 
+                } 
+            } 
+        } 
+    }
+    
+    // dfs(pos) 
 }
