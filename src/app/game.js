@@ -335,7 +335,9 @@ class PossibleLineup {
         // Create an object for queue 
         var q = new Queue(); 
     
-        // add the starting position to the queue 
+        // add the starting position to the queue
+        // TODO: need to get a player for the position as there may not
+        // be a valid player for the starting position.
         visited[pos] = true; 
         q.enqueue(pos); 
     
@@ -344,13 +346,13 @@ class PossibleLineup {
             // get the element from the queue 
             var getQueueElement = q.dequeue(); 
     
-            // passing the current vertex to callback funtion 
+            // passing the current position to callback funtion 
             console.log(getQueueElement); 
     
-            // get the adjacent list for current vertex 
+            // get the adjacent list for current position 
             var get_List = this.AdjList.get(getQueueElement); 
     
-            // loop through the list and add the elemnet to the 
+            // loop through the list and add the element to the 
             // queue if it is not processed yet 
             for (var i in get_List) { 
                 var neigh = get_List[i]; 
