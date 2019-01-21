@@ -300,7 +300,8 @@ class PossibleLineup {
     constructor(noOfPositions) 
     { 
         this.noOfPositions = noOfPositions; 
-        this.AdjList = new Map(); 
+        this.AdjList = new Map();
+        this.usedPlayers = new Map();
     } 
   
     addPosition(pos) 
@@ -311,16 +312,24 @@ class PossibleLineup {
     // add an edge and track the player's id
     addPlayer(pos1, pos2, id) 
     { 
-        this.AdjList.get(pos1).push({dest: pos2, player: id}); 
-        this.AdjList.get(pos2).push({dest: pos1, player: id}); 
+        this.AdjList.get(pos1).push({dest: pos2, id: id}); 
+        this.AdjList.get(pos2).push({dest: pos1, id: id}); 
     }
 
     // remove an edge
     // when a player id has been used as a different edge
-    removePlayer(pos1, pos2, id)
+    removePlayer(id)
     {
-        this.AdjList.get(pos1).pop({dest: pos2, player: id}); 
-        this.AdjList.get(pos2).pop({dest: pos1, player: id}); 
+        // loop through each position, remove player from future edges and put into usedPlayers 
+        Object.keys(this.AdjList).forEach(function(pos) {
+            players = map[pos];
+            for (let player in players) {
+                if (id == player.id) {
+                    this.AdjList.get(pos).pop({dest: player.dest, id: id});
+                    this.usedPlayers.get(player.id).push({orig: pos, dest: player.dest});
+                }
+            }
+        });
     }
   
     // Breadth First Search
