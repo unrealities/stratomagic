@@ -328,34 +328,46 @@ class PossibleLineup {
     bfs(pos) 
     { 
         // create a visited array 
-        var visited = []; 
-        for (var i = 0; i < this.noOfPositions; i++) 
+        let visited = []; 
+        for (let i = 0; i < this.noOfPositions; i++) 
             visited[i] = false; 
     
         // Create an object for queue 
-        var q = new Queue(); 
+        let q = new Queue(); 
     
-        // add the starting position to the queue
-        // TODO: need to get a player for the position as there may not
-        // be a valid player for the starting position.
+        // ensure starting position is valid
+        let list = this.AdjList.get(pos);
+        if (list.length == 0) {
+            console.log(`No players for position: ${pos}`)
+            return;
+        };
+
+
+        for (let i in list) {
+            let neigh = list[i];
+
+            visited[neigh] = true;
+            // TODO: remove player's edges? mark players edges as dead?
+        }
+
         visited[pos] = true; 
         q.enqueue(pos); 
     
         // loop until queue is element 
         while (!q.isEmpty()) { 
             // get the element from the queue 
-            var getQueueElement = q.dequeue(); 
+            let getQueueElement = q.dequeue(); 
     
             // passing the current position to callback funtion 
             console.log(getQueueElement); 
     
             // get the adjacent list for current position 
-            var get_List = this.AdjList.get(getQueueElement); 
+            let list = this.AdjList.get(getQueueElement); 
     
             // loop through the list and add the element to the 
             // queue if it is not processed yet 
-            for (var i in get_List) { 
-                var neigh = get_List[i]; 
+            for (let i in list) { 
+                let neigh = list[i]; 
     
                 if (!visited[neigh]) { 
                     visited[neigh] = true; 
