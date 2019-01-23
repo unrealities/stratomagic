@@ -332,9 +332,7 @@ class PossibleLineup {
         });
     }
   
-    // Breadth First Search
-    // without accounting for one player per position
-    bfs(pos) 
+    search(startingPosition) 
     { 
         // create a visited array 
         let visited = []; 
@@ -345,46 +343,38 @@ class PossibleLineup {
         let q = new Queue(); 
     
         // ensure starting position is valid
-        let list = this.AdjList.get(pos);
-        if (list.length == 0) {
-            console.log(`No players for position: ${pos}`)
+        let players = this.AdjList.get(startingPosition);
+        if (players.length == 0) {
+            console.log(`No players for position: ${startingPosition}`)
             return;
         };
 
 
-        for (let i in list) {
-            let neigh = list[i];
+        for (let player in players) {
+            let nextPosition = player.dest;
 
-            visited[neigh] = true;
-            // TODO: remove player's edges? mark players edges as dead?
+            visited[nextPosition] = true;
+            this.removePlayer(player.id);
         }
 
-        visited[pos] = true; 
-        q.enqueue(pos); 
+        visited[startingPosition] = true; 
     
         // loop until queue is element 
         while (!q.isEmpty()) { 
-            // get the element from the queue 
-            let getQueueElement = q.dequeue(); 
-    
-            // passing the current position to callback funtion 
-            console.log(getQueueElement); 
-    
             // get the adjacent list for current position 
-            let list = this.AdjList.get(getQueueElement); 
+            let list = this.AdjList.get(q.dequeue()); 
     
             // loop through the list and add the element to the 
             // queue if it is not processed yet 
-            for (let i in list) { 
-                let neigh = list[i]; 
+            for (let player in players) {
+                let nextPosition = player.dest;
     
-                if (!visited[neigh]) { 
-                    visited[neigh] = true; 
-                    q.enqueue(neigh); 
+                if (!visited[nextPosition]) { 
+                    visited[nextPosition] = true;
+                    this.removePlayer(player.id);
+                    q.enqueue(nextPosition); 
                 } 
             } 
         } 
     }
-    
-    // dfs(pos) 
 }
