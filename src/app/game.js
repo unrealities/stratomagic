@@ -150,6 +150,11 @@ export class Roster {
             }
         }
 
+        // TODO: playing with graph search model
+        // use hitters
+        let pl = new PossibleLineup(7);
+        console.log(pl);
+
         // Determine remaining positions to be filled
         let remainingPositions = [];
         for(let [pos, players] of Object.entries(interestingLineup)) {
@@ -302,6 +307,9 @@ class PossibleLineup {
         this.noOfPositions = noOfPositions; 
         this.AdjList = new Map();
         this.usedPlayers = new Map();
+        for (let i = 0; i < this.noOfPositions; i++) {
+            this.addPosition(i);
+        }
     } 
   
     addPosition(pos) 
@@ -336,9 +344,10 @@ class PossibleLineup {
     { 
         // create a visited array 
         let visited = []; 
-        for (let i = 0; i < this.noOfPositions; i++) 
+        for (let i = 0; i < this.noOfPositions; i++) {
             visited[i] = false; 
-    
+        }
+
         // Create an object for queue 
         let q = new Queue(); 
     
@@ -362,7 +371,7 @@ class PossibleLineup {
         // loop until queue is element 
         while (!q.isEmpty()) { 
             // get the adjacent list for current position 
-            let list = this.AdjList.get(q.dequeue()); 
+            let players = this.AdjList.get(q.dequeue()); 
     
             // loop through the list and add the element to the 
             // queue if it is not processed yet 
