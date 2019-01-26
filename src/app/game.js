@@ -154,6 +154,20 @@ export class Roster {
         // use hitters
         let pl = new PossibleLineup(7);
         console.log(pl);
+        for(let h of hitters) {
+            for(let ap of h["ActivePositions"]) {
+                if(interestingPositions.includes(ap)) {
+                    for(let p=2; p<10; p++) {
+                        if(p == 3) {
+                            continue;
+                        }
+                        pl.addPlayer(p, ap, h["ID"]);
+                    }
+                }
+            }
+        }
+        console.log(pl.AdjList);
+        pl.search(2);
 
         // Determine remaining positions to be filled
         let remainingPositions = [];
@@ -307,8 +321,12 @@ class PossibleLineup {
         this.noOfPositions = noOfPositions; 
         this.AdjList = new Map();
         this.usedPlayers = new Map();
-        for (let i = 0; i < this.noOfPositions; i++) {
-            this.addPosition(i);
+        for (let i = 0; i < this.noOfPositions+1; i++) {
+            // skip 1B
+            if (i+2 == 3) {
+                continue;
+            }
+            this.addPosition(i+2);
         }
     } 
   
@@ -366,24 +384,62 @@ class PossibleLineup {
             this.removePlayer(player.id);
         }
 
-        visited[startingPosition] = true; 
+        visited[startingPosition] = true;
+        q.enqueue(startingPosition);
     
         // loop until queue is element 
-        while (!q.isEmpty()) { 
+        console.log(`visited before while: ${visited}`);
+        console.log(`queue size: ${q.size()}`);
+        while (q.size() > 0) { 
+            console.log(`in while loop`);
+            console.log(`adjList: ${this.AdjList}`);
             // get the adjacent list for current position 
             let players = this.AdjList.get(q.dequeue()); 
-    
             // loop through the list and add the element to the 
-            // queue if it is not processed yet 
+            // queue if it is not processed yet
+            console.log(`players: ${players}`);
             for (let player in players) {
                 let nextPosition = player.dest;
+                console.log(`player id: ${player.ID}`);
+                console.log(`nextPosition: ${nextPosition}`);
+                console.log(`!visited[nextPosition]: ${!visited[nextPosition]}`);
     
                 if (!visited[nextPosition]) { 
                     visited[nextPosition] = true;
                     this.removePlayer(player.id);
                     q.enqueue(nextPosition); 
                 } 
-            } 
+            }
+            console.log(`visited in while: ${visited}`);
         } 
     }
 }
+
+function Queue() {
+    this._oldestIndex = 1;
+    this._newestIndex = 1;
+    this._storage = {};
+}
+
+Queue.prototype.size = function() {
+    return this._newestIndex - this._oldestIndex;
+};
+
+Queue.prototype.enqueue = function(data) {
+    this._storage[this._newestIndex] = data;
+    this._newestIndex++;
+};
+
+Queue.prototype.dequeue = function() {
+    var oldestIndex = this._oldestIndex,
+        newestIndex = this._newestIndex,
+        deletedData;
+
+    if (oldestIndex !== newestIndex) {
+        deletedData = this._storage[oldestIndex];
+        delete this._storage[oldestIndex];
+        this._oldestIndex++;
+
+        return deletedData;
+    }
+};
