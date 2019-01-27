@@ -170,7 +170,7 @@ export class Roster {
         pl.search(2);
 
         // Determine remaining positions to be filled
-        let remainingPositions = [];
+        let remainingPositions = [];Object
         for(let [pos, players] of Object.entries(interestingLineup)) {
             if (players.length == 0) {
                 remainingPositions.push(pos);
@@ -392,15 +392,16 @@ class PossibleLineup {
         console.log(`queue size: ${q.size()}`);
         while (q.size() > 0) { 
             console.log(`in while loop`);
-            console.log(`adjList: ${this.AdjList}`);
+            console.log(`adjList: ${JSON.stringify(this.AdjList)}`);
             // get the adjacent list for current position 
             let players = this.AdjList.get(q.dequeue()); 
             // loop through the list and add the element to the 
             // queue if it is not processed yet
-            console.log(`players: ${players}`);
-            for (let player in players) {
+            console.log(`players: ${JSON.stringify(players)}`);
+            for (let [i, player] of players.entries()) {
+                console.log(`player: ${JSON.stringify(player)}`);
                 let nextPosition = player.dest;
-                console.log(`player id: ${player.ID}`);
+                console.log(`player id: ${player.id}`);
                 console.log(`nextPosition: ${nextPosition}`);
                 console.log(`!visited[nextPosition]: ${!visited[nextPosition]}`);
     
