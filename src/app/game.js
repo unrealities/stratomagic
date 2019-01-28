@@ -251,18 +251,6 @@ export class Roster {
         //   grab the first player and follow the same steps
 
         // Need to keep track of previous lineup to allow for re-do.
-        
-        // TODO: Research maze searching algorithms
-        // I think this is most like a maze where we keep traversing the tree
-        // and all of it's possibilities and if we reach a dead end, then we
-        // need to backtrack up the tree.
-        // Need to figure out how our tree and objects are actually stored
-
-        // Make a graph where the nodes are positions and the edges are players...
-        // But this is a dynamic maze, once you have traversed over a player you
-        // need to mark any other player edges as visited.
-        // Or we do some type of scoring where traversing that path will now cost
-        // infinitely more than it did before?
 
         console.log(`Remaining Positions: ${remainingPositions.toString()}`);
         console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
@@ -338,8 +326,8 @@ class PossibleLineup {
     // add an edge and track the player's id
     addPlayer(pos1, pos2, id) 
     { 
-        this.AdjList.get(pos1).push({dest: pos2, id: id}); 
-        this.AdjList.get(pos2).push({dest: pos1, id: id}); 
+        this.AdjList.get(pos1).push({pos: pos1, dest: pos2, id: id}); 
+        this.AdjList.get(pos2).push({pos: pos2, dest: pos1, id: id}); 
     }
 
     // remove an edge
@@ -376,16 +364,8 @@ class PossibleLineup {
             return;
         };
 
-
-        for (let player in players) {
-            let nextPosition = player.dest;
-
-            visited[nextPosition] = true;
-            this.removePlayer(player.id);
-        }
-
         visited[startingPosition] = true;
-        q.enqueue(startingPosition);
+        q.enqueue(startingPosition); 
     
         // loop until queue is element 
         console.log(`visited before while: ${visited}`);
@@ -401,17 +381,19 @@ class PossibleLineup {
             for (let [i, player] of players.entries()) {
                 console.log(`player: ${JSON.stringify(player)}`);
                 let nextPosition = player.dest;
-                console.log(`player id: ${player.id}`);
-                console.log(`nextPosition: ${nextPosition}`);
-                console.log(`!visited[nextPosition]: ${!visited[nextPosition]}`);
+                // console.log(`player id: ${player.id}`);
+                // console.log(`nextPosition: ${nextPosition}`);
+                // console.log(`!visited[nextPosition]: ${!visited[nextPosition]}`);
     
                 if (!visited[nextPosition]) { 
                     visited[nextPosition] = true;
+                    this.usedPlayers[player.pos] = player.id;
                     this.removePlayer(player.id);
                     q.enqueue(nextPosition); 
                 } 
             }
             console.log(`visited in while: ${visited}`);
+            console.log(`possibleLineup: ${JSON.stringify(this)}`);
         } 
     }
 }
