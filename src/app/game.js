@@ -378,7 +378,7 @@ class PossibleLineup {
                 for (let [i, player] of players.entries()) {
                     let nextPosition = player.dest;
 
-                    if (!visited[nextPosition]) { 
+                    if (!(player.pos in this.usedPlayers) || !visited[nextPosition]) { 
                         visited[nextPosition] = true;
                         this.usedPlayers[player.pos] = player.id;
                         // TODO: Players are still being re-used
