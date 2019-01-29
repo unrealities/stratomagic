@@ -368,31 +368,27 @@ class PossibleLineup {
         q.enqueue(startingPosition); 
     
         // loop until queue is element 
-        console.log(`visited before while: ${visited}`);
-        console.log(`queue size: ${q.size()}`);
         while (q.size() > 0) { 
-            console.log(`in while loop`);
-            console.log(`adjList: ${JSON.stringify(this.AdjList)}`);
             // get the adjacent list for current position 
             let players = this.AdjList.get(q.dequeue()); 
             // loop through the list and add the element to the 
             // queue if it is not processed yet
             console.log(`players: ${JSON.stringify(players)}`);
-            for (let [i, player] of players.entries()) {
-                console.log(`player: ${JSON.stringify(player)}`);
-                let nextPosition = player.dest;
-                // console.log(`player id: ${player.id}`);
-                // console.log(`nextPosition: ${nextPosition}`);
-                // console.log(`!visited[nextPosition]: ${!visited[nextPosition]}`);
-    
-                if (!visited[nextPosition]) { 
-                    visited[nextPosition] = true;
-                    this.usedPlayers[player.pos] = player.id;
-                    this.removePlayer(player.id);
-                    q.enqueue(nextPosition); 
-                } 
+            findplayer: {
+                for (let [i, player] of players.entries()) {
+                    let nextPosition = player.dest;
+
+                    if (!visited[nextPosition]) { 
+                        visited[nextPosition] = true;
+                        this.usedPlayers[player.pos] = player.id;
+                        // TODO: Players are still being re-used
+                        this.removePlayer(player.id);
+                        q.enqueue(nextPosition);
+                        break findplayer;
+                    } 
+                }
             }
-            console.log(`visited in while: ${visited}`);
+
             console.log(`possibleLineup: ${JSON.stringify(this)}`);
         } 
     }
