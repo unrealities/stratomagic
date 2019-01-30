@@ -161,7 +161,7 @@ export class Roster {
                         if(p == 3) {
                             continue;
                         }
-                        pl.addPlayer(p, ap, h["ID"]);
+                        pl.addPlayer(ap, p, h["ID"]);
                     }
                 }
             }
@@ -326,8 +326,7 @@ class PossibleLineup {
     // add an edge and track the player's id
     addPlayer(pos1, pos2, id) 
     { 
-        this.AdjList.get(pos1).push({pos: pos1, dest: pos2, id: id}); 
-        this.AdjList.get(pos2).push({pos: pos2, dest: pos1, id: id}); 
+        this.AdjList.get(pos1).push({pos: pos1, dest: pos2, id: id});
     }
 
     // remove an edge
@@ -358,6 +357,7 @@ class PossibleLineup {
         let q = new Queue(); 
     
         // ensure starting position is valid
+        // TODO: is this necessary?
         let players = this.AdjList.get(startingPosition);
         if (players.length == 0) {
             console.log(`No players for position: ${startingPosition}`)
@@ -376,9 +376,10 @@ class PossibleLineup {
             console.log(`players: ${JSON.stringify(players)}`);
             findplayer: {
                 for (let [i, player] of players.entries()) {
+                    console.log(`searching for position: ${player.pos}`);
                     let nextPosition = player.dest;
 
-                    if (!(player.pos in this.usedPlayers) || !visited[nextPosition]) { 
+                    if (!visited[nextPosition]) { 
                         visited[nextPosition] = true;
                         this.usedPlayers[player.pos] = player.id;
                         // TODO: Players are still being re-used
