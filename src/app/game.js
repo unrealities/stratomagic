@@ -333,16 +333,20 @@ class PossibleLineup {
     // when a player id has been used as a different edge
     removePlayer(id)
     {
+        console.log(`player to remove: ${id}`);
+        console.log(`adjList: ${JSON.stringify(this.AdjList)}`);
         // loop through each position, remove player from future edges and put into usedPlayers 
-        Object.keys(this.AdjList).forEach(function(pos) {
-            players = map[pos];
+        for (let pos in this.AdjList) {
+            console.log(`position to check for removal: ${pos}`);
+            players = this.AdjList[pos];
+            console.log(`players to possibly remove: ${players}`);
             for (let player in players) {
                 if (id == player.id) {
                     this.AdjList.get(pos).pop({dest: player.dest, id: id});
                     this.usedPlayers.get(player.id).push({orig: pos, dest: player.dest});
                 }
             }
-        });
+        }
     }
   
     search(startingPosition) 
