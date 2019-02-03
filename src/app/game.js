@@ -166,7 +166,7 @@ export class Roster {
                 }
             }
         }
-        console.log(pl.AdjList);
+        console.log(`AdjList: ${JSON.stringify(pl.AdjList)}`);
         pl.search(2);
 
         // Determine remaining positions to be filled
@@ -326,7 +326,9 @@ class PossibleLineup {
     // add an edge and track the player's id
     addPlayer(pos1, pos2, id) 
     { 
+        console.log(`adding player: ${id}`);
         this.AdjList.get(pos1).push({pos: pos1, dest: pos2, id: id});
+        console.log(`adjList after addingPlayer: ${JSON.stringify(this.AdjList)}`);
     }
 
     // remove an edge
