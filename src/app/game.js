@@ -316,11 +316,14 @@ class PossibleLineup {
             }
             this.addPosition(i+2);
         }
+        console.log(`AdjList set: ${JSON.stringify(this.AdjList)}`);
     } 
   
     addPosition(pos) 
     {
+        console.log(`adding Postion: ${pos}`);
         this.AdjList.set(pos, []); 
+        console.log(`adjList after position added: ${JSON.stringify(this.AdjList)}`);
     } 
 
     // add an edge and track the player's id
