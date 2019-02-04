@@ -166,7 +166,7 @@ export class Roster {
                 }
             }
         }
-        console.log(`AdjList: ${JSON.stringify(pl.AdjList)}`);
+        pl.logAdjlist();
         pl.search(2);
 
         // Determine remaining positions to be filled
@@ -316,22 +316,18 @@ class PossibleLineup {
             }
             this.addPosition(i+2);
         }
-        console.log(`AdjList set: ${JSON.stringify(this.AdjList)}`);
+        this.logAdjlist();
     } 
   
     addPosition(pos) 
     {
-        console.log(`adding Postion: ${pos}`);
-        this.AdjList.set(pos, []); 
-        console.log(`adjList after position added: ${JSON.stringify(this.AdjList)}`);
+        this.AdjList.set(pos, []);
     } 
 
     // add an edge and track the player's id
     addPlayer(pos1, pos2, id) 
-    { 
-        console.log(`adding player: ${id}`);
+    {
         this.AdjList.get(pos1).push({pos: pos1, dest: pos2, id: id});
-        console.log(`adjList after addingPlayer: ${JSON.stringify(this.AdjList)}`);
     }
 
     // remove an edge
@@ -339,7 +335,8 @@ class PossibleLineup {
     removePlayer(id)
     {
         console.log(`player to remove: ${id}`);
-        console.log(`adjList: ${JSON.stringify(this.AdjList)}`);
+        this.logAdjlist();
+        
         // loop through each position, remove player from future edges and put into usedPlayers 
         for (let pos in this.AdjList) {
             console.log(`position to check for removal: ${pos}`);
@@ -352,6 +349,9 @@ class PossibleLineup {
                 }
             }
         }
+
+        console.log(`removed player: ${id}`);
+        this.logAdjlist();
     }
   
     search(startingPosition) 
@@ -401,6 +401,13 @@ class PossibleLineup {
 
             console.log(`possibleLineup: ${JSON.stringify(this)}`);
         } 
+    }
+
+    logAdjlist() {
+        console.log(`AdjList`);
+        for (let [k, v] of this.AdjList) {
+            console.log(k,v);
+        }
     }
 }
 
