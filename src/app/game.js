@@ -158,7 +158,7 @@ export class Roster {
             for(let ap of h["ActivePositions"]) {
                 if(interestingPositions.includes(ap)) {
                     for(let p=2; p<10; p++) {
-                        if(p == 3) {
+                        if(p == 3 || ap == p) {
                             continue;
                         }
                         pl.addPlayer(ap, p, h["ID"]);
@@ -342,7 +342,7 @@ class PossibleLineup {
             console.log(`position to check for removal: ${pos}`);
             for (let player in players) {
                 if (id == player.id) {
-                    this.AdjList.get(pos).pop({dest: player.dest, id: id});
+                    this.AdjList.get(pos).pop({pos: pos, dest: player.dest, id: id});
                     this.usedPlayers.get(player.id).push({orig: pos, dest: player.dest});
                 }
             }
