@@ -315,6 +315,7 @@ class PossibleLineup {
                 continue;
             }
             this.addPosition(i+2);
+            this.usedPlayers.set(i+2, []);
         }
         this.logAdjlist();
     } 
@@ -339,11 +340,11 @@ class PossibleLineup {
         
         // loop through each position, remove player from future edges and put into usedPlayers 
         for (let [pos, players] of this.AdjList) {
-            console.log(`position to check for removal: ${pos}`);
-            for (let player in players) {
+            for (let player of players) {
                 if (id == player.id) {
+                    console.log(`will remove pos: ${pos}, dest: ${player.dest}, id: ${id}`);
                     this.AdjList.get(pos).pop({pos: pos, dest: player.dest, id: id});
-                    this.usedPlayers.get(player.id).push({orig: pos, dest: player.dest});
+                    this.usedPlayers.get(pos).push({orig: pos, dest: player.dest, id: id});
                 }
             }
         }
