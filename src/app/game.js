@@ -340,10 +340,11 @@ class PossibleLineup {
         
         // loop through each position, remove player from future edges and put into usedPlayers 
         for (let [pos, players] of this.AdjList) {
-            for (let player of players) {
-                if (id == player.id) {
+            for (let i=0, len=players.length; i < len; i++) {
+                let player = players[i];
+                if (id == players.id) {
                     console.log(`will remove pos: ${pos}, dest: ${player.dest}, id: ${id}`);
-                    this.AdjList.get(pos).pop({pos: pos, dest: player.dest, id: id});
+                    this.AdjList.get(pos).pop(i);
                     this.usedPlayers.get(pos).push({orig: pos, dest: player.dest, id: id});
                 }
             }
