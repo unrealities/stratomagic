@@ -166,7 +166,6 @@ export class Roster {
                 }
             }
         }
-        pl.logAdjlist();
         pl.search(2);
 
         // Determine remaining positions to be filled
@@ -317,7 +316,6 @@ class PossibleLineup {
             this.addPosition(i+2);
             this.usedPlayers.set(i+2, []);
         }
-        this.logAdjlist();
     } 
   
     addPosition(pos) 
@@ -335,23 +333,17 @@ class PossibleLineup {
     // when a player id has been used as a different edge
     removePlayer(id)
     {
-        console.log(`player to remove: ${id}`);
-        this.logAdjlist();
-        
         // loop through each position, remove player from future edges and put into usedPlayers 
         for (let [pos, players] of this.AdjList) {
             for (let i=0, len=players.length; i < len; i++) {
                 let player = players[i];
                 if (id == players.id) {
                     console.log(`will remove pos: ${pos}, dest: ${player.dest}, id: ${id}`);
-                    this.AdjList.get(pos).pop(i);
+                    delete this.AdjList.get(pos)[i];
                     this.usedPlayers.get(pos).push({orig: pos, dest: player.dest, id: id});
                 }
             }
         }
-
-        console.log(`removed player: ${id}`);
-        this.logAdjlist();
     }
   
     search(startingPosition) 
@@ -382,7 +374,6 @@ class PossibleLineup {
             let players = this.AdjList.get(q.dequeue()); 
             // loop through the list and add the element to the 
             // queue if it is not processed yet
-            console.log(`players: ${JSON.stringify(players)}`);
             findplayer: {
                 for (let [i, player] of players.entries()) {
                     console.log(`searching for position: ${player.pos}`);
@@ -401,13 +392,6 @@ class PossibleLineup {
 
             console.log(`possibleLineup: ${JSON.stringify(this)}`);
         } 
-    }
-
-    logAdjlist() {
-        console.log(`AdjList`);
-        for (let [k, v] of this.AdjList) {
-            console.log(k,v);
-        }
     }
 }
 
