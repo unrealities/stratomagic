@@ -308,7 +308,7 @@ class PossibleLineup {
         this.noOfPositions = noOfPositions; 
         this.AdjList = new Map();
         this.usedPlayers = new Map();
-        for (let i = 0; i < this.noOfPositions+1; i++) {
+        for (let i = 0; i < this.noOfPositions+2; i++) {
             // skip 1B
             if (i+2 == 3) {
                 continue;
@@ -350,7 +350,7 @@ class PossibleLineup {
     { 
         // create a visited array 
         let visited = []; 
-        for (let i = 0; i < this.noOfPositions; i++) {
+        for (let i = 0; i < this.noOfPositions+1; i++) {
             visited[i] = false; 
         }
 
