@@ -377,12 +377,13 @@ class PossibleLineup {
             findplayer: {
                 for (let [i, player] of players.entries()) {
                     console.log(`searching for position: ${player.pos}`);
-                    let nextPosition = player.dest;
+                    // if we are at the last position, end the loop.
+                    let nextPosition = (player.pos == 9) ? 10 : player.dest;
 
                     if (!visited[nextPosition]) { 
                         visited[nextPosition] = true;
                         this.usedPlayers[player.pos] = player.id;
-                        // TODO: Players are still being re-used
+                        // TODO: RFs (9) are being re-used
                         this.removePlayer(player.id);
                         q.enqueue(nextPosition);
                         break findplayer;
