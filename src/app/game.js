@@ -337,7 +337,10 @@ class PossibleLineup {
         for (let [pos, players] of this.AdjList) {
             for (let i=0, len=players.length; i < len; i++) {
                 let player = players[i];
-                if (id == players.id) {
+                if (!player) {
+                    break;
+                }
+                if (id == player.id) {
                     console.log(`will remove pos: ${pos}, dest: ${player.dest}, id: ${id}`);
                     delete this.AdjList.get(pos)[i];
                     this.usedPlayers.get(pos).push({orig: pos, dest: player.dest, id: id});
