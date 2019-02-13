@@ -379,7 +379,11 @@ class PossibleLineup {
             // queue if it is not processed yet
             findplayer: {
                 for (let [i, player] of players.entries()) {
-                    console.log(`searching for position: ${player.pos}`);
+                    console.log(`usedPlayers: ${JSON.stringify(this.usedPlayers)}`);
+                    if (!player || (player.id in this.usedPlayers)) {
+                        console.log(`skipping player: ${JSON.stringify(player)}`);
+                        continue;
+                    }
                     // if we are at the last position, end the loop.
                     let nextPosition = (player.pos == 9) ? 10 : player.dest;
 
