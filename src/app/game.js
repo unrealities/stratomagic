@@ -381,12 +381,17 @@ class PossibleLineup {
                         continue;
                     }
 
-                    for (let [k, p] of this.usedPlayers) {
-                        console.log(`usedPlayer value: ${p}`);
-                        if (p == player.id) {
-                            console.log(`skipping player that is already used: ${player.id}`);
-                            continue;
+                    let duplicate = this.usedPlayers.forEach( (pos, playerID) => {
+                        console.log(pos, playerID);
+                        if (playerID == player.id) {
+                            return true;
                         }
+                        return false;
+                    });
+
+                    if (duplicate) {
+                        console.log(`skipping player that is already used: ${player.id}`);
+                        continue;
                     }
 
                     // if we are at the last position, end the loop.
