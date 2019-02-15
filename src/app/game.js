@@ -314,7 +314,6 @@ class PossibleLineup {
                 continue;
             }
             this.addPosition(i+2);
-            this.usedPlayers.set(i+2, []);
         }
     } 
   
@@ -341,9 +340,8 @@ class PossibleLineup {
                     break;
                 }
                 if (id == player.id) {
-                    console.log(`will remove pos: ${pos}, dest: ${player.dest}, id: ${id}`);
                     delete this.AdjList.get(pos)[i];
-                    this.usedPlayers.get(pos).push({orig: pos, dest: player.dest, id: id});
+                    this.usedPlayers[pos] = id;
                 }
             }
         }
@@ -379,11 +377,18 @@ class PossibleLineup {
             // queue if it is not processed yet
             findplayer: {
                 for (let [i, player] of players.entries()) {
-                    console.log(`usedPlayers: ${JSON.stringify(this.usedPlayers)}`);
-                    if (!player || (player.id in this.usedPlayers)) {
-                        console.log(`skipping player: ${JSON.stringify(player)}`);
+                    if (!player) {
                         continue;
                     }
+
+                    for (let [k, p] of this.usedPlayers) {
+                        console.log(`usedPlayer value: ${p}`);
+                        if (p == player.id) {
+                            console.log(`skipping player that is already used: ${player.id}`);
+                            continue;
+                        }
+                    }
+
                     // if we are at the last position, end the loop.
                     let nextPosition = (player.pos == 9) ? 10 : player.dest;
 
