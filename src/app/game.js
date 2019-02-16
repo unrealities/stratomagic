@@ -381,23 +381,14 @@ class PossibleLineup {
                         continue;
                     }
 
-                    let duplicate = this.usedPlayers.forEach( (pos, playerID) => {
-                        console.log(pos, playerID);
-                        if (playerID == player.id) {
-                            return true;
-                        }
-                        return false;
-                    });
-
-                    if (duplicate) {
-                        console.log(`skipping player that is already used: ${player.id}`);
-                        continue;
-                    }
+                    console.log(`usedPlayers: ${JSON.stringify(this.usedPlayers)}`);
+                    console.log(`player id: ${player.id}`);
 
                     // if we are at the last position, end the loop.
                     let nextPosition = (player.pos == 9) ? 10 : player.dest;
 
                     if (!visited[nextPosition]) { 
+                        console.log(`using player: ${JSON.stringify(player)}`);
                         visited[nextPosition] = true;
                         this.usedPlayers[player.pos] = player.id;
                         // TODO: RFs (9) are being re-used
