@@ -341,7 +341,6 @@ class PossibleLineup {
                 }
                 if (id == player.id) {
                     delete this.AdjList.get(pos)[i];
-                    this.usedPlayers[pos] = id;
                 }
             }
         }
@@ -381,17 +380,12 @@ class PossibleLineup {
                         continue;
                     }
 
-                    console.log(`usedPlayers: ${JSON.stringify(this.usedPlayers)}`);
-                    console.log(`player id: ${player.id}`);
-
                     // if we are at the last position, end the loop.
                     let nextPosition = (player.pos == 9) ? 10 : player.dest;
 
-                    if (!visited[nextPosition]) { 
-                        console.log(`using player: ${JSON.stringify(player)}`);
+                    if (!visited[nextPosition]) {
                         visited[nextPosition] = true;
                         this.usedPlayers[player.pos] = player.id;
-                        // TODO: RFs (9) are being re-used
                         this.removePlayer(player.id);
                         q.enqueue(nextPosition);
                         break findplayer;
