@@ -157,7 +157,7 @@ export class Roster {
         for(let h of hitters) {
             for(let ap of h["ActivePositions"]) {
                 if(interestingPositions.includes(ap)) {
-                    for(let p=2; p<10; p++) {
+                    for(let p=2; p<11; p++) {
                         if(p == 3 || ap == p) {
                             continue;
                         }
@@ -332,7 +332,6 @@ class PossibleLineup {
     // when a player id has been used as a different edge
     removePlayer(id)
     {
-        console.log(`removing player: ${id}`);
         // loop through each position, remove player from future edges and put into usedPlayers 
         for (let [pos, players] of this.AdjList) {
             for (let i=0, len=players.length; i < len; i++) {
@@ -341,7 +340,6 @@ class PossibleLineup {
                     break;
                 }
                 if (id == player.id) {
-                    console.log(`deleted player: ${JSON.stringify(player)}`);
                     delete this.AdjList.get(pos)[i];
                 }
             }
@@ -387,7 +385,6 @@ class PossibleLineup {
 
                     if (!visited[nextPosition]) {
                         visited[nextPosition] = true;
-                        console.log(`adding player: ${player.id}`);
                         this.usedPlayers[player.pos] = player.id;
                         this.removePlayer(player.id);
                         q.enqueue(nextPosition);
