@@ -4,6 +4,7 @@
   "description": "magical baseball",
   "main": "index.js",
   "scripts": {
+    "cypress:open" : "cypress open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config ./webpack.config.js --mode development"
   },
