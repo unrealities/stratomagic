@@ -18,4 +18,11 @@ context('Roster', () => {
             expect(r.isValidSize(1)).to.equal(false)
         })
     })
+
+    describe('hasStartingPitchers', function () {
+        it('works when only one starting pitcher exists', function () {
+            let r = new Roster([{"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]}])
+            expect(r.hasStartingPitchers(1)).to.equal(true)
+        })
+    })
 })
