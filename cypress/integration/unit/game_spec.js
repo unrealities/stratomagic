@@ -24,5 +24,24 @@ context('Roster', () => {
             let r = new Roster([{"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]}])
             expect(r.hasStartingPitchers(1)).to.equal(true)
         })
+        it('works when there are multiple starting pitchers only', function () {
+            let r = new Roster([
+                {"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+            ])
+            expect(r.hasStartingPitchers(4)).to.equal(true)
+        })
+        it('works when there are multiple starting pitchers and a non-SP', function () {
+            let r = new Roster([
+                {"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [0, -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+            ])
+            expect(r.hasStartingPitchers(4)).to.equal(true)
+        })
     })
 })
