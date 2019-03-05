@@ -72,4 +72,38 @@ context('Roster', () => {
             expect(r.underSalaryCap(300)).to.equal(false)
         })
     })
+
+    describe('canFieldValidLineup', function() {
+        it('returns false when there are no players', function() {
+            let r = new Roster([])
+            expect(r.canFieldValidLineup()).to.equal(false)
+        })
+        it('returns false when there are less than 9 position players', function() {
+            let r = new Roster([
+                {"Positions": [-1,-1,0,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,-1,-1,0,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,-1,-1,-1,0,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,-1,-1,-1,-1,0,-1,-1]}
+            ])
+            expect(r.canFieldValidLineup()).to.equal(false)
+        })
+        it('returns true when there are 9 qualified position players', function() {
+            let r = new Roster([
+                {"Positions": [0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,0,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,-1,-1,0,-1,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,-1,-1,-1,0,-1,-1,-1]},
+                {"Positions": [-1,-1,-1,-1,-1,-1,-1,-1,-1,0,-1,-1]}
+            ])
+            expect(r.canFieldValidLineup()).to.equal(true)
+        })
+    })
 })
