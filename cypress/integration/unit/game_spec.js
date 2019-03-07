@@ -147,5 +147,35 @@ context('Roster', () => {
             ])
             expect(r.canFieldValidLineup()).to.equal(true)            
         })
+        it('returns false when the same player qualifies at multiple positions, but can only field one', function() {
+            let r = new Roster([
+                {"ID": 101, "Positions": [-1,-1,-1,-1,-1,-1,-1, 0, 0, 0,-1,-1]},
+                {"ID": 102, "Positions": [-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 103, "Positions": [-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 104, "Positions": [-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 105, "Positions": [-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1]},
+                {"ID": 106, "Positions": [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 107, "Positions": [-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1]},
+                {"ID": 108, "Positions": [ 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 109, "Positions": [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 110, "Positions": [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 111, "Positions": [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1]}
+            ])
+            expect(r.canFieldValidLineup()).to.equal(false)            
+        })
+        it('returns true when multiple players qualify', function() {
+            let r = new Roster([
+                {"ID": 101, "Positions": [-1,-1,-1,-1,-1,-1,-1, 0, 0, 0,-1,-1]},
+                {"ID": 102, "Positions": [-1,-1,-1,-1,-1,-1,-1, 0, 0, 0,-1,-1]},
+                {"ID": 103, "Positions": [-1,-1,-1,-1,-1,-1,-1, 0, 0, 0,-1,-1]},
+                {"ID": 104, "Positions": [-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 105, "Positions": [-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1]},
+                {"ID": 106, "Positions": [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 107, "Positions": [-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1]},
+                {"ID": 108, "Positions": [ 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 109, "Positions": [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1]}
+            ])
+            expect(r.canFieldValidLineup()).to.equal(true)            
+        })
     })
 })
