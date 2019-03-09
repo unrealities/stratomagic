@@ -175,7 +175,17 @@ context('Roster', () => {
                 {"ID": 108, "Positions": [ 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
                 {"ID": 109, "Positions": [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1]}
             ])
-            expect(r.canFieldValidLineup()).to.equal(true)            
+            let result = r.canFieldValidLineup()
+            let expectedUsedPlayers = new Map()
+            expectedUsedPlayers[2] = 106
+            expectedUsedPlayers[4] = 109
+            expectedUsedPlayers[5] = 105
+            expectedUsedPlayers[6] = 107
+            expectedUsedPlayers[7] = 101
+            expectedUsedPlayers[8] = 102
+            expectedUsedPlayers[9] = 103
+            expect(r.PossibleLineup.usedPlayers).to.equal(expectedUsedPlayers)
+            expect(result).to.equal(true)            
         })
     })
 })

@@ -56,6 +56,7 @@ TODO: Need to make these rules dynamic.
 export class Roster {
     constructor(players) {
         this.players = players;
+        this.PossibleLineup = new PossibleLineup(7);
     };
 
     // Must have exactly (25) players on the roster
@@ -152,8 +153,6 @@ export class Roster {
 
         // TODO: playing with graph search model
         // use hitters
-        let pl = new PossibleLineup(7);
-        console.log(pl);
         for(let h of hitters) {
             for(let ap of h["ActivePositions"]) {
                 if(interestingPositions.includes(ap)) {
@@ -161,12 +160,12 @@ export class Roster {
                         if(p == 3 || ap == p) {
                             continue;
                         }
-                        pl.addPlayer(ap, p, h["ID"]);
+                        this.PossibleLineup.addPlayer(ap, p, h["ID"]);
                     }
                 }
             }
         }
-        pl.search(2);
+        this.PossibleLineup.search(2);
 
         // Determine remaining positions to be filled
         let remainingPositions = [];Object
