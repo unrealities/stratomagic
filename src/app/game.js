@@ -339,7 +339,7 @@ class PossibleLineup {
                     break;
                 }
                 if (id == player.id) {
-                    delete this.AdjList.get(pos)[i];
+                    this.AdjList.get(pos).splice(i,1);
                 }
             }
         }

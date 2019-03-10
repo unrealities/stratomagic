@@ -184,7 +184,7 @@ context('Roster', () => {
             expectedUsedPlayers[7] = 101
             expectedUsedPlayers[8] = 102
             expectedUsedPlayers[9] = 103
-            expect(r.PossibleLineup.AdjList.get(9)).to.equal([])
+            expect(JSON.stringify(r.PossibleLineup.AdjList.get(9))).to.equal([])
             expect(r.PossibleLineup.usedPlayers).to.equal(expectedUsedPlayers)
             expect(result).to.equal(true)            
         })
