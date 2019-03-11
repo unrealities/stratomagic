@@ -301,7 +301,7 @@ class Lineup {
 // Positions are the vertices
 // Players are the edges
 // A player can exist on multiple edges
-class PossibleLineup { 
+export class PossibleLineup { 
     constructor(noOfPositions) 
     { 
         this.noOfPositions = noOfPositions; 

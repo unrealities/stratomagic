@@ -1,4 +1,4 @@
-import { Roster } from '../../../src/app/game'
+import { Roster, PossibleLineup } from '../../../src/app/game'
 
 context('Roster', () => {
     describe('constructor', function () {
@@ -187,6 +187,15 @@ context('Roster', () => {
             expect(JSON.stringify(r.PossibleLineup.AdjList.get(9))).to.equal([])
             expect(r.PossibleLineup.usedPlayers).to.equal(expectedUsedPlayers)
             expect(result).to.equal(true)            
+        })
+    })
+})
+
+context('PossibleLineup', () => {
+    describe('constructor', function () {
+        it('accepts a number of positions', function () {
+            let pl = new PossibleLineup(1)
+            expect(pl.noOfPositions).to.equal(1)
         })
     })
 })
