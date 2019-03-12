@@ -198,4 +198,14 @@ context('PossibleLineup', () => {
             expect(pl.noOfPositions).to.equal(1)
         })
     })
+    describe('addPosition', function () {
+        it('adds a position to the possible lineup', function () {
+            let pl = new PossibleLineup(1)
+            pl.addPosition(1)
+            expect(pl.AdjList.get(2).length).to.equal(0)
+            expect(pl.AdjList.get(3)).to.equal(undefined)
+            expect(pl.AdjList.get(4).length).to.equal(0)
+            expect(pl.AdjList.get(5)).to.equal(undefined)
+        })
+    })
 })
