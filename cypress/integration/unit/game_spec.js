@@ -208,4 +208,13 @@ context('PossibleLineup', () => {
             expect(pl.AdjList.get(5)).to.equal(undefined)
         })
     })
+    describe('addPlayer', function () {
+        it('adds a player to the possible lineup', function () {
+            let pl = new PossibleLineup(1)
+            pl.addPlayer(2, 4, 1234)
+            expect(pl.AdjList.get(2).length).to.equal(1)
+            expect(pl.AdjList.get(2)[0].id).to.equal(1234)
+            expect(pl.AdjList.get(4).length).to.equal(0)
+        })
+    })
 })
