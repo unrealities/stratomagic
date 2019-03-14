@@ -217,4 +217,31 @@ context('PossibleLineup', () => {
             expect(pl.AdjList.get(4).length).to.equal(0)
         })
     })
+    describe('removePlayer', function () {
+        it('removes a player from the possible lineup', function () {
+            let pl = new PossibleLineup(1)
+            pl.addPlayer(2, 4, 1234)
+
+            pl.removePlayer(1234)
+            expect(pl.AdjList.get(2).length).to.equal(0)
+        })
+        it('removes a player from multiple positions from the possible lineup', function () {
+            let pl = new PossibleLineup(2)
+            pl.addPlayer(2, 4, 1234)
+            pl.addPlayer(2, 5, 1234)
+
+            pl.removePlayer(1234)
+            expect(pl.AdjList.get(2).length).to.equal(0)
+        })
+        it('removes only the desired player from the possible lineup', function () {
+            let pl = new PossibleLineup(1)
+            pl.addPlayer(2, 4, 1234)
+            pl.addPlayer(2, 4, 1235)
+
+            pl.removePlayer(1234)
+            expect(pl.AdjList.get(2).length).to.equal(1)
+            expect(pl.AdjList.get(2)[0].id).to.equal(1235)
+            expect(pl.AdjList.get(4).length).to.equal(0)
+        })
+    })
 })
