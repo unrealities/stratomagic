@@ -332,17 +332,13 @@ export class PossibleLineup {
     removePlayer(id)
     {
         // loop through each position, remove player from future edges and put into usedPlayers 
-        for (let [pos, players] of this.AdjList) {
-            for (let i=0, len=players.length; i < len; i++) {
-                let player = players[i];
-                if (!player) {
-                    break;
-                }
+        this.AdjList.forEach( function(pos, players, map) {
+            for (let i = players.length - 1; i >= 0; i--) {
                 if (id == player.id) {
-                    this.AdjList.get(pos).splice(i,1);
+                    players.splice(i, 1);
                 }
             }
-        }
+        })
     }
   
     search(startingPosition) 
