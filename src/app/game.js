@@ -334,8 +334,8 @@ export class PossibleLineup {
         // loop through each position, remove player from future edges and put into usedPlayers 
         this.AdjList.forEach( function(pos, players, map) {
             for (let i = players.length - 1; i >= 0; i--) {
-                if (id == player.id) {
-                    players.splice(i, 1);
+                if (id == players[i].id) {
+                    this.AdjList.set(pos, players.splice(i, 1));
                 }
             }
         })
