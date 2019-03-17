@@ -284,7 +284,7 @@ export class Roster {
         return this.isValidSize(25) &&
         this.underSalaryCap(10000) &&
         this.hasStartingPitchers(4) &&
-        this.canFieldValidLineup();
+        this.canFieldValidLineup();     
     }
 
 }
@@ -332,7 +332,8 @@ export class PossibleLineup {
     removePlayer(id)
     {
         // loop through each position, remove player from future edges and put into usedPlayers 
-        this.AdjList.forEach( function(pos, players, map) {
+        Object.keys(this.AdjList).forEach( function(pos) {
+            players = this.AdjList.get(pos)
             for (let i = players.length - 1; i >= 0; i--) {
                 if (id == players[i].id) {
                     this.AdjList.set(pos, players.splice(i, 1));
