@@ -168,7 +168,7 @@ export class Roster {
         this.PossibleLineup.search(2);
 
         // Determine remaining positions to be filled
-        let remainingPositions = [];Object
+        let remainingPositions = [];
         for(let [pos, players] of Object.entries(interestingLineup)) {
             if (players.length == 0) {
                 remainingPositions.push(pos);
@@ -332,14 +332,13 @@ export class PossibleLineup {
     removePlayer(id)
     {
         // loop through each position, remove player from future edges and put into usedPlayers 
-        Object.keys(this.AdjList).forEach( function(pos) {
-            players = this.AdjList.get(pos)
+        for (let players of this.AdjList.values()) {
             for (let i = players.length - 1; i >= 0; i--) {
                 if (id == players[i].id) {
-                    this.AdjList.set(pos, players.splice(i, 1));
+                    players.splice(i, 1);
                 }
             }
-        })
+        }
     }
   
     search(startingPosition) 
