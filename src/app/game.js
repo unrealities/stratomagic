@@ -231,6 +231,7 @@ export class Roster {
             }
 
             // else there are multiple players and positions to match
+            // TODO: exit if all positions are filled
         }
         // TODO: Make combinations of remaining players/positions.
         // TODO: Can we use recursion here?
