@@ -185,7 +185,25 @@ context('Roster', () => {
             expectedUsedPlayers[8] = 102
             expectedUsedPlayers[9] = 103
             expect(r.PossibleLineup.AdjList.get(9).length).to.equal(0)
+            expect(Object.keys(r.PossibleLineup.usedPlayers).length).to.equal(7)
             expect(JSON.stringify(r.PossibleLineup.usedPlayers)).to.equal(JSON.stringify(expectedUsedPlayers))
+            expect(result).to.equal(true)            
+        })
+        it('returns true when a complicated set of players qualify', function() {
+            let r = new Roster([
+                {"ID": 101, "Positions": [-1,-1,-1,-1, 0,-1,-1,-1,-1, 0,-1,-1]},
+                {"ID": 102, "Positions": [-1,-1,-1,-1,-1,-1,-1,-1, 0, 0,-1,-1]},
+                {"ID": 103, "Positions": [-1,-1,-1,-1,-1, 0, 0, 0, 0, 0,-1,-1]},
+                {"ID": 104, "Positions": [-1,-1,-1, 0, 0, 0,-1,-1,-1,-1,-1,-1]},
+                {"ID": 105, "Positions": [-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1]},
+                {"ID": 106, "Positions": [-1,-1, 0, 0,-1,-1,-1,-1,-1,-1,-1,-1]},
+                {"ID": 107, "Positions": [-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1]},
+                {"ID": 108, "Positions": [ 0,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1]},
+                {"ID": 109, "Positions": [-1,-1,-1,-1, 0,-1, 0, 0,-1,-1,-1,-1]}
+            ])
+            let result = r.canFieldValidLineup()
+            expect(r.PossibleLineup.AdjList.get(9).length).to.equal(0)
+            expect(Object.keys(r.PossibleLineup.usedPlayers).length).to.equal(7)
             expect(result).to.equal(true)            
         })
     })
