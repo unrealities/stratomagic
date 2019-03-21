@@ -232,6 +232,7 @@ export class Roster {
 
             // else there are multiple players and positions to match
             // TODO: exit if all positions are filled
+
         }
         // TODO: Make combinations of remaining players/positions.
         // TODO: Can we use recursion here?
@@ -258,7 +259,7 @@ export class Roster {
         // If there is a position with no available players, the roster is invalid
         // When run against pure randomness Catchers are lacking, may need to ensure
         // that a catcher is taken along with starting pitchers to reduce cycles
-        for(let [pos, players] of Object.entries(interestingLineup)) {
+        for(let [pos, players] of Object.entries(possibleSolutions)) {
             if (players.length == 0) {
                 console.log(`can't fill position: ${pos}`);
                 return false;
