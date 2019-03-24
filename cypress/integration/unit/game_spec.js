@@ -203,8 +203,9 @@ context('Roster', () => {
             ])
             let result = r.canFieldValidLineup()
             expect(r.PossibleLineup.AdjList.get(9).length).to.equal(0)
+            expect(result).to.equal(true)  
             expect(Object.keys(r.PossibleLineup.usedPlayers).length).to.equal(7)  
-            expect(result).to.equal(true)          
+                    
         })
     })
 })
