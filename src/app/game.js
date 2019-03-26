@@ -265,14 +265,16 @@ export class Roster {
                 return false;
             }
         }
-        
-        // If only one player can fill the position, use them
-        // Else need to keep a pool of possible positions and players and loop
+
         if (Object.keys(this.PossibleLineup.usedPlayers).length < 7) {
             // TODO:
             // Identify what positions are not filled.
             // Identify players that have multiple positions including that position
-            //
+            // Create a list of possible flows...
+            //  If Player 1 is 7,8,9 and 9 is not filled.
+            //  Then: Player 1 is now 7
+            //  Then: Are there any unused players to fill 7? If so, use.
+            //  Else: Check existing players that could fill multiples.
             return false
         }
         return true;
