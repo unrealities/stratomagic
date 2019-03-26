@@ -269,6 +269,10 @@ export class Roster {
         // If only one player can fill the position, use them
         // Else need to keep a pool of possible positions and players and loop
         if (Object.keys(this.PossibleLineup.usedPlayers).length < 7) {
+            // TODO:
+            // Identify what positions are not filled.
+            // Identify players that have multiple positions including that position
+            //
             return false
         }
         return true;
