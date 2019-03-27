@@ -275,7 +275,18 @@ export class Roster {
             //  Then: Player 1 is now 7
             //  Then: Are there any unused players to fill 7? If so, use.
             //  Else: Check existing players that could fill multiples.
-            return false
+            let alternatePlayers = new Map();
+            for (let rp of remainingPositions) {
+                for (let uh of usableHitters) {
+                    for (let pos of uh.ActivePositions) {
+                        if (pos == rp) {
+                            return JSON.stringify(uh);
+                        }
+                    }
+                }
+            }
+            return JSON.stringify(alternatePlayers.get(8));
+            return false;
         }
         return true;
     }
