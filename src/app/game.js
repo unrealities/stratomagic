@@ -277,15 +277,16 @@ export class Roster {
             //  Else: Check existing players that could fill multiples.
             let alternatePlayers = new Map();
             for (let rp of remainingPositions) {
+                alternatePlayers.set(rp, []);
                 for (let uh of usableHitters) {
                     for (let pos of uh.ActivePositions) {
                         if (pos == rp) {
-                            return JSON.stringify(uh);
+                            alternatePlayers.get(rp).push(uh);
                         }
                     }
                 }
             }
-            return JSON.stringify(alternatePlayers.get(8));
+            return JSON.stringify(alternatePlayers.get('8'));
             return false;
         }
         return true;
