@@ -285,9 +285,15 @@ export class Roster {
                         }
                     }
                 }
+                if (alternatePlayers.get(rp).length == 0) {
+                    alternatePlayers.delete(rp);
+                }
             }
-            return JSON.stringify(alternatePlayers.get('8'));
-            return false;
+            if (alternatePlayers.entries().length == 0) {
+                return false
+            }
+            // TODO: Generate new possible lineups
+                return alternatePlayers.get('8');;
         }
         return true;
     }
