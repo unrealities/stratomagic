@@ -292,7 +292,12 @@ export class Roster {
             if (alternatePlayers.entries().length == 0) {
                 return false
             }
-            // TODO: Generate new possible lineups
+
+            for (let rp of remainingPositions) {
+                for (let players of alternatePlayers.get(rp)) {
+                    // TODO: try adding alternatePlayers will removing them from the existing lineup
+                }
+            }
                 return alternatePlayers.get('8');;
         }
         return true;
