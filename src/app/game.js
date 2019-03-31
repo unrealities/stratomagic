@@ -295,7 +295,12 @@ export class Roster {
 
             for (let rp of remainingPositions) {
                 for (let players of alternatePlayers.get(rp)) {
-                    // TODO: try adding alternatePlayers will removing them from the existing lineup
+                    for (let player of players) {
+                        // TODO: we want to look through these alternate players to fill the position
+                        // we need to handle if the player is already being used and update the lineup, usedPlayers and remainingPositions
+                        // need to figure out how to do this cleanly to add/remove players and make sure lineup and unused players are
+                        // in a good state
+                    }
                 }
             }
                 return alternatePlayers.get('8');;
