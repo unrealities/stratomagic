@@ -431,7 +431,13 @@ export class PossibleLineup {
     // need to figure out how to do this cleanly to add/remove players and make sure lineup and unused players are
     // in a good state
     switchPosition(player, position) {
-
+        this.removePlayer(player["ID"]);
+        for(let p=2; p<11; p++) {
+            if(p == 3 || position == p) {
+                continue;
+            }
+            this.PossibleLineup.addPlayer(position, p, player["ID"]);
+        }
     }
 }
 
