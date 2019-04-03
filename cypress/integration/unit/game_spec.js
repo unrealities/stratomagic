@@ -266,11 +266,13 @@ context('PossibleLineup', () => {
     describe('switchPosition', function () {
         it('moves a player from one position to another in the possible lineup', function () {
             let pl = new PossibleLineup(2)
+            pl.addPosition(1)
+            pl.addPosition(2)
             pl.addPlayer(2, 4, 1234)
 
             pl.switchPosition({"ID": 1234}, 5)
             expect(pl.AdjList.get(2).length).to.equal(0)
-            expect(pl.AdjList.get(5).length).to.equal(1)
+            expect(pl.AdjList.get(5).length).to.equal(7)
         })
     })
 })

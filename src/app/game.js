@@ -294,10 +294,9 @@ export class Roster {
             }
 
             for (let rp of remainingPositions) {
-                for (let players of alternatePlayers.get(rp)) {
-                    for (let player of players) {
-                        this.PossibleLineup.switchPosition(player, rp);
-                    }
+                for (let player of alternatePlayers.get(rp)) {
+                    // TODO: switch player position and check for successful lineup.
+                    this.PossibleLineup.switchPosition(player, rp);
                 }
             }
         }
@@ -426,17 +425,13 @@ export class PossibleLineup {
         } 
     }
 
-    // TODO: we want to look through these alternate players to fill the position
-    // we need to handle if the player is already being used and update the lineup, usedPlayers and remainingPositions
-    // need to figure out how to do this cleanly to add/remove players and make sure lineup and unused players are
-    // in a good state
     switchPosition(player, position) {
         this.removePlayer(player["ID"]);
         for(let p=2; p<11; p++) {
             if(p == 3 || position == p) {
                 continue;
             }
-            this.PossibleLineup.addPlayer(position, p, player["ID"]);
+            this.addPlayer(position, p, player["ID"]);
         }
     }
 }
