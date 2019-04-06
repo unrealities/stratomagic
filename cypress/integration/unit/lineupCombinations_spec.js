@@ -7,4 +7,10 @@ context('LineupCombinations', () => {
             expect(lc.roster).to.equal(1)
         })
     })
+    describe('two players', function () {
+        it('returns the player itself', function () {
+            let lc = new LineupCombinations([[1],[2]])
+            expect(lc.combinations()).to.equal([[1,2]])
+        })
+    })
 })
