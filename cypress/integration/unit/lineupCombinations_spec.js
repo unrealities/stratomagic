@@ -9,8 +9,8 @@ context('LineupCombinations', () => {
     })
     describe('two players', function () {
         it('returns the player itself', function () {
-            let lc = new LineupCombinations([[1],[2]])
-            expect(lc.combinations()).to.equal([[1,2]])
+            let lc = new LineupCombinations([{1: [1]}, {2: [2]}])
+            expect(lc.combinations()[0]['1']).to.equal(1)
         })
     })
 })
