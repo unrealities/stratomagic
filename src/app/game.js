@@ -330,3 +330,38 @@ class Lineup {
         this.startingPitcher = startingPitcher;
     }
 }
+
+// {
+//     "ID": 1,
+//     "Year": 2000,
+//     "#": 1,
+//     "Ed": "1st",
+//     "Set": "PR",
+//     "Name": "Kent Bottenfield",
+//     "Team": "Angels",
+//     "Pts.": 330,
+//     "OB/C": 3,
+//     "Spd/IP": 6,
+//     "B/T": "R",
+//     "Positions": [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+//     "Icons": [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+//     "Chart": ["SO","SO","SO","SO","PU","PU","PU","GB","GB","GB","GB","GB","FB","FB","FB","FB","BB","1B","1B","2B","2B","2B","2B","2B","2B","2B","2B","2B","2B","2B"]
+//   }
+class Player {
+    construtor(id, year, setNum, edition, set, fullName, mlbTeam, points, obc, spd_ip, bats, positions, icons, chart){
+        this.id = id;
+        this.year = year;
+        this.setNum = setNum;
+        this.edition = edition;
+        this.set = set;
+        this.fullName = fullName;
+        this.mlbTeam = mlbTeam;
+        this.points = points;
+        this.obc = obc;
+        //TODO: this.spd & this.ip = spd_ip;
+        this.bats = bats;
+        this.positions = positions;
+        this.icons = icons;
+        this.chart = chart;
+    }
+}
