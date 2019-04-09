@@ -358,10 +358,33 @@ class Player {
         this.mlbTeam = mlbTeam;
         this.points = points;
         this.obc = obc;
-        //TODO: this.spd & this.ip = spd_ip;
         this.bats = bats;
         this.positions = positions;
         this.icons = icons;
         this.chart = chart;
+
+        this.hitter = this.isHitter();
+        this.pitcher = !this.hitter;
+        this.speed = 10; // pitchers have a default value of 10 speed
+        this.ip = 0;     // hitters cannot pitch
+        if (this.hitter) {
+            this.speed = spd_ip;
+        }
+        if (!this.hitter) {
+            this.ip = spd_ip;
+        }
+
     }
+    
+    isHitter(){
+        for(let p=0; p<this.positions.length; p++) {
+            if (p === 1 || p > 9) {
+                if (player["Positions"][p] >= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
