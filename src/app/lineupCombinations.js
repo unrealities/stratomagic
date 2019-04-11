@@ -9,6 +9,10 @@ export class LineupCombinations {
         this.roster = roster;
     }
     combinations() {
-        return Cartesian(this.roster);
+        let playerMap = new Map();
+        for(let player in this.roster.players) {
+            playerMap[player.id] = player.positions
+        }
+        return Cartesian(playerMap);
     }
 }

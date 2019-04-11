@@ -1,10 +1,12 @@
 import { LineupCombinations } from '../../../src/app/lineupCombinations'
+import { Roster } from '../../../src/app/game';
 
 context('LineupCombinations', () => {
     describe('constructor', function () {
         it('accepts a roster', function () {
-            let lc = new LineupCombinations(1)
-            expect(lc.roster).to.equal(1)
+            let r = new Roster
+            let lc = new LineupCombinations(r)
+            expect(lc.roster).to.equal(r)
         })
     })
     describe('two players', function () {
