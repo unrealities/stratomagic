@@ -347,7 +347,7 @@ class Lineup {
 //     "Icons": [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
 //     "Chart": ["SO","SO","SO","SO","PU","PU","PU","GB","GB","GB","GB","GB","FB","FB","FB","FB","BB","1B","1B","2B","2B","2B","2B","2B","2B","2B","2B","2B","2B","2B"]
 //   }
-class Player {
+export class Player {
     construtor(id, year, setNum, edition, set, fullName, mlbTeam, points, obc, spd_ip, bats, positions, icons, chart){
         this.id = id;
         this.year = year;
@@ -379,7 +379,7 @@ class Player {
     isHitter(){
         for(let p=0; p<this.positions.length; p++) {
             if (p === 1 || p > 9) {
-                if (player["Positions"][p] >= 0) {
+                if (this.positions[p] >= 0) {
                     return true;
                 }
             }
