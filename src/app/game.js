@@ -374,6 +374,7 @@ export class Player {
             this.ip = spd_ip;
         }
 
+        this.playablePositions = this.playablePositions();
     }
     
     isHitter(){
@@ -385,6 +386,15 @@ export class Player {
             }
         }
         return false;
+    }
+
+    playablePositions(){
+        pp = [];
+        for(let p=0; p<this.positions.length; p++) {
+            if(this.positions[p] >= 0) {
+                pp.push(p);
+            }
+        }
     }
 
 }
