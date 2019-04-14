@@ -395,6 +395,7 @@ export class Player {
                 pp.push(p);
             }
         }
+        return pp;
     }
 
 }

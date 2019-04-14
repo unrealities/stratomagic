@@ -218,4 +218,12 @@ context('Player', () => {
             expect(p.id).to.equal(1)
         })
     })
+    describe('playablePositions', function () {
+        it('converts positions array to array of just playable positions', function () {
+            let p = new Player(1, 2019, 1, '1st', 'fake', 'Guy BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1, 0,-1, 0,-1,-1,-1,-1,-1,-1,-1],[],[])
+            expect(p.positions).to.eql([-1,-1, 0,-1, 0,-1,-1,-1,-1,-1,-1,-1])
+            expect(p.playablePositions).to.eql([2,4])
+        })
+    })
 })
