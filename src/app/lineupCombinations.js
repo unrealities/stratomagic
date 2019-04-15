@@ -10,10 +10,13 @@ export class LineupCombinations {
     }
     combinations() {
         let playerArray = [];
+        for(let i=0; i<11; i++) {
+            playerArray[i] = [];
+        }
         this.roster.players.forEach( function(player) {
-            let p = {};
-            p[player.id] = player.playablePositions;
-            playerArray.push(p);
+            player.playablePositions.forEach( function(position) {
+                playerArray[position].push(player.id);
+            });
         });
         return Cartesian(playerArray);
     }
