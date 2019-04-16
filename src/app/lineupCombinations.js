@@ -8,15 +8,15 @@ export class LineupCombinations {
         this.roster = roster;
     }
     combinations() {
-        let playerArray = [];
+        let positionMap = new Map();
         for(let i=0; i<11; i++) {
-            playerArray[i] = [];
+            positionMap.set(i, []);
         }
         this.roster.players.forEach( function(player) {
             player.playablePositions.forEach( function(position) {
-                playerArray[position].push(player.id);
+                positionMap.get(position).push(player.id);
             });
         });
-        return Cartesian(playerArray);
+        return Cartesian(positionMap);
     }
 }
