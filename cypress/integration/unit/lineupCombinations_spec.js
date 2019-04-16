@@ -4,7 +4,8 @@ import { Player, Roster } from '../../../src/app/game';
 context('LineupCombinations', () => {
     describe('constructor', function () {
         it('accepts a roster', function () {
-            let p = new Player(1)
+            let p = new Player(1, 2019, 1, '1st', 'fake', 'Guy BallPlayer', 'Cubs', 100, 5, 20, "R",
+                               [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
             let r = new Roster([p])
             let lc = new LineupCombinations(r)
             expect(lc.roster).to.equal(r)
