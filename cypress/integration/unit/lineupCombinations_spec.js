@@ -8,7 +8,7 @@ context('LineupCombinations', () => {
                                [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
             let r = new Roster([p])
             let lc = new LineupCombinations(r)
-            expect(lc.roster).to.equal(r)
+            expect(lc.players).to.eql([p])
         })
     })
     describe('two players', function () {

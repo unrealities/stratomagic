@@ -5,18 +5,18 @@ import { Cartesian } from '../lib/math';
 // This could possibly traverse through all possible combinations of lineups and be extremely inefficient
 export class LineupCombinations {
     constructor(roster) {
-        this.roster = roster;
+        this.players = roster.players;
     }
     combinations() {
-        let positionMap = new Map();
+        let positions = [];
         for(let i=0; i<11; i++) {
-            positionMap.set(i, []);
+            positions[i] = {[i]: []};
         }
-        this.roster.players.forEach( function(player) {
-            player.playablePositions.forEach( function(position) {
-                positionMap.get(position).push(player.id);
-            });
-        });
-        return Cartesian(positionMap);
+        for(let p of this.players) {
+            for(let pos of p.playablePositions) {
+                positions[pos][pos].push(p.id);
+            }
+        }
+        return Cartesian(positions);
     }
 }
