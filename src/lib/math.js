@@ -8,19 +8,19 @@ export function RandomPositiveInteger(max) {
 // Blatantly stolen from Stack Overflow: 
 // https://stackoverflow.com/a/42137634
 export function Cartesian(array) {
-function c(part, index) {
-    var k = Object.keys(array[index])[0];
-    array[index][k].forEach(function (a) {
-        var p = Object.assign({}, part, { [k]: a });
-        if (index + 1 === array.length) {
-            r.push(p);
-            return;
-        }
-        c(p, index + 1);
-    });
-}
+    function c(part, index) {
+        var k = Object.keys(array[index])[0];
+        array[index][k].forEach(function (a) {
+            var p = Object.assign({}, part, { [k]: a });
+            if (index + 1 === array.length) {
+                r.push(p);
+                return;
+            }
+            c(p, index + 1);
+        });
+    }
 
-var r = [];
-c({}, 0);
-return r;
+    var r = [];
+    c({}, 0);
+    return r;
 }

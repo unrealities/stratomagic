@@ -14,12 +14,12 @@ context('LineupCombinations', () => {
     describe('two players', function () {
         it('returns only combination when players have one position each', function () {
             let p1 = new Player(1, 2019, 1, '1st', 'fake', 'Guy BallPlayer', 'Cubs', 100, 5, 20, "R",
-                                [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+                                [-1,-1, 0,-1, 0,-1,-1,-1,-1,-1,-1,-1],[],[])
             let p2 = new Player(1, 2019, 2, '1st', 'fake', 'A BallPlayer', 'Cubs', 100, 5, 20, "R",
-                                [-1,-1, 1, 0,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+                                [-1,-1, 1, 0,-1, 0,-1,-1,-1,-1,-1,-1],[],[])
             let r = new Roster([p1, p2])
             let lc = new LineupCombinations(r)
-            expect(lc.combinations()).to.equal(1)
+            expect(lc.combinations()).to.eql(1)
         })
     })
 })
