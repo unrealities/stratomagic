@@ -6,17 +6,19 @@ import { Cartesian } from '../lib/math';
 export class LineupCombinations {
     constructor(roster) {
         this.players = roster.players;
-    }
-    combinations() {
-        let positions = [];
+        
+        let possiblePositions = [];
         for(let i=0; i<11; i++) {
-            positions[i] = {[i]: []};
+            possiblePositions[i] = {[i]: []};
         }
         for(let p of this.players) {
             for(let pos of p.playablePositions) {
-                positions[pos][pos].push(p.id);
+                possiblePositions[pos][pos].push(p.id);
             }
         }
-        return Cartesian(positions);
+        this.possiblePositions = possiblePositions;
+    }
+    combinations() {
+        return Cartesian(this.possiblePositions);
     }
 }
