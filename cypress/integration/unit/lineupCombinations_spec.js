@@ -17,13 +17,16 @@ context('LineupCombinations', () => {
             let p1 = new Player(1, 2019, 1, '1st', 'fake', 'Guy BallPlayer', 'Cubs', 100, 5, 20, "R",
                                 [-1,-1, 0,-1, 0,-1,-1,-1,-1,-1,-1,-1],[],[])
             let p2 = new Player(2, 2019,12, '1st', 'fake', 'A BallPlayer', 'Cubs', 100, 5, 20, "R",
-                                [-1,-1, 1, 0,-1, 0,-1,-1,-1,-1,-1,-1],[],[])
-            let r = new Roster([p1, p2])
+                                [-1,-1, 0, 0, 0, 0,-1,-1,-1,-1,-1,-1],[],[])
+            let p3 = new Player(3, 2019,12, '1st', 'fake', 'Another BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let r = new Roster([p1, p2, p3])
             let lc = new LineupCombinations(r)
 
-            expect(lc.players).to.eql([p1, p2])
-            expect(lc.possiblePositions).to.eql([2,4])
-            expect(lc.combinations()).to.eql(1)
+            expect(lc.players).to.eql([p1, p2, p3])
+            expect(lc.possiblePositions).to.eql([{0: []}, {1: []}, {2: [1,2,3]}, {3: [2]}, {4: [1,2]}, {5: [2]},
+                                                 {6: []}, {7: []}, {8: []}, {9: []}, {10: []}])
+            expect(lc.combinations()).to.eql('eggs')
         })
     })
 })
