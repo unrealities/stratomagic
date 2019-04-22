@@ -8,7 +8,7 @@ export class LineupCombinations {
         this.players = roster.players;
         
         let possiblePositions = [];
-        for(let i=0; i<11; i++) {
+        for(let i=0; i<12; i++) {
             possiblePositions[i] = {[i]: []};
         }
         for(let p of this.players) {
