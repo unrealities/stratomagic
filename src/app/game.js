@@ -1,4 +1,5 @@
 import { PossibleLineup } from './possibleLineup.js';
+import { LineupCombinations } from './lineupCombinations.js';
 
 // Game object to track the game state
 // 2 teams ( home v. away ? )
@@ -86,6 +87,10 @@ export class Roster {
     // Any hitter can be a DH
     // Any hitter can be a 1B (get -1 fielding)
     canFieldValidLineup() {
+        //TODO: Just use lineupCombinations, how slow can it be?
+        let combos = new LineupCombinations(this);
+        return (combos.length > 0  ? true : false);
+
         // The problem is that a player can have multiple positions
         // and they can also always qualify at DH or 1B.
         //
