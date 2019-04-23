@@ -79,30 +79,51 @@ context('Roster', () => {
             expect(r.canFieldValidLineup()).to.equal(false)
         })
         it('returns false when there are less than 9 position players', function() {
-            let r = new Roster([
-                {"Positions": [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1]}
-            ])
+            let p1 = new Player(1, 2019, 1, '1st', 'fake', 'Guy BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [ 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p2 = new Player(2, 2019, 1, '1st', 'fake', 'A BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p3 = new Player(3, 2019, 1, '1st', 'fake', 'Another BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p4 = new Player(4, 2019, 1, '1st', 'fake', 'Steve BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p5 = new Player(5, 2019, 1, '1st', 'fake', 'Bill BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p6 = new Player(6, 2019, 1, '1st', 'fake', 'Another BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1],[],[])
+            let p7 = new Player(7, 2019, 1, '1st', 'fake', 'Gal BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1],[],[])
+            let p8 = new Player(8, 2019, 1, '1st', 'fake', 'Small BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1],[],[])             
+            let r = new Roster([p1, p2, p3, p4, p5, p6, p7, p8])
             expect(r.canFieldValidLineup()).to.equal(false)
         })
-        it('returns true when there are 9 qualified position players', function() {
-            let r = new Roster([
-                {"Positions": [ 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1]},
-                {"Positions": [-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1]}
-            ])
+        it('returns true when there are 12 qualified players', function() {
+            let p1 = new Player(1, 2019, 1, '1st', 'fake', 'Guy BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [ 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p2 = new Player(2, 2019, 1, '1st', 'fake', 'A BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p3 = new Player(3, 2019, 1, '1st', 'fake', 'Another BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p4 = new Player(4, 2019, 1, '1st', 'fake', 'Steve BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p5 = new Player(5, 2019, 1, '1st', 'fake', 'Bill BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1,-1],[],[])
+            let p6 = new Player(6, 2019, 1, '1st', 'fake', 'Another BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1,-1],[],[])
+            let p7 = new Player(7, 2019, 1, '1st', 'fake', 'Gal BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1,-1],[],[])
+            let p8 = new Player(8, 2019, 1, '1st', 'fake', 'Small BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1,-1],[],[])
+            let p9 = new Player(9, 2019, 1, '1st', 'fake', 'Tall BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1,-1],[],[])
+            let p10 = new Player(10, 2019, 1, '1st', 'fake', 'Feather BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1,-1],[],[])
+            let p11 = new Player(11, 2019, 1, '1st', 'fake', 'Base BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,-1],[],[])
+            let p12 = new Player(12, 2019, 1, '1st', 'fake', 'An BallPlayer', 'Cubs', 100, 5, 20, "R",
+                                [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0],[],[])                            
+            let r = new Roster([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12])
             expect(r.canFieldValidLineup()).to.equal(true)
         })
         it('returns true when qualified players are in reverse order', function () {
