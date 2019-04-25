@@ -87,10 +87,6 @@ export class Roster {
     // Any hitter can be a DH
     // Any hitter can be a 1B (get -1 fielding)
     canFieldValidLineup() {
-        //TODO: Just use lineupCombinations, how slow can it be?
-        let lc = new LineupCombinations(this);
-        return (lc.combinations().length > 0  ? true : false);
-
         // The problem is that a player can have multiple positions
         // and they can also always qualify at DH or 1B.
         //
@@ -98,9 +94,9 @@ export class Roster {
         // a valid lineup is found, we can return true.
         let hitters = [];
         for(let player of this.players) {
-            for(let p=0; p<player["Positions"].length; p++) {
+            for(let p=0; p<player.positions.length; p++) {
                 if (p === 1 || p > 9) {
-                    if (player["Positions"][p] >= 0) {
+                    if (player.positions[p] >= 0) {
                         break;
                     }
                 }
@@ -123,33 +119,33 @@ export class Roster {
         let interestingLineup = {'2': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': []};
         let usableHitters = [];
         for(let h of hitters) {
-            h["ActivePositions"] = [];
+            h.activePositions = [];
             // Identify what position each player can play
-            for(let p=0; p<h["Positions"].length; p++) {
-                if (h["Positions"][p] >= 0) {
-                    h["ActivePositions"].push(p);
+            for(let p=0; p<h.positions.length; p++) {
+                if (h.positions[p] >= 0) {
+                    h.activePositions.push(p);
                 }
             }
 
             // Fill in positions for players who can only play one position
             // Also account for players who play LF/RF. Pure LF or RF generally do not exist
-            if (h["ActivePositions"].length === 1 && interestingPositions.includes(h["ActivePositions"][0])) {
-                if (interestingLineup[h["ActivePositions"][0].toString()] === undefined || 
-                interestingLineup[h["ActivePositions"][0].toString()].length == 0) {
-                    interestingLineup[h["ActivePositions"][0].toString()] = [h["ID"]];
+            if (h.activePositions.length === 1 && interestingPositions.includes(h.activePositions[0])) {
+                if (interestingLineup[h.activePositions[0].toString()] === undefined || 
+                interestingLineup[h.activePositions[0].toString()].length == 0) {
+                    interestingLineup[h.activePositions[0].toString()] = [h["ID"]];
                 }
-            } else if (h["ActivePositions"].length === 2 && 
-                       h["ActivePositions"][0] === 7 &&
-                       h["ActivePositions"][1] === 9){ 
-                if (interestingLineup[h["ActivePositions"][0].toString()] === undefined || 
-                interestingLineup[h["ActivePositions"][0].toString()].length == 0) {
-                    interestingLineup[h["ActivePositions"][0].toString()] = [h["ID"]];
-                } else if (interestingLineup[h["ActivePositions"][1].toString()] === undefined || 
-                interestingLineup[h["ActivePositions"][1].toString()].length == 0) {
-                    interestingLineup[h["ActivePositions"][1].toString()] = [h["ID"]];
+            } else if (h.activePositions.length === 2 && 
+                       h.activePositions[0] === 7 &&
+                       h.activePositions[1] === 9){ 
+                if (interestingLineup[h.activePositions[0].toString()] === undefined || 
+                interestingLineup[h.activePositions[0].toString()].length == 0) {
+                    interestingLineup[h.activePositions[0].toString()] = [h["ID"]];
+                } else if (interestingLineup[h.activePositions[1].toString()] === undefined || 
+                interestingLineup[h.activePositions[1].toString()].length == 0) {
+                    interestingLineup[h.activePositions[1].toString()] = [h["ID"]];
                 }
             } else {
-                for(let a of h["ActivePositions"]) {
+                for(let a of h.activePositions) {
                     if (interestingPositions.includes(a)) {
                         usableHitters.push(h);
                         break;
@@ -161,7 +157,7 @@ export class Roster {
         // TODO: playing with graph search model
         // use hitters
         for(let h of hitters) {
-            for(let ap of h["ActivePositions"]) {
+            for(let ap of h.activePositions) {
                 if(interestingPositions.includes(ap)) {
                     for(let p=2; p<11; p++) {
                         if(p == 3 || ap == p) {
@@ -192,122 +188,10 @@ export class Roster {
             console.log("not enough hitters left");
             return false;
         }
-    
-        // Loop through remaining positions and usable hitters
-
-        // Prepare possible solutions
-        let possibleSolutions = {};
-        for(let rp of remainingPositions) {
-            possibleSolutions[rp] = new Array();
-            for(let hitter of usableHitters) {
-                if (hitter.ActivePositions.includes(parseInt(rp))) {
-                    possibleSolutions[rp].push(hitter.ID);
-                }
-            }
-        }
-        console.log(`Possible Solutions: ${JSON.stringify(possibleSolutions)}`);
-
-        let playerPos = {};
-        for(let player of usableHitters) {
-            playerPos[player.ID.toString()] = new Array();
-            for(let [pos, players] of Object.entries(possibleSolutions)) {
-                if(players.includes(player)) {
-                    playerPos[player.ID.toString()].push(pos);
-                }
-            }
-        }
         
-        for(let [pos, players] of Object.entries(possibleSolutions)) {
-            if(players.length == 0) {
-                return false
-            }
-            if(players.length == 1 || Object.keys(possibleSolutions).length == 1){
-                interestingLineup[pos] = [players[0]];
-                delete possibleSolutions[pos];
-                continue;
-            }
-
-            // If there is a player that can only fill one position
-            // Fill that position with that player
-            for(let [id, pos3] of Object.entries(playerPos)) {
-                if(pos3.length == 1 && pos3[0] == pos) {
-                    interestingLineup[pos] = [id];
-                    delete possibleSolutions[pos];
-                    continue;
-                }
-            }
-
-            // else there are multiple players and positions to match
-            // TODO: exit if all positions are filled
-
-        }
-        // TODO: Make combinations of remaining players/positions.
-        // TODO: Can we use recursion here?
-        // Loop through these and if a solution is found: break & true, else
-        // return false at the end.
-
-        // Not efficient, but...
-        // Grab the first player for the first position
-        // Delete that player from all other positions
-        // Check to see if you can still fill all positions
-        // If you cannot fill all positions...
-        //   re-add the player to all positions
-        //   grab a different player
-        //   if no players are left, there are no valid solutions
-        // If you can fill the position...
-        //   grab the first player and follow the same steps
-
-        // Need to keep track of previous lineup to allow for re-do.
-
-        console.log(`Remaining Positions: ${remainingPositions.toString()}`);
-        console.log(`Usable Hitters: ${JSON.stringify(usableHitters)}`);
-        console.log(`Filled Positions: ${JSON.stringify(interestingLineup)}`);
-
-        // If there is a position with no available players, the roster is invalid
-        // When run against pure randomness Catchers are lacking, may need to ensure
-        // that a catcher is taken along with starting pitchers to reduce cycles
-        for(let [pos, players] of Object.entries(possibleSolutions)) {
-            if (players.length == 0) {
-                console.log(`can't fill position: ${pos}`);
-                return false;
-            }
-        }
-
-        if (Object.keys(this.PossibleLineup.usedPlayers).length < 7) {
-            // TODO:
-            // Identify what positions are not filled.
-            // Identify players that have multiple positions including that position
-            // Create a list of possible flows...
-            //  If Player 1 is 7,8,9 and 9 is not filled.
-            //  Then: Player 1 is now 7
-            //  Then: Are there any unused players to fill 7? If so, use.
-            //  Else: Check existing players that could fill multiples.
-            let alternatePlayers = new Map();
-            for (let rp of remainingPositions) {
-                alternatePlayers.set(rp, []);
-                for (let uh of usableHitters) {
-                    for (let pos of uh.ActivePositions) {
-                        if (pos == rp) {
-                            alternatePlayers.get(rp).push(uh);
-                        }
-                    }
-                }
-                if (alternatePlayers.get(rp).length == 0) {
-                    alternatePlayers.delete(rp);
-                }
-            }
-            if (alternatePlayers.entries().length == 0) {
-                return false
-            }
-
-            for (let rp of remainingPositions) {
-                for (let player of alternatePlayers.get(rp)) {
-                    // TODO: switch player position and check for successful lineup.
-                    this.PossibleLineup.switchPosition(player, rp);
-                }
-            }
-        }
-        return true;
+        // If there is no simple solution, check all combinations
+        let lc = new LineupCombinations(this);
+        return (lc.combinations().length > 0  ? true : false);
     }
 
     // Total points < (5000)
