@@ -94,9 +94,9 @@ export class Roster {
         // a valid lineup is found, we can return true.
         let hitters = [];
         for(let player of this.players) {
-            for(let p=0; p<player.positions.length; p++) {
+            for(let p=0; p<player.Positions.length; p++) {
                 if (p === 1 || p > 9) {
-                    if (player.positions[p] >= 0) {
+                    if (player.Positions[p] >= 0) {
                         break;
                     }
                 }
@@ -121,8 +121,8 @@ export class Roster {
         for(let h of hitters) {
             h.activePositions = [];
             // Identify what position each player can play
-            for(let p=0; p<h.positions.length; p++) {
-                if (h.positions[p] >= 0) {
+            for(let p=0; p<h.Positions.length; p++) {
+                if (h.Positions[p] >= 0) {
                     h.activePositions.push(p);
                 }
             }
