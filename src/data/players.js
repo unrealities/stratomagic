@@ -1,3 +1,5 @@
+import { Player } from '../app/game';
+
 export const Players = [
     {
       "ID": 1,
@@ -61495,9 +61497,10 @@ export const PlayersByPosition = () => {
     pbp[i] = new Array();
   }
   for (let p of Players) {
+    let player = new Player(p["ID"], p["Year"], p["#"], p["Ed"], p["Set"], p["Name"], p["Team"], p["Pts."], p["OB/C"], p["Spd/IP"], p["B/T"], p["Positions"], p["Icons"], p["Chart"]);
     for (let i=0; i<12; i++) {
       if (p.Positions[i] >= 0) {
-        pbp[i].push(p);
+        pbp[i].push(player);
       }
     }
   }
