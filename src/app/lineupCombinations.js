@@ -12,7 +12,10 @@ export class LineupCombinations {
             possiblePositions[i] = {[i]: []};
         }
         for(let p of this.players) {
+            console.log(p);
+            console.log(p.playablePositions);
             for(let pos of p.playablePositions) {
+                console.log(possiblePositions[pos]);
                 possiblePositions[pos][pos].push(p.id);
             }
         }
