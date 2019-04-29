@@ -1,6 +1,6 @@
 import { Roster } from '../app/game.js';
 import { halfInning } from '../app/inning.js';
-import { RandomPositiveInteger } from '../lib/math.js';
+import { RandomPositiveInteger, RandomNonNegativeInteger } from '../lib/math.js';
 import { Players, PlayersByPosition } from '../data/players.js';
 
 import React from 'react';
@@ -84,7 +84,7 @@ export class PlayerCardContainer extends React.Component {
                 continue;
             }
 
-            Players[b]["avgGameRuns"] = averageGameRuns.toFixed(1);
+            Players[b].avgGameRuns = averageGameRuns.toFixed(1);
             goodCards = [...goodCards, Players[b]];
             this.setState({
                 ...this.state,
@@ -110,27 +110,28 @@ export class PlayerCardContainer extends React.Component {
             for(let p=0; p<4; p++) {
                 let i = RandomPositiveInteger(pbp[1].length-1);
                 let player = pbp[1][i];
-                player.Pos = this.positions(player.Positions).join(' | ');;
+                player.Pos = this.positions(player.positions).join(' | ');;
                 randomRoster = [...randomRoster, player];
             }
 
             // Get At Least 1 C
             let i = RandomPositiveInteger(pbp[2].length-1);
             let player = pbp[2][i];
-            player.Pos = this.positions(player.Positions).join(' | ');;
+            player.Pos = this.positions(player.positions).join(' | ');;
             randomRoster = [...randomRoster, player];
 
             // Get 20 other players (besides SPs)
             for(let c=0; c<20; c++) {
                 let nonSP = null;
                 while (nonSP === null) {
-                    let i = RandomPositiveInteger(Players.length-1);
-                    // exclude SP
-                    if (Players[i].Positions[1] == -1) {
-                        nonSP = Players[i];
+                    let i = 1;
+                    while (i==1) {
+                     i = RandomNonNegativeInteger(12);
                     }
+                    let j = RandomPositiveInteger(pbp[i].length-1);
+                    nonSP =  pbp[i][j];
                 }
-                nonSP.Pos = this.positions(nonSP.Positions).join(' | ');;
+                nonSP.Pos = this.positions(nonSP.positions).join(' | ');;
 
                 randomRoster = [...randomRoster, nonSP];
             }
@@ -155,12 +156,12 @@ export class PlayerCardContainer extends React.Component {
                     {this.state.cards.map( (c,i) => { 
                         return(
                             <PlayerCard key={i}
-                            name={ c["Name"] }
-                            obc={ c["OB/C"] }
-                            points={ c["Pts."] }
-                            positions={ c["Positions"] }
-                            pos={ c["Pos"]}
-                            avgGameRuns={ c["avgGameRuns"] } />
+                            name={ c.fullName }
+                            obc={ c.obc }
+                            points={ c.points }
+                            positions={ c.playablePositions }
+                            pos={ c.Pos}
+                            avgGameRuns={ c.avgGameRuns } />
                         )
                     })}
                 </div>
