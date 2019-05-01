@@ -161,7 +161,7 @@ export class PlayerCardContainer extends React.Component {
                             points={ c.points }
                             positions={ c.playablePositions }
                             pos={ c.Pos}
-                            avgGameRuns={ c.avgGameRuns } />
+                            avgGameRuns={ c.runsPerGame(pbp[1][150]) } />
                         )
                     })}
                 </div>

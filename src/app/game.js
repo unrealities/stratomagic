@@ -287,4 +287,18 @@ export class Player {
         return pp;
     }
 
+    runsPerGame(pitcher) {
+        let trials = 1000;
+        let totalRuns = 0;
+
+        if (!this.isHitter()) {    
+            continue;
+        }
+        for (let i=0; i<trials; i++){
+            let hi = halfInning(this, pitcher);
+            totalRuns += hi["runs"];
+        }
+        return 9 * (totalRuns/trials);
+    }
+
 }

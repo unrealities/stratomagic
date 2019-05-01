@@ -3,7 +3,7 @@ import { RandomPositiveInteger } from '../lib/math.js';
 // Limit this logic to only determining if who the controlling player is.
 // The dice result can be passed in as separate logic.
 function controllingPlayer(batter, pitcher, diceResult) {
-    if ((diceResult + pitcher["OB/C"]) > batter["OB/C"]) {
+    if ((diceResult + pitcher.obc) > batter.obc) {
         return pitcher;
     }
     return batter;
@@ -13,7 +13,7 @@ function controllingPlayer(batter, pitcher, diceResult) {
 function outcome(controllingPlayer, diceResult) {
     // since arrays start at zero, we cannot just take the diceResult
     // we have to subtract one to stay in the range of 0-19.
-    return controllingPlayer["Chart"][diceResult-1];
+    return controllingPlayer.chart[diceResult-1];
 }
 
 // Since diceRoll is such a major component of the game, I wanted
