@@ -1,5 +1,6 @@
 import { PossibleLineup } from './possibleLineup.js';
 import { LineupCombinations } from './lineupCombinations.js';
+import { halfInning } from '../app/inning.js';
 
 // Game object to track the game state
 // 2 teams ( home v. away ? )
@@ -270,11 +271,11 @@ export class Player {
         for(let p=0; p<this.positions.length; p++) {
             if (p === 1 || p > 9) {
                 if (this.positions[p] >= 0) {
-                    return true;
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     playablePositions(){
@@ -292,13 +293,13 @@ export class Player {
         let totalRuns = 0;
 
         if (!this.isHitter()) {    
-            continue;
+            return 0;
         }
         for (let i=0; i<trials; i++){
             let hi = halfInning(this, pitcher);
             totalRuns += hi["runs"];
         }
-        return 9 * (totalRuns/trials);
+        return Math.round(9 * (totalRuns/trials));
     }
 
 }
