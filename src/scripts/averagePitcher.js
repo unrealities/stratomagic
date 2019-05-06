@@ -7,6 +7,26 @@ import { PlayersByPosition } from '../data/players';
 // average ob: 3.218712029161604
 // average ip: 6.262454434993924
 // average chart: ["PU","PU","SO","SO","SO","SO","GB","GB","GB","GB","GB","GB","GB","FB","FB","FB","BB","1B","1B","2B","2B","2B","2B","2B","HR","HR","HR","HR","HR","HR"]
+//
+// More sillyness
+//
+// My son asked me if there was a player who matched the "average pitcher"
+// There are 5 players with the same chart
+// 3521: Kip Wells
+// 3032: Bronson Arroyo
+// 2727: Tom Glavine
+// 2316: Matt Morris
+// 1925: John Thomson
+//
+// Only two of these pitchers have a OB of 3 and IP of 6
+// Bronson Arroyo and John Thomson
+// John Thomson averaged 1.1 WAR/season in his 10 seasons
+// Bronson Arroyo averaged a 1.6 WAR/season in his 16 seasons
+//
+// Bronson Arroyo is definitely better than "average" but outside of one exceptional season, he was a classic #4 starter.
+// Also the game skews towards having better players, so the "average" showdown player I wouldn't expect to have a WAR of 0.
+//
+// Therefore, because I want to, Bronson Arroyo is the most "average" MLB Showdown pitcher.
 
 export function averagePitcher(){
     let count = PlayersByPosition()[1].length;
