@@ -299,7 +299,7 @@ export class Player {
             let hi = halfInning(this, pitcher);
             totalRuns += hi["runs"];
         }
-        return Math.round(9 * (totalRuns/trials));
+        return (Math.round((9 * (totalRuns/trials))*10)/10).toFixed(1);
     }
 
 }
