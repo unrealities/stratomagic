@@ -1,6 +1,7 @@
+import { PlayersByPosition } from '../data/players';
+
 // Loop through all the players and find the most common pitcher
 // This information is valuable to give hitters a baseline performance metric
-import { PlayersByPosition } from '../data/players';
 
 // Results
 // average points: 321.3730255164034
@@ -23,8 +24,8 @@ import { PlayersByPosition } from '../data/players';
 // John Thomson averaged 1.1 WAR/season in his 10 seasons
 // Bronson Arroyo averaged a 1.6 WAR/season in his 16 seasons
 //
-// Bronson Arroyo is definitely better than "average" but outside of one exceptional season, he was a classic #4 starter.
-// Also the game skews towards having better players, so the "average" showdown player I wouldn't expect to have a WAR of 0.
+// Bronson Arroyo is definitely better than "average" but outside of one exceptional season, he was a classic #3 starter.
+// Also the game skews towards having better players, so the "average" showdown player I wouldn't expect to have a WAR of 0. (This theory could be tested by ingesting baseball reference data)
 //
 // Therefore, because I want to, Bronson Arroyo is the most "average" MLB Showdown pitcher.
 
