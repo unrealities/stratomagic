@@ -15,13 +15,14 @@ export function bestHitters(pitcher) {
 
 // Results by position by player with 100,000 trials against average pitcher (Bronson Arroyo)
 //
-// Barry Bonds 2005 #252 is by far the best card.
+// Barry Bonds 2003 #252 is by far the best card.
 // 16 OBP has to be a large contributing factor.
 // 28 runs a game is twice as many as the next non-Barry Bonds card
+// Card most recently sold for $140 on eBay. Frank Thomas and Bagwell seem to sell for $15.
 //
 // RUNS,R/PTS,ID,POS,YEAR,SET#,ED,SET,NAME,TEAM,PTS,OBC,BATS,SPD,IP
-// 28.1,0.031,3461,7,2005,252,UL,,Barry Bonds,Giants,900,16,L,12,0
-// 27.9,0.031,3461,9,2005,252,UL,,Barry Bonds,Giants,900,16,L,12,0
+// 28.1,0.031,3461,7,2003,252,UL,,Barry Bonds,Giants,900,16,L,12,0
+// 27.9,0.031,3461,9,2003,252,UL,,Barry Bonds,Giants,900,16,L,12,0
 // 16.3,0.019,3590,7,2005,283,UL,,Barry Bonds,Giants,860,14,L,14,0
 // 16.3,0.019,3590,9,2005,283,UL,,Barry Bonds,Giants,860,14,L,14,0
 // 16,0.018,1296,9,2001,27,ASG,,Barry Bonds,Giants,910,14,L,14,0
