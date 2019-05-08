@@ -98,7 +98,6 @@ export class PlayerCardContainer extends React.Component {
 
     render() {
         let basicPitcher = PlayersByPosition()[1][656]; // Bronson Arroyo
-        bestHitters(basicPitcher);
         return(
             <div className="playerCardContainer">
                 <div className="playerCardWrapper">

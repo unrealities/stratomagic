@@ -289,7 +289,7 @@ export class Player {
     }
 
     runsPerGame(pitcher) {
-        let trials = 1000;
+        let trials = 100000;
         let totalRuns = 0;
 
         if (!this.isHitter()) {    

@@ -12,13 +12,13 @@ import { PlayersByPosition } from '../data/players';
 
 export function bestHitters(pitcher) {
     let pbp = PlayersByPosition();
-    for(let position of pbp) {
+    for(let [i, position] of pbp.entries()) {
         for(let player of position) {
             if (!player.isHitter()) {
                 continue;
             }
 
-            console.log(`${position},${player.id},${player.runsPerGame(pitcher)}`)
+            console.log(`${i},${player.id},${player.runsPerGame(pitcher)},${JSON.stringify(player)}`)
         }
     }
 }
