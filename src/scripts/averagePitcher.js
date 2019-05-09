@@ -21,6 +21,7 @@ import { PlayersByPosition } from '../data/players';
 //
 // Only two of these pitchers have a OB of 3 and IP of 6
 // Bronson Arroyo and John Thomson
+// Bronson Arroyo is also 310 points, very close to 320.
 // John Thomson averaged 1.1 WAR/season in his 10 seasons
 // Bronson Arroyo averaged a 1.6 WAR/season in his 16 seasons
 //
