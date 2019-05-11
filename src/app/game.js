@@ -44,13 +44,6 @@ class Team {
     }
 }
 
-class Owner {
-    constructor(firstName, lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-}
-
 /*  Roster
 
 Rules taken from: http://www.wizards.com/dci/downloads/MLB_FLR_06may05_EN.doc
