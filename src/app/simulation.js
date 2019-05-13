@@ -11,7 +11,10 @@ awayOwner = new Owner('Away', 'AI');
 homeOwner = new Owner('Home', 'AI');
 
 // Need each owner to have a roster (owners can have multiple rosters)
+// Need to be able to generate rosters. Initially we can start with just any valid roster.
+// But we should try to incorporate different strategies, like pitcher or hitter heavy.
 aoRoster = new Roster();
+hoRoster = new Roster();
 
 // Need each owner to have an associated team
 aoTeam = new Team();

@@ -36,14 +36,6 @@ class Game {
     }
 }
 
-class Team {
-    constructor(name, owner, roster) {
-        this.name = name;
-        this.owner = owner;
-        this.roster = roster;
-    }
-}
-
 /*  Roster
 
 Rules taken from: http://www.wizards.com/dci/downloads/MLB_FLR_06may05_EN.doc
