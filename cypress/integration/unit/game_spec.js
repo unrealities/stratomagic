@@ -1,4 +1,5 @@
-import { Player, Roster } from '../../../src/app/game'
+import { Player } from '../../../src/app/game'
+import { Roster } from '../../../src/app/roster'
 
 context('Roster', () => {
     describe('constructor', function () {

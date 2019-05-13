@@ -1,5 +1,6 @@
 import { LineupCombinations } from '../../../src/app/lineupCombinations'
-import { Player, Roster } from '../../../src/app/game';
+import { Player } from '../../../src/app/game'
+import { Roster } from '../../../src/app/roster'
 
 context('LineupCombinations', () => {
     describe('constructor', function () {

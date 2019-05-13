@@ -1,7 +1,5 @@
-import { Roster } from '../app/game';
-import { RandomPositiveInteger, RandomNonNegativeInteger } from '../lib/math';
+import { randomRoster } from '../app/roster';
 import { PlayersByPosition } from '../data/players';
-import { bestHitters } from '../scripts/bestHitters';
 
 import React from 'react';
 
@@ -32,7 +30,10 @@ export class PlayerCardContainer extends React.Component {
     }
 
     componentDidMount(){
-        this.randomRoster();
+        this.setState({
+            ...this.state,
+            cards: randomRoster(),
+        });
     }
 
     positions(posArr) {
@@ -45,55 +46,6 @@ export class PlayerCardContainer extends React.Component {
         }
 
         return playerPosStrArr;
-    }
-
-    randomRoster() {
-        let randomRoster = [];
-        let r = new Roster(randomRoster);
-        let pbp = PlayersByPosition();
-
-        for(let i=0; i<1; i++) {
-            // Get Exactly 4 SPs
-            for(let p=0; p<4; p++) {
-                let i = RandomPositiveInteger(pbp[1].length-1);
-                let player = pbp[1][i];
-                player.Pos = this.positions(player.positions).join(' | ');;
-                randomRoster = [...randomRoster, player];
-            }
-
-            // Get At Least 1 C
-            let i = RandomPositiveInteger(pbp[2].length-1);
-            let player = pbp[2][i];
-            player.Pos = this.positions(player.positions).join(' | ');;
-            randomRoster = [...randomRoster, player];
-
-            // Get 20 other players (besides SPs)
-            for(let c=0; c<20; c++) {
-                let nonSP = null;
-                while (nonSP === null) {
-                    let i = 1;
-                    while (i==1) {
-                     i = RandomNonNegativeInteger(12);
-                    }
-                    let j = RandomPositiveInteger(pbp[i].length-1);
-                    nonSP =  pbp[i][j];
-                }
-                nonSP.Pos = this.positions(nonSP.positions).join(' | ');;
-
-                randomRoster = [...randomRoster, nonSP];
-            }
-            r = new Roster(randomRoster);
-            console.log(r.isValid());
-            if (r.isValid()) {
-                console.log(`found valid roster`);
-                break;
-            }
-        }
-
-        this.setState({
-            ...this.state,
-            cards: randomRoster,
-        });
     }
 
     render() {
