@@ -8,18 +8,21 @@ import { Roster, randomRoster } from '../app/roster';
 import { Team } from '../app/team';
 
 // Need two owners
-awayOwner = new Owner('Away', 'AI');
-homeOwner = new Owner('Home', 'AI');
+let awayOwner = new Owner('Away', 'AI');
+let homeOwner = new Owner('Home', 'AI');
 
 // Need each owner to have a roster (owners can have multiple rosters)
 // Need to be able to generate rosters. Initially we can start with just any valid roster.
 // But we should try to incorporate different strategies, like pitcher or hitter heavy.
-aoRoster = new Roster(randomRoster());
-hoRoster = new Roster(randomRoster());
+let aRoster = new Roster(randomRoster());
+let hRoster = new Roster(randomRoster());
 
 // Need each owner to have an associated team
-aoTeam = new Team();
+let aTeam = new Team('Away Team Simulation', awayOwner, aRoster);
+let hTeam = new Team('Away Team Simulation', homeOwner, hRoster);
 
+// Need to create a valid lineup for each team+roster
+// TODO: Create a `randomLineup` given a valid Roster function
 
 // Need to setup a new game
-game = new Game();
+game = new Game(hTeam, aTeam, hLineup, aLienup, true);
