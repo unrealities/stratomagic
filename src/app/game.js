@@ -33,12 +33,6 @@ class Game {
         this.dh = dh;
     }
 }
-class Lineup {
-    constructor(hitters, startingPitcher) {
-        this.hitters = hitters;
-        this.startingPitcher = startingPitcher;
-    }
-}
 
 // {
 //     "ID": 1,
