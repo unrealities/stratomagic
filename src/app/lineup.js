@@ -42,9 +42,8 @@ class Lineup {
         this.designatedHitter = designatedHitter;
     }
 
-    isValid(withDH) {
+    isValidPlayers(withDH) {
         let validWithoutDH =
-            (this.battingOrder.length == 9) &&
             (this.catcher.playablePositions().includes(2)) &&
             (this.firstBase.isHitter()) &&
             (this.secondBase.playablePositions().includes(4)) &&
@@ -59,5 +58,12 @@ class Lineup {
         } else {
             return validWithoutDH
         }
+    }
+
+    isValidBattingOrder() {
+        // TODO
+        // Verify the length is 9
+        // Verify there are no duplicate players
+        // Verify each player has a position
     }
 }
