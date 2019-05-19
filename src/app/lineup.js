@@ -10,7 +10,7 @@
     All positions must be filled by players who can play that position
 */
 
-class LineupCard {
+export class LineupCard {
     constructor(roster, lineup, startingPitcher, bench) {
         this.roster = roster;
         this.lineup = lineup;
@@ -27,7 +27,7 @@ class LineupCard {
     all positions in the field must be filled
     C, 1B, 2B, 3B, SS, LF, CF, RF, P
 */
-class Lineup {
+export class Lineup {
     constructor(battingOrder, catcher, firstBase, secondBase, thirdBase, shortstop, leftField, centerField, rightField, pitcher, designatedHitter) {
         this.battingOrder = battingOrder;
         this.catcher = catcher;
@@ -60,10 +60,50 @@ class Lineup {
         }
     }
 
-    isValidBattingOrder() {
-        // TODO
-        // Verify the length is 9
-        // Verify there are no duplicate players
-        // Verify each player has a position
+    isValidBattingOrder(withDH) {
+        let batters = 0;
+        for (let batter of this.battingOrder) {
+            batter++;
+            let batterIsInLineup = ((batter.id == this.catcher.id) ||
+                (batter.id == this.firstBase.id) ||
+                (batter.id == this.secondBase.id) ||
+                (batter.id == this.thirdBase.id) ||
+                (batter.id == this.shortstop.id) ||
+                (batter.id == this.leftField.id) ||
+                (batter.id == this.centerField.id) ||
+                (batter.id == this.rightField.id) ||
+                (batter.id == this.pitcher.id));
+            if (withDH) {
+                batterIsInLineup = batterIsInLineup || (batter.id == this.designatedHitter);
+            }
+
+            if (!batterIsInLineup) {
+                return false;
+            }
+
+            for (let b of this.batterIsInLineup) {
+                if (b.id == batter.id) {
+                    return false;
+                }
+            }
+        }
+
+        return batters == 9;
     }
+
+    isValid() {
+        let withDH = this.designatedHitter == null;
+        return this.isValidPlayers(withDH) && this.isValidBattingOrder(withDH);
+    }
+}
+
+// TODO
+/*
+    RandomLineup
+
+    Given a roster. Generate a random lineup.
+    Check existing code that is generating valid rosters.
+*/
+export function RandomLineup() {
+
 }
