@@ -1,4 +1,4 @@
-import { RandomPositiveInteger, RandomNonNegativeInteger } from "../lib/math";
+import { RandomNonNegativeInteger } from "../lib/math";
 
 /*
     LineupCard
@@ -99,7 +99,6 @@ export class Lineup {
     }
 }
 
-// TODO
 /*
     RandomLineup
 
@@ -114,5 +113,10 @@ export function RandomLineup(roster) {
     }
 
     let i = RandomNonNegativeInteger(lc.length);
-    return lc[i];
+    let rawLineup = lc[i];
+    
+    // TODO
+    // Convert to Lineup
+    // (battingOrder, catcher, firstBase, secondBase, thirdBase, shortstop, leftField, centerField, rightField, pitcher, designatedHitter)
+    // Need to check what type of object is returned should be a hash with keys being positions and values being players
 }
