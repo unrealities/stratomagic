@@ -1,3 +1,5 @@
+import { RandomPositiveInteger, RandomNonNegativeInteger } from "../lib/math";
+
 /*
     LineupCard
 
@@ -104,6 +106,13 @@ export class Lineup {
     Given a roster. Generate a random lineup.
     Check existing code that is generating valid rosters.
 */
-export function RandomLineup() {
+export function RandomLineup(roster) {
+    let lc = new LineupCombinations(roster).combinations();
 
+    if  (lc.length == 0) {
+        return null;
+    }
+
+    let i = RandomNonNegativeInteger(lc.length);
+    return lc[i];
 }
