@@ -1,4 +1,5 @@
 import { RandomNonNegativeInteger } from "../lib/math";
+import { LineupCombinations } from "../app/lineupCombinations";
 
 /*
     LineupCard
@@ -108,15 +109,27 @@ export class Lineup {
 export function RandomLineup(roster) {
     let lc = new LineupCombinations(roster).combinations();
 
-    if  (lc.length == 0) {
+    if (lc.length == 0) {
         return null;
     }
 
     let i = RandomNonNegativeInteger(lc.length);
     let rawLineup = lc[i];
-    
-    // TODO
-    // Convert to Lineup
-    // (battingOrder, catcher, firstBase, secondBase, thirdBase, shortstop, leftField, centerField, rightField, pitcher, designatedHitter)
-    // Need to check what type of object is returned should be a hash with keys being positions and values being players
+
+    let catcher = rawLineup["2"];
+    let firstBase = rawLineup["3"];
+    let secondBase = rawLineup["4"];
+    let thirdBase = rawLineup["5"];
+    let shortstop = rawLineup["6"];
+    let leftField = rawLineup["7"];
+    let centerField = rawLineup["8"];
+    let rightField = rawLineup["9"];
+    let pitcher = rawLineup["1"];
+    let designatedHitter = rawLineup["0"]; // TODO Can we handle DH
+
+    let bo = [centerField, secondBase, firstBase, rightField, leftField, thirdBase, shortstop, catcher, pitcher];
+
+    let lineup = new Lineup(bo, catcher, firstBase, secondBase, thirdBase, shortstop, leftField, centerField, rightField, pitcher, designatedHitter);
+
+    return lineup;
 }

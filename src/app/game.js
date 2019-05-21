@@ -24,7 +24,7 @@ import { halfInning } from '../app/inning.js';
 //
 // Predictions? After lineups have been set, show the win probabilities.
 //
-class Game {
+export class Game {
     constructor(hTeam, aTeam, hLineup, aLineup, dh) {
         this.hTeam = hTeam;
         this.aTeam = aTeam;

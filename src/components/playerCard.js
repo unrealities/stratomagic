@@ -1,5 +1,6 @@
 import { randomRoster } from '../app/roster';
 import { PlayersByPosition } from '../data/players';
+import { newSimulation } from '../app/simulation';
 
 import React from 'react';
 
@@ -27,6 +28,7 @@ export class PlayerCardContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {cards:[]};
+        newSimulation();
     }
 
     componentDidMount(){
