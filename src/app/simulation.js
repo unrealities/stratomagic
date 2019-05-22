@@ -20,7 +20,7 @@ export function newSimulation(){
 
     // Need each owner to have an associated team
     let aTeam = new Team('Away Team Simulation', awayOwner, aRoster);
-    let hTeam = new Team('Away Team Simulation', homeOwner, hRoster);
+    let hTeam = new Team('Home Team Simulation', homeOwner, hRoster);
 
     // Need to create a valid lineup for each team+roster
     let aLineup = RandomLineup(aRoster);
