@@ -31,5 +31,8 @@ export function newSimulation(){
 
     console.log(JSON.stringify(game));
 
-    // TODO Teams are now ready to play a game. Need to track game state and results (scorebook)
+    // TODO Teams are now ready to play a game. Need to track game state and results (scorecard)
+    // We need both an activity feed to log the outcomes of each at bat and update the gameState
+    // As well as maintaining a scorecard for each player.
+    // Scorecard could be part of the game state.
 }

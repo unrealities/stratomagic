@@ -1,4 +1,5 @@
 import { halfInning } from '../app/inning.js';
+import { GameState } from './gameState.js';
 
 // Game object to track the game state
 // 2 teams ( home v. away ? )
@@ -31,6 +32,8 @@ export class Game {
         this.hLineup = hLineup;
         this.aLineup = aLineup;
         this.dh = dh;
+
+        this.gameState = new GameState(aLineup, hLineup);
     }
 }
 

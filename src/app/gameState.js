@@ -1,7 +1,7 @@
 /*
-    gameState
+    GameState
 */
-export class gameState {
+export class GameState {
     constructor(awayLineup, homeLineup) {
         this.awayLineup = awayLineup;
         this.homeLineup = homeLineup;
