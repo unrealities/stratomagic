@@ -43,3 +43,43 @@ export function outcomeNumberOfBases(outcome) {
         "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4 };
     return outcomesToBases[outcome];
 }
+
+export class AtBat {
+    constructor(batter, pitcher) {
+        this.batter = batter;
+        this.pitcher = pitcher;
+        this.maxDice = 20;
+        this.controllingPlayer = null;
+        this.resultingPlay = null;
+        this.resultingPlayTotalBases = null;
+    }
+
+    determineControl(){
+        let rollResult = this.rollDice();
+        if ((rollResult + this.pitcher.obc) > this.batter.obc) {
+            this.controllingPlayer = pitcher;
+        }
+        this.controllingPlayer = batter;
+    }
+
+    determinePlay(){
+        let rollResult = this.rollDice();
+        this.resultingPlay = this.controllingPlayer.chart[rollResult-1];
+    }
+
+    determineTotalBases(){
+        let outcomesToBases = { "SO": 0, "PU": 0, "GB": 0, "FB": 0, "BB": 1,
+        "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4 };
+        this.resultingPlayTotalBases = outcomesToBases[this.resultingPlay];
+    }
+
+    rollDice() {
+        return RandomPositiveInteger(this.maxDice);
+    }
+
+    start() {
+        this.determineControl();
+        this.determinePlay();
+        return this.determineTotalBases();
+    }
+}
