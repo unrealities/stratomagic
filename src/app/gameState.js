@@ -6,8 +6,8 @@ export class GameState {
         this.awayLineup = awayLineup;
         this.homeLineup = homeLineup;
 
-        this.inning = 1;
-        this.topHalf = true;
+        this.inning = 0;
+        this.topHalf = false;
         this.awayScore = 0;
         this.homeScore = 0;
         this.outs = 0;

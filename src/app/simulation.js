@@ -31,8 +31,10 @@ export function newSimulation(){
 
     console.log(JSON.stringify(game));
 
-    // TODO Teams are now ready to play a game. Need to track game state and results (scorecard)
-    // We need both an activity feed to log the outcomes of each at bat and update the gameState
-    // As well as maintaining a scorecard for each player.
-    // Scorecard could be part of the game state.
+    // TODO We need both an activity feed to log the outcomes of each at bat and update the gameState
+
+    // TODO Start the game
+    // Starting the game will trigger a full game being played without interruptions
+    // We have a half inning class, but is designed for one pitcher and batter.
+    // Need to be able to switch pitchers after their innings limit is reached
 }

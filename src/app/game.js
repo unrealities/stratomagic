@@ -1,5 +1,6 @@
 import { halfInning } from '../app/inning.js';
 import { GameState } from './gameState.js';
+import { AtBat } from './atBat.js';
 
 // Game object to track the game state
 // 2 teams ( home v. away ? )
@@ -34,6 +35,21 @@ export class Game {
         this.dh = dh;
 
         this.gameState = new GameState(aLineup, hLineup);
+    }
+
+    startInning() {
+        this.gameState.inning++;
+        this.gameState.topHalf = !this.gameState.topHalf;
+        
+        while (this.gameState.outs < 3) {
+            let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
+            if (atBat.determineTotalBases() == 0) {
+                this.gameState.outs++;
+                // TODO update batter and pitcher boxscore
+                // TODO init boxscore(s) with a new game. Each batter and pitcher need a boxscore entry
+                continue;
+            }
+        }
     }
 }
 

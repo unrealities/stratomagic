@@ -80,6 +80,6 @@ export class AtBat {
     start() {
         this.determineControl();
         this.determinePlay();
-        return this.determineTotalBases();
+        return this;
     }
 }
