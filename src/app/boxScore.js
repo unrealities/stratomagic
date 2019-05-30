@@ -7,6 +7,22 @@ export class BoxScore {
     constructor(aRoster, hRoster) {
         this.aRoster = aRoster;
         this.hRoster = hRoster;
+
+        // Init new entries for batters an pitchers
+        // Batters cannot pitch
+        // Pitchers can hit
+        for (player of aRoster) {
+            this.aBatterBoxScores[player.id] = new BoxScoreBatter(player);
+            if (!player.isHitter()) {
+                this.aPitcherBoxScores[player.id] = new BoxScorePitcher(player); 
+            }
+        }
+        for (player of hRoster) {
+            this.hBatterBoxScores[player.id] = new BoxScoreBatter(player);
+            if (!player.isHitter()) {
+                this.hPitcherBoxScores[player.id] = new BoxScorePitcher(player); 
+            }
+        }
     }
 }
 

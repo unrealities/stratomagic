@@ -35,6 +35,7 @@ export class Game {
         this.dh = dh;
 
         this.gameState = new GameState(aLineup, hLineup);
+        this.boxScore = new BoxScore(aTeam.roster, hTeam.roster);
     }
 
     startInning() {
@@ -46,6 +47,7 @@ export class Game {
             if (atBat.determineTotalBases() == 0) {
                 this.gameState.outs++;
                 // TODO update batter and pitcher boxscore
+                // 
                 // TODO init boxscore(s) with a new game. Each batter and pitcher need a boxscore entry
                 continue;
             }
