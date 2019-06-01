@@ -12,15 +12,15 @@ export class BoxScore {
         // Batters cannot pitch
         // Pitchers can hit
         for (player of aRoster) {
-            this.aBatterBoxScores[player.id] = new BoxScoreBatter(player);
+            this.aBatters[player.id] = new BoxScoreBatter(player);
             if (!player.isHitter()) {
-                this.aPitcherBoxScores[player.id] = new BoxScorePitcher(player); 
+                this.aPitchers[player.id] = new BoxScorePitcher(player); 
             }
         }
         for (player of hRoster) {
-            this.hBatterBoxScores[player.id] = new BoxScoreBatter(player);
+            this.hBatters[player.id] = new BoxScoreBatter(player);
             if (!player.isHitter()) {
-                this.hPitcherBoxScores[player.id] = new BoxScorePitcher(player); 
+                this.hPitchers[player.id] = new BoxScorePitcher(player); 
             }
         }
     }
@@ -38,6 +38,7 @@ class BoxScoreBatter {
         this.hit = 0;
         this.hr = 0;
         this.lob = 0;
+        this.pa = 0;
         this.pu = 0;
         this.run = 0;
         this.rbi = 0;

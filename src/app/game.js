@@ -44,11 +44,29 @@ export class Game {
         
         while (this.gameState.outs < 3) {
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
+            // TODO this is crummy to have a conditional toggle, need to figure out best way to store
+            // batters and pitchers of both teams in the same object
+            // add a team id ?
+            if (this.gameState.topHalf) {
+                this.gameState.boxScore.aBatters[this.gameState.batter].pa++;
+                this.gameState.boxScore.aBatters[this.gameState.batter].ab++;
+                this.gameState.boxScore.aBatters[this.gameState.batter][atBat.resultingPlay]++;
+
+                this.gameState.boxScore.hPitchers[this.gameState.pitcher].pa++;
+                this.gameState.boxScore.hPitchers[this.gameState.pitcher].ab++;
+                this.gameState.boxScore.hPitchers[this.gameState.batter][atBat.resultingPlay]++;
+            } else {
+                this.gameState.boxScore.hBatters[this.gameState.batter].pa++;
+                this.gameState.boxScore.hBatters[this.gameState.batter].ab++;
+                this.gameState.boxScore.hBatters[this.gameState.batter][atBat.resultingPlay]++;
+
+                this.gameState.boxScore.aPitchers[this.gameState.pitcher].pa++;
+                this.gameState.boxScore.aPitchers[this.gameState.pitcher].ab++;
+                this.gameState.boxScore.aPitchers[this.gameState.batter][atBat.resultingPlay]++;                   
+            }
+    
             if (atBat.determineTotalBases() == 0) {
                 this.gameState.outs++;
-                // TODO update batter and pitcher boxscore
-                // 
-                // TODO init boxscore(s) with a new game. Each batter and pitcher need a boxscore entry
                 continue;
             }
         }
