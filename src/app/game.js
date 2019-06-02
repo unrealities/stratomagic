@@ -45,8 +45,7 @@ export class Game {
         while (this.gameState.outs < 3) {
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
             // TODO this is crummy to have a conditional toggle, need to figure out best way to store
-            // batters and pitchers of both teams in the same object
-            // add a team id ?
+            // batters and pitchers of both teams in the same object, add a team id ?
             if (this.gameState.topHalf) {
                 this.gameState.boxScore.aBatters[this.gameState.batter].pa++;
                 this.gameState.boxScore.aBatters[this.gameState.batter].ab++;
@@ -67,7 +66,37 @@ export class Game {
     
             if (atBat.determineTotalBases() == 0) {
                 this.gameState.outs++;
+                // TODO handle sac fly and double play situations
                 continue;
+            }
+
+            // a non-out has occurred and baserunners will need to be modified and scoring may need updating
+            // TODO handle trying for extra bases
+
+            // handle existing baserunners, advance them one base each for each totalBase
+
+            // the first three entries are 1st,2nd,3rd. The fourth entry on are runners who scored on the play
+            // ex. p4 hits a grandslam: [p1, p2, p3, null, null, null, null] => [null, null, null, p4, p1, p2, p3]
+            let afterAtBatBaseRunners = ["", "", "", "", "", "", ""];
+            for (let i=this.gameState.baseRunners.length-1; i>=0; i--) {
+                afterAtBatBaseRunners[i+bases] = this.gameState.baseRunners[i];
+            }
+            // Put the batter on their appropriate base
+            afterAtBatBaseRunners[bases-1] = this.gameState.batter;
+
+            // Check for baserunners that have scored.
+            for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
+                if (afterAtBatBaseRunners[i] !== "") {
+                    // TODO update boxscore for runners who scored
+                    // TODO update boxscore for RBIs
+                    // TODO update pitcher for runs allowed
+                    // TODO update batting team's score
+                }
+            }
+
+            // Reset runners
+            for (let i=0; i<this.gameState.baseRunners.length; i++) {
+                this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
             }
         }
     }
