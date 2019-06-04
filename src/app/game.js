@@ -43,25 +43,31 @@ export class Game {
         this.gameState.topHalf = !this.gameState.topHalf;
 
         // TODO figure out how to avoid this conditional. Schema is not great.
-        let batter = this.gameState.boxScore.aBatters[this.gameState.batter];
-        let pitcher = this.gameState.boxScore.hPitchers[this.gameState.pitcher];
+        let batters = this.gameState.boxScore.aBatters;
+        let pitchers = this.gameState.boxScore.hPitchers;
         if (!this.gameState.topHalf) {
-            batter = this.gameState.boxScore.hBatters[this.gameState.batter];
-            pitcher = this.gameState.boxScore.aPitchers[this.gameState.pitcher];
+            batters = this.gameState.boxScore.hBatters;
+            pitchers = this.gameState.boxScore.aPitchers;
         }
+
+        let batter = batters[this.gameState.batter];
+        let pitcher = pitchers[this.gameState.pitcher];
         
         while (this.gameState.outs < 3) {
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
 
-            batter.pa++;
-            batter.ab++;
-            batter[atBat.resultingPlay]++;
-
-            pitcher.pa++;
-            pitcher.ab++;
-            pitcher[atBat.resultingPlay]++;
+            // TODO pull these into functions on BoxScore
+            // Could each outcome have a set of other events that need to be updated?
+            for (player of [batter, pitcher]) {
+                for (event of ['pa', atBat.resultingPlay]) {
+                    player[event]++;
+                }
+            }
     
             if (atBat.determineTotalBases() == 0) {
+                for (player of [batter, pitcher]) {
+                    player.ab++;
+                }
                 this.gameState.outs++;
                 // TODO handle sac fly and double play situations
                 continue;
