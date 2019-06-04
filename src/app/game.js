@@ -41,28 +41,25 @@ export class Game {
     startInning() {
         this.gameState.inning++;
         this.gameState.topHalf = !this.gameState.topHalf;
+
+        // TODO figure out how to avoid this conditional. Schema is not great.
+        let batter = this.gameState.boxScore.aBatters[this.gameState.batter];
+        let pitcher = this.gameState.boxScore.hPitchers[this.gameState.pitcher];
+        if (!this.gameState.topHalf) {
+            batter = this.gameState.boxScore.hBatters[this.gameState.batter];
+            pitcher = this.gameState.boxScore.aPitchers[this.gameState.pitcher];
+        }
         
         while (this.gameState.outs < 3) {
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
-            // TODO this is crummy to have a conditional toggle, need to figure out best way to store
-            // batters and pitchers of both teams in the same object, add a team id ?
-            if (this.gameState.topHalf) {
-                this.gameState.boxScore.aBatters[this.gameState.batter].pa++;
-                this.gameState.boxScore.aBatters[this.gameState.batter].ab++;
-                this.gameState.boxScore.aBatters[this.gameState.batter][atBat.resultingPlay]++;
 
-                this.gameState.boxScore.hPitchers[this.gameState.pitcher].pa++;
-                this.gameState.boxScore.hPitchers[this.gameState.pitcher].ab++;
-                this.gameState.boxScore.hPitchers[this.gameState.batter][atBat.resultingPlay]++;
-            } else {
-                this.gameState.boxScore.hBatters[this.gameState.batter].pa++;
-                this.gameState.boxScore.hBatters[this.gameState.batter].ab++;
-                this.gameState.boxScore.hBatters[this.gameState.batter][atBat.resultingPlay]++;
+            batter.pa++;
+            batter.ab++;
+            batter[atBat.resultingPlay]++;
 
-                this.gameState.boxScore.aPitchers[this.gameState.pitcher].pa++;
-                this.gameState.boxScore.aPitchers[this.gameState.pitcher].ab++;
-                this.gameState.boxScore.aPitchers[this.gameState.batter][atBat.resultingPlay]++;                   
-            }
+            pitcher.pa++;
+            pitcher.ab++;
+            pitcher[atBat.resultingPlay]++;
     
             if (atBat.determineTotalBases() == 0) {
                 this.gameState.outs++;
