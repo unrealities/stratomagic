@@ -38,16 +38,18 @@ export class Game {
         this.boxScore = new BoxScore(aTeam.roster, hTeam.roster);
     }
 
-    startInning() {
+    StartInning() {
         this.gameState.inning++;
         this.gameState.topHalf = !this.gameState.topHalf;
 
         // TODO figure out how to avoid this conditional. Schema is not great.
         let batters = this.gameState.boxScore.aBatters;
         let pitchers = this.gameState.boxScore.hPitchers;
+        let scoringTeam = this.gameState.aScore;
         if (!this.gameState.topHalf) {
             batters = this.gameState.boxScore.hBatters;
             pitchers = this.gameState.boxScore.aPitchers;
+            scoringTeam = this.gameState.hScore;
         }
 
         let batter = batters[this.gameState.batter];
@@ -89,15 +91,16 @@ export class Game {
 
             // Check for baserunners that have scored.
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
-                if (afterAtBatBaseRunners[i] !== "") {
-                    // TODO update boxscore for runners who scored
-                    // TODO update boxscore for RBIs
-                    // TODO update pitcher for runs allowed
-                    // TODO update batting team's score
+                let baseRunner = afterAtBatBaseRunners[i];
+                if (baseRunner !== null) {
+                    batters[baseRunner.id].runs++;
+                    batter.rbi++;
+                    pitcher.runs++;
+                    scoringTeam++;
                 }
             }
 
-            // Reset runners
+            // Reset runners to account for those that have scored
             for (let i=0; i<this.gameState.baseRunners.length; i++) {
                 this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
             }

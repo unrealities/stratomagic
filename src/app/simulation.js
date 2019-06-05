@@ -29,7 +29,10 @@ export function newSimulation(){
     // Need to setup a new game
     let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
 
-    console.log(JSON.stringify(game));
+    // Start an inning
+    game.StartInning();
+
+    console.log(JSON.stringify(game.boxScore));
 
     // TODO We need both an activity feed to log the outcomes of each at bat and update the gameState
 
