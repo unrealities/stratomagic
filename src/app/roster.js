@@ -211,3 +211,14 @@ export function randomRoster() {
 
     return randomRoster;
 }
+
+export function RandomValidRoster() {
+    let roster = new Roster(randomRoster());
+    if (roster.canFieldValidLineup()) {
+        console.log("Valid Roster Found");
+        return roster;
+    } else {
+        console.log("Invalid Roster");
+        RandomValidRoster();
+    }
+}

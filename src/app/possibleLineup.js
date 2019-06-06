@@ -59,7 +59,6 @@ export class PossibleLineup {
         // TODO: is this necessary?
         let players = this.AdjList.get(startingPosition);
         if (players.length == 0) {
-            console.log(`No players for position: ${startingPosition}`)
             return;
         };
 
@@ -90,8 +89,6 @@ export class PossibleLineup {
                     } 
                 }
             }
-
-            console.log(`possibleLineup: ${JSON.stringify(this)}`);
         } 
     }
 

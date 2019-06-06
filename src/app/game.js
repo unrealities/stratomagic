@@ -1,6 +1,7 @@
-import { halfInning } from '../app/inning.js';
-import { GameState } from './gameState.js';
 import { AtBat } from './atBat.js';
+import { BoxScore } from './boxScore.js';
+import { GameState } from './gameState.js';
+import { halfInning } from '../app/inning.js';
 
 // Game object to track the game state
 // 2 teams ( home v. away ? )
