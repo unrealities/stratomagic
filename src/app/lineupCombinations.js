@@ -5,7 +5,6 @@ import { Cartesian } from '../lib/math';
 // This could possibly traverse through all possible combinations of lineups and be extremely inefficient
 export class LineupCombinations {
     constructor(roster) {
-        console.log(JSON.stringify(roster));
         this.players = roster.players;
         
         let possiblePositions = [];

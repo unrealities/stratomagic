@@ -23,9 +23,6 @@ export function newSimulation(){
     let hTeam = new Team('Home Team Simulation', homeOwner, hRoster);
 
     // Need to create a valid lineup for each team+roster
-    console.log("Rosters");
-    console.log(JSON.stringify(aRoster));
-    console.log(JSON.stringify(aRoster));
     let aLineup = RandomLineup(aRoster);
     let hLineup = RandomLineup(hRoster);
 

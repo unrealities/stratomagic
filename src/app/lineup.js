@@ -107,7 +107,6 @@ export class Lineup {
     Check existing code that is generating valid rosters.
 */
 export function RandomLineup(roster) {
-    console.log(roster);
     let lc = new LineupCombinations(roster).combinations();
 
     if (lc.length == 0) {

@@ -11,16 +11,16 @@ export class BoxScore {
         // Init new entries for batters an pitchers
         // Batters cannot pitch
         // Pitchers can hit
-        for (player of aRoster) {
-            this.aBatters[player.id] = new BoxScoreBatter(player);
+        for (let player of aRoster.players) {
+            this.aBatters[toString(player.id)] = new BoxScoreBatter(player);
             if (!player.isHitter()) {
-                this.aPitchers[player.id] = new BoxScorePitcher(player); 
+                this.aPitchers[toString(player.id)] = new BoxScorePitcher(player); 
             }
         }
-        for (player of hRoster) {
-            this.hBatters[player.id] = new BoxScoreBatter(player);
+        for (let player of hRoster.players) {
+            this.hBatters[toString(player.id)] = new BoxScoreBatter(player);
             if (!player.isHitter()) {
-                this.hPitchers[player.id] = new BoxScorePitcher(player); 
+                this.hPitchers[toString(player.id)] = new BoxScorePitcher(player); 
             }
         }
     }

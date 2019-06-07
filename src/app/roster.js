@@ -214,11 +214,9 @@ export function randomRoster() {
 
 export function RandomValidRoster() {
     let roster = new Roster(randomRoster());
-    if (roster.canFieldValidLineup()) {
-        console.log("Valid Roster Found");
-        return roster;
-    } else {
-        console.log("Invalid Roster");
-        RandomValidRoster();
+
+    while (!roster.canFieldValidLineup()) {
+        roster = new Roster(randomRoster());
     }
+    return roster;
 }
