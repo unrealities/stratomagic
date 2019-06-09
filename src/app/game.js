@@ -44,31 +44,36 @@ export class Game {
         this.gameState.topHalf = !this.gameState.topHalf;
 
         // TODO figure out how to avoid this conditional. Schema is not great.
-        let batters = this.gameState.boxScore.aBatters;
-        let pitchers = this.gameState.boxScore.hPitchers;
+        let batters = this.boxScore.aBatters;
+        let pitchers = this.boxScore.hPitchers;
         let scoringTeam = this.gameState.aScore;
+        let battingOrder = this.gameState.awayLineup.battingOrder;
         if (!this.gameState.topHalf) {
-            batters = this.gameState.boxScore.hBatters;
-            pitchers = this.gameState.boxScore.aPitchers;
+            batters = this.boxScore.hBatters;
+            pitchers = this.boxScore.aPitchers;
             scoringTeam = this.gameState.hScore;
+            battingOrder = this.gameState.homeLineup.battingOrder;
         }
 
-        let batter = batters[this.gameState.batter];
-        let pitcher = pitchers[this.gameState.pitcher];
+        let batter = batters[this.gameState.batter.id];
+        let pitcher = pitchers[this.gameState.pitcher.id];
         
         while (this.gameState.outs < 3) {
+            console.log(`outs: ${this.gameState.outs}`);
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
 
             // TODO pull these into functions on BoxScore
             // Could each outcome have a set of other events that need to be updated?
-            for (player of [batter, pitcher]) {
-                for (event of ['pa', atBat.resultingPlay]) {
+            for (let player of [batter, pitcher]) {
+                for (let event of ['pa', atBat.resultingPlay]) {
                     player[event]++;
                 }
             }
     
-            if (atBat.determineTotalBases() == 0) {
-                for (player of [batter, pitcher]) {
+            let bases = atBat.resultingPlayTotalBases;
+            console.log(`bases: ${bases}`);
+            if (bases == 0) {
+                for (let player of [batter, pitcher]) {
                     player.ab++;
                 }
                 this.gameState.outs++;
@@ -94,7 +99,7 @@ export class Game {
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
                 if (baseRunner !== null) {
-                    batters[baseRunner.id].runs++;
+                    // batters[baseRunner.id].runs++;
                     batter.rbi++;
                     pitcher.runs++;
                     scoringTeam++;
@@ -105,6 +110,8 @@ export class Game {
             for (let i=0; i<this.gameState.baseRunners.length; i++) {
                 this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
             }
+
+            this.gameState.batter = battingOrder[this.gameState.battingOrderIndex++];
         }
     }
 }

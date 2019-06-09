@@ -52,14 +52,16 @@ export class AtBat {
         this.controllingPlayer = null;
         this.resultingPlay = null;
         this.resultingPlayTotalBases = null;
+
+        this.start();
     }
 
     determineControl(){
         let rollResult = this.rollDice();
         if ((rollResult + this.pitcher.obc) > this.batter.obc) {
-            this.controllingPlayer = pitcher;
+            this.controllingPlayer = this.pitcher;
         }
-        this.controllingPlayer = batter;
+        this.controllingPlayer = this.batter;
     }
 
     determinePlay(){
@@ -80,6 +82,7 @@ export class AtBat {
     start() {
         this.determineControl();
         this.determinePlay();
+        this.determineTotalBases();
         return this;
     }
 }

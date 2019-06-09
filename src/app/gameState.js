@@ -13,8 +13,9 @@ export class GameState {
         this.outs = 0;
         this.baseRunners = [null, null, null]; 
 
+        this.battingOrderIndex = 0;
         this.pitcher = homeLineup.pitcher;
-        this.batter = awayLineup.battingOrder[0];
+        this.batter = awayLineup.battingOrder[this.battingOrderIndex];
 
         // TODO Add home away defense (IF, OF, C)
     }

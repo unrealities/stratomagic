@@ -13,7 +13,7 @@ export class LineupCombinations {
         }
         for(let p of this.players) {
             for(let pos of p.playablePositions) {
-                possiblePositions[pos][pos].push(p.id);
+                possiblePositions[pos][pos].push(p);
             }
         }
         this.possiblePositions = possiblePositions;
