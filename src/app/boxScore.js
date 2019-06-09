@@ -30,6 +30,17 @@ export class BoxScore {
             }
         }
     }
+
+    prettyPrint() {
+        console.log(`Away Team`)
+        for (let player of this.aRoster.players) {
+            let bs = this.aBatters[player.id];
+            if (bs.ab == 0) {
+                continue;
+            }
+            console.log(`${player.fullName} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi}`)
+        }
+    }
 }
 
 class BoxScoreBatter {

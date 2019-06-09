@@ -60,6 +60,7 @@ export class Game {
         
         while (this.gameState.outs < 3) {
             console.log(`outs: ${this.gameState.outs}`);
+            console.log(`batting: ${this.gameState.batter.fullName}`);
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
 
             // TODO pull these into functions on BoxScore
@@ -111,7 +112,8 @@ export class Game {
                 this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
             }
 
-            this.gameState.batter = battingOrder[this.gameState.battingOrderIndex++];
+            this.gameState.battingOrderIndex++
+            this.gameState.batter = battingOrder[this.gameState.battingOrderIndex];
         }
     }
 }
