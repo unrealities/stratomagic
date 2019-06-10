@@ -72,13 +72,18 @@ export class Game {
             }
     
             let bases = atBat.resultingPlayTotalBases;
+
+            // TODO handle BB
+            for (let player of [batter, pitcher]) {
+                player.ab++;
+            }
+
             console.log(`bases: ${bases}`);
             if (bases == 0) {
-                for (let player of [batter, pitcher]) {
-                    player.ab++;
-                }
                 this.gameState.outs++;
                 // TODO handle sac fly and double play situations
+                this.gameState.battingOrderIndex++
+                this.gameState.batter = battingOrder[this.gameState.battingOrderIndex];
                 continue;
             }
 

@@ -17,6 +17,8 @@ export class GameState {
         // TODO occasionally we won't get a pitcher
         console.log(`GameState | homeLineup: ${JSON.stringify(homeLineup)}`);
         console.log(`GameState | homeLineup.pitcher: ${JSON.stringify(homeLineup.pitcher)}`);
+        console.log(`GameState | awayLineup: ${JSON.stringify(awayLineup)}`);
+        console.log(`GameState | awayLineup.pitcher: ${JSON.stringify(awayLineup.pitcher)}`);
         this.pitcher = homeLineup.pitcher;
         this.batter = awayLineup.battingOrder[this.battingOrderIndex];
 
