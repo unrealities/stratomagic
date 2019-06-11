@@ -54,11 +54,11 @@ export class Game {
             scoringTeam = this.gameState.hScore;
             battingOrder = this.gameState.homeLineup.battingOrder;
         }
-
-        let batter = batters[this.gameState.batter.id];
-        let pitcher = pitchers[this.gameState.pitcher.id];
         
         while (this.gameState.outs < 3) {
+            let batter = batters[this.gameState.batter.id];
+            let pitcher = pitchers[this.gameState.pitcher.id];
+
             console.log(`outs: ${this.gameState.outs}`);
             console.log(`batting: ${this.gameState.batter.fullName}`);
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
@@ -82,8 +82,7 @@ export class Game {
             if (bases == 0) {
                 this.gameState.outs++;
                 // TODO handle sac fly and double play situations
-                this.gameState.battingOrderIndex++
-                this.gameState.batter = battingOrder[this.gameState.battingOrderIndex];
+                this.nextHitter(battingOrder);
                 continue;
             }
 
@@ -117,9 +116,15 @@ export class Game {
                 this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
             }
 
-            this.gameState.battingOrderIndex++
-            this.gameState.batter = battingOrder[this.gameState.battingOrderIndex];
+            this.nextHitter(battingOrder);
         }
+    }
+
+    nextHitter(battingOrder) {
+        console.log(`baseRunners: ${JSON.stringify(this.gameState.baseRunners)}`);
+        this.gameState.battingOrderIndex++;
+        console.log(`boIndex: ${this.gameState.battingOrderIndex}`);
+        this.gameState.batter = battingOrder[this.gameState.battingOrderIndex];
     }
 }
 
