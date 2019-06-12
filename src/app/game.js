@@ -105,8 +105,8 @@ export class Game {
                 let baseRunner = afterAtBatBaseRunners[i];
                 if (baseRunner !== null) {
                     // batters[baseRunner.id].runs++;
-                    batter.rbi++;
-                    pitcher.runs++;
+                    this.gameState.batter.rbi++;
+                    this.gameState.pitcher.runs++;
                     scoringTeam++;
                 }
             }
@@ -118,11 +118,16 @@ export class Game {
 
             this.nextHitter(battingOrder);
         }
+
+        console.log(`Score: ${scoringTeam}`);
     }
 
     nextHitter(battingOrder) {
         console.log(`baseRunners: ${JSON.stringify(this.gameState.baseRunners)}`);
         this.gameState.battingOrderIndex++;
+        if (this.gameState.battingOrderIndex == 9) {
+            this.gameState.battingOrderIndex = 0;
+        }
         console.log(`boIndex: ${this.gameState.battingOrderIndex}`);
         this.gameState.batter = battingOrder[this.gameState.battingOrderIndex];
     }

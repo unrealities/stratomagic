@@ -38,7 +38,7 @@ export class BoxScore {
             if (bs.ab == 0) {
                 continue;
             }
-            console.log(`${player.fullName} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi}`)
+            console.log(`${player.fullName.padEnd(30)} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi}`)
         }
     }
 }

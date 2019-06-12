@@ -31,7 +31,6 @@ export class Roster {
                 c++;
             }
         }
-        console.log(`${c} starting pitchers`)
         return c === count;
     }
 
@@ -59,7 +58,6 @@ export class Roster {
 
         // Need at least 9 hitters
         if (hitters.length < 9) {
-            console.log("less than 9 hitters");
             return false;
         }
 
@@ -138,7 +136,6 @@ export class Roster {
 
         if ((usableHitters.length == 0 && remainingPositions.length > 0) ||
             (usableHitters.length < remainingPositions.length)) {
-            console.log("not enough hitters left");
             return false;
         }
         
@@ -153,7 +150,6 @@ export class Roster {
         for(let player of this.players) {
             salary += player.points;
         }
-        console.log(`Salary is ${salary}`)
         return salary <= capNumber;
     }
 
@@ -204,7 +200,6 @@ export function randomRoster() {
         }
         r = new Roster(randomRoster);
         if (r.isValid()) {
-            console.log(`found valid roster`);
             break;
         }
     }
