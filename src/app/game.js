@@ -46,13 +46,18 @@ export class Game {
         // TODO figure out how to avoid this conditional. Schema is not great.
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
-        let scoringTeam = this.gameState.aScore;
+        let scoringTeam = this.gameState.awayScore;
         let battingOrder = this.gameState.awayLineup.battingOrder;
         if (!this.gameState.topHalf) {
             batters = this.boxScore.hBatters;
             pitchers = this.boxScore.aPitchers;
-            scoringTeam = this.gameState.hScore;
+            scoringTeam = this.gameState.homeScore;
             battingOrder = this.gameState.homeLineup.battingOrder;
+        }
+
+
+        for (const player of battingOrder) {
+            console.log(`Batting: ${player.fullName}`);
         }
         
         while (this.gameState.outs < 3) {
@@ -103,7 +108,7 @@ export class Game {
             // Check for baserunners that have scored.
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
-                if (baseRunner !== null) {
+                if (baseRunner !== "") {
                     // batters[baseRunner.id].runs++;
                     this.gameState.batter.rbi++;
                     this.gameState.pitcher.runs++;
