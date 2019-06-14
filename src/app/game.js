@@ -57,7 +57,7 @@ export class Game {
 
 
         for (const player of battingOrder) {
-            console.log(`Batting: ${player.fullName}`);
+            console.log(`Batting Order: ${player.fullName} | ${player.id}`);
         }
         
         while (this.gameState.outs < 3) {
@@ -65,7 +65,7 @@ export class Game {
             let pitcher = pitchers[this.gameState.pitcher.id];
 
             console.log(`outs: ${this.gameState.outs}`);
-            console.log(`batting: ${this.gameState.batter.fullName}`);
+            console.log(`at bat: ${this.gameState.batter.fullName} | ${this.gameState.batter.id}`);
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
 
             // TODO pull these into functions on BoxScore
