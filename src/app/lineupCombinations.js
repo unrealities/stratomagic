@@ -19,6 +19,8 @@ export class LineupCombinations {
         this.possiblePositions = possiblePositions;
     }
     combinations() {
-        return Cartesian(this.possiblePositions);
+        let combos = Cartesian(this.possiblePositions);
+        console.log(`possiblePositions: ${JSON.stringify(combos[0])}`);
+        return combos;
     }
 }
