@@ -107,14 +107,11 @@ export class Lineup {
     Check existing code that is generating valid rosters.
 */
 export function RandomLineup(roster) {
-    let lc = new LineupCombinations(roster).combinations();
+    let rawLineup = new LineupCombinations(roster).validCombination();
 
-    if (lc.length == 0) {
+    if (rawLineup === null) {
         return null;
     }
-
-    let i = RandomNonNegativeInteger(lc.length);
-    let rawLineup = lc[i];
 
     let catcher = rawLineup["2"];
     let firstBase = rawLineup["3"];

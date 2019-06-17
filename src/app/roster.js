@@ -2,6 +2,7 @@ import { PlayersByPosition } from '../data/players';
 import { PossibleLineup } from '../app/possibleLineup';
 import { RandomPositiveInteger, RandomNonNegativeInteger } from '../lib/math';
 import { LineupCombinations } from '../app/lineupCombinations';
+import { RandomLineup } from './lineup';
 
 /*  Roster
 
@@ -209,9 +210,11 @@ export function randomRoster() {
 
 export function RandomValidRoster() {
     let roster = new Roster(randomRoster());
+    let randomLineup = RandomLineup(roster);
 
-    while (!roster.canFieldValidLineup()) {
-        roster = new Roster(randomRoster());
+    while (randomLineup === null) {
+        console.log(`RVR`);
+        randomLineup = RandomLineup(roster);
     }
     return roster;
 }

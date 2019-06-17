@@ -19,23 +19,31 @@ export class LineupCombinations {
         this.possiblePositions = possiblePositions;
     }
     combinations() {
+        return Cartesian(this.possiblePositions);
+    }
+
+    // find a valid combination and immediately return
+    validCombination() {
         let combos = Cartesian(this.possiblePositions);
 
-        // TODO: this can generate hundreds of thousands of combinations and take a very long time to iterate
-        // combos also includes lineups where the same player fills multiple positions.
-        // these need to be invalidated.
-        let usedPlayers = [];
+        console.log(JSON.stringify(combos[0]));
+        if (combos.length == 0) {
+            console.log(`no combos`);
+            return null;
+        }
+
         for (let i=combos.length-1; i>=0; i--) {
-            console.log(i);
-            for (let player of Object.values(combos[i])) {
+            let usedPlayers = [];
+            for (const [_, player] of Object.entries(obj)) {
                 if (usedPlayers.includes(player.id)) {
                     combos.splice(i, 1);
                     break;
                 }
                 usedPlayers.push(player.id);
+                console.log(`usedPlayers: ${JSON.stringify(this.usedPlayers)}`);
             }
+            console.log(`validCombo: ${JSON.stringify(combos[i])}`);
+            return combos[i];
         }
-
-        return combos;
     }
 }
