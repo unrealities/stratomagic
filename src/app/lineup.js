@@ -109,7 +109,7 @@ export class Lineup {
 export function RandomLineup(roster) {
     let rawLineup = new LineupCombinations(roster).validCombination();
 
-    if (rawLineup === null) {
+    if (!rawLineup) {
         return null;
     }
 

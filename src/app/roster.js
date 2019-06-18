@@ -212,8 +212,8 @@ export function RandomValidRoster() {
     let roster = new Roster(randomRoster());
     let randomLineup = RandomLineup(roster);
 
-    while (randomLineup === null) {
-        console.log(`RVR`);
+    while (!randomLineup) {
+        roster = new Roster(randomRoster());
         randomLineup = RandomLineup(roster);
     }
     return roster;

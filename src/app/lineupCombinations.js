@@ -18,32 +18,30 @@ export class LineupCombinations {
         }
         this.possiblePositions = possiblePositions;
     }
+
     combinations() {
         return Cartesian(this.possiblePositions);
     }
 
     // find a valid combination and immediately return
     validCombination() {
-        let combos = Cartesian(this.possiblePositions);
-
-        console.log(JSON.stringify(combos[0]));
-        if (combos.length == 0) {
-            console.log(`no combos`);
-            return null;
-        }
+        let combos = this.combinations();
 
         for (let i=combos.length-1; i>=0; i--) {
+            let combo = combos[i];
             let usedPlayers = [];
-            for (const [_, player] of Object.entries(obj)) {
+            let valid = true;
+            for (let [_, player] of Object.entries(combo)) {
                 if (usedPlayers.includes(player.id)) {
                     combos.splice(i, 1);
+                    valid = false;
                     break;
                 }
                 usedPlayers.push(player.id);
-                console.log(`usedPlayers: ${JSON.stringify(this.usedPlayers)}`);
             }
-            console.log(`validCombo: ${JSON.stringify(combos[i])}`);
-            return combos[i];
+            if (valid) {
+                return combo;
+            }
         }
     }
 }
