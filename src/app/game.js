@@ -55,17 +55,11 @@ export class Game {
             battingOrder = this.gameState.homeLineup.battingOrder;
         }
 
-
-        for (const player of battingOrder) {
-            console.log(`Batting Order: ${player.fullName} | ${player.id}`);
-        }
         
         while (this.gameState.outs < 3) {
             let batter = batters[this.gameState.batter.id];
             let pitcher = pitchers[this.gameState.pitcher.id];
 
-            console.log(`outs: ${this.gameState.outs}`);
-            console.log(`at bat: ${this.gameState.batter.fullName} | ${this.gameState.batter.id}`);
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
 
             // TODO pull these into functions on BoxScore
@@ -75,15 +69,14 @@ export class Game {
                     player[event]++;
                 }
             }
-    
-            let bases = atBat.resultingPlayTotalBases;
 
-            // TODO handle BB
+
+            let bases = atBat.resultingPlayTotalBases;
             for (let player of [batter, pitcher]) {
-                player.ab++;
+                atBat.resultingPlay == 'BB' ? player.bb++ : player.ab++;
+                player.tb = player.tb + bases;
             }
 
-            console.log(`bases: ${bases}`);
             if (bases == 0) {
                 this.gameState.outs++;
                 // TODO handle sac fly and double play situations
@@ -95,7 +88,6 @@ export class Game {
             // TODO handle trying for extra bases
 
             // handle existing baserunners, advance them one base each for each totalBase
-
             // the first three entries are 1st,2nd,3rd. The fourth entry on are runners who scored on the play
             // ex. p4 hits a grandslam: [p1, p2, p3, null, null, null, null] => [null, null, null, p4, p1, p2, p3]
             let afterAtBatBaseRunners = ["", "", "", "", "", "", ""];
@@ -108,11 +100,11 @@ export class Game {
             // Check for baserunners that have scored.
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
-                if (baseRunner !== "") {
-                    // batters[baseRunner.id].runs++;
-                    this.gameState.batter.rbi++;
-                    this.gameState.pitcher.runs++;
-                    scoringTeam++;
+                if (baseRunner) {
+                    // batters[baseRunner.id].run++;
+                    batter.rbi++;
+                    // pitcher.run++;
+                    // scoringTeam++;
                 }
             }
 
@@ -128,12 +120,10 @@ export class Game {
     }
 
     nextHitter(battingOrder) {
-        console.log(`baseRunners: ${JSON.stringify(this.gameState.baseRunners)}`);
         this.gameState.battingOrderIndex++;
-        if (this.gameState.battingOrderIndex == 9) {
+        if (this.gameState.battingOrderIndex == 8) {
             this.gameState.battingOrderIndex = 0;
         }
-        console.log(`boIndex: ${this.gameState.battingOrderIndex}`);
         this.gameState.batter = battingOrder[this.gameState.battingOrderIndex];
     }
 }

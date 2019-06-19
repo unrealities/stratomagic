@@ -32,7 +32,7 @@ export function newSimulation(){
     // Start an inning
     game.StartInning();
 
-    console.log(JSON.stringify(game.boxScore.prettyPrint()));
+    console.log(game.boxScore.prettyPrint());
 
     // TODO We need both an activity feed to log the outcomes of each at bat and update the gameState
 

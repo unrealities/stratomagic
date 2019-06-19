@@ -53,19 +53,22 @@ export class AtBat {
         this.resultingPlay = null;
         this.resultingPlayTotalBases = null;
 
+        this.controlRoll = 0;
+        this.playRoll = 0;
+
         this.start();
     }
 
     determineControl(){
         let rollResult = this.rollDice();
-        if ((rollResult + this.pitcher.obc) > this.batter.obc) {
-            this.controllingPlayer = this.pitcher;
-        }
-        this.controllingPlayer = this.batter;
+        this.controlRoll = rollResult;
+        this.controllingPlayer = (rollResult + parseInt(this.pitcher.obc)) > parseInt(this.batter.obc) ? this.pitcher : this.batter;
+
     }
 
     determinePlay(){
         let rollResult = this.rollDice();
+        this.playRoll = rollResult;
         this.resultingPlay = this.controllingPlayer.chart[rollResult-1];
     }
 
@@ -83,6 +86,7 @@ export class AtBat {
         this.determineControl();
         this.determinePlay();
         this.determineTotalBases();
+        console.log(`${this.batter.fullName}[${this.batter.obc}] v ${this.pitcher.fullName}[${this.pitcher.obc}]: ${this.controlRoll} | ${this.controllingPlayer.fullName} | ${this.playRoll} | ${this.resultingPlay} [${this.resultingPlayTotalBases}]`)
         return this;
     }
 }

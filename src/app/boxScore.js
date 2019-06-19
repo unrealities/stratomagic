@@ -35,10 +35,10 @@ export class BoxScore {
         console.log(`Away Team`)
         for (let player of this.aRoster.players) {
             let bs = this.aBatters[player.id];
-            if (bs.ab == 0) {
+            if (bs.pa == 0) {
                 continue;
             }
-            console.log(`${player.fullName.padEnd(30)} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi}`)
+            console.log(`${player.fullName.padEnd(30)} | ${bs.pa} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi} | ${bs.tb}`)
         }
     }
 }
@@ -62,7 +62,7 @@ class BoxScoreBatter {
         this.sac = 0;
         this.single = 0;
         this.so = 0;
-        this.totalbase = 0;
+        this.tb = 0;
         this.triple = 0;
     }
 }
@@ -92,7 +92,7 @@ class BoxScorePitcher {
         this.single = 0;
         this.so = 0;
         this.sv = 0;
-        this.totalbase = 0;
+        this.tb = 0;
         this.triple = 0;
         this.win = 0;
     }
