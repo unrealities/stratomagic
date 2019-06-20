@@ -75,12 +75,32 @@ export class Game {
             for (let player of [batter, pitcher]) {
                 atBat.resultingPlay == 'BB' ? player.bb++ : player.ab++;
                 player.tb = player.tb + bases;
+
+                if (["1B", "1B+", "2B", "3B", "HR"].includes(atBat.resultingPlay)) {
+                    player.hit++;
+                }
+
+                let events = {"PU": "pu", "SO": "so", "GB": "gb", "FB": "fb", "1B": "single", "1B+": "single", "2B": "double", "3B": "triple", "HR": "hr"};
+                player[events[atBat.resultingPlay]]++;
+
+                if (atBat.resultingPlay == 'HR') {
+                    player.run++;
+                    batter.rbi++;
+                }
             }
 
             if (bases == 0) {
                 this.gameState.outs++;
                 // TODO handle sac fly and double play situations
                 this.nextHitter(battingOrder);
+                if (this.gameState.outs == 3) {
+                    for (let runner of this.gameState.baseRunners) {
+                        if (runner) {
+                            batter.lob++;
+                        }
+                    }
+                    // TODO switch to other team
+                }
                 continue;
             }
 
@@ -101,10 +121,10 @@ export class Game {
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
                 if (baseRunner) {
-                    // batters[baseRunner.id].run++;
+                    batters[baseRunner.id].run++;
                     batter.rbi++;
-                    // pitcher.run++;
-                    // scoringTeam++;
+                    pitcher.run++;
+                    scoringTeam++;
                 }
             }
 

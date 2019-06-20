@@ -40,6 +40,13 @@ export class BoxScore {
             }
             console.log(`${player.fullName.padEnd(30)} | ${bs.pa} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi} | ${bs.tb}`)
         }
+        for (let player of this.aRoster.players) {
+            let bs = this.aBatters[player.id];
+            if (bs.pa == 0) {
+                continue;
+            }
+            console.log(`${JSON.stringify(bs)}`);
+        }
     }
 }
 
