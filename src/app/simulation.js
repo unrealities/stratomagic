@@ -29,15 +29,11 @@ export function newSimulation(){
     // Need to setup a new game
     let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
 
-    // Start an inning
-    game.StartInning();
-
-    game.boxScore.prettyPrint();
+    game.playGame();
 
     // TODO We need both an activity feed to log the outcomes of each at bat and update the gameState
-
-    // TODO Start the game
-    // Starting the game will trigger a full game being played without interruptions
-    // We have a half inning class, but is designed for one pitcher and batter.
     // Need to be able to switch pitchers after their innings limit is reached
+
+    // TODO track a 'season' of games and players stats for all these games
+    // TODO track 'advanced' stats such as those in FanGraphs to determine a player's wRAA
 }

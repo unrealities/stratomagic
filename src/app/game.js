@@ -39,9 +39,12 @@ export class Game {
         this.boxScore = new BoxScore(aTeam.roster, hTeam.roster);
     }
 
-    StartInning() {
-        this.gameState.inning++;
+    playInning() {
         this.gameState.topHalf = !this.gameState.topHalf;
+        if (this.gameState.topHalf) {
+            this.gameState.inning++;
+        }
+        this.gameState.outs = 0;
 
         // TODO figure out how to avoid this conditional. Schema is not great.
         let batters = this.boxScore.aBatters;
@@ -55,7 +58,6 @@ export class Game {
             battingOrder = this.gameState.homeLineup.battingOrder;
         }
 
-        
         while (this.gameState.outs < 3) {
             let batter = batters[this.gameState.batter.id];
             let pitcher = pitchers[this.gameState.pitcher.id];
@@ -135,8 +137,14 @@ export class Game {
 
             this.nextHitter(battingOrder);
         }
+    }
 
-        console.log(`Score: ${scoringTeam}`);
+    playGame() {
+        while(this.gameState.inning < 9) {
+            console.log(`playing inning: ${this.gameState.inning+1}`);
+            this.playInning();
+            this.boxScore.prettyPrint();
+        }
     }
 
     nextHitter(battingOrder) {

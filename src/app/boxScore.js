@@ -47,6 +47,22 @@ export class BoxScore {
             }
             console.log(`${JSON.stringify(bs)}`);
         }
+
+        console.log(`Home Team`)
+        for (let player of this.hRoster.players) {
+            let bs = this.hBatters[player.id];
+            if (bs.pa == 0) {
+                continue;
+            }
+            console.log(`${player.fullName.padEnd(30)} | ${bs.pa} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi} | ${bs.tb}`)
+        }
+        for (let player of this.hRoster.players) {
+            let bs = this.hBatters[player.id];
+            if (bs.pa == 0) {
+                continue;
+            }
+            console.log(`${JSON.stringify(bs)}`);
+        }
     }
 }
 
