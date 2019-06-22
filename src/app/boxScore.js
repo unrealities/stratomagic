@@ -45,7 +45,6 @@ export class BoxScore {
             if (bs.pa == 0) {
                 continue;
             }
-            console.log(`${JSON.stringify(bs)}`);
         }
 
         console.log(`Home Team`)
@@ -61,7 +60,6 @@ export class BoxScore {
             if (bs.pa == 0) {
                 continue;
             }
-            console.log(`${JSON.stringify(bs)}`);
         }
     }
 }

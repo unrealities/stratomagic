@@ -41,7 +41,7 @@ export class Game {
 
     playInning() {
         this.gameState.topHalf = !this.gameState.topHalf;
-        if (this.gameState.topHalf) {
+        if (this.gameState.topHalf == true) {
             this.gameState.inning++;
         }
         this.gameState.outs = 0;
@@ -50,12 +50,10 @@ export class Game {
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
         let scoringTeam = this.gameState.awayScore;
-        let battingOrder = this.gameState.awayLineup.battingOrder;
         if (!this.gameState.topHalf) {
             batters = this.boxScore.hBatters;
             pitchers = this.boxScore.aPitchers;
             scoringTeam = this.gameState.homeScore;
-            battingOrder = this.gameState.homeLineup.battingOrder;
         }
 
         while (this.gameState.outs < 3) {
@@ -94,7 +92,7 @@ export class Game {
             if (bases == 0) {
                 this.gameState.outs++;
                 // TODO handle sac fly and double play situations
-                this.nextHitter(battingOrder);
+                this.gameState.NextBatter();
                 if (this.gameState.outs == 3) {
                     for (let runner of this.gameState.baseRunners) {
                         if (runner) {
@@ -135,7 +133,7 @@ export class Game {
                 this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
             }
 
-            this.nextHitter(battingOrder);
+            this.gameState.NextBatter();
         }
     }
 
@@ -145,14 +143,6 @@ export class Game {
             this.playInning();
             this.boxScore.prettyPrint();
         }
-    }
-
-    nextHitter(battingOrder) {
-        this.gameState.battingOrderIndex++;
-        if (this.gameState.battingOrderIndex == 8) {
-            this.gameState.battingOrderIndex = 0;
-        }
-        this.gameState.batter = battingOrder[this.gameState.battingOrderIndex];
     }
 }
 
