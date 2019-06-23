@@ -61,6 +61,10 @@ export class Game {
             let pitcher = pitchers[this.gameState.pitcher.id];
 
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
+            // TODO
+            // Simulation crashes in the top of the second inning here. batter and pitcher become undefined.
+            console.log(`batter: ${this.gameState.batter.fullName}: ${JSON.stringify(batter)}`);
+            console.log(`pitcher: ${this.gameState.pitcher.fullName}: ${JSON.stringify(pitcher)}`);
 
             // TODO pull these into functions on BoxScore
             // Could each outcome have a set of other events that need to be updated?
