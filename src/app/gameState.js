@@ -11,7 +11,7 @@ export class GameState {
         this.awayScore = 0;
         this.homeScore = 0;
         this.outs = 0;
-        this.baseRunners = [null, null, null]; 
+        this.baseRunners = [null, null, null];
 
         this.awayCurrentBatterIndex = 0;
         this.homeCurrentBatterIndex = 0;
@@ -20,6 +20,25 @@ export class GameState {
         this.batter = awayLineup.battingOrder[this.awayCurrentBatterIndex];
 
         // TODO Add home away defense (IF, OF, C)
+    }
+
+    IncrementScore() {
+        this.topHalf == true ? this.awayScore++ : this.homeScore++;
+    }
+
+    NextHalfInning() {
+        this.topHalf = !this.topHalf;
+        if (this.topHalf == true) {
+            this.inning++;
+        }
+        this.outs = 0;
+        if (this.topHalf == true) {
+            this.batter = this.awayLineup.battingOrder[this.awayCurrentBatterIndex];
+            this.pitcher = this.homeLineup.pitcher;
+        } else {
+            this.batter = this.homeLineup.battingOrder[this.homeCurrentBatterIndex];
+            this.pitcher = this.awayLineup.pitcher;
+        }
     }
 
     NextBatter() {
@@ -36,5 +55,15 @@ export class GameState {
             }
             this.batter = this.homeLineup.battingOrder[this.homeCurrentBatterIndex];
         }
+    }
+
+    PrintScore() {
+        console.log(`Home: ${this.homeScore} Away: ${this.awayScore}`);
+    }
+
+    AtBatOut() {
+        this.outs++;
+        // TODO handle sac fly and double play situations
+        this.NextBatter();
     }
 }

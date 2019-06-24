@@ -40,20 +40,12 @@ export class Game {
     }
 
     playInning() {
-        this.gameState.topHalf = !this.gameState.topHalf;
-        if (this.gameState.topHalf == true) {
-            this.gameState.inning++;
-        }
-        this.gameState.outs = 0;
-
-        // TODO figure out how to avoid this conditional. Schema is not great.
+        this.gameState.NextHalfInning();
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
-        let scoringTeam = this.gameState.awayScore;
         if (!this.gameState.topHalf) {
             batters = this.boxScore.hBatters;
             pitchers = this.boxScore.aPitchers;
-            scoringTeam = this.gameState.homeScore;
         }
 
         while (this.gameState.outs < 3) {
@@ -61,10 +53,6 @@ export class Game {
             let pitcher = pitchers[this.gameState.pitcher.id];
 
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
-            // TODO
-            // Simulation crashes in the top of the second inning here. batter and pitcher become undefined.
-            console.log(`batter: ${this.gameState.batter.fullName}: ${JSON.stringify(batter)}`);
-            console.log(`pitcher: ${this.gameState.pitcher.fullName}: ${JSON.stringify(pitcher)}`);
 
             // TODO pull these into functions on BoxScore
             // Could each outcome have a set of other events that need to be updated?
@@ -86,24 +74,23 @@ export class Game {
 
                 let events = {"PU": "pu", "SO": "so", "GB": "gb", "FB": "fb", "1B": "single", "1B+": "single", "2B": "double", "3B": "triple", "HR": "hr"};
                 player[events[atBat.resultingPlay]]++;
+            }
 
-                if (atBat.resultingPlay == 'HR') {
-                    player.run++;
-                    batter.rbi++;
-                }
+            if (atBat.resultingPlay == 'HR') {
+                batter.run++;
+                pitcher.run++;
+                batter.rbi++;
+                this.gameState.IncrementScore();
             }
 
             if (bases == 0) {
-                this.gameState.outs++;
-                // TODO handle sac fly and double play situations
-                this.gameState.NextBatter();
+                this.gameState.AtBatOut();
                 if (this.gameState.outs == 3) {
                     for (let runner of this.gameState.baseRunners) {
                         if (runner) {
                             batter.lob++;
                         }
                     }
-                    // TODO switch to other team
                 }
                 continue;
             }
@@ -125,10 +112,10 @@ export class Game {
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
                 if (baseRunner) {
-                    batters[baseRunner.id].run++;
+                    //batters[baseRunner.id].run++;
                     batter.rbi++;
                     pitcher.run++;
-                    scoringTeam++;
+                    this.gameState.IncrementScore();
                 }
             }
 
@@ -143,10 +130,10 @@ export class Game {
 
     playGame() {
         while(this.gameState.inning < 9) {
-            console.log(`playing inning: ${this.gameState.inning+1}`);
             this.playInning();
-            this.boxScore.prettyPrint();
         }
+        this.boxScore.prettyPrint();
+        this.gameState.PrintScore();
     }
 }
 
