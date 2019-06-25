@@ -16,49 +16,31 @@ export class BoxScore {
         // Batters cannot pitch
         // Pitchers can hit
         for (let player of aRoster.players) {
-            let bs = new BoxScoreBatter(player);
-            this.aBatters[player.id] = bs;
-            if (!player.isHitter()) {
-                this.aPitchers[player.id] = bs; 
-            }
+            this.aBatters[player.id] = new BoxScoreBatter(player);
+            if (!player.isHitter()) this.aPitchers[player.id] = new BoxScoreBatter(player); 
         }
         for (let player of hRoster.players) {
-            let bs = new BoxScoreBatter(player);
-            this.hBatters[player.id] = bs;
-            if (!player.isHitter()) {
-                this.hPitchers[player.id] = bs; 
-            }
+            this.hBatters[player.id] = new BoxScoreBatter(player);
+            if (!player.isHitter()) this.hPitchers[player.id] = new BoxScoreBatter(player);
         }
     }
 
     prettyPrint() {
-        console.log(`Away Team`)
-        for (let player of this.aRoster.players) {
-            let bs = this.aBatters[player.id];
-            if (bs.pa == 0) {
-                continue;
-            }
-            console.log(`${player.fullName.padEnd(30)} | ${bs.pa} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi} | ${bs.tb}`)
-        }
-        for (let player of this.aRoster.players) {
-            let bs = this.aBatters[player.id];
-            if (bs.pa == 0) {
-                continue;
-            }
-        }
-
-        console.log(`Home Team`)
-        for (let player of this.hRoster.players) {
-            let bs = this.hBatters[player.id];
-            if (bs.pa == 0) {
-                continue;
-            }
-            console.log(`${player.fullName.padEnd(30)} | ${bs.pa} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi} | ${bs.tb}`)
-        }
-        for (let player of this.hRoster.players) {
-            let bs = this.hBatters[player.id];
-            if (bs.pa == 0) {
-                continue;
+        let boxScores = [
+            {'Home Batters': this.hBatters},
+            {'Home Pitchers': this.hPitchers},
+            {'Away Batters': this.aBatters},
+            {'Away Pitchers': this.aPitchers}
+        ];
+        for (let hash of boxScores) {
+            for (let [string, players] of Object.entries(hash)) {
+                console.log(`-------------`);
+                console.log(string);
+                console.log(`-------------`);
+                for (let [_,bs] of Object.entries(players)) {
+                    if (bs.pa == 0) continue;
+                    console.log(`${bs.player.fullName.padEnd(30)} | ${bs.pa} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi} | ${bs.tb}`);
+                }
             }
         }
     }

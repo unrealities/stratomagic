@@ -86,7 +86,6 @@ export class AtBat {
         this.determineControl();
         this.determinePlay();
         this.determineTotalBases();
-        console.log(`${this.batter.fullName}[${this.batter.obc}] v ${this.pitcher.fullName}[${this.pitcher.obc}]: ${this.controlRoll} | ${this.controllingPlayer.fullName} | ${this.playRoll} | ${this.resultingPlay} [${this.resultingPlayTotalBases}]`)
         return this;
     }
 }

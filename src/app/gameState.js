@@ -28,9 +28,7 @@ export class GameState {
 
     NextHalfInning() {
         this.topHalf = !this.topHalf;
-        if (this.topHalf == true) {
-            this.inning++;
-        }
+        if (this.topHalf == true) this.inning++;
         this.outs = 0;
         if (this.topHalf == true) {
             this.batter = this.awayLineup.battingOrder[this.awayCurrentBatterIndex];
@@ -44,21 +42,25 @@ export class GameState {
     NextBatter() {
         if (this.topHalf) {
             this.awayCurrentBatterIndex++;
-            if (this.awayCurrentBatterIndex == 8) {
-                this.awayCurrentBatterIndex = 0;
-            }
+            if (this.awayCurrentBatterIndex == 8) this.awayCurrentBatterIndex = 0;
             this.batter = this.awayLineup.battingOrder[this.awayCurrentBatterIndex];
         } else {
             this.homeCurrentBatterIndex++;
-            if (this.homeCurrentBatterIndex == 8) {
-                this.homeCurrentBatterIndex = 0;
-            }
+            if (this.homeCurrentBatterIndex == 8) this.homeCurrentBatterIndex = 0;
             this.batter = this.homeLineup.battingOrder[this.homeCurrentBatterIndex];
         }
     }
 
     PrintScore() {
         console.log(`Home: ${this.homeScore} Away: ${this.awayScore}`);
+    }
+
+    PrintBattingOrder() {
+        for (let team of [this.awayLineup.battingOrder, this.homeLineup.battingOrder]) {
+            for (let i=0; i<9; i++) {
+                console.log(`${i+1}. ${team[i].fullName} [${team[i].id}]`);
+            }
+        }
     }
 
     AtBatOut() {

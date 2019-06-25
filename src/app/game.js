@@ -134,6 +134,7 @@ export class Game {
         }
         this.boxScore.prettyPrint();
         this.gameState.PrintScore();
+        this.gameState.PrintBattingOrder();
     }
 }
 
@@ -173,23 +174,14 @@ export class Player {
         this.pitcher = !this.hitter;
         this.speed = 10; // pitchers have a default value of 10 speed
         this.ip = 0;     // hitters cannot pitch
-        if (this.hitter) {
-            this.speed = spd_ip;
-        }
-        if (!this.hitter) {
-            this.ip = spd_ip;
-        }
+        this.hitter ? this.speed = spd_ip : this.ip = spd_ip;
 
         this.playablePositions = this.playablePositions();
     }
     
     isHitter(){
         for(let p=0; p<this.positions.length; p++) {
-            if (p === 1 || p > 9) {
-                if (this.positions[p] >= 0) {
-                    return false;
-                }
-            }
+            if (p === 1 || p > 9) if (this.positions[p] >= 0) return false;
         }
         return true;
     }
@@ -197,9 +189,7 @@ export class Player {
     playablePositions(){
         let pp = [];
         for(let p=0; p<this.positions.length; p++) {
-            if(this.positions[p] >= 0) {
-                pp.push(p);
-            }
+            if(this.positions[p] >= 0) pp.push(p);
         }
         return pp;
     }
@@ -208,9 +198,7 @@ export class Player {
         let trials = 100000;
         let totalRuns = 0;
 
-        if (!this.isHitter()) {    
-            return 0;
-        }
+        if (!this.isHitter()) return 0;
         for (let i=0; i<trials; i++){
             let hi = halfInning(this, pitcher);
             totalRuns += hi["runs"];
