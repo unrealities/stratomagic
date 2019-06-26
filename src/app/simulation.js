@@ -30,6 +30,7 @@ export function newSimulation(){
     let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
 
     game.playGame();
+    game.boxScore.prettyPrint();
 
     // TODO We need both an activity feed to log the outcomes of each at bat and update the gameState
     // Need to be able to switch pitchers after their innings limit is reached

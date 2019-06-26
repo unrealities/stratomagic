@@ -37,16 +37,17 @@ export class GameState {
             this.batter = this.homeLineup.battingOrder[this.homeCurrentBatterIndex];
             this.pitcher = this.awayLineup.pitcher;
         }
+        //TODO: Check if pitcher needs to be replaced
     }
 
     NextBatter() {
         if (this.topHalf) {
             this.awayCurrentBatterIndex++;
-            if (this.awayCurrentBatterIndex == 8) this.awayCurrentBatterIndex = 0;
+            if (this.awayCurrentBatterIndex == 9) this.awayCurrentBatterIndex = 0;
             this.batter = this.awayLineup.battingOrder[this.awayCurrentBatterIndex];
         } else {
             this.homeCurrentBatterIndex++;
-            if (this.homeCurrentBatterIndex == 8) this.homeCurrentBatterIndex = 0;
+            if (this.homeCurrentBatterIndex == 9) this.homeCurrentBatterIndex = 0;
             this.batter = this.homeLineup.battingOrder[this.homeCurrentBatterIndex];
         }
     }

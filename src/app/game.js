@@ -132,9 +132,6 @@ export class Game {
         while(this.gameState.inning < 9) {
             this.playInning();
         }
-        this.boxScore.prettyPrint();
-        this.gameState.PrintScore();
-        this.gameState.PrintBattingOrder();
     }
 }
 
