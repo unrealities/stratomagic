@@ -6,8 +6,8 @@ export class GameState {
         this.awayLineup = awayLineup;
         this.homeLineup = homeLineup;
 
-        this.inning = 0;
-        this.topHalf = false;
+        this.inning = 1;
+        this.topHalf = true;
         this.awayScore = 0;
         this.homeScore = 0;
         this.outs = 0;
@@ -22,11 +22,17 @@ export class GameState {
         // TODO Add home away defense (IF, OF, C)
     }
 
+    AtBatOut() {
+        this.outs++;
+        // TODO handle sac fly and double play situations
+        this.NextBatter();
+    }
+
     IncrementScore() {
         this.topHalf == true ? this.awayScore++ : this.homeScore++;
     }
 
-    NextHalfInning() {
+    NextHalfInning(inningsPitched) {
         this.topHalf = !this.topHalf;
         if (this.topHalf == true) this.inning++;
         this.outs = 0;
@@ -37,7 +43,12 @@ export class GameState {
             this.batter = this.homeLineup.battingOrder[this.homeCurrentBatterIndex];
             this.pitcher = this.awayLineup.pitcher;
         }
-        //TODO: Check if pitcher needs to be replaced
+
+        console.log(`${this.pitcher.fullName} has pitched ${inningsPitched} innings`);
+        if (this.inning > inningsPitched) {
+            this.pitcher.obc = this.pitcher.obc - (this.inning - inningsPitched);
+        }
+        console.log(`Inning: ${this.inning} | Pitching: ${this.pitcher.fullName} [${this.pitcher.obc}]`);
     }
 
     NextBatter() {
@@ -62,11 +73,5 @@ export class GameState {
                 console.log(`${i+1}. ${team[i].fullName} [${team[i].id}]`);
             }
         }
-    }
-
-    AtBatOut() {
-        this.outs++;
-        // TODO handle sac fly and double play situations
-        this.NextBatter();
     }
 }

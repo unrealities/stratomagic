@@ -40,7 +40,6 @@ export class Game {
     }
 
     playInning() {
-        this.gameState.NextHalfInning();
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
         if (!this.gameState.topHalf) {
@@ -126,6 +125,8 @@ export class Game {
 
             this.gameState.NextBatter();
         }
+
+        this.gameState.NextHalfInning(pitchers[this.gameState.pitcher.id].inn++);
     }
 
     playGame() {

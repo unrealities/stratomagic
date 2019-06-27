@@ -57,6 +57,7 @@ export class AtBat {
         this.playRoll = 0;
 
         this.start();
+        this.printAtBat();
     }
 
     determineControl(){
@@ -76,6 +77,10 @@ export class AtBat {
         let outcomesToBases = { "SO": 0, "PU": 0, "GB": 0, "FB": 0, "BB": 1,
         "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4 };
         this.resultingPlayTotalBases = outcomesToBases[this.resultingPlay];
+    }
+
+    printAtBat(){
+        console.log(`${this.pitcher.fullName} [${this.pitcher.obc}] v ${this.batter.fullName} [${this.batter.obc}] | ${this.resultingPlay}`);
     }
 
     rollDice() {

@@ -17,11 +17,11 @@ export class BoxScore {
         // Pitchers can hit
         for (let player of aRoster.players) {
             this.aBatters[player.id] = new BoxScoreBatter(player);
-            if (!player.isHitter()) this.aPitchers[player.id] = new BoxScoreBatter(player); 
+            if (!player.isHitter()) this.aPitchers[player.id] = new BoxScorePitcher(player); 
         }
         for (let player of hRoster.players) {
             this.hBatters[player.id] = new BoxScoreBatter(player);
-            if (!player.isHitter()) this.hPitchers[player.id] = new BoxScoreBatter(player);
+            if (!player.isHitter()) this.hPitchers[player.id] = new BoxScorePitcher(player);
         }
     }
 
@@ -85,6 +85,7 @@ class BoxScorePitcher {
         this.hit = 0;
         this.hold = 0;
         this.hr = 0;
+        this.inn = 0;
         this.lob = 0;
         this.loss = 0;
         this.outs = 0;
