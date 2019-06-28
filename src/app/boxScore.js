@@ -26,20 +26,30 @@ export class BoxScore {
     }
 
     prettyPrint() {
-        let boxScores = [
-            {'Home Batters': this.hBatters},
-            {'Home Pitchers': this.hPitchers},
-            {'Away Batters': this.aBatters},
-            {'Away Pitchers': this.aPitchers}
-        ];
-        for (let hash of boxScores) {
+        for (let hash of [{'Home Batters': this.hBatters}, {'Away Batters': this.aBatters}]) {
             for (let [string, players] of Object.entries(hash)) {
-                console.log(`-------------`);
+                console.log(`------------------------------------------------------------------------------`);
                 console.log(string);
-                console.log(`-------------`);
+                console.log(`------------------------------------------------------------------------------`);
+                console.log(`| ${"Full Name".padEnd(30)}| PA | AB | R  | H  | BB | RBI| TB | SO | LOB|`)
+                console.log(`------------------------------------------------------------------------------`);
                 for (let [_,bs] of Object.entries(players)) {
                     if (bs.pa == 0) continue;
-                    console.log(`${bs.player.fullName.padEnd(30)} | ${bs.pa} | ${bs.ab} | ${bs.run} | ${bs.hit} | ${bs.bb} | ${bs.rbi} | ${bs.tb}`);
+                    console.log(`| ${bs.player.fullName.padEnd(30)}| ${String(bs.pa).padEnd(3)}| ${String(bs.ab).padEnd(3)}| ${String(bs.run).padEnd(3)}| ${String(bs.hit).padEnd(3)}| ${String(bs.bb).padEnd(3)}| ${String(bs.rbi).padEnd(3)}| ${String(bs.tb).padEnd(3)}| ${String(bs.so).padEnd(3)}| ${String(bs.lob).padEnd(3)}|`);
+                }
+            }
+        }
+
+        for (let hash of [{'Home Pitchers': this.hPitchers}, {'Away Pitchers': this.aPitchers}]) {
+            for (let [string, players] of Object.entries(hash)) {
+                console.log(`------------------------------------------------------------------------`);
+                console.log(string);
+                console.log(`------------------------------------------------------------------------`);
+                console.log(`| ${"Full Name".padEnd(30)}| IP | H  | ER | BB | SO | HR | TB |`);
+                console.log(`------------------------------------------------------------------------`);
+                for (let [_,bs] of Object.entries(players)) {
+                    if (bs.inn == 0) continue;
+                    console.log(`| ${bs.player.fullName.padEnd(30)}| ${String(bs.inn).padEnd(3)}| ${String(bs.hit).padEnd(3)}| ${String(bs.run).padEnd(3)} | ${String(bs.bb).padEnd(3)} | ${String(bs.so).padEnd(3)} | ${String(bs.hr).padEnd(3)} | ${String(bs.tb).padEnd(3)}|`);
                 }
             }
         }
