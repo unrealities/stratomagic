@@ -42,7 +42,7 @@ export class Game {
     playInning() {
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
-        if (!this.gameState.topHalf) {
+        if (this.gameState.topHalf == false) {
             batters = this.boxScore.hBatters;
             pitchers = this.boxScore.aPitchers;
         }
@@ -111,7 +111,7 @@ export class Game {
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
                 if (baseRunner) {
-                    //batters[baseRunner.id].run++;
+                    batters[baseRunner.id].run++;
                     batter.rbi++;
                     pitcher.run++;
                     this.gameState.IncrementScore();
@@ -126,7 +126,8 @@ export class Game {
             this.gameState.NextBatter();
         }
 
-        this.gameState.NextHalfInning(pitchers[this.gameState.pitcher.id].inn++);
+        pitchers[this.gameState.pitcher.id].inn++;
+        this.gameState.NextHalfInning(pitchers[this.gameState.pitcher.id].inn);
     }
 
     playGame() {
@@ -196,7 +197,7 @@ export class Player {
         let trials = 100000;
         let totalRuns = 0;
 
-        if (!this.isHitter()) return 0;
+        if (this.isHitter() == false) return 0;
         for (let i=0; i<trials; i++){
             let hi = halfInning(this, pitcher);
             totalRuns += hi["runs"];

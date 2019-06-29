@@ -80,7 +80,7 @@ export class Lineup {
                 batterIsInLineup = batterIsInLineup || (batter.id == this.designatedHitter);
             }
 
-            if (!batterIsInLineup) {
+            if (batterIsInLineup == false) {
                 return false;
             }
 

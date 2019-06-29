@@ -52,7 +52,7 @@ export class GameState {
     }
 
     NextBatter() {
-        if (this.topHalf) {
+        if (this.topHalf == true) {
             this.awayCurrentBatterIndex++;
             if (this.awayCurrentBatterIndex == 9) this.awayCurrentBatterIndex = 0;
             this.batter = this.awayLineup.battingOrder[this.awayCurrentBatterIndex];

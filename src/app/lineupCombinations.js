@@ -39,7 +39,7 @@ export class LineupCombinations {
                 }
                 usedPlayers.push(player.id);
             }
-            if (valid) {
+            if (valid == true) {
                 return combo;
             }
         }
