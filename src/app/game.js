@@ -111,7 +111,8 @@ export class Game {
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
                 if (baseRunner) {
-                    batters[baseRunner.id].run++;
+                    //This is super weird. If I uncomment this, it not only breaks but also changes the pitcher.
+                    //batters[baseRunner.id].run++;
                     batter.rbi++;
                     pitcher.run++;
                     this.gameState.IncrementScore();

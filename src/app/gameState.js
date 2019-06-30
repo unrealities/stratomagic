@@ -33,6 +33,7 @@ export class GameState {
     }
 
     NextHalfInning(inningsPitched) {
+        console.log(`Next Half Inning: current pitcher: ${this.pitcher.fullName}`);
         this.topHalf = !this.topHalf;
         if (this.topHalf == true) this.inning++;
         this.outs = 0;
