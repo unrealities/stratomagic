@@ -37,6 +37,7 @@ export class GameState {
         this.topHalf = !this.topHalf;
         if (this.topHalf == true) this.inning++;
         this.outs = 0;
+        this.baseRunners = [null, null, null];
         if (this.topHalf == true) {
             this.batter = this.awayLineup.battingOrder[this.awayCurrentBatterIndex];
             this.pitcher = this.homeLineup.pitcher;

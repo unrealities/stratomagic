@@ -43,9 +43,16 @@ export class Game {
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
         if (this.gameState.topHalf == false) {
+            console.log(`home team batting`);
             batters = this.boxScore.hBatters;
             pitchers = this.boxScore.aPitchers;
         }
+
+        let batterIds = "";
+        for (let [k,v] of Object.entries(batters)) {
+            batterIds += ` ${k}`;
+        }
+        console.log(`batter ids: ${batterIds}`);
 
         while (this.gameState.outs < 3) {
             let batter = batters[this.gameState.batter.id];
@@ -111,8 +118,13 @@ export class Game {
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
                 if (baseRunner) {
-                    //This is super weird. If I uncomment this, it not only breaks but also changes the pitcher.
-                    //batters[baseRunner.id].run++;
+                    console.log(`baseRunner scored: ${baseRunner.fullName}[${baseRunner.id}]`);
+                    let batterIds = "";
+                    for (let [k,v] of Object.entries(batters)) {
+                        batterIds += ` ${k}`;
+                    }
+                    console.log(`batter ids: ${batterIds}`);
+                    batters[baseRunner.id].run++;
                     batter.rbi++;
                     pitcher.run++;
                     this.gameState.IncrementScore();

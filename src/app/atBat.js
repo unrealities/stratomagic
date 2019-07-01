@@ -80,7 +80,7 @@ export class AtBat {
     }
 
     printAtBat(){
-        console.log(`${this.pitcher.fullName} [${this.pitcher.obc}] v ${this.batter.fullName} [${this.batter.obc}] | ${this.resultingPlay}`);
+        console.log(`${this.pitcher.fullName} [${this.pitcher.id}] v ${this.batter.fullName} [${this.batter.id}] | ${this.resultingPlay}`);
     }
 
     rollDice() {
