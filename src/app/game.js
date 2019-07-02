@@ -118,12 +118,6 @@ export class Game {
             for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
                 let baseRunner = afterAtBatBaseRunners[i];
                 if (baseRunner) {
-                    console.log(`baseRunner scored: ${baseRunner.fullName}[${baseRunner.id}]`);
-                    let batterIds = "";
-                    for (let [k,v] of Object.entries(batters)) {
-                        batterIds += ` ${k}`;
-                    }
-                    console.log(`batter ids: ${batterIds}`);
                     batters[baseRunner.id].run++;
                     batter.rbi++;
                     pitcher.run++;

@@ -27,10 +27,7 @@ export function newSimulation(){
     let hLineup = RandomLineup(hRoster);
 
     // Need to setup a new game
-    let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
-
-    game.playGame();
-    game.boxScore.prettyPrint();
+    return new Game(hTeam, aTeam, hLineup, aLineup, true);
 
     // TODO We need both an activity feed to log the outcomes of each at bat and update the gameState
     // Need to be able to switch pitchers after their innings limit is reached
