@@ -1,6 +1,3 @@
-
-import { newSimulation } from '../app/simulation';
-
 import React from 'react';
 
 import style from "../style/index.css";
@@ -13,11 +10,10 @@ export class LineupCard extends React.Component {
     render() {
         return (
             <div className="lineupCard">
-                <h1>{this.props.name}</h1>
-                <div className="pos">{this.props.pos}</div>
+                <div className="num">{this.props.num}</div>
+                <div className="name">{this.props.name}</div>
                 <div className="onBase">{this.props.obc}</div>
                 <div className="points">{this.props.points}</div>
-                <div className="avgGameRuns">{this.props.avgGameRuns}</div>
             </div>
         );
     }
@@ -44,10 +40,9 @@ export class LineupCardContainer extends React.Component {
                         return(
                             <LineupCard key={i}
                             name={ c.fullName }
+                            num={ i+1 }
                             obc={ c.obc }
-                            points={ c.points }
-                            positions={ c.playablePositions }
-                            pos={ c.Pos} />
+                            points={ c.points }/>
                         )
                     })}
                 </div>
