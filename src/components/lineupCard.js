@@ -11,6 +11,7 @@ export class LineupCard extends React.Component {
         return (
             <div className="lineupCard">
                 <div className="num">{this.props.num}</div>
+                <div className="pos">{this.props.pos}</div>
                 <div className="name">{this.props.name}</div>
                 <div className="onBase">{this.props.obc}</div>
                 <div className="points">{this.props.points}</div>
@@ -26,6 +27,10 @@ export class LineupCardContainer extends React.Component {
     }
 
     componentDidMount(){
+        let cards = this.props.lineup.battingOrder;
+        for (let card of cards) {
+            card["pos"] = this.props.lineup.pos(card);
+        }
         this.setState({
             ...this.state,
             cards: this.props.lineup.battingOrder,
@@ -42,7 +47,8 @@ export class LineupCardContainer extends React.Component {
                             name={ c.fullName }
                             num={ i+1 }
                             obc={ c.obc }
-                            points={ c.points }/>
+                            points={ c.points }
+                            pos={ c["pos"] } />
                         )
                     })}
                 </div>

@@ -62,7 +62,7 @@ body {
     padding: 4%;
 }
 
-.lineupCard .onBase, .lineupCard .num, .lineupCard .points {
+.lineupCard .onBase, .lineupCard .num, .lineupCard .points, .lineupCard .pos {
     float: left;
     line-height: 20px;
     min-width: 50px;
@@ -93,7 +93,7 @@ body {
 }
 
 .lineupCardContainer {
-    width: 30%;
+    width: 35%;
 }
 
 .playerCardContainer {

@@ -98,6 +98,15 @@ export class Lineup {
         let withDH = this.designatedHitter == null;
         return this.isValidPlayers(withDH) && this.isValidBattingOrder(withDH);
     }
+
+    pos(player) {
+        for (let pos in this) {
+            if (player.id === pos.value) {
+                return pos.key;
+            }
+        }
+        return "pos";
+    }
 }
 
 /*
