@@ -100,9 +100,28 @@ export class Lineup {
     }
 
     pos(player) {
-        for (let pos in this) {
-            if (player.id === pos.value) {
-                return pos.key;
+        let shortPos = {
+            "catcher": "C",
+            "firstBase": "1B",
+            "secondBase": "2B",
+            "thirdBase": "3B",
+            "shortstop": "SS",
+            "leftField": "LF",
+            "centerField": "CF",
+            "rightField": "RF",
+            "pitcher": "P",
+            "designatedHitter": "DH"
+        };
+        for (let [pos, posPlayer] of Object.entries(this)) {
+            if (pos == 'battingOrder') {
+                continue;
+            }
+            if (player.id === posPlayer.id) {
+                for (let [longPos, abbrPos] of Object.entries(shortPos)) {
+                    if (longPos == pos) {
+                        return abbrPos;
+                    }
+                }
             }
         }
         return "pos";
