@@ -5,27 +5,41 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.battingOrder {
+    float: left;
+    margin: 0% 2%;
+    width: 30%;
+}
+
+.battingOrderHeading {
+    color: #FFF;
+    font-family: 'Unica One', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin: auto;
+    width: 100%
+}
+
 .lineupCard {
+    border: 1px solid;
     min-height: 20px;
-    min-width: 160px;
-    margin: 0.5%;
-    padding: 1%;
+    padding: 0.5%;
     width: 100%;
 }
 
 .lineupCard, .playerCard {
     background-color: #fdfffc;
-    border: 4px solid;
     border-color: #ff9f1c;
-    border-radius: 10px;
     color: #011627;
     float: left;
     font-family: 'Unica One', sans-serif;
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
 }
 
 .playerCard {
+    border: 4px solid;
+    border-radius: 10px;
     display: inline;
     min-height: 200px;
     min-width: 160px;
@@ -36,7 +50,7 @@ body {
 
 .lineupCard .name {
     float: left;
-    min-width: 240px;
+    min-width: 65%;
 }
 
 .lineupCard .name, .playerCard h1 {
@@ -44,6 +58,7 @@ body {
     font-family: 'Bowlby One SC', sans-serif;
     font-size: 20px;
     line-height: 20px;
+    padding-left: 2%;
 }
 
 .playerCard h1 {
@@ -65,7 +80,7 @@ body {
 .lineupCard .onBase, .lineupCard .num, .lineupCard .points, .lineupCard .pos {
     float: left;
     line-height: 20px;
-    min-width: 50px;
+    min-width: 5%;
     padding-left: 2%;
 }
 
@@ -93,7 +108,8 @@ body {
 }
 
 .lineupCardContainer {
-    width: 50%;
+    margin: auto;
+    width: 100%;
 }
 
 .playerCardContainer {

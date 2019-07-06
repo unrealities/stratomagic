@@ -6,6 +6,6 @@ import { newSimulation } from './simulation.js';
 
 window.onload = function () {
     let game = newSimulation();
-    ReactDOM.render(<LineupCardContainer lineup={game.hLineup}/>, document.getElementById("results"));
-    // ReactDOM.render(<PlayerCardContainer />, document.getElementById("results"));
+    ReactDOM.render(<LineupCardContainer lineup={game.hLineup}/>, document.getElementById("homeBattingOrder"));
+    ReactDOM.render(<LineupCardContainer lineup={game.aLineup}/>, document.getElementById("awayBattingOrder"));
 }
