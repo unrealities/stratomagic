@@ -6,15 +6,27 @@
     <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Unica+One" rel="stylesheet">
   </head>
   <body>
-    <div>
+    <div class="battingOrders">
       <div class="battingOrder">
-        <div class="battingOrderHeading">Home</div>
-        <div id="homeBattingOrder"></div>
+        <div class="battingOrderHeading">Away Lineup</div>
+        <div id="awayBattingOrder"></div>
       </div>
       <div class="battingOrder">
-          <div class="battingOrderHeading">Away</div>
-          <div id="awayBattingOrder"></div>
-        </div>
+        <div class="battingOrderHeading">Home Lineup</div>
+        <div id="homeBattingOrder"></div>
+      </div>
+    </div>
+    <div class="boxScores">
+      <div class="awayBoxScore">
+        <div class="boxScoreHeading">Away Box</div>
+        <div id="awayBattingBoxScore"></div>
+        <div id="awayPitchingBoxScore"></div>
+      </div>
+      <div class="homeBoxScore">
+        <div class="boxScoreHeading">Home Box</div>
+        <div id="homeBattingBoxScore"></div>
+        <div id="homePitchingBoxScore"></div>
+      </div>
     </div>
     <script src="./bundle.js"></script>
   </body>
