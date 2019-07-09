@@ -53,8 +53,7 @@ export class BattingBoxScoreCardContainer extends React.Component {
     componentDidMount(){
         this.setState({
             ...this.state,
-            // TODO: Convert this to an array
-            cards: this.props.boxScore,
+            cards: Object.values(this.props.boxScore),
         });
     }
 
