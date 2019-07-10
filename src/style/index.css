@@ -61,6 +61,20 @@ body {
     padding-left: 2%;
 }
 
+.battingBoxScoreCard .name {
+    min-width: 20%;
+}
+
+.battingBoxScoreCard div {
+    float: left;
+    padding: 0.5%;
+    min-width: 1%;
+}
+
+.boxScoreHeading {
+    float: left;
+}
+
 .playerCard h1 {
     border-bottom: 2px solid;
     border-color: #e71d36;

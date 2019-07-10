@@ -51,9 +51,13 @@ export class BattingBoxScoreCardContainer extends React.Component {
     }
 
     componentDidMount(){
+        let players = Object.values(this.props.boxScore);
+        players = players.filter( function(player) {
+            return player.pa > 0;
+        });
         this.setState({
             ...this.state,
-            cards: Object.values(this.props.boxScore),
+            cards: players,
         });
     }
 
