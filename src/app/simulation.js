@@ -28,8 +28,6 @@ export function newSimulation(){
 
     // Need to setup a new game
     let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
-    
-    game.playGame();
 
     return game;
     // TODO We need both an activity feed to log the outcomes of each at bat and update the gameState

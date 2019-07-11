@@ -62,17 +62,23 @@ body {
 }
 
 .battingBoxScoreCard .name {
-    min-width: 20%;
+    min-width: 50%;
 }
 
 .battingBoxScoreCard div {
     float: left;
     padding: 0.5%;
-    min-width: 1%;
+    min-width: 4%;
 }
 
 .boxScoreHeading {
     float: left;
+}
+
+.awayBoxScore, .homeBoxScore {
+    float: left;
+    margin: 2%;
+    width: 40%;
 }
 
 .playerCard h1 {

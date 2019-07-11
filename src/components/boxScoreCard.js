@@ -55,6 +55,9 @@ export class BattingBoxScoreCardContainer extends React.Component {
         players = players.filter( function(player) {
             return player.pa > 0;
         });
+
+        let header = {'player': {'fullName': 'Name'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB'};
+        players.unshift(header);
         this.setState({
             ...this.state,
             cards: players,
