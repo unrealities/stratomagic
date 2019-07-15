@@ -11,7 +11,7 @@ body {
     width: 30%;
 }
 
-.battingOrderHeading, .boxScoreHeading {
+.atBatsHeading, .battingOrderHeading, .boxScoreHeading {
     color: #FFF;
     font-family: 'Unica One', sans-serif;
     font-size: 36px;
@@ -20,14 +20,14 @@ body {
     width: 100%
 }
 
-.battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard {
+.atBatCard, .battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard {
     border: 1px solid;
     min-height: 20px;
     padding: 0.5%;
     width: 100%;
 }
 
-.battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard, .playerCard {
+.atBatCard, .battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard, .playerCard {
     background-color: #fdfffc;
     border-color: #ff9f1c;
     color: #011627;
@@ -71,7 +71,7 @@ body {
     min-width: 4%;
 }
 
-.boxScoreHeading {
+.atBatsHeading, .boxScoreHeading {
     float: left;
 }
 

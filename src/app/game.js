@@ -37,28 +37,23 @@ export class Game {
 
         this.gameState = new GameState(aLineup, hLineup);
         this.boxScore = new BoxScore(aTeam.roster, hTeam.roster);
+        this.atBats = [];
     }
 
     playInning() {
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
         if (this.gameState.topHalf == false) {
-            console.log(`home team batting`);
             batters = this.boxScore.hBatters;
             pitchers = this.boxScore.aPitchers;
         }
-
-        let batterIds = "";
-        for (let [k,v] of Object.entries(batters)) {
-            batterIds += ` ${k}`;
-        }
-        console.log(`batter ids: ${batterIds}`);
 
         while (this.gameState.outs < 3) {
             let batter = batters[this.gameState.batter.id];
             let pitcher = pitchers[this.gameState.pitcher.id];
 
             let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
+            this.atBats.push(atBat);
 
             // TODO pull these into functions on BoxScore
             // Could each outcome have a set of other events that need to be updated?
