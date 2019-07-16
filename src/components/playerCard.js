@@ -13,7 +13,7 @@ export class PlayerCard extends React.Component {
 
     render() {
         return (
-            <div className="playerCard">
+            <div className="playerCard" key={this.props.key}>
                 <h1>{this.props.name}</h1>
                 <div className="pos">{this.props.pos}</div>
                 <div className="onBase">{this.props.obc}</div>

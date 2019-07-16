@@ -53,7 +53,11 @@ body {
     min-width: 65%;
 }
 
-.battingBoxScoreCard .name, .lineupCard .name, .pitchingBoxScoreCard .name, .playerCard h1 {
+.atBatCard .name {
+    min-width: 16%;
+}
+
+.atBatCard .name, .battingBoxScoreCard .name, .lineupCard .name, .pitchingBoxScoreCard .name, .playerCard h1 {
     color: #e71d36;
     font-family: 'Bowlby One SC', sans-serif;
     font-size: 20px;
@@ -65,9 +69,20 @@ body {
     min-width: 50%;
 }
 
-.battingBoxScoreCard div, .pitchingBoxScoreCard div {
+.atBatCard div, .battingBoxScoreCard div, .pitchingBoxScoreCard div {
     float: left;
     padding: 0.5%;
+}
+
+.atBatCard div {
+    min-width: 2%;
+}
+
+.atBatCard .rolls {
+    min-width: 4%;
+}
+
+.battingBoxScoreCard div, .pitchingBoxScoreCard div {
     min-width: 4%;
 }
 

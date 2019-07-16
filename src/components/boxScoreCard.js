@@ -7,7 +7,7 @@ export class BattingBoxScoreCard extends React.Component {
 
     render() {
         return (
-            <div className="battingBoxScoreCard">
+            <div className="battingBoxScoreCard" key={this.props.key}>
                 <div className="name">{this.props.name}</div>
                 <div className="pa">{this.props.pa}</div>
                 <div className="ab">{this.props.ab}</div>
@@ -30,7 +30,7 @@ export class PitchingBoxScoreCard extends React.Component {
 
     render() {
         return (
-            <div className="pitchingBoxScoreCard">
+            <div className="pitchingBoxScoreCard" key={this.props.key}>
                 <div className="name">{this.props.name}</div>
                 <div className="inn">{this.props.inn}</div>
                 <div className="hit">{this.props.hit}</div>
