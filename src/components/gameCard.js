@@ -17,6 +17,15 @@ export class GameCard extends React.Component {
         });
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.game !== this.props.game) {
+            this.setState({
+                ...this.state,
+                game: this.props.game,
+            });
+        }
+      }
+
     render() {
         return (
             <div className="gameCard">
