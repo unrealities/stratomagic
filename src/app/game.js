@@ -41,6 +41,10 @@ export class Game {
     }
 
     playInning() {
+        if ((this.gameState.inning >= 9) && (!this.gameState.topHalf) && (this.gameState.homeScore > this.gameState.awayScore)) {
+            this.gameState.inning++;
+            return;
+        }
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
         if (this.gameState.topHalf == false) {
@@ -133,7 +137,7 @@ export class Game {
     }
 
     playGame() {
-        while(this.gameState.inning < 9) {
+        while((this.gameState.inning < 10) || (this.gameState.awayScore == this.gameState.homeScore)) {
             this.playInning();
         }
     }

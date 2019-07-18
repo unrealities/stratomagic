@@ -54,7 +54,7 @@ body {
 }
 
 .atBatCard .name {
-    min-width: 16%;
+    min-width: 18%;
 }
 
 .atBatCard .name, .battingBoxScoreCard .name, .lineupCard .name, .pitchingBoxScoreCard .name, .playerCard h1 {

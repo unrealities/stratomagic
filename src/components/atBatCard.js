@@ -7,7 +7,7 @@ export class AtBatCard extends React.Component {
 
     render() {
         return (
-            <div className="atBatCard" key={this.props.key}>
+            <div className="atBatCard">
                 <div className="num">{this.props.num}</div>
                 <div className="name">{this.props.atBat.batter.fullName}</div>
                 <div className="obc">[{this.props.atBat.batter.obc}]</div>

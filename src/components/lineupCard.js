@@ -9,7 +9,7 @@ export class LineupCard extends React.Component {
 
     render() {
         return (
-            <div className="lineupCard" key={this.props.key}>
+            <div className="lineupCard">
                 <div className="num">{this.props.num}</div>
                 <div className="pos">{this.props.pos}</div>
                 <div className="name">{this.props.name}</div>
