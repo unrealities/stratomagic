@@ -57,13 +57,12 @@ export class AtBat {
         this.playRoll = 0;
 
         this.start();
-        this.printAtBat();
     }
 
     determineControl(){
         let rollResult = this.rollDice();
         this.controlRoll = rollResult;
-        this.controllingPlayer = (rollResult + parseInt(this.pitcher.obc)) > parseInt(this.batter.obc) ? this.pitcher : this.batter;
+        this.controllingPlayer = (rollResult + parseInt(this.pitcher.control)) > parseInt(this.batter.obc) ? this.pitcher : this.batter;
 
     }
 
@@ -80,7 +79,7 @@ export class AtBat {
     }
 
     printAtBat(){
-        console.log(`${this.pitcher.fullName} [${this.pitcher.id}] v ${this.batter.fullName} [${this.batter.id}] | ${this.resultingPlay}`);
+        console.log(`${this.pitcher.fullName}(${this.pitcher.ip}) [${this.pitcher.control}] v ${this.batter.fullName} [${this.batter.obc}] | ${this.resultingPlay}`);
     }
 
     rollDice() {

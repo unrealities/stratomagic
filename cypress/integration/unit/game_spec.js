@@ -1,4 +1,4 @@
-import { Player } from '../../../src/app/game'
+import { Player } from '../../../src/app/player'
 import { Roster } from '../../../src/app/roster'
 
 context('Roster', () => {

@@ -1,4 +1,4 @@
-import { Player } from '../app/game';
+import { Player } from '../app/player';
 
 export const Players = [
   {

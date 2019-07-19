@@ -45,8 +45,8 @@ export class GameState {
             this.pitcher = this.awayLineup.pitcher;
         }
 
-        if (this.inning > inningsPitched) {
-            this.pitcher.obc = this.pitcher.obc - (this.inning - inningsPitched);
+        if (this.inning > (this.pitcher.ip - inningsPitched)) {
+            this.pitcher.control = this.pitcher.control - (this.inning - inningsPitched);
         }
     }
 

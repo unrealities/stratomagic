@@ -1,5 +1,5 @@
 import { LineupCombinations } from '../../../src/app/lineupCombinations'
-import { Player } from '../../../src/app/game'
+import { Player } from '../../../src/app/player'
 import { Roster } from '../../../src/app/roster'
 
 context('LineupCombinations', () => {
