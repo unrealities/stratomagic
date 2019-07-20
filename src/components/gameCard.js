@@ -1,6 +1,7 @@
 import { AtBatCardContainer } from '../components/atBatCard.js';
 import { BattingBoxScoreCardContainer, PitchingBoxScoreCardContainer } from '../components/boxScoreCard.js';
 import { LineupCardContainer } from '../components/lineupCard.js';
+import { ScoreCardContainer } from '../components/scoreCard.js';
 
 import React from 'react';
 
@@ -50,6 +51,11 @@ export class GameCard extends React.Component {
                         <div id="homeBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.props.game.boxScore.hBatters}/></div>
                         <div id="homePitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.boxScore.hPitchers}/></div>
                     </div>
+                </div>
+                <div className="score">
+                    <div className="scoreHeading">Score</div>
+                    <div id="scoreCard"><ScoreCardContainer game={this.props.game}/></div>
+
                 </div>
                 <div className="atBats">
                     <div className="atBatsHeading">At Bats</div>

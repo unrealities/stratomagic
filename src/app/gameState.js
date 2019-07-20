@@ -44,10 +44,6 @@ export class GameState {
             this.batter = this.homeLineup.battingOrder[this.homeCurrentBatterIndex];
             this.pitcher = this.awayLineup.pitcher;
         }
-
-        if (this.inning > (this.pitcher.ip - inningsPitched)) {
-            this.pitcher.control = this.pitcher.control - (this.inning - inningsPitched);
-        }
     }
 
     NextBatter() {

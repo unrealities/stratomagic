@@ -22,6 +22,7 @@ module.exports = {
           './src/components/gameCard.js',
           './src/components/lineupCard.js',
           './src/components/playerCard.js',
+          './src/components/scoreCard.js',
           './src/data/players.js',
           './src/lib/math.js'],
   module: {

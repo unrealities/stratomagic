@@ -11,7 +11,7 @@ body {
     width: 30%;
 }
 
-.atBatsHeading, .battingOrderHeading, .boxScoreHeading {
+.atBatsHeading, .battingOrderHeading, .boxScoreHeading, .scoreHeading {
     color: #FFF;
     font-family: 'Unica One', sans-serif;
     font-size: 36px;
@@ -86,7 +86,7 @@ body {
     min-width: 4%;
 }
 
-.atBatsHeading, .boxScoreHeading {
+.atBatsHeading, .boxScoreHeading, .scoreHeading {
     float: left;
 }
 
