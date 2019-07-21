@@ -8,8 +8,10 @@ export class ScoreCard extends React.Component {
     render() {
         return (
             <div className="scoreCard">
-                <div className="awayScore">{this.props.game.gameState.awayScore}</div>
-                <div className="homeScore">{this.props.game.gameState.homeScore}</div>
+                <div className="title">Away</div>
+                <div className="scoreValue">{this.props.game.gameState.awayScore}</div>
+                <div className="title">Home</div>
+                <div className="scoreValue">{this.props.game.gameState.homeScore}</div>
             </div>
         );
     }

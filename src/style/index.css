@@ -20,14 +20,14 @@ body {
     width: 100%
 }
 
-.atBatCard, .battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard {
+.atBatCard, .battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard, .scoreCard {
     border: 1px solid;
     min-height: 20px;
     padding: 0.5%;
     width: 100%;
 }
 
-.atBatCard, .battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard, .playerCard {
+.atBatCard, .battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard, .playerCard, .scoreCard {
     background-color: #fdfffc;
     border-color: #ff9f1c;
     color: #011627;
@@ -57,7 +57,7 @@ body {
     min-width: 18%;
 }
 
-.atBatCard .name, .battingBoxScoreCard .name, .lineupCard .name, .pitchingBoxScoreCard .name, .playerCard h1 {
+.atBatCard .name, .battingBoxScoreCard .name, .lineupCard .name, .pitchingBoxScoreCard .name, .scoreCard .scoreValue, .playerCard h1 {
     color: #e71d36;
     font-family: 'Bowlby One SC', sans-serif;
     font-size: 20px;
@@ -69,12 +69,12 @@ body {
     min-width: 50%;
 }
 
-.atBatCard div, .battingBoxScoreCard div, .pitchingBoxScoreCard div {
+.atBatCard div, .battingBoxScoreCard div, .pitchingBoxScoreCard div, .scoreCard div {
     float: left;
     padding: 0.5%;
 }
 
-.atBatCard div {
+.atBatCard div, .scoreCard div {
     min-width: 2%;
 }
 
@@ -142,7 +142,11 @@ body {
     font-style: italic;
 }
 
-.lineupCardContainer {
+.atBats, .score {
+    margin: 2%;
+}
+
+.atBatCardContainer, .lineupCardContainer, .scoreCardContainer {
     margin: auto;
     width: 100%;
 }
@@ -165,4 +169,8 @@ body {
     padding: 4%;
     text-align: center;
     width: 100%;
+}
+
+.scoreCard {
+    float:left;
 }

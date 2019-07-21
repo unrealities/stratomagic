@@ -54,8 +54,7 @@ export class GameCard extends React.Component {
                 </div>
                 <div className="score">
                     <div className="scoreHeading">Score</div>
-                    <div id="scoreCard"><ScoreCardContainer game={this.props.game}/></div>
-
+                    <ScoreCardContainer game={this.props.game}/>
                 </div>
                 <div className="atBats">
                     <div className="atBatsHeading">At Bats</div>
