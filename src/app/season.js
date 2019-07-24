@@ -11,8 +11,11 @@ export class Season {
     play() {
         this.games.forEach(game => {
             game.playGame();
-            // TODO
-            // reduce boxScores to stats by team
+            // TODO make logic below actually work
+            battingStats[game.hTeam] += game.boxScore.hBatters;
+            battingStats[game.aTeam] += game.boxScore.aBatters;
+            pitchingStats[game.hTeam] += game.boxScore.hPitchers;
+            pitchingStats[game.aTeam] += game.boxScore.aPitchers;
         });
     }
 }
