@@ -4,6 +4,7 @@
 import { Game } from '../app/game';
 import { Owner } from '../app/owner';
 import { RandomValidRoster } from '../app/roster';
+import { Season } from '../app/season';
 import { Team } from '../app/team';
 import { RandomLineup } from './lineup';
 
@@ -29,10 +30,8 @@ export function newSimulation(){
     // Need to setup a new game
     let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
 
-    return game;
-    // TODO We need both an activity feed to log the outcomes of each at bat and update the gameState
-    // Need to be able to switch pitchers after their innings limit is reached
+    // TODO generate a new season here and display season stats.
+    let season = new Season([game]);
 
-    // TODO track a 'season' of games and players stats for all these games
-    // TODO track 'advanced' stats such as those in FanGraphs to determine a player's wRAA
+    return game;
 }
