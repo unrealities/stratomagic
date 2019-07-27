@@ -32,6 +32,7 @@ export function newSimulation(){
 
     // TODO generate a new season here and display season stats.
     let season = new Season([game]);
+    season.play();
 
     return game;
 }

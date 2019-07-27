@@ -9,27 +9,27 @@ export class Season {
     }
 
     play() {
-        this.games.forEach(game => {
+        this.games.forEach(function(game) {
             game.playGame();
             // For every box score element from each game add it to the season stats
-            game.boxScore.hBatters.forEach(batter => {
-                Object.keys(batter).forEach(function(key, _) {
-                    battingStats[game.hTeam][key] += batter[key];
+            Object.entries(game.boxScore.hBatters).forEach(function(batter) {
+                Object.entries(batter).forEach(function(key) {
+                    this.battingStats[game.hTeam][key] += batter[key];
                 });
             });
-            game.boxScore.aBatters.forEach(batter => {
-                Object.keys(batter).forEach(function(key, _) {
-                    battingStats[game.aTeam][key] += batter[key];
+            Object.entries(game.boxScore.aBatters).forEach(function(batter) {
+                Object.entries(batter).forEach(function(key) {
+                    this.battingStats[game.aTeam][key] += batter[key];
                 });
             });
-            game.boxScore.hPitchers.forEach(pitcher => {
-                Object.keys(batter).forEach(function(key, _) {
-                    battingStats[game.hTeam][key] += pitcher[key];
+            Object.entries(game.boxScore.hPitchers).forEach(function(pitcher) {
+                Object.entries(pitcher).forEach(function(key) {
+                    this.pitchingStats[game.hTeam][key] += pitcher[key];
                 });
             });
-            game.boxScore.aPitchers.forEach(pitcher => {
-                Object.keys(batter).forEach(function(key, _) {
-                    battingStats[game.aTeam][key] += pitcher[key];
+            Object.entries(game.boxScore.aPitchers).forEach(function(pitcher) {
+                Object.entries(pitcher).forEach(function(key, _) {
+                    this.pitchingStats[game.aTeam][key] += pitcher[key];
                 });
             });
             console.log(JSON.stringify(this.battingStats));
