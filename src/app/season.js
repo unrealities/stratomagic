@@ -10,28 +10,28 @@ export class Season {
 
     play() {
         for (let game of this.games) {
-            game.playGame();
             // For every box score element from each game add it to the season stats
-            for (let batter in game.boxScore.hBatters) {
-                for (let [_, key] of Object.entries(batter)) {
-                    this.battingStats[game.hTeam][key] += batter[key];
-                };
+            if (!this.battingStats[game.hTeam]) {
+                this.battingStats[game.hTeam] = game.boxScore.hBatters;
+            }
+            for (let [_, bs] of Object.entries(game.boxScore.hBatters)) {
+                for (let [stat, val] in bs) {
+                    this.battingStats[game.hTeam][bs.player.id][stat] += val;
+                }
             };
-            Object.entries(game.boxScore.aBatters).forEach(function(batter) {
-                Object.entries(batter).forEach(function(key) {
-                    this.battingStats[game.aTeam][key] += batter[key];
-                });
-            });
-            Object.entries(game.boxScore.hPitchers).forEach(function(pitcher) {
-                Object.entries(pitcher).forEach(function(key) {
-                    this.pitchingStats[game.hTeam][key] += pitcher[key];
-                });
-            });
-            Object.entries(game.boxScore.aPitchers).forEach(function(pitcher) {
-                Object.entries(pitcher).forEach(function(key, _) {
-                    this.pitchingStats[game.aTeam][key] += pitcher[key];
-                });
-            });
+
+            if (!game.aTeam[this.battingStats]) {
+                game.aTeam[this.battingStats] = game.boxScore.aBatters;
+            }
+            if (!game.hTeam[this.pitchingStats]) {
+                game.hTeam[this.pitchingStats] = game.boxScore.hPitchers;
+            }
+            if (!game.aTeam[this.pitchingStats]) {
+                game.aTeam[this.pitchingStats] = game.boxScore.aPitchers;
+            }
+
+            game.playGame();
+
             console.log(JSON.stringify(this.battingStats));
             console.log(JSON.stringify(this.pitchingStats));
         };
