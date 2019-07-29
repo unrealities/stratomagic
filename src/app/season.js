@@ -9,14 +9,14 @@ export class Season {
     }
 
     play() {
-        this.games.forEach(function(game) {
+        for (let game of this.games) {
             game.playGame();
             // For every box score element from each game add it to the season stats
-            Object.entries(game.boxScore.hBatters).forEach(function(batter) {
-                Object.entries(batter).forEach(function(key) {
+            for (let batter in game.boxScore.hBatters) {
+                for (let [_, key] of Object.entries(batter)) {
                     this.battingStats[game.hTeam][key] += batter[key];
-                });
-            });
+                };
+            };
             Object.entries(game.boxScore.aBatters).forEach(function(batter) {
                 Object.entries(batter).forEach(function(key) {
                     this.battingStats[game.aTeam][key] += batter[key];
@@ -34,6 +34,6 @@ export class Season {
             });
             console.log(JSON.stringify(this.battingStats));
             console.log(JSON.stringify(this.pitchingStats));
-        });
+        };
     }
 }
