@@ -16,7 +16,9 @@ export class Season {
             }
             for (let [_, bs] of Object.entries(game.boxScore.hBatters)) {
                 for (let [stat, val] in bs) {
-                    this.battingStats[game.hTeam][bs.player.id][stat] += val;
+                    if (bs.hasOwnProperty(stat)) {
+                        this.battingStats[game.hTeam][bs.player.id][stat] += val;
+                    }
                 }
             };
 
