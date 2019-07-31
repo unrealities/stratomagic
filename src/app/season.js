@@ -22,20 +22,40 @@ export class Season {
                 }
             };
 
-            if (!game.aTeam[this.battingStats]) {
-                game.aTeam[this.battingStats] = game.boxScore.aBatters;
+            if (!this.battingStats[game.aTeam]) {
+                this.battingStats[game.aTeam] = game.boxScore.aBatters;
             }
-            if (!game.hTeam[this.pitchingStats]) {
-                game.hTeam[this.pitchingStats] = game.boxScore.hPitchers;
+            for (let [_, bs] of Object.entries(game.boxScore.aBatters)) {
+                for (let [stat, val] in bs) {
+                    if (bs.hasOwnProperty(stat)) {
+                        this.battingStats[game.aTeam][bs.player.id][stat] += val;
+                    }
+                }
+            };
+
+            if (!this.pitchingStats[game.hTeam]) {
+                this.pitchingStats[game.hTeam] = game.boxScore.hPitchers;
             }
-            if (!game.aTeam[this.pitchingStats]) {
-                game.aTeam[this.pitchingStats] = game.boxScore.aPitchers;
+            for (let [_, bs] of Object.entries(game.boxScore.hPitchers)) {
+                for (let [stat, val] in bs) {
+                    if (bs.hasOwnProperty(stat)) {
+                        this.pitchingStats[game.hTeam][bs.player.id][stat] += val;
+                    }
+                }
+            };
+
+            if (!this.pitchingStats[game.aTeam]) {
+                this.pitchingStats[game.aTeam] = game.boxScore.aPitchers;
             }
+            for (let [_, bs] of Object.entries(game.boxScore.aPitchers)) {
+                for (let [stat, val] in bs) {
+                    if (bs.hasOwnProperty(stat)) {
+                        this.pitchingStats[game.aTeam][bs.player.id][stat] += val;
+                    }
+                }
+            };
 
             game.playGame();
-
-            console.log(JSON.stringify(this.battingStats));
-            console.log(JSON.stringify(this.pitchingStats));
         };
     }
 }

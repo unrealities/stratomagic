@@ -5,7 +5,6 @@ import { newSimulation } from './simulation.js';
 import { GameCard } from '../components/gameCard.js';
 
 window.onload = function () {
-    let game = newSimulation();
-    game.playGame();
-    ReactDOM.render(<GameCard game={game}/>, document.getElementById("game"));
+    let season = newSimulation();
+    ReactDOM.render(<GameCard game={season.games[0]}/>, document.getElementById("game"));
 }

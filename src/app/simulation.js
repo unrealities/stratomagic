@@ -34,5 +34,5 @@ export function newSimulation(){
     let season = new Season([game]);
     season.play();
 
-    return game;
+    return season;
 }
