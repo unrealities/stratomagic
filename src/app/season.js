@@ -17,7 +17,7 @@ export class Season {
             for (let [_, bs] of Object.entries(game.boxScore.hBatters)) {
                 for (let [stat, val] in bs) {
                     if (bs.hasOwnProperty(stat)) {
-                        this.battingStats[game.hTeam][bs.player.id][stat] += val;
+                        this.battingStats[game.hTeam][bs.player][stat] += val;
                     }
                 }
             };
@@ -28,7 +28,7 @@ export class Season {
             for (let [_, bs] of Object.entries(game.boxScore.aBatters)) {
                 for (let [stat, val] in bs) {
                     if (bs.hasOwnProperty(stat)) {
-                        this.battingStats[game.aTeam][bs.player.id][stat] += val;
+                        this.battingStats[game.aTeam][bs.player][stat] += val;
                     }
                 }
             };
@@ -39,7 +39,7 @@ export class Season {
             for (let [_, bs] of Object.entries(game.boxScore.hPitchers)) {
                 for (let [stat, val] in bs) {
                     if (bs.hasOwnProperty(stat)) {
-                        this.pitchingStats[game.hTeam][bs.player.id][stat] += val;
+                        this.pitchingStats[game.hTeam][bs.player][stat] += val;
                     }
                 }
             };
@@ -50,7 +50,7 @@ export class Season {
             for (let [_, bs] of Object.entries(game.boxScore.aPitchers)) {
                 for (let [stat, val] in bs) {
                     if (bs.hasOwnProperty(stat)) {
-                        this.pitchingStats[game.aTeam][bs.player.id][stat] += val;
+                        this.pitchingStats[game.aTeam][bs.player][stat] += val;
                     }
                 }
             };

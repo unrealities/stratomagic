@@ -30,14 +30,103 @@ export class SeasonCard extends React.Component {
                 <div className="stats">
                     <div className="pitchingStats">
                         <div className="pitchingStatsHeading">Pitching Stats</div>
-                        {/* <div id="pitchingStatsContainer"><PitchingStatsCardContainer stats={this.props.season.pitchingStats}/></div> */}
+                        <div id="pitchingStatsContainer"><PitchingStatsCardContainer stats={this.props.season.pitchingStats}/></div>
                     </div>
                     <div className="battingStats">
                         <div className="battingStatsHeading">Batting Stats</div>
-                        {/* <div id="battingStatsContainer"><BattingStatsCardContainer stats={this.props.season.battingStats}/></div> */}
+                        <div id="battingStatsContainer"><BattingStatsCardContainer stats={this.props.season.battingStats}/></div>
                     </div>
                 </div>
             </div>
         )
+    }
+}
+
+// TODO: Each team should have it's own boxScore shown
+export class BattingStatsCardContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {cards:[]};
+    }
+
+    componentDidMount(){
+        let players = Object.values(this.props.stats);
+        players = players.filter( function(player) {
+            return player.pa > 0;
+        });
+
+        let header = {'player': {'fullName': 'Batter Name'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB'};
+        players.unshift(header);
+        this.setState({
+            ...this.state,
+            cards: players,
+        });
+    }
+
+    render() {
+        return(
+            <div className="battingBoxScoreCardContainer">
+                <div className="battingBoxScoreCardWrapper">
+                    {this.state.cards.map( (c,i) => { 
+                        return(
+                            <BattingBoxScoreCard key={i}
+                            name={ c.player.fullName }
+                            pa={ c.pa }
+                            ab={ c.ab }
+                            run={ c.run }
+                            hit={ c.hit }
+                            bb={ c.bb }
+                            rbi={ c.rbi }
+                            tb={ c.tb }
+                            so={ c.so }
+                            lob={ c.lob } />
+                        )
+                    })}
+                </div>
+            </div>
+        );
+    }
+}
+
+export class PitchingStatsCardContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {cards:[]};
+    }
+
+    componentDidMount(){
+        let players = Object.values(this.props.boxScore);
+        players = players.filter( function(player) {
+            return player.inn > 0;
+        });
+
+        let header = {'player': {'fullName': 'Pitcher Name'}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K'};
+        players.unshift(header);
+        this.setState({
+            ...this.state,
+            cards: players,
+        });
+    }
+
+    render() {
+        return(
+            <div className="pitchingBoxScoreCardContainer">
+                <div className="pitchingBoxScoreCardWrapper">
+                    {this.state.cards.map( (c,i) => { 
+                        return(
+                            <PitchingBoxScoreCard key={i}
+                            name={ c.player.fullName }
+                            inn={ c.inn }
+                            run={ c.run }
+                            hit={ c.hit }
+                            bb={ c.bb }
+                            hr={ c.hr }
+                            tb={ c.tb }
+                            so={ c.so } />
+                        )
+                    })}
+                </div>
+            </div>
+        );
     }
 }
