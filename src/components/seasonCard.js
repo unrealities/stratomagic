@@ -1,4 +1,4 @@
-import { BattingBoxScoreCardContainer, PitchingBoxScoreCardContainer } from '../components/boxScoreCard.js';
+import { BattingBoxScoreCard, PitchingBoxScoreCard } from '../components/boxScoreCard.js';
 
 import React from 'react';
 
@@ -50,10 +50,14 @@ export class BattingStatsCardContainer extends React.Component {
     }
 
     componentDidMount(){
-        let players = Object.values(this.props.stats);
-        players = players.filter( function(player) {
-            return player.pa > 0;
-        });
+        let players = [];
+        for (let p of Object.values(this.props.stats)) {
+            for (let bs of Object.values(p)) {
+                if (bs.pa > 0) {
+                    players.push(bs);
+                }
+            }
+        }
 
         let header = {'player': {'fullName': 'Batter Name'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB'};
         players.unshift(header);
@@ -95,10 +99,14 @@ export class PitchingStatsCardContainer extends React.Component {
     }
 
     componentDidMount(){
-        let players = Object.values(this.props.boxScore);
-        players = players.filter( function(player) {
-            return player.inn > 0;
-        });
+        let players = [];
+        for (let p of Object.values(this.props.stats)) {
+            for (let bs of Object.values(p)) {
+                if (bs.inn > 0) {
+                    players.push(bs);
+                }
+            }
+        }
 
         let header = {'player': {'fullName': 'Pitcher Name'}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K'};
         players.unshift(header);

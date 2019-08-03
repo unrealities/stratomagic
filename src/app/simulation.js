@@ -28,10 +28,14 @@ export function newSimulation(){
     let hLineup = RandomLineup(hRoster);
 
     // Need to setup a new game
-    let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
+    let games = []
+    for (let i=0; i<10; i++) {
+        let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
+        games.push(game);
+    }
 
     // TODO generate a new season here and display season stats.
-    let season = new Season([game]);
+    let season = new Season(games);
     season.play();
 
     return season;
