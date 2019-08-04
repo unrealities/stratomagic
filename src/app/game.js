@@ -27,7 +27,8 @@ import { GameState } from './gameState.js';
 // Predictions? After lineups have been set, show the win probabilities.
 //
 export class Game {
-    constructor(hTeam, aTeam, hLineup, aLineup, dh) {
+    constructor(id, hTeam, aTeam, hLineup, aLineup, dh) {
+        this.id = id;
         this.hTeam = hTeam;
         this.aTeam = aTeam;
         this.hLineup = hLineup;

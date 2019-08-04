@@ -16,10 +16,10 @@ export class Season {
             if (!this.battingStats[game.hTeam.name]) {
                 this.battingStats[game.hTeam.name] = game.boxScore.hBatters;
             }
-            for (let hbs of Object.values(game.boxScore.hBatters)) {
-                for (let [stat, val] in hbs) {
-                    if (hbs.hasOwnProperty(stat)) {
-                        this.battingStats[game.hTeam.name][hbs.player][stat] += val;
+            for (let [id, batter] of Object.entries(game.boxScore.hBatters)) {
+                for (let [stat, val] of Object.entries(batter)) {
+                    if (batter.hasOwnProperty(stat) && stat != "player") {
+                        this.battingStats[game.hTeam.name][id][stat] += val;
                     }
                 }
             };
@@ -27,10 +27,10 @@ export class Season {
             if (!this.battingStats[game.aTeam.name]) {
                 this.battingStats[game.aTeam.name] = game.boxScore.aBatters;
             }
-            for (let abs of Object.values(game.boxScore.aBatters)) {
-                for (let [stat, val] in abs) {
-                    if (abs.hasOwnProperty(stat)) {
-                        this.battingStats[game.aTeam.name][abs.player][stat] += val;
+            for (let [id, batter] of Object.entries(game.boxScore.aBatters)) {
+                for (let [stat, val] of Object.entries(batter)) {
+                    if (batter.hasOwnProperty(stat) && stat != "player") {
+                        this.battingStats[game.aTeam.name][id][stat] += val;
                     }
                 }
             };
@@ -38,10 +38,10 @@ export class Season {
             if (!this.pitchingStats[game.hTeam.name]) {
                 this.pitchingStats[game.hTeam.name] = game.boxScore.hPitchers;
             }
-            for (let hps of Object.values(game.boxScore.hPitchers)) {
-                for (let [stat, val] in hps) {
-                    if (hps.hasOwnProperty(stat)) {
-                        this.pitchingStats[game.hTeam.name][hps.player][stat] += val;
+            for (let [id, pitcher] of Object.entries(game.boxScore.hPitchers)) {
+                for (let [stat, val] of Object.entries(pitcher)) {
+                    if (pitcher.hasOwnProperty(stat) && stat != "player") {
+                        this.pitchingStats[game.hTeam.name][id][stat] += val;
                     }
                 }
             };
@@ -49,10 +49,10 @@ export class Season {
             if (!this.pitchingStats[game.aTeam.name]) {
                 this.pitchingStats[game.aTeam.name] = game.boxScore.aPitchers;
             }
-            for (let aps of Object.values(game.boxScore.aPitchers)) {
-                for (let [stat, val] in aps) {
-                    if (aps.hasOwnProperty(stat)) {
-                        this.pitchingStats[game.aTeam.name][aps.player][stat] += val;
+            for (let [id, pitcher] of Object.entries(game.boxScore.aPitchers)) {
+                for (let [stat, val] of Object.entries(pitcher)) {
+                    if (pitcher.hasOwnProperty(stat) && stat != "player") {
+                        this.pitchingStats[game.aTeam.name][id][stat] += val;
                     }
                 }
             };

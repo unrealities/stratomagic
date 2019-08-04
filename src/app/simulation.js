@@ -29,8 +29,8 @@ export function newSimulation(){
 
     // Need to setup a new game
     let games = []
-    for (let i=0; i<10; i++) {
-        let game = new Game(hTeam, aTeam, hLineup, aLineup, true);
+    for (let i=0; i<100; i++) {
+        let game = new Game(i, hTeam, aTeam, hLineup, aLineup, true);
         games.push(game);
     }
 
