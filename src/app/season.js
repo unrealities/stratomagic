@@ -21,7 +21,7 @@ export class Season {
                     if (batter.hasOwnProperty(stat) && stat != "player") {
                         this.battingStats[game.hTeam.name][id][stat] += val;
                     }
-                }
+                };
             };
 
             if (!this.battingStats[game.aTeam.name]) {
@@ -32,7 +32,7 @@ export class Season {
                     if (batter.hasOwnProperty(stat) && stat != "player") {
                         this.battingStats[game.aTeam.name][id][stat] += val;
                     }
-                }
+                };
             };
 
             if (!this.pitchingStats[game.hTeam.name]) {
@@ -43,7 +43,7 @@ export class Season {
                     if (pitcher.hasOwnProperty(stat) && stat != "player") {
                         this.pitchingStats[game.hTeam.name][id][stat] += val;
                     }
-                }
+                };
             };
 
             if (!this.pitchingStats[game.aTeam.name]) {
@@ -54,7 +54,16 @@ export class Season {
                     if (pitcher.hasOwnProperty(stat) && stat != "player") {
                         this.pitchingStats[game.aTeam.name][id][stat] += val;
                     }
-                }
+                };
+            };
+        };
+
+        // OWAR [https://library.fangraphs.com/war/war-position-players/]
+        // RAR = Batting Runs + Base Running Runs + Fielding Runs + Positional Adjustment + League Adjustment +Replacement Runs
+        // OPS = ( (H + BB + HBP) / (AB + BB + SF + HBP)) + (((1 × Singles) + (2 × Doubles) + (3 × Triples) + (4 × HR)) / AB)
+        for (let sbs of Object.values(this.battingStats)) {
+            for (let bs of Object.values(sbs)){
+                bs.ops = Math.round(1000*(( bs.hit + bs.bb ) / ( bs.pa )) + ((bs.single + 2*bs.double + 3*bs.triple + 4*bs.hr) / bs.ab));
             };
         };
     }

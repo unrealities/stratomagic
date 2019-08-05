@@ -59,7 +59,7 @@ export class BattingStatsCardContainer extends React.Component {
             }
         }
 
-        let header = {'player': {'fullName': 'Batter Name'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB'};
+        let header = {'player': {'fullName': 'Batter Name', 'id': 'ID', 'obc': 'OBC'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB', 'ops': 'OPS'};
         players.unshift(header);
         this.setState({
             ...this.state,
@@ -74,7 +74,7 @@ export class BattingStatsCardContainer extends React.Component {
                     {this.state.cards.map( (c,i) => { 
                         return(
                             <BattingBoxScoreCard key={i}
-                            name={ c.player.fullName }
+                            name={`${c.player.fullName}[${c.player.id}](${c.player.obc})`}
                             pa={ c.pa }
                             ab={ c.ab }
                             run={ c.run }
@@ -83,7 +83,8 @@ export class BattingStatsCardContainer extends React.Component {
                             rbi={ c.rbi }
                             tb={ c.tb }
                             so={ c.so }
-                            lob={ c.lob } />
+                            lob={ c.lob }
+                            ops={ c.ops } />
                         )
                     })}
                 </div>

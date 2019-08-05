@@ -17,7 +17,8 @@ export class BattingBoxScoreCard extends React.Component {
                 <div className="rbi">{this.props.rbi}</div>
                 <div className="tb">{this.props.tb}</div>
                 <div className="so">{this.props.so}</div>
-                <div className="lob">{this.props.lob}</div>
+                {/* <div className="lob">{this.props.lob}</div> */}
+                <div className="ops">{this.props.ops}</div>
             </div>
         );
     }

@@ -29,7 +29,7 @@ export function newSimulation(){
 
     // Need to setup a new game
     let games = []
-    for (let i=0; i<100; i++) {
+    for (let i=0; i<10000; i++) {
         let game = new Game(i, hTeam, aTeam, hLineup, aLineup, true);
         games.push(game);
     }
