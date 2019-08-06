@@ -1,3 +1,4 @@
+
 // Have the program play itself using minimal rules
 // Determine what objects exist and need to be pulled out into an "AI Opponent" system and
 // what pieces are just part of playing a game.
@@ -29,7 +30,7 @@ export function newSimulation(){
 
     // Need to setup a new game
     let games = []
-    for (let i=0; i<10000; i++) {
+    for (let i=0; i<1000; i++) {
         let game = new Game(i, hTeam, aTeam, hLineup, aLineup, true);
         games.push(game);
     }

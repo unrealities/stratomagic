@@ -59,7 +59,7 @@ export class BattingStatsCardContainer extends React.Component {
             }
         }
 
-        let header = {'player': {'fullName': 'Batter Name', 'id': 'ID', 'obc': 'OBC'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB', 'ops': 'OPS'};
+        let header = {'player': {'fullName': 'Batter Name', 'id': 'ID', 'obc': 'OBC', 'chart': 'Chart'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB', 'ops': 'OPS'};
         players.unshift(header);
         this.setState({
             ...this.state,
@@ -74,7 +74,7 @@ export class BattingStatsCardContainer extends React.Component {
                     {this.state.cards.map( (c,i) => { 
                         return(
                             <BattingBoxScoreCard key={i}
-                            name={`${c.player.fullName}[${c.player.id}](${c.player.obc})`}
+                            name={`${c.player.fullName}[${c.player.id}](${c.player.obc}) ${c.player.chart}`}
                             pa={ c.pa }
                             ab={ c.ab }
                             run={ c.run }
@@ -109,7 +109,7 @@ export class PitchingStatsCardContainer extends React.Component {
             }
         }
 
-        let header = {'player': {'fullName': 'Pitcher Name'}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K'};
+        let header = {'player': {'fullName': 'Batter Name', 'id': 'ID', 'obc': 'OBC', 'chart': 'Chart'}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K'};
         players.unshift(header);
         this.setState({
             ...this.state,
@@ -124,7 +124,7 @@ export class PitchingStatsCardContainer extends React.Component {
                     {this.state.cards.map( (c,i) => { 
                         return(
                             <PitchingBoxScoreCard key={i}
-                            name={ c.player.fullName }
+                            name={`${c.player.fullName}[${c.player.id}](${c.player.obc}) ${c.player.chart}`}
                             inn={ c.inn }
                             run={ c.run }
                             hit={ c.hit }
