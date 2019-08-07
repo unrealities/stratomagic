@@ -135,7 +135,10 @@ export class Game {
         pitchers[this.gameState.pitcher.id].inn++;
         if (pitchers[this.gameState.pitcher.id].inn >= this.gameState.pitcher.ip) {
             this.gameState.pitcher.control--;
+        } else {
+            this.gameState.pitcher.control = this.gameState.pitcher.obc;
         }
+        console.log(`${this.gameState.pitcher.fullName}: ${this.gameState.pitcher.control}`);
         this.gameState.NextHalfInning();
     }
 
