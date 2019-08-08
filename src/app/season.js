@@ -67,7 +67,11 @@ export class Season {
         // OPS = ( (H + BB + HBP) / (AB + BB + SF + HBP)) + (((1 × Singles) + (2 × Doubles) + (3 × Triples) + (4 × HR)) / AB)
         for (let sbs of Object.values(this.battingStats)) {
             for (let bs of Object.values(sbs)){
-                bs.ops = Math.round(1000*(( bs.hit + bs.bb ) / ( bs.pa )) + ((bs.single + 2*bs.double + 3*bs.triple + 4*bs.hr) / bs.ab));
+                let obp = (bs.hit + bs.bb) / bs.pa;
+                let slg = (bs.single + 2*bs.double + 3*bs.triple + 4*bs.hr) / bs.ab;
+                bs.obp = Math.round(1000*obp);
+                bs.slg = Math.round(1000*slg);
+                bs.ops = Math.round(1000*(obp + slg));
             };
         };
     }
