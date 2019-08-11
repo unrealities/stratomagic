@@ -59,6 +59,19 @@ export class BattingStatsCardContainer extends React.Component {
             }
         }
 
+        // sort by OPS descending
+        players.sort(function(a, b) {
+            var nameA = a.ops;
+            var nameB = b.ops;
+            if (nameA > nameB) {
+              return -1;
+            }
+            if (nameA < nameB) {
+              return 1;
+            }
+            return 0;
+          });
+
         let header = {'player': {'fullName': 'Batter Name', 'id': 'ID', 'obc': 'OBC', 'chart': 'Chart'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB', 'ops': 'OPS'};
         players.unshift(header);
         this.setState({
