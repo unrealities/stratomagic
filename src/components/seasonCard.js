@@ -87,7 +87,8 @@ export class BattingStatsCardContainer extends React.Component {
                     {this.state.cards.map( (c,i) => { 
                         return(
                             <BattingBoxScoreCard key={i}
-                            name={`${c.player.fullName}[${c.player.id}](${c.player.obc}) ${c.player.chart}`}
+                            chart={ c.player.chart}
+                            name={`${c.player.fullName}[${c.player.id}](${c.player.obc})`}
                             pa={ c.pa }
                             ab={ c.ab }
                             run={ c.run }

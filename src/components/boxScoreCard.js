@@ -1,4 +1,5 @@
 import React from 'react';
+import { HitterChartCard } from '../components/hitterChartCard.js';
 
 export class BattingBoxScoreCard extends React.Component {
     constructor(props) {
@@ -33,7 +34,10 @@ export class PitchingBoxScoreCard extends React.Component {
     render() {
         return (
             <div className="pitchingBoxScoreCard">
-                <div className="name">{this.props.name}</div>
+                <div className="name">
+                    {this.props.name}
+                    <HitterChartCard chart={this.props.chart}/>
+                </div>
                 <div className="inn">{this.props.inn}</div>
                 <div className="hit">{this.props.hit}</div>
                 <div className="run">{this.props.run}</div>

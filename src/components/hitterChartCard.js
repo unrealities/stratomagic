@@ -7,7 +7,7 @@ export class HitterChartCard extends React.Component {
     constructor(props) {
         super(props);
         let chartToTB = {"PU": 0, "SO": 0, "GB": 0, "FB": 0, "BB": 1, "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4};
-        for( let i=0; i<props.chart.length(); i++ ) {
+        for( let i=0; i<props.chart.length; i++ ) {
             props.chart[i] = chartToTB[props.chart[i]];
         }
         this.state = {chart: props.chart};
@@ -17,7 +17,12 @@ export class HitterChartCard extends React.Component {
     render() {
         return (
             <div className="hitterChartCard">
-                // TODO: Make 20 cells that are colored in based on chart value
+                {this.state.chart.map( (c,i) => { 
+                        return(
+                            <div key={i}
+                            className={`hitterChartItem${c} chartItem`} />
+                        )
+                    })}
             </div>
         );
     }
