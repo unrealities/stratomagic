@@ -6,23 +6,32 @@ export class HitterChartCard extends React.Component {
     // convert to XX-|||-----++**!!!!!
     constructor(props) {
         super(props);
+        this.state = {chart: []};  
+    }
+
+    componentDidMount(){
         let chartToTB = {"PU": 0, "SO": 0, "GB": 0, "FB": 0, "BB": 1, "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4};
-        for( let i=0; i<props.chart.length; i++ ) {
-            props.chart[i] = chartToTB[props.chart[i]];
+        let newChart = this.props.chart;
+        if (Array.isArray(newChart)) {
+            for( let i=0; i<newChart.length; i++ ) {
+                newChart[i] = chartToTB[this.props.chart[i]];
+            }
+        } else {
+            newChart = [];
         }
-        this.state = {chart: props.chart};
-        
+
+        this.setState({
+            ...this.state,
+            chart: newChart,
+        });
     }
 
     render() {
         return (
             <div className="hitterChartCard">
                 {this.state.chart.map( (c,i) => { 
-                        return(
-                            <div key={i}
-                            className={`hitterChartItem${c} chartItem`} />
-                        )
-                    })}
+                    return( <div key={i} className={`hitterChartItem${c} chartItem`} /> )
+                })}
             </div>
         );
     }

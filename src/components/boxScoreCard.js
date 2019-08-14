@@ -9,7 +9,10 @@ export class BattingBoxScoreCard extends React.Component {
     render() {
         return (
             <div className="battingBoxScoreCard">
-                <div className="name">{this.props.name}</div>
+                <div className="name">
+                    {this.props.name}
+                    <HitterChartCard chart={this.props.chart}/>
+                </div>
                 <div className="pa">{this.props.pa}</div>
                 <div className="ab">{this.props.ab}</div>
                 <div className="run">{this.props.run}</div>
@@ -34,10 +37,7 @@ export class PitchingBoxScoreCard extends React.Component {
     render() {
         return (
             <div className="pitchingBoxScoreCard">
-                <div className="name">
-                    {this.props.name}
-                    <HitterChartCard chart={this.props.chart}/>
-                </div>
+                <div className="name">{this.props.name}</div>
                 <div className="inn">{this.props.inn}</div>
                 <div className="hit">{this.props.hit}</div>
                 <div className="run">{this.props.run}</div>
@@ -62,7 +62,7 @@ export class BattingBoxScoreCardContainer extends React.Component {
             return player.pa > 0;
         });
 
-        let header = {'player': {'fullName': 'Batter Name'}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB'};
+        let header = {'player': {'fullName': 'Batter Name', 'chart': []}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'so': 'K', 'lob': 'LOB'};
         players.unshift(header);
         this.setState({
             ...this.state,
@@ -77,6 +77,7 @@ export class BattingBoxScoreCardContainer extends React.Component {
                     {this.state.cards.map( (c,i) => { 
                         return(
                             <BattingBoxScoreCard key={i}
+                            chart={ c.player.chart }
                             name={ c.player.fullName }
                             pa={ c.pa }
                             ab={ c.ab }
