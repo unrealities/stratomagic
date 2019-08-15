@@ -10,7 +10,7 @@ export class BattingBoxScoreCard extends React.Component {
         return (
             <div className="battingBoxScoreCard">
                 <div className="name">
-                    {this.props.name}
+                    <div className="playerName">{this.props.name}</div>
                     <HitterChartCard chart={this.props.chart}/>
                 </div>
                 <div className="pa">{this.props.pa}</div>

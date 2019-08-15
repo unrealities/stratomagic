@@ -172,5 +172,34 @@ body {
 }
 
 .scoreCard {
-    float:left;
+    float: left;
+}
+
+.battingBoxScoreCard .chartItem {
+    height: 10px;
+    min-width: 3%;
+}
+
+.battingBoxScoreCard .hitterChartCard, .battingBoxScoreCard .playerName {
+    min-width: 48%;
+}
+
+.hitterChartItem0 {
+    background-color: #fc5185;
+}
+
+.hitterChartItem1 {
+    background-color: #bdc3c7;
+}
+
+.hitterChartItem2 {
+    background-color: #fce38a;
+}
+
+.hitterChartItem3 {
+    background-color: #3fc1c9;
+}
+
+.hitterChartItem4 {
+    background-color: #364f6b;
 }
