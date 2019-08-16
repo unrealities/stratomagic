@@ -37,7 +37,10 @@ export class PitchingBoxScoreCard extends React.Component {
     render() {
         return (
             <div className="pitchingBoxScoreCard">
-                <div className="name">{this.props.name}</div>
+                <div className="name">
+                    <div className="playerName">{this.props.name}</div>
+                    <HitterChartCard chart={this.props.chart}/>
+                </div>
                 <div className="inn">{this.props.inn}</div>
                 <div className="hit">{this.props.hit}</div>
                 <div className="run">{this.props.run}</div>
@@ -108,7 +111,7 @@ export class PitchingBoxScoreCardContainer extends React.Component {
             return player.inn > 0;
         });
 
-        let header = {'player': {'fullName': 'Pitcher Name'}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K'};
+        let header = {'player': {'fullName': 'Pitcher Name', 'chart': []}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K'};
         players.unshift(header);
         this.setState({
             ...this.state,
@@ -123,6 +126,7 @@ export class PitchingBoxScoreCardContainer extends React.Component {
                     {this.state.cards.map( (c,i) => { 
                         return(
                             <PitchingBoxScoreCard key={i}
+                            chart={ c.player.chart }
                             name={ c.player.fullName }
                             inn={ c.inn }
                             run={ c.run }
