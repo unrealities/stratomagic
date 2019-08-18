@@ -139,7 +139,8 @@ export class PitchingStatsCardContainer extends React.Component {
                     {this.state.cards.map( (c,i) => { 
                         return(
                             <PitchingBoxScoreCard key={i}
-                            name={`${c.player.fullName}[${c.player.id}](${c.player.obc}) ${c.player.chart}`}
+                            chart={ c.player.chart }
+                            name={`${c.player.fullName}[${c.player.id}](${c.player.obc})`}
                             inn={ c.inn }
                             run={ c.run }
                             hit={ c.hit }

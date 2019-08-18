@@ -175,12 +175,12 @@ body {
     float: left;
 }
 
-.battingBoxScoreCard .chartItem {
+.battingBoxScoreCard .chartItem , .pitchingBoxScoreCard .chartItem {
     height: 10px;
     min-width: 3%;
 }
 
-.battingBoxScoreCard .hitterChartCard, .battingBoxScoreCard .playerName {
+.battingBoxScoreCard .hitterChartCard, .battingBoxScoreCard .playerName, .pitchingBoxScoreCard .hitterChartCard, .pitchingBoxScoreCard .playerName {
     min-width: 48%;
 }
 

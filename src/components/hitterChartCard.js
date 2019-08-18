@@ -12,6 +12,9 @@ export class HitterChartCard extends React.Component {
     componentDidMount(){
         let chartToTB = {"PU": 0, "SO": 0, "GB": 0, "FB": 0, "BB": 1, "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4};
         let newChart = [];
+        if (!Array.isArray(this.props.chart)) {
+            return;
+        }
         for( let i=0; i<20; i++ ) {
             newChart[i] = chartToTB[this.props.chart[i]];
         }
