@@ -146,5 +146,32 @@ export class Game {
         while((this.gameState.inning < 10) || (this.gameState.awayScore == this.gameState.homeScore)) {
             this.playInning();
         }
+        if (this.gameState.awayScore > this.gameState.homeScore) {
+            for(let bs of Object.values(this.boxScore.aBatters)){
+                bs.teamWin++;
+            }
+            for(let bs of Object.values(this.boxScore.aPitchers)){
+                bs.teamWin++;
+            }
+            for(let bs of Object.values(this.boxScore.hBatters)){
+                bs.teamLoss++;
+            }
+            for(let bs of Object.values(this.boxScore.hPitchers)){
+                bs.teamLoss++;
+            }
+        } else {
+            for(let bs of Object.values(this.boxScore.aBatters)){
+                bs.teamLoss++;
+            }
+            for(let bs of Object.values(this.boxScore.aPitchers)){
+                bs.teamLoss++;
+            }
+            for(let bs of Object.values(this.boxScore.hBatters)){
+                bs.teamWin++;
+            }
+            for(let bs of Object.values(this.boxScore.hPitchers)){
+                bs.teamWin++;
+            }
+        }
     }
 }

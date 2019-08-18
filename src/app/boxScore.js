@@ -74,6 +74,8 @@ class BoxScoreBatter {
         this.single = 0;
         this.so = 0;
         this.tb = 0;
+        this.teamLoss = 0;
+        this.teamWin = 0;
         this.triple = 0;
     }
 }
@@ -105,6 +107,8 @@ class BoxScorePitcher {
         this.so = 0;
         this.sv = 0;
         this.tb = 0;
+        this.teamLoss = 0;
+        this.teamWin = 0;
         this.triple = 0;
         this.win = 0;
     }
