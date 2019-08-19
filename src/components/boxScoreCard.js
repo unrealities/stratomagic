@@ -49,6 +49,8 @@ export class PitchingBoxScoreCard extends React.Component {
                 <div className="so">{this.props.so}</div>
                 <div className="hr">{this.props.hr}</div>
                 <div className="tb">{this.props.tb}</div>
+                <div className="so">{this.props.so}</div>
+                <div className="teamWin">{this.props.teamWin}</div>
             </div>
         );
     }
@@ -113,7 +115,7 @@ export class PitchingBoxScoreCardContainer extends React.Component {
             return player.inn > 0;
         });
 
-        let header = {'player': {'fullName': 'Pitcher Name', 'chart': []}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K'};
+        let header = {'player': {'fullName': 'Pitcher Name', 'chart': []}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K', 'teamWin': 'W'};
         players.unshift(header);
         this.setState({
             ...this.state,

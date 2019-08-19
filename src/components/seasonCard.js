@@ -125,7 +125,7 @@ export class PitchingStatsCardContainer extends React.Component {
             }
         }
 
-        let header = {'player': {'fullName': 'Batter Name', 'id': 'ID', 'obc': 'OBC', 'chart': 'Chart'}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K'};
+        let header = {'player': {'fullName': 'Batter Name', 'id': 'ID', 'obc': 'OBC', 'chart': 'Chart'}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K', 'teamWin': 'W'};
         players.unshift(header);
         this.setState({
             ...this.state,
@@ -148,7 +148,8 @@ export class PitchingStatsCardContainer extends React.Component {
                             bb={ c.bb }
                             hr={ c.hr }
                             tb={ c.tb }
-                            so={ c.so } />
+                            so={ c.so }
+                            teamWin={ c.teamWin } />
                         )
                     })}
                 </div>
