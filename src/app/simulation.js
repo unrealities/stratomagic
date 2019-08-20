@@ -10,34 +10,32 @@ import { Team } from '../app/team';
 import { RandomLineup } from './lineup';
 
 export function newSimulation(){
-    // Need two owners
-    let awayOwner = new Owner('Away', 'AI');
-    let homeOwner = new Owner('Home', 'AI');
+    // TODO
+    // Generate as many teams as we want and have them all play each other
+    let teams = [];
+    for (let i=0; i<2; i++) {
+        teams[i] = newTeam(i);
+    }
 
-    // Need each owner to have a roster (owners can have multiple rosters)
-    // Need to be able to generate rosters. Initially we can start with just any valid roster.
-    // But we should try to incorporate different strategies, like pitcher or hitter heavy.
-    let aRoster = RandomValidRoster();
-    let hRoster = RandomValidRoster();
-
-    // Need each owner to have an associated team
-    let aTeam = new Team('Away Team Simulation', awayOwner, aRoster);
-    let hTeam = new Team('Home Team Simulation', homeOwner, hRoster);
-
-    // Need to create a valid lineup for each team+roster
-    let aLineup = RandomLineup(aRoster);
-    let hLineup = RandomLineup(hRoster);
-
-    // Need to setup a new game
+    // Setup a new game
     let games = []
     for (let i=0; i<1000; i++) {
-        let game = new Game(i, hTeam, aTeam, hLineup, aLineup, true);
+        let game = new Game(i, teams[0][0], teams[1][0], teams[0][1], teams[1][1], true);
         games.push(game);
     }
 
-    // TODO generate a new season here and display season stats.
+    // Generate a new season here and display season stats.
     let season = new Season(games);
     season.play();
 
     return season;
+}
+
+export function newTeam(id) {
+    let owner = new Owner(id, 'AI');
+    let roster = RandomValidRoster();
+    let team = new Team(`Team ${id}`, owner, roster);
+    let lineup = RandomLineup(roster);
+
+    return team, lineup;
 }
