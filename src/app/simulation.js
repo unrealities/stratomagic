@@ -10,21 +10,17 @@ import { Team } from '../app/team';
 import { RandomLineup } from './lineup';
 
 export function newSimulation(){
-    // TODO
-    // Generate as many teams as we want and have them all play each other
     let teams = [];
     for (let i=0; i<2; i++) {
         teams[i] = newTeam(i);
     }
 
-    // Setup a new game
     let games = []
     for (let i=0; i<1000; i++) {
         let game = new Game(i, teams[0][0], teams[1][0], teams[0][1], teams[1][1], true);
         games.push(game);
     }
 
-    // Generate a new season here and display season stats.
     let season = new Season(games);
     season.play();
 
@@ -37,5 +33,5 @@ export function newTeam(id) {
     let team = new Team(`Team ${id}`, owner, roster);
     let lineup = RandomLineup(roster);
 
-    return team, lineup;
+    return [team, lineup];
 }
