@@ -8,17 +8,32 @@ import { RandomValidRoster } from '../app/roster';
 import { Season } from '../app/season';
 import { Team } from '../app/team';
 import { RandomLineup } from './lineup';
+import { RandomNonNegativeInteger, RandomPositiveInteger } from "../lib/math";
 
 export function newSimulation(){
     let teams = [];
-    for (let i=0; i<2; i++) {
+    let numTeams = 5;
+    let randomMatchups = 5;
+    let gamesInASeries = 100;
+
+    for (let i=0; i<numTeams; i++) {
         teams[i] = newTeam(i);
     }
 
     let games = []
-    for (let i=0; i<1000; i++) {
-        let game = new Game(i, teams[0][0], teams[1][0], teams[0][1], teams[1][1], true);
-        games.push(game);
+    for (let m=0; m<randomMatchups; m++) {
+        let awayTeam = RandomNonNegativeInteger(numTeams-1);
+        let homeTeam = RandomNonNegativeInteger(numTeams-1);
+        if (awayTeam == homeTeam) {
+            homeTeam = awayTeam-1;
+            if (homeTeam == -1) {
+                homeTeam = RandomPositiveInteger(numTeam-1);
+            }
+        }
+        for (let i=0; i<gamesInASeries; i++) {
+            let game = new Game(i, teams[homeTeam][0], teams[awayTeam][0], teams[homeTeam][1], teams[awayTeam][1], true);
+            games.push(game);
+        }
     }
 
     let season = new Season(games);
