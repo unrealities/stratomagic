@@ -12,9 +12,9 @@ import { RandomNonNegativeInteger, RandomPositiveInteger } from "../lib/math";
 
 export function newSimulation(){
     let teams = [];
-    let numTeams = 5;
-    let randomMatchups = 5;
-    let gamesInASeries = 100;
+    let numTeams = 2;
+    let randomMatchups = 1;
+    let gamesInASeries = 10;
 
     for (let i=0; i<numTeams; i++) {
         teams[i] = newTeam(i);
@@ -27,7 +27,7 @@ export function newSimulation(){
         if (awayTeam == homeTeam) {
             homeTeam = awayTeam-1;
             if (homeTeam == -1) {
-                homeTeam = RandomPositiveInteger(numTeam-1);
+                homeTeam = RandomPositiveInteger(numTeams-1);
             }
         }
         for (let i=0; i<gamesInASeries; i++) {
