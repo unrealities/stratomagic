@@ -10,12 +10,28 @@ export class FieldCard extends React.Component {
 
     render() {
         return (
-            <div className="FieldCard">
-                // TODO:
-                // OffenseCard
-                // DefenseCard
+            <div className="fieldCard">
+                <OffenseCard offense={this.props.offense}/>
+                // TODO DefenseCard
             </div>
         );
     }
 }
 
+export class OffenseCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="offenseCard">
+                <div className="batter"></div>
+                <div className="onDecker"></div>
+                <div className="firstBaseRunner"></div>
+                <div className="secondBaseRunner"></div>
+                <div className="thirdBaseRunner"></div>
+            </div>
+        )
+    }
+}
