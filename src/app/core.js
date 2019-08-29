@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { newSimulation } from './simulation.js';
-import { SeasonCard } from '../components/seasonCard.js';
+import { newTeam } from './simulation.js';
+import { FieldCard } from '../components/fieldCard.js';
+import { Game } from './game.js';
 
 window.onload = function () {
     // TODO: Run one game
-    let season = newSimulation();
-    ReactDOM.render(<SeasonCard season={season}/>, document.getElementById("season"));
+    let t1 = newTeam(1);
+    let t2 = newTeam(2);
+    let game = new Game('sim', t1[0], t2[0], t1[1], t2[1]);
+
+    ReactDOM.render(<FieldCard offense={game.aLineup} defense={game.hLineup}/>, document.getElementById("field"));
 }
