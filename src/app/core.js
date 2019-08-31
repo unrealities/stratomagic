@@ -6,10 +6,9 @@ import { FieldCard } from '../components/fieldCard.js';
 import { Game } from './game.js';
 
 window.onload = function () {
-    // TODO: Run one game
     let t1 = newTeam(1);
     let t2 = newTeam(2);
     let game = new Game('sim', t1[0], t2[0], t1[1], t2[1]);
 
-    ReactDOM.render(<FieldCard offense={game.aLineup} defense={game.hLineup.lineup}/>, document.getElementById("field"));
+    ReactDOM.render(<FieldCard offense={game.aLineup} defense={game.hLineup}/>, document.getElementById("field"));
 }
