@@ -33,7 +33,7 @@ export class OffenseCard extends React.Component {
     render() {
         return (
             <div className="offenseCard">
-                <div className="batter">{this.props.offense.batter}</div>
+                <div className="batter">{this.props.offense.batter.fullName}</div>
                 <div className="onDecker">{this.props.offense.onDeck}</div>
                 <div className="theHole">{this.props.offense.onDeck}</div>
                 <div className="firstBaseRunner">{this.props.offense.runner1}</div>
