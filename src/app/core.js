@@ -10,5 +10,8 @@ window.onload = function () {
     let t2 = newTeam(2);
     let game = new Game('sim', t1[0], t2[0], t1[1], t2[1]);
 
-    ReactDOM.render(<FieldCard offense={{'batter': game.gameState.batter}} defense={game.hLineup}/>, document.getElementById("field"));
+    ReactDOM.render(<FieldCard offense={{'batter': game.gameState.batter,
+                                         'onDeck': game.awaLineup[(game.gameState.awayCurrentBatterIndex+1)%9],
+                                         'theHole': game.awayLineup[(game.gameState.awayCurrentBatterIndex+2)%9]}} 
+                    defense={game.hLineup}/>, document.getElementById("field"));
 }

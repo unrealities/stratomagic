@@ -34,11 +34,11 @@ export class OffenseCard extends React.Component {
         return (
             <div className="offenseCard">
                 <div className="batter">{this.props.offense.batter.fullName}</div>
-                <div className="onDecker">{this.props.offense.onDeck}</div>
-                <div className="theHole">{this.props.offense.onDeck}</div>
-                <div className="firstBaseRunner">{this.props.offense.runner1}</div>
-                <div className="secondBaseRunner">{this.props.offense.runner2}</div>
-                <div className="thirdBaseRunner">{this.props.offense.runner3}</div>
+                <div className="onDecker">{this.props.offense.onDeck.fullName}</div>
+                <div className="theHole">{this.props.offense.theHole.fullName}</div>
+                <div className="firstBaseRunner">{this.props.offense.runner1.fullName}</div>
+                <div className="secondBaseRunner">{this.props.offense.runner2.fullName}</div>
+                <div className="thirdBaseRunner">{this.props.offense.runner3.fullName}</div>
             </div>
         )
     }
