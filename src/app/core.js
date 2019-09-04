@@ -14,8 +14,10 @@ window.onload = function () {
     let onDeckBatter = game.gameState.awayLineup.battingOrder[onDeckIndex];
     let theHoleIndex = (game.gameState.awayCurrentBatterIndex+2)%9;
     let theHoleBatter = game.gameState.awayLineup.battingOrder[theHoleIndex];
+
     ReactDOM.render(<FieldCard offense={{'batter': game.gameState.batter,
-                                         'onDeck': onDeckBatter.fullName,
-                                         'theHole': theHoleBatter.fullName}} 
+                                         'onDeck': onDeckBatter,
+                                         'theHole': theHoleBatter,
+                                         'baseRunners': game.gameState.baseRunners}} 
                     defense={game.hLineup}/>, document.getElementById("field"));
 }
