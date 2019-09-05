@@ -33,12 +33,12 @@ export class OffenseCard extends React.Component {
     render() {
         return (
             <div className="offenseCard">
-                <div className="batter">{this.props.offense.batter.fullName}</div>
-                <div className="onDeck">{this.props.offense.onDeck.fullName}</div>
-                <div className="theHole">{this.props.offense.theHole.fullName}</div>
-                <div className="firstBaseRunner">{this.props.offense.baseRunners[0] == null ? "" : this.props.offense.baseRunners[0].fullName}</div>
-                <div className="secondBaseRunner">{this.props.offense.baseRunners[1] == null ? "" : this.props.offense.baseRunners[1].fullName}</div>
-                <div className="thirdBaseRunner">{this.props.offense.baseRunners[2] == null ? "" : this.props.offense.baseRunners[2].fullName}</div>
+                <div className="batter"><PlayerCard player={this.props.offense.batter}/></div>
+                <div className="onDeck"><PlayerCard player={this.props.offense.onDeck}/></div>
+                <div className="theHole"><PlayerCard player={this.props.offense.theHole}/></div>
+                <div className="firstBaseRunner"><PlayerCard player={this.props.offense.baseRunners[0]}/></div>
+                <div className="secondBaseRunner"><PlayerCard player={this.props.offense.baseRunners[1]}/></div>
+                <div className="thirdBaseRunner"><PlayerCard player={this.props.offense.baseRunners[2]}/></div>
             </div>
         )
     }
@@ -52,15 +52,29 @@ export class DefenseCard extends React.Component {
     render() {
         return (
             <div className="defenseCard">
-                <div className="pitcher">{this.props.defense.pitcher.fullName}</div>
-                <div className="catcher">{this.props.defense.catcher.fullName}</div>
-                <div className="firstBase">{this.props.defense.firstBase.fullName}</div>
-                <div className="secondBase">{this.props.defense.secondBase.fullName}</div>
-                <div className="thirdBase">{this.props.defense.thirdBase.fullName}</div>
-                <div className="shortstop">{this.props.defense.shortstop.fullName}</div>
-                <div className="leftField">{this.props.defense.leftField.fullName}</div>
-                <div className="centerField">{this.props.defense.centerField.fullName}</div>
-                <div className="rightField">{this.props.defense.rightField.fullName}</div>
+                <div className="pitcher"><PlayerCard player={this.props.defense.pitcher}/></div>
+                <div className="catcher"><PlayerCard player={this.props.defense.catcher}/></div>
+                <div className="firstBase"><PlayerCard player={this.props.defense.firstBase}/></div>
+                <div className="secondBase"><PlayerCard player={this.props.defense.secondBase}/></div>
+                <div className="thirdBase"><PlayerCard player={this.props.defense.thirdBase}/></div>
+                <div className="shortstop"><PlayerCard player={this.props.defense.shortstop}/></div>
+                <div className="leftField"><PlayerCard player={this.props.defense.leftField}/></div>
+                <div className="centerField"><PlayerCard player={this.props.defense.centerField}/></div>
+                <div className="rightField"><PlayerCard player={this.props.defense.rightField}/></div>
+            </div>
+        )
+    }
+}
+
+export class PlayerCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="playerCard">
+                <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>    
             </div>
         )
     }
