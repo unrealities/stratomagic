@@ -73,7 +73,7 @@ export class PlayerCard extends React.Component {
 
     render() {
         return (
-            <div className="playerCard">
+            <div className="fieldPlayerCard">
                 <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>    
             </div>
         )
