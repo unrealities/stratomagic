@@ -1,6 +1,7 @@
 // Need to be able to display live game
 // Put defensive players on the field and offensive players on the bases
 import React from 'react';
+import {BattingBoxScoreCardContainer} from '../components/boxScoreCard.js';
 
 export class FieldCard extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ export class FieldCard extends React.Component {
             ...this.state,
             offense: this.props.offense,
             defense: this.props.defense,
+            boxScore: this.props.boxScore
         });
     }
 
@@ -20,6 +22,7 @@ export class FieldCard extends React.Component {
             <div className="fieldCard">
                 <OffenseCard offense={this.props.offense}/>
                 <DefenseCard defense={this.props.defense}/>
+                <BattingBoxScoreCardContainer boxScore={this.props.boxScore}/>
             </div>
         );
     }
@@ -74,7 +77,8 @@ export class PlayerCard extends React.Component {
     render() {
         return (
             <div className="fieldPlayerCard">
-                <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>    
+                <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
+                <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>   
             </div>
         )
     }

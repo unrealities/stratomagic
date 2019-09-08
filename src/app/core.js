@@ -19,5 +19,6 @@ window.onload = function () {
                                          'onDeck': onDeckBatter,
                                          'theHole': theHoleBatter,
                                          'baseRunners': game.gameState.baseRunners}} 
-                    defense={game.hLineup}/>, document.getElementById("field"));
+                    defense={game.hLineup}
+                    boxScore={game.boxScore}/>, document.getElementById("field"));
 }
