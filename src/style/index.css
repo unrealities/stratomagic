@@ -216,3 +216,9 @@ body {
     padding: 2%;
     width: 10%;
 }
+
+.defenseCard, .offenseCard {
+    display: inline;
+    float: left;
+    width: 50%;
+}
