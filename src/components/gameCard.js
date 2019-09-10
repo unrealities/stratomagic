@@ -67,23 +67,14 @@ export class GameCard extends React.Component {
 
 // TODO: Need to make a button that allows an inning to be played and game object is updated
 // Here is some code from https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html
-/*
-// 3) As an ES6 class descending from React.Component
-class Button extends React.Component {
+
+export class PlayInningButton extends React.Component {
   render() {
-    const { children, color } = this.props;
     return {
       type: 'button',
       props: {
-        className: 'button button-' + color,
-        children: {
-          type: 'b',
-          props: {
-            children: children
-          }
-        }
+        game: this.props.game.playInning
       }
     };
   }
 }
-*/

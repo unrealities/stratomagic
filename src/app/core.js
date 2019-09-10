@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { newTeam } from './simulation.js';
 import { FieldCard } from '../components/fieldCard.js';
+import { PlayInningButton } from '../components/gameCard.js';
 import { Game } from './game.js';
 
 window.onload = function () {
@@ -21,4 +22,5 @@ window.onload = function () {
                                          'baseRunners': game.gameState.baseRunners}} 
                     defense={game.hLineup}
                     boxScore={game.boxScore}/>, document.getElementById("field"));
+    ReactDOM.render(<PlayInningButton game={game}/>, document.getElementById("button"));
 }
