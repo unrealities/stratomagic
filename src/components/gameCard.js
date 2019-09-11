@@ -70,11 +70,9 @@ export class GameCard extends React.Component {
 
 export class PlayInningButton extends React.Component {
   render() {
+    this.props.game.playInning();
     return {
-      type: 'button',
-      props: {
-        game: this.props.game.playInning
-      }
+      type: 'button'
     };
   }
 }
