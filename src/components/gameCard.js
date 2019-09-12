@@ -70,6 +70,7 @@ export class GameCard extends React.Component {
 
 export class PlayInningButton extends React.Component {
   render() {
+    // TODO: This gets called successfully. But needs to be done manually.
     this.props.game.playInning();
     return {
       type: 'button'
