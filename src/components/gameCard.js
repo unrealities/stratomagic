@@ -69,11 +69,7 @@ export class GameCard extends React.Component {
 // Here is some code from https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html
 
 export class PlayInningButton extends React.Component {
-  render() {
-    // TODO: This gets called successfully. But needs to be done manually.
-    this.props.game.playInning();
-    return {
-      type: 'button'
-    };
-  }
+    render() {
+        return <button onClick={this.props.game.playInning()}>Play Inning</button>; 
+    }
 }
