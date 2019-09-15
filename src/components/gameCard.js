@@ -25,7 +25,7 @@ export class GameCard extends React.Component {
                 game: this.props.game,
             });
         }
-      }
+    }
 
     render() {
         return (
@@ -62,18 +62,5 @@ export class GameCard extends React.Component {
                 </div>
             </div>
         )
-    }
-}
-
-export class PlayInningButton extends React.Component {
-    componentDidMount(){
-        this.setState({
-            ...this.state,
-            game: this.props.game,
-        });
-    }
-
-    render() {
-        return <button onClick={this.props.game.playInning()}>Play Inning</button>; 
     }
 }
