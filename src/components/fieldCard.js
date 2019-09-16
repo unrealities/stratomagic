@@ -6,6 +6,7 @@ import {BattingBoxScoreCardContainer} from '../components/boxScoreCard.js';
 export class FieldCard extends React.Component {
     constructor(props) {
         super(props);
+        this.buttonClick = this.buttonClick.bind(this);
     }
 
     componentDidMount(){
@@ -29,7 +30,7 @@ export class FieldCard extends React.Component {
                 <OffenseCard offense={this.props.offense}/>
                 <DefenseCard defense={this.props.defense}/>
                 <BattingBoxScoreCardContainer boxScore={this.props.boxScore}/>
-                <button onClick={this.buttonClick()}>Play Inning</button>
+                <button onClick={this.buttonClick}>Play Inning</button>
             </div>
         );
     }
