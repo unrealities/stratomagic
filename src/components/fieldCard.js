@@ -22,6 +22,10 @@ export class FieldCard extends React.Component {
     buttonClick(){
         console.log('play inning button clicked');
         this.props.game.playInning();
+        this.setState({
+            ...this.state,
+            game: this.props.game,
+        });
     }
 
     render() {
