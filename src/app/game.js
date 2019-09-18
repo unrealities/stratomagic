@@ -52,6 +52,9 @@ export class Game {
             pitchers = this.boxScore.aPitchers;
         }
 
+        // TODO: Need to pull this out into a method that can be externally called
+        // Call `atBat` if gameState.outs == 3 => increase inning
+        // Then check to see if it's the end of the game.
         while (this.gameState.outs < 3) {
             let batter = batters[this.gameState.batter.id];
             let pitcher = pitchers[this.gameState.pitcher.id];
