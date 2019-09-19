@@ -40,6 +40,86 @@ export class Game {
         this.atBats = [];
     }
 
+    playAtBat() {
+        let batter = batters[this.gameState.batter.id];
+        let pitcher = pitchers[this.gameState.pitcher.id];
+
+        let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
+        this.atBats.push(atBat);
+
+        // TODO pull these into functions on BoxScore
+        // Could each outcome have a set of other events that need to be updated?
+        for (let player of [batter, pitcher]) {
+            for (let event of ['pa', atBat.resultingPlay]) {
+                player[event]++;
+            }
+        }
+
+
+        let bases = atBat.resultingPlayTotalBases;
+        for (let player of [batter, pitcher]) {
+            atBat.resultingPlay == 'BB' ? player.bb++ : player.ab++;
+            player.tb = player.tb + bases;
+
+            if (["1B", "1B+", "2B", "3B", "HR"].includes(atBat.resultingPlay)) {
+                player.hit++;
+            }
+
+            let events = {"PU": "pu", "SO": "so", "GB": "gb", "FB": "fb", "1B": "single", "1B+": "single", "2B": "double", "3B": "triple", "HR": "hr"};
+            player[events[atBat.resultingPlay]]++;
+        }
+
+        if (atBat.resultingPlay == 'HR') {
+            batter.run++;
+            pitcher.run++;
+            batter.rbi++;
+            this.gameState.IncrementScore();
+        }
+
+        if (bases == 0) {
+            this.gameState.AtBatOut();
+            if (this.gameState.outs == 3) {
+                for (let runner of this.gameState.baseRunners) {
+                    if (runner) {
+                        batter.lob++;
+                    }
+                }
+            }
+            continue;
+        }
+
+        // a non-out has occurred and baserunners will need to be modified and scoring may need updating
+        // TODO handle trying for extra bases
+
+        // handle existing baserunners, advance them one base each for each totalBase
+        // the first three entries are 1st,2nd,3rd. The fourth entry on are runners who scored on the play
+        // ex. p4 hits a grandslam: [p1, p2, p3, null, null, null, null] => [null, null, null, p4, p1, p2, p3]
+        let afterAtBatBaseRunners = ["", "", "", "", "", "", ""];
+        for (let i=this.gameState.baseRunners.length-1; i>=0; i--) {
+            afterAtBatBaseRunners[i+bases] = this.gameState.baseRunners[i];
+        }
+        // Put the batter on their appropriate base
+        afterAtBatBaseRunners[bases-1] = this.gameState.batter;
+
+        // Check for baserunners that have scored.
+        for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
+            let baseRunner = afterAtBatBaseRunners[i];
+            if (baseRunner) {
+                batters[baseRunner.id].run++;
+                batter.rbi++;
+                pitcher.run++;
+                this.gameState.IncrementScore();
+            }
+        }
+
+        // Reset runners to account for those that have scored
+        for (let i=0; i<this.gameState.baseRunners.length; i++) {
+            this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
+        }
+
+        this.gameState.NextBatter();        
+    }
+
     playInning() {
         if ((this.gameState.inning >= 9) && (!this.gameState.topHalf) && (this.gameState.homeScore > this.gameState.awayScore)) {
             this.gameState.inning++;
@@ -56,83 +136,7 @@ export class Game {
         // Call `atBat` if gameState.outs == 3 => increase inning
         // Then check to see if it's the end of the game.
         while (this.gameState.outs < 3) {
-            let batter = batters[this.gameState.batter.id];
-            let pitcher = pitchers[this.gameState.pitcher.id];
-
-            let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
-            this.atBats.push(atBat);
-
-            // TODO pull these into functions on BoxScore
-            // Could each outcome have a set of other events that need to be updated?
-            for (let player of [batter, pitcher]) {
-                for (let event of ['pa', atBat.resultingPlay]) {
-                    player[event]++;
-                }
-            }
-
-
-            let bases = atBat.resultingPlayTotalBases;
-            for (let player of [batter, pitcher]) {
-                atBat.resultingPlay == 'BB' ? player.bb++ : player.ab++;
-                player.tb = player.tb + bases;
-
-                if (["1B", "1B+", "2B", "3B", "HR"].includes(atBat.resultingPlay)) {
-                    player.hit++;
-                }
-
-                let events = {"PU": "pu", "SO": "so", "GB": "gb", "FB": "fb", "1B": "single", "1B+": "single", "2B": "double", "3B": "triple", "HR": "hr"};
-                player[events[atBat.resultingPlay]]++;
-            }
-
-            if (atBat.resultingPlay == 'HR') {
-                batter.run++;
-                pitcher.run++;
-                batter.rbi++;
-                this.gameState.IncrementScore();
-            }
-
-            if (bases == 0) {
-                this.gameState.AtBatOut();
-                if (this.gameState.outs == 3) {
-                    for (let runner of this.gameState.baseRunners) {
-                        if (runner) {
-                            batter.lob++;
-                        }
-                    }
-                }
-                continue;
-            }
-
-            // a non-out has occurred and baserunners will need to be modified and scoring may need updating
-            // TODO handle trying for extra bases
-
-            // handle existing baserunners, advance them one base each for each totalBase
-            // the first three entries are 1st,2nd,3rd. The fourth entry on are runners who scored on the play
-            // ex. p4 hits a grandslam: [p1, p2, p3, null, null, null, null] => [null, null, null, p4, p1, p2, p3]
-            let afterAtBatBaseRunners = ["", "", "", "", "", "", ""];
-            for (let i=this.gameState.baseRunners.length-1; i>=0; i--) {
-                afterAtBatBaseRunners[i+bases] = this.gameState.baseRunners[i];
-            }
-            // Put the batter on their appropriate base
-            afterAtBatBaseRunners[bases-1] = this.gameState.batter;
-
-            // Check for baserunners that have scored.
-            for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
-                let baseRunner = afterAtBatBaseRunners[i];
-                if (baseRunner) {
-                    batters[baseRunner.id].run++;
-                    batter.rbi++;
-                    pitcher.run++;
-                    this.gameState.IncrementScore();
-                }
-            }
-
-            // Reset runners to account for those that have scored
-            for (let i=0; i<this.gameState.baseRunners.length; i++) {
-                this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
-            }
-
-            this.gameState.NextBatter();
+            this.playAtBat();
         }
 
         pitchers[this.gameState.pitcher.id].inn++;
