@@ -40,7 +40,7 @@ export class Game {
         this.atBats = [];
     }
 
-    playAtBat() {
+    playAtBat(batters, pitchers) {
         let batter = batters[this.gameState.batter.id];
         let pitcher = pitchers[this.gameState.pitcher.id];
 
@@ -85,7 +85,7 @@ export class Game {
                     }
                 }
             }
-            continue;
+            return;
         }
 
         // a non-out has occurred and baserunners will need to be modified and scoring may need updating
@@ -136,7 +136,7 @@ export class Game {
         // Call `atBat` if gameState.outs == 3 => increase inning
         // Then check to see if it's the end of the game.
         while (this.gameState.outs < 3) {
-            this.playAtBat();
+            this.playAtBat(batters, pitchers);
         }
 
         pitchers[this.gameState.pitcher.id].inn++;
