@@ -20,8 +20,14 @@ export class FieldCard extends React.Component {
     }
 
     buttonClick(){
-        console.log('play inning button clicked');
-        this.props.game.playInning();
+        let batters = this.props.boxScore.aBatters;
+        let pitchers = this.props.boxScore.hPitchers;
+        if (this.props.game.gameState.topHalf == false) {
+            batters = this.props.boxScore.hBatters;
+            pitchers = this.props.boxScore.aPitchers;
+        }
+
+        this.props.game.playAtBat(batters, pitchers);
         this.setState({
             ...this.state,
             game: this.props.game,
@@ -34,7 +40,7 @@ export class FieldCard extends React.Component {
                 <OffenseCard offense={this.props.offense}/>
                 <DefenseCard defense={this.props.defense}/>
                 <BattingBoxScoreCardContainer boxScore={this.props.boxScore}/>
-                <button onClick={this.buttonClick}>Play Inning</button>
+                <button onClick={this.buttonClick}>Play At Bat</button>
             </div>
         );
     }

@@ -41,6 +41,22 @@ export class Game {
     }
 
     playAtBat(batters, pitchers) {
+        if ((this.gameState.inning >= 9) && (!this.gameState.topHalf) && (this.gameState.homeScore > this.gameState.awayScore)) {
+            this.gameState.inning++;
+            return;
+        }
+
+        if (this.gameState.outs == 3) {
+            pitchers[this.gameState.pitcher.id].inn++;
+            if (pitchers[this.gameState.pitcher.id].inn >= this.gameState.pitcher.ip) {
+                this.gameState.pitcher.control--;
+            } else {
+                this.gameState.pitcher.control = this.gameState.pitcher.obc;
+            }
+            console.log(`${this.gameState.pitcher.fullName}: ${this.gameState.pitcher.control}`);
+            this.gameState.NextHalfInning();
+        }
+
         let batter = batters[this.gameState.batter.id];
         let pitcher = pitchers[this.gameState.pitcher.id];
 
@@ -151,7 +167,14 @@ export class Game {
 
     playGame() {
         while((this.gameState.inning < 10) || (this.gameState.awayScore == this.gameState.homeScore)) {
-            this.playInning();
+            let batters = this.boxScore.aBatters;
+            let pitchers = this.boxScore.hPitchers;
+            if (this.gameState.topHalf == false) {
+                batters = this.boxScore.hBatters;
+                pitchers = this.boxScore.aPitchers;
+            }
+
+            this.playAtBat(batters, pitchers);
         }
         if (this.gameState.awayScore > this.gameState.homeScore) {
             for(let bs of Object.values(this.boxScore.aBatters)){
