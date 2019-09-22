@@ -55,10 +55,13 @@ export class Game {
             }
             console.log(`${this.gameState.pitcher.fullName}: ${this.gameState.pitcher.control}`);
             this.gameState.NextHalfInning();
+            return;
         }
 
         let batter = batters[this.gameState.batter.id];
         let pitcher = pitchers[this.gameState.pitcher.id];
+
+        console.log(`${pitcher.player.fullName} v ${batter.player.fullName}`);
 
         let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
         this.atBats.push(atBat);
