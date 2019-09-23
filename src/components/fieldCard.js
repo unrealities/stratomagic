@@ -27,10 +27,19 @@ export class FieldCard extends React.Component {
             pitchers = this.props.boxScore.aPitchers;
         }
 
+        // TODO: Need to update offense and defense
+        /*
+        offense={{'batter': game.gameState.batter,
+                                         'onDeck': onDeckBatter,
+                                         'theHole': theHoleBatter,
+                                         'baseRunners': game.gameState.baseRunners}} 
+                    defense={game.hLineup}
+        */
         this.props.game.playAtBat(batters, pitchers);
         this.setState({
             ...this.state,
             game: this.props.game,
+            boxscore: this.props.boxScore
         });
     }
 
