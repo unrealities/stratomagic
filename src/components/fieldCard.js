@@ -44,7 +44,7 @@ export class FieldCard extends React.Component {
         this.setState({
             ...this.state,
             game: this.props.game,
-            boxscore: this.props.boxScore,
+            boxScore: this.props.boxScore,
             offense: {
                 'batter': this.props.game.gameState.batter,
                 'onDecker': onDeckBatter,
