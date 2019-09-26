@@ -53,6 +53,8 @@ export class FieldCard extends React.Component {
             },
             defense: defense
         });
+
+        this.forceUpdate();
     }
 
     render() {
