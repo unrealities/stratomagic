@@ -20,41 +20,14 @@ export class FieldCard extends React.Component {
     }
 
     buttonClick(){
-        let batters = this.props.boxScore.aBatters;
-        let defense = this.props.game.hLineup;
-        let pitchers = this.props.boxScore.hPitchers;
-
-        let onDeckIndex = (this.props.game.gameState.awayCurrentBatterIndex+1)%9;
-        let onDeckBatter = this.props.game.gameState.awayLineup.battingOrder[onDeckIndex];
-        let theHoleIndex = (this.props.game.gameState.awayCurrentBatterIndex+2)%9;
-        let theHoleBatter = this.props.game.gameState.awayLineup.battingOrder[theHoleIndex];
-
-        if (this.props.game.gameState.topHalf == false) {
-            batters = this.props.boxScore.hBatters;
-            defense = this.props.game.aLineup;
-            pitchers = this.props.boxScore.aPitchers;
-
-            onDeckIndex = (this.props.game.gameState.homeCurrentBatterIndex+1)%9;
-            onDeckBatter = this.props.game.gameState.homeLineup.battingOrder[onDeckIndex];
-            theHoleIndex = (this.props.game.gameState.homeCurrentBatterIndex+2)%9;
-            theHoleBatter = this.props.game.gameState.homeLineup.battingOrder[theHoleIndex];
-        }
-
         this.props.game.playAtBat(batters, pitchers);
         this.setState({
             ...this.state,
             game: this.props.game,
             boxScore: this.props.boxScore,
-            offense: {
-                'batter': this.props.game.gameState.batter,
-                'onDecker': onDeckBatter,
-                'theHole': theHoleBatter,
-                'baseRunners': this.props.game.gameState.baseRunners
-            },
-            defense: defense
+            offense : this.props.offense,
+            defense: this.props.defense
         });
-
-        this.forceUpdate();
     }
 
     render() {
