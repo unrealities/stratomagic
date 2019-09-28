@@ -40,15 +40,15 @@ export class Game {
         this.atBats = [];
     }
 
-    playAtBat(batters, pitchers) {
+    playAtBat() {
         if ((this.gameState.inning >= 9) && (!this.gameState.topHalf) && (this.gameState.homeScore > this.gameState.awayScore)) {
             this.gameState.inning++;
             return;
         }
 
         if (this.gameState.outs == 3) {
-            pitchers[this.gameState.pitcher.id].inn++;
-            if (pitchers[this.gameState.pitcher.id].inn >= this.gameState.pitcher.ip) {
+            this.gameState.pitcher.inn++;
+            if (this.gameState.pitcher.inn >= this.gameState.pitcher.ip) {
                 this.gameState.pitcher.control--;
             } else {
                 this.gameState.pitcher.control = this.gameState.pitcher.obc;
@@ -58,17 +58,14 @@ export class Game {
             return;
         }
 
-        let batter = batters[this.gameState.batter.id];
-        let pitcher = pitchers[this.gameState.pitcher.id];
-
-        console.log(`${pitcher.player.fullName} v ${batter.player.fullName}`);
+        console.log(`${this.gameState.pitcher.fullName} v ${this.gameState.batter.fullName}`);
 
         let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
         this.atBats.push(atBat);
 
         // TODO pull these into functions on BoxScore
         // Could each outcome have a set of other events that need to be updated?
-        for (let player of [batter, pitcher]) {
+        for (let player of [this.gameState.batter, this.gameState.pitcher]) {
             for (let event of ['pa', atBat.resultingPlay]) {
                 player[event]++;
             }
@@ -76,7 +73,7 @@ export class Game {
 
 
         let bases = atBat.resultingPlayTotalBases;
-        for (let player of [batter, pitcher]) {
+        for (let player of [this.gameState.batter, this.gameState.pitcher]) {
             atBat.resultingPlay == 'BB' ? player.bb++ : player.ab++;
             player.tb = player.tb + bases;
 
@@ -89,9 +86,9 @@ export class Game {
         }
 
         if (atBat.resultingPlay == 'HR') {
-            batter.run++;
-            pitcher.run++;
-            batter.rbi++;
+            this.gameState.batter.run++;
+            this.gameState.pitcher.run++;
+            this.gameState.batter.rbi++;
             this.gameState.IncrementScore();
         }
 
@@ -100,7 +97,7 @@ export class Game {
             if (this.gameState.outs == 3) {
                 for (let runner of this.gameState.baseRunners) {
                     if (runner) {
-                        batter.lob++;
+                        this.gameState.batter.lob++;
                     }
                 }
             }

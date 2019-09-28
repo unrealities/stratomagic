@@ -20,7 +20,7 @@ export class FieldCard extends React.Component {
     }
 
     buttonClick(){
-        this.props.game.playAtBat(batters, pitchers);
+        this.props.game.playAtBat();
         this.setState({
             ...this.state,
             game: this.props.game,

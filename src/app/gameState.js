@@ -43,7 +43,7 @@ export class GameState {
         this.topHalf == true ? this.awayScore++ : this.homeScore++;
     }
 
-    NextHalfInning(inningsPitched) {
+    NextHalfInning() {
         this.topHalf = !this.topHalf;
         if (this.topHalf == true) this.inning++;
         this.outs = 0;
@@ -62,31 +62,16 @@ export class GameState {
             this.awayCurrentBatterIndex++;
             if (this.awayCurrentBatterIndex == 9) this.awayCurrentBatterIndex = 0;
             this.batter = this.awayLineup.battingOrder[this.awayCurrentBatterIndex];
+            this.onDeckBatter = this.awayLineup.battingOrder[(this.awayCurrentBatterIndex+1)%9];
+            this.theHoleBatter = this.awayLineup.battingOrder[(this.awayCurrentBatterIndex+2)%9];
+            this.defense = this.homeLineup;
         } else {
             this.homeCurrentBatterIndex++;
             if (this.homeCurrentBatterIndex == 9) this.homeCurrentBatterIndex = 0;
             this.batter = this.homeLineup.battingOrder[this.homeCurrentBatterIndex];
-        }
-
-        // TODO: integrate properly with gameState
-        let batters = this.props.boxScore.aBatters;
-        let defense = this.props.game.hLineup;
-        let pitchers = this.props.boxScore.hPitchers;
-
-        let onDeckIndex = (this.props.game.gameState.awayCurrentBatterIndex+1)%9;
-        let onDeckBatter = this.props.game.gameState.awayLineup.battingOrder[onDeckIndex];
-        let theHoleIndex = (this.props.game.gameState.awayCurrentBatterIndex+2)%9;
-        let theHoleBatter = this.props.game.gameState.awayLineup.battingOrder[theHoleIndex];
-
-        if (this.props.game.gameState.topHalf == false) {
-            batters = this.props.boxScore.hBatters;
-            defense = this.props.game.aLineup;
-            pitchers = this.props.boxScore.aPitchers;
-
-            onDeckIndex = (this.props.game.gameState.homeCurrentBatterIndex+1)%9;
-            onDeckBatter = this.props.game.gameState.homeLineup.battingOrder[onDeckIndex];
-            theHoleIndex = (this.props.game.gameState.homeCurrentBatterIndex+2)%9;
-            theHoleBatter = this.props.game.gameState.homeLineup.battingOrder[theHoleIndex];
+            this.onDeckBatter = this.homeLineup.battingOrder[(this.homeCurrentBatterIndex+1)%9];
+            this.theHoleBatter = this.homeLineup.battingOrder[(this.homeCurrentBatterIndex+2)%9];
+            this.defense = this.awayLineup;
         }
     }
 
