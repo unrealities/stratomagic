@@ -35,37 +35,102 @@ export class Game {
         this.aLineup = aLineup;
         this.dh = dh;
 
-        this.gameState = new GameState(aLineup, hLineup);
         this.boxScore = new BoxScore(aTeam.roster, hTeam.roster);
         this.atBats = [];
+
+        this.inning = 1;
+        this.topHalf = true;
+        this.awayScore = 0;
+        this.homeScore = 0;
+        this.outs = 0;
+        this.baseRunners = [null, null, null];
+
+        this.awayCurrentBatterIndex = 0;
+        this.homeCurrentBatterIndex = 0;
+
+        this.pitcher = this.hLineup.pitcher;
+        this.batter = this.aLineup.battingOrder[0];
+        this.onDeckBatter = this.aLineup.battingOrder[1];
+2
+        this.defense = this.hLineup;
+        this.offense = {
+            'batter': this.batter,
+            'onDeck': this.onDeckBatter,
+            'theHole': this.theHoleBatter,
+            'baseRunners': this.baseRunners
+        };
+
+        // TODO Add home away defense (IF, OF, C)
     }
 
-    playAtBat() {
-        if ((this.gameState.inning >= 9) && (!this.gameState.topHalf) && (this.gameState.homeScore > this.gameState.awayScore)) {
-            this.gameState.inning++;
+    AtBatOut() {
+        this.outs++;
+        // TODO handle sac fly and double play situations
+        this.NextBatter();
+    }
+
+    IncrementScore() {
+        this.topHalf == true ? this.awayScore++ : this.homeScore++;
+    }
+
+    NextHalfInning() {
+        this.topHalf = !this.topHalf;
+        if (this.topHalf == true) this.inning++;
+        this.outs = 0;
+        this.baseRunners = [null, null, null];
+        if (this.topHalf == true) {
+            this.batter = this.aLineup.battingOrder[this.awayCurrentBatterIndex];
+            this.pitcher = this.hLineup.pitcher;
+        } else {
+            this.batter = this.hLineup.battingOrder[this.homeCurrentBatterIndex];
+            this.pitcher = this.aLineup.pitcher;
+        }
+    }
+
+    NextBatter() {
+        if (this.topHalf == true) {
+            this.awayCurrentBatterIndex++;
+            if (this.awayCurrentBatterIndex == 9) this.awayCurrentBatterIndex = 0;
+            this.batter = this.aLineup.battingOrder[this.awayCurrentBatterIndex];
+            this.onDeckBatter = this.aLineup.battingOrder[(this.awayCurrentBatterIndex+1)%9];
+            this.theHoleBatter = this.aLineup.battingOrder[(this.awayCurrentBatterIndex+2)%9];
+            this.defense = this.hLineup;
+        } else {
+            this.homeCurrentBatterIndex++;
+            if (this.homeCurrentBatterIndex == 9) this.homeCurrentBatterIndex = 0;
+            this.batter = this.hLineup.battingOrder[this.homeCurrentBatterIndex];
+            this.onDeckBatter = this.hLineup.battingOrder[(this.homeCurrentBatterIndex+1)%9];
+            this.theHoleBatter = this.hLineup.battingOrder[(this.homeCurrentBatterIndex+2)%9];
+            this.defense = this.aLineup;
+        }
+    }
+
+    PlayAtBat() {
+        if ((this.inning >= 9) && (!this.topHalf) && (this.homeScore > this.awayScore)) {
+            this.inning++;
             return;
         }
 
-        if (this.gameState.outs == 3) {
-            this.gameState.pitcher.inn++;
-            if (this.gameState.pitcher.inn >= this.gameState.pitcher.ip) {
-                this.gameState.pitcher.control--;
+        if (this.outs == 3) {
+            this.pitcher.inn++;
+            if (this.pitcher.inn >= this.pitcher.ip) {
+                this.pitcher.control--;
             } else {
-                this.gameState.pitcher.control = this.gameState.pitcher.obc;
+                this.pitcher.control = this.pitcher.obc;
             }
-            console.log(`${this.gameState.pitcher.fullName}: ${this.gameState.pitcher.control}`);
-            this.gameState.NextHalfInning();
+            console.log(`${this.pitcher.fullName}: ${this.pitcher.control}`);
+            this.NextHalfInning();
             return;
         }
 
-        console.log(`${this.gameState.pitcher.fullName} v ${this.gameState.batter.fullName}`);
+        console.log(`${this.pitcher.fullName} v ${this.batter.fullName}`);
 
-        let atBat = new AtBat(this.gameState.batter, this.gameState.pitcher);
+        let atBat = new AtBat(this.batter, this.pitcher);
         this.atBats.push(atBat);
 
         // TODO pull these into functions on BoxScore
         // Could each outcome have a set of other events that need to be updated?
-        for (let player of [this.gameState.batter, this.gameState.pitcher]) {
+        for (let player of [this.batter, this.pitcher]) {
             for (let event of ['pa', atBat.resultingPlay]) {
                 player[event]++;
             }
@@ -73,7 +138,7 @@ export class Game {
 
 
         let bases = atBat.resultingPlayTotalBases;
-        for (let player of [this.gameState.batter, this.gameState.pitcher]) {
+        for (let player of [this.batter, this.pitcher]) {
             atBat.resultingPlay == 'BB' ? player.bb++ : player.ab++;
             player.tb = player.tb + bases;
 
@@ -86,18 +151,18 @@ export class Game {
         }
 
         if (atBat.resultingPlay == 'HR') {
-            this.gameState.batter.run++;
-            this.gameState.pitcher.run++;
-            this.gameState.batter.rbi++;
-            this.gameState.IncrementScore();
+            this.batter.run++;
+            this.pitcher.run++;
+            this.batter.rbi++;
+            this.IncrementScore();
         }
 
         if (bases == 0) {
-            this.gameState.AtBatOut();
-            if (this.gameState.outs == 3) {
-                for (let runner of this.gameState.baseRunners) {
+            this.AtBatOut();
+            if (this.outs == 3) {
+                for (let runner of this.baseRunners) {
                     if (runner) {
-                        this.gameState.batter.lob++;
+                        this.batter.lob++;
                     }
                 }
             }
@@ -111,11 +176,11 @@ export class Game {
         // the first three entries are 1st,2nd,3rd. The fourth entry on are runners who scored on the play
         // ex. p4 hits a grandslam: [p1, p2, p3, null, null, null, null] => [null, null, null, p4, p1, p2, p3]
         let afterAtBatBaseRunners = ["", "", "", "", "", "", ""];
-        for (let i=this.gameState.baseRunners.length-1; i>=0; i--) {
-            afterAtBatBaseRunners[i+bases] = this.gameState.baseRunners[i];
+        for (let i=this.baseRunners.length-1; i>=0; i--) {
+            afterAtBatBaseRunners[i+bases] = this.baseRunners[i];
         }
         // Put the batter on their appropriate base
-        afterAtBatBaseRunners[bases-1] = this.gameState.batter;
+        afterAtBatBaseRunners[bases-1] = this.batter;
 
         // Check for baserunners that have scored.
         for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
@@ -124,26 +189,26 @@ export class Game {
                 batters[baseRunner.id].run++;
                 batter.rbi++;
                 pitcher.run++;
-                this.gameState.IncrementScore();
+                this.IncrementScore();
             }
         }
 
         // Reset runners to account for those that have scored
-        for (let i=0; i<this.gameState.baseRunners.length; i++) {
-            this.gameState.baseRunners[i] = afterAtBatBaseRunners[i];
+        for (let i=0; i<this.baseRunners.length; i++) {
+            this.baseRunners[i] = afterAtBatBaseRunners[i];
         }
 
-        this.gameState.NextBatter();        
+        this.NextBatter();        
     }
 
-    playInning() {
-        if ((this.gameState.inning >= 9) && (!this.gameState.topHalf) && (this.gameState.homeScore > this.gameState.awayScore)) {
-            this.gameState.inning++;
+    PlayInning() {
+        if ((this.inning >= 9) && (!this.topHalf) && (this.homeScore > this.awayScore)) {
+            this.inning++;
             return;
         }
         let batters = this.boxScore.aBatters;
         let pitchers = this.boxScore.hPitchers;
-        if (this.gameState.topHalf == false) {
+        if (this.topHalf == false) {
             batters = this.boxScore.hBatters;
             pitchers = this.boxScore.aPitchers;
         }
@@ -151,32 +216,32 @@ export class Game {
         // TODO: Need to pull this out into a method that can be externally called
         // Call `atBat` if gameState.outs == 3 => increase inning
         // Then check to see if it's the end of the game.
-        while (this.gameState.outs < 3) {
-            this.playAtBat(batters, pitchers);
+        while (this.outs < 3) {
+            this.PlayAtBat(batters, pitchers);
         }
 
-        pitchers[this.gameState.pitcher.id].inn++;
-        if (pitchers[this.gameState.pitcher.id].inn >= this.gameState.pitcher.ip) {
-            this.gameState.pitcher.control--;
+        pitchers[this.pitcher.id].inn++;
+        if (pitchers[this.pitcher.id].inn >= this.pitcher.ip) {
+            this.pitcher.control--;
         } else {
-            this.gameState.pitcher.control = this.gameState.pitcher.obc;
+            this.pitcher.control = this.pitcher.obc;
         }
-        console.log(`${this.gameState.pitcher.fullName}: ${this.gameState.pitcher.control}`);
-        this.gameState.NextHalfInning();
+        console.log(`${this.pitcher.fullName}: ${this.pitcher.control}`);
+        this.NextHalfInning();
     }
 
-    playGame() {
-        while((this.gameState.inning < 10) || (this.gameState.awayScore == this.gameState.homeScore)) {
+    PlayGame() {
+        while((this.inning < 10) || (this.awayScore == this.homeScore)) {
             let batters = this.boxScore.aBatters;
             let pitchers = this.boxScore.hPitchers;
-            if (this.gameState.topHalf == false) {
+            if (this.topHalf == false) {
                 batters = this.boxScore.hBatters;
                 pitchers = this.boxScore.aPitchers;
             }
 
-            this.playAtBat(batters, pitchers);
+            this.PlayAtBat(batters, pitchers);
         }
-        if (this.gameState.awayScore > this.gameState.homeScore) {
+        if (this.awayScore > this.homeScore) {
             for(let bs of Object.values(this.boxScore.aBatters)){
                 bs.teamWin++;
             }
@@ -201,6 +266,18 @@ export class Game {
             }
             for(let bs of Object.values(this.boxScore.hPitchers)){
                 bs.teamWin++;
+            }
+        }
+    }
+
+    PrintScore() {
+        console.log(`Home: ${this.homeScore} Away: ${this.awayScore}`);
+    }
+
+    PrintBattingOrder() {
+        for (let team of [this.aLineup.battingOrder, this.hLineup.battingOrder]) {
+            for (let i=0; i<9; i++) {
+                console.log(`${i+1}. ${team[i].fullName} [${team[i].id}]`);
             }
         }
     }
