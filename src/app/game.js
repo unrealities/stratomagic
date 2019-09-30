@@ -50,8 +50,10 @@ export class Game {
 
         this.pitcher = this.hLineup.pitcher;
         this.batter = this.aLineup.battingOrder[0];
+        this.batters = this.boxScore.aBatters;
         this.onDeckBatter = this.aLineup.battingOrder[1];
-2
+        this.theHoleBatter = this.aLineup.battingOrder[2];
+
         this.defense = this.hLineup;
         this.offense = {
             'batter': this.batter,
@@ -186,9 +188,9 @@ export class Game {
         for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
             let baseRunner = afterAtBatBaseRunners[i];
             if (baseRunner) {
-                batters[baseRunner.id].run++;
+                this.batters[baseRunner.id].run++;
                 batter.rbi++;
-                pitcher.run++;
+                pitcher.run++;d
                 this.IncrementScore();
             }
         }
@@ -206,18 +208,18 @@ export class Game {
             this.inning++;
             return;
         }
-        let batters = this.boxScore.aBatters;
-        let pitchers = this.boxScore.hPitchers;
+        this.batters = this.boxScore.aBatters;
+        this.pitchers = this.boxScore.hPitchers;
         if (this.topHalf == false) {
-            batters = this.boxScore.hBatters;
-            pitchers = this.boxScore.aPitchers;
+            this.batters = this.boxScore.hBatters;
+            this.pitchers = this.boxScore.aPitchers;
         }
 
         // TODO: Need to pull this out into a method that can be externally called
         // Call `atBat` if gameState.outs == 3 => increase inning
         // Then check to see if it's the end of the game.
         while (this.outs < 3) {
-            this.PlayAtBat(batters, pitchers);
+            this.PlayAtBat();
         }
 
         pitchers[this.pitcher.id].inn++;
@@ -232,14 +234,14 @@ export class Game {
 
     PlayGame() {
         while((this.inning < 10) || (this.awayScore == this.homeScore)) {
-            let batters = this.boxScore.aBatters;
-            let pitchers = this.boxScore.hPitchers;
+            this.batters = this.boxScore.aBatters;
+            this.pitchers = this.boxScore.hPitchers;
             if (this.topHalf == false) {
-                batters = this.boxScore.hBatters;
-                pitchers = this.boxScore.aPitchers;
+                this.batters = this.boxScore.hBatters;
+                this.pitchers = this.boxScore.aPitchers;
             }
 
-            this.PlayAtBat(batters, pitchers);
+            this.PlayAtBat();
         }
         if (this.awayScore > this.homeScore) {
             for(let bs of Object.values(this.boxScore.aBatters)){
