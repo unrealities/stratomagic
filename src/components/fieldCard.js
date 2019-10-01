@@ -19,6 +19,18 @@ export class FieldCard extends React.Component {
         });
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.game !== this.props.game) {
+            this.setState({
+                ...this.state,
+                offense: this.props.offense,
+                defense: this.props.defense,
+                boxScore: this.props.boxScore,
+                game: this.props.game
+            });
+        }
+    }
+
     buttonClick(){
         this.props.game.PlayAtBat();
         this.setState({

@@ -189,8 +189,8 @@ export class Game {
             let baseRunner = afterAtBatBaseRunners[i];
             if (baseRunner) {
                 this.batters[baseRunner.id].run++;
-                batter.rbi++;
-                pitcher.run++;d
+                this.batter.rbi++;
+                this.pitcher.run++;
                 this.IncrementScore();
             }
         }
