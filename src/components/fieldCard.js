@@ -12,9 +12,6 @@ export class FieldCard extends React.Component {
     componentDidMount(){
         this.setState({
             ...this.state,
-            offense: this.props.offense,
-            defense: this.props.defense,
-            boxScore: this.props.boxScore,
             game: this.props.game
         });
     }
@@ -23,9 +20,6 @@ export class FieldCard extends React.Component {
         if (prevProps.game !== this.props.game) {
             this.setState({
                 ...this.state,
-                offense: this.props.offense,
-                defense: this.props.defense,
-                boxScore: this.props.boxScore,
                 game: this.props.game
             });
         }
@@ -35,19 +29,16 @@ export class FieldCard extends React.Component {
         this.props.game.PlayAtBat();
         this.setState({
             ...this.state,
-            game: this.props.game,
-            boxScore: this.props.boxScore,
-            offense : this.props.offense,
-            defense: this.props.defense
+            game: this.props.game
         });
     }
 
     render() {
         return (
             <div className="fieldCard">
-                <OffenseCard offense={this.props.offense}/>
-                <DefenseCard defense={this.props.defense}/>
-                <BattingBoxScoreCardContainer boxScore={this.props.boxScore}/>
+                <OffenseCard offense={this.props.game.offense}/>
+                <DefenseCard defense={this.props.game.defense}/>
+                <BattingBoxScoreCardContainer boxScore={this.props.game.boxScore}/>
                 <button onClick={this.buttonClick}>Play At Bat</button>
             </div>
         );

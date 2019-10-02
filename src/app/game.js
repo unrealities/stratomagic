@@ -97,6 +97,8 @@ export class Game {
             this.onDeckBatter = this.aLineup.battingOrder[(this.awayCurrentBatterIndex+1)%9];
             this.theHoleBatter = this.aLineup.battingOrder[(this.awayCurrentBatterIndex+2)%9];
             this.defense = this.hLineup;
+            this.pitcher = this.hLineup.pitcher;
+            this.batters = this.boxScore.aBatters;
         } else {
             this.homeCurrentBatterIndex++;
             if (this.homeCurrentBatterIndex == 9) this.homeCurrentBatterIndex = 0;
@@ -104,7 +106,16 @@ export class Game {
             this.onDeckBatter = this.hLineup.battingOrder[(this.homeCurrentBatterIndex+1)%9];
             this.theHoleBatter = this.hLineup.battingOrder[(this.homeCurrentBatterIndex+2)%9];
             this.defense = this.aLineup;
+            this.pitcher = this.aLineup.pitcher;
+            this.batters = this.boxScore.hBatters;
         }
+
+        this.offense = {
+            'batter': this.batter,
+            'onDeck': this.onDeckBatter,
+            'theHole': this.theHoleBatter,
+            'baseRunners': this.baseRunners
+        };
     }
 
     PlayAtBat() {
