@@ -222,3 +222,27 @@ body {
     float: left;
     width: 50%;
 }
+
+.scoreboardCard {
+    background-color: #FFF;
+    border-radius: 10px;
+    float: left;
+    margin: 1%;
+    padding: 1%;
+    width: 90%;
+}
+
+.sbHeader {
+    font-weight: bold;
+    padding-right: 1%;
+}
+
+.sbHeader, .sbValue {
+    display: inline;
+    float: left;
+}
+
+.sbDiv {
+    float: left;
+    margin: 1%;
+}

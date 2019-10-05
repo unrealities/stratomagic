@@ -36,6 +36,7 @@ export class FieldCard extends React.Component {
     render() {
         return (
             <div className="fieldCard">
+                <ScoreboardCard game={this.props.game}/>
                 <OffenseCard offense={this.props.game.offense}/>
                 <DefenseCard defense={this.props.game.defense}/>
                 <BattingBoxScoreCardContainer boxScore={this.props.game.boxScore.hBatters}/>
@@ -97,6 +98,31 @@ export class PlayerCard extends React.Component {
             <div className="fieldPlayerCard">
                 <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
                 <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>   
+            </div>
+        )
+    }
+}
+
+export class ScoreboardCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="scoreboardCard">
+                <div className="sbDiv">
+                    <div className="sbHeader">Inning</div>
+                    <div className="sbValue">{this.props.game.inning}</div>
+                </div>
+                <div className="sbDiv">
+                    <div className="sbHeader">Away</div>
+                    <div className="sbValue">{this.props.game.awayScore}</div>
+                </div>
+                <div className="sbDiv">
+                    <div className="sbHeader">Home</div>
+                    <div className="sbValue">{this.props.game.homeScore}</div>
+                </div>
             </div>
         )
     }
