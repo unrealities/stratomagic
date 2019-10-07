@@ -13,7 +13,8 @@ export class FieldCard extends React.Component {
     componentDidMount(){
         this.setState({
             ...this.state,
-            game: this.props.game
+            game: this.props.game,
+            boxScore: this.props.boxScore
         });
     }
 
@@ -21,7 +22,8 @@ export class FieldCard extends React.Component {
         if (prevProps.game !== this.props.game) {
             this.setState({
                 ...this.state,
-                game: this.props.game
+                game: this.props.game,
+                boxScore: this.props.boxScore
             });
         }
     }
@@ -30,7 +32,8 @@ export class FieldCard extends React.Component {
         this.props.game.PlayAtBat();
         this.setState({
             ...this.state,
-            game: this.props.game
+            game: this.props.game,
+            boxScore: this.props.boxScore
         });
     }
 
@@ -40,8 +43,7 @@ export class FieldCard extends React.Component {
                 <ScoreboardCard game={this.props.game}/>
                 <OffenseCard offense={this.props.game.offense}/>
                 <DefenseCard defense={this.props.game.defense}/>
-                <BattingBoxScoreCardContainer boxScore={this.props.game.boxScore.hBatters}/>
-                <BattingBoxScoreCardContainer boxScore={this.props.game.boxScore.aBatters}/>
+                <BattingBoxScoreCardContainer boxScore={this.props.boxScore.hBatters}/>
                 <button onClick={this.buttonClick}>Play At Bat</button>
             </div>
         );
@@ -115,6 +117,10 @@ export class ScoreboardCard extends React.Component {
                 <div className="sbDiv">
                     <div className="sbHeader">Inning</div>
                     <div className="sbValue">{this.props.game.inning}</div>
+                </div>
+                <div className="sbDiv">
+                    <div className="sbHeader">Outs</div>
+                    <div className="sbValue">{this.props.game.outs}</div>
                 </div>
                 <div className="sbDiv">
                     <div className="sbHeader">Away</div>
