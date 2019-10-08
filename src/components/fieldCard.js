@@ -8,13 +8,16 @@ export class FieldCard extends React.Component {
     constructor(props) {
         super(props);
         this.buttonClick = this.buttonClick.bind(this);
+        this.state = {
+            boxScore: this.props.game.boxScore
+        };
     }
 
     componentDidMount(){
         this.setState({
             ...this.state,
             game: this.props.game,
-            boxScore: this.props.boxScore
+            boxScore: this.props.game.boxScore
         });
     }
 
@@ -23,7 +26,7 @@ export class FieldCard extends React.Component {
             this.setState({
                 ...this.state,
                 game: this.props.game,
-                boxScore: this.props.boxScore
+                boxScore: this.props.game.boxScore
             });
         }
     }
@@ -33,7 +36,7 @@ export class FieldCard extends React.Component {
         this.setState({
             ...this.state,
             game: this.props.game,
-            boxScore: this.props.boxScore
+            boxScore: this.props.game.boxScore
         });
     }
 
@@ -43,7 +46,7 @@ export class FieldCard extends React.Component {
                 <ScoreboardCard game={this.props.game}/>
                 <OffenseCard offense={this.props.game.offense}/>
                 <DefenseCard defense={this.props.game.defense}/>
-                <BattingBoxScoreCardContainer boxScore={this.props.boxScore.hBatters}/>
+                <BattingBoxScoreCardContainer boxScore={this.state.boxScore.hBatters}/>
                 <button onClick={this.buttonClick}>Play At Bat</button>
             </div>
         );
@@ -281,4 +284,3 @@ export class PitchingBoxScoreCardContainer extends React.Component {
         );
     }
 }
-
