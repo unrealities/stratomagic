@@ -46,8 +46,21 @@ export class FieldCard extends React.Component {
                 <ScoreboardCard game={this.props.game}/>
                 <OffenseCard offense={this.props.game.offense}/>
                 <DefenseCard defense={this.props.game.defense}/>
-                <BattingBoxScoreCardContainer boxScore={this.state.boxScore.hBatters}/>
-                <button onClick={this.buttonClick}>Play At Bat</button>
+                <div className="playAtBatButton">
+                    <button onClick={this.buttonClick}>Play At Bat</button>
+                </div>
+                <div className="boxScores">
+                    <div className="awayBoxScore">
+                        <div className="boxScoreHeading">Away Box</div>
+                        <div id="awayBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.props.game.boxScore.aBatters}/></div>
+                        <div id="awayPitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.boxScore.aPitchers}/></div>
+                    </div>
+                    <div className="homeBoxScore">
+                        <div className="boxScoreHeading">Home Box</div>
+                        <div id="homeBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.props.game.boxScore.hBatters}/></div>
+                        <div id="homePitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.boxScore.hPitchers}/></div>
+                    </div>
+                </div>
             </div>
         );
     }

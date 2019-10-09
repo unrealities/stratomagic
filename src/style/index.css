@@ -229,7 +229,7 @@ body {
     float: left;
     margin: 1%;
     padding: 1%;
-    width: 90%;
+    width: 70%;
 }
 
 .sbHeader {
@@ -245,4 +245,16 @@ body {
 .sbDiv {
     float: left;
     margin: 1%;
+}
+
+.playAtBatButton {
+    display: inline;
+    margin-top: 1%;
+    min-width: 20%;
+}
+
+.playAtBatButton button {
+    border-radius: 10px;
+    line-height: 700%;
+    width: 20%;
 }
