@@ -1,6 +1,5 @@
-import { AtBat } from './atBat.js';
-import { BoxScore } from './boxScore.js';
-import { GameState } from './gameState.js';
+import { AtBat } from './atBat'
+import { BoxScoreBatter, BoxScorePitcher } from './boxScore'
 
 // Game object to track the game state
 // 2 teams ( home v. away ? )
@@ -35,7 +34,6 @@ export class Game {
         this.aLineup = aLineup;
         this.dh = dh;
 
-        this.boxScore = new BoxScore(aTeam.roster, hTeam.roster);
         this.atBats = [];
 
         this.inning = 1;
@@ -50,7 +48,6 @@ export class Game {
 
         this.pitcher = this.hLineup.pitcher;
         this.batter = this.aLineup.battingOrder[0];
-        this.batters = this.boxScore.aBatters;
         this.onDeckBatter = this.aLineup.battingOrder[1];
         this.theHoleBatter = this.aLineup.battingOrder[2];
 
@@ -61,6 +58,25 @@ export class Game {
             'theHole': this.theHoleBatter,
             'baseRunners': this.baseRunners
         };
+
+        this.aBatters = {};
+        this.aPitchers = {};
+        this.hBatters = {};
+        this.hPitchers = {};
+
+        // Init new entries for batters an pitchers
+        // Batters cannot pitch
+        // Pitchers can hit
+        for (let player of aTeam.roster.players) {
+            this.aBatters[player.id] = new BoxScoreBatter(player);
+            if (player.isHitter() == false) this.aPitchers[player.id] = new BoxScorePitcher(player); 
+        }
+        for (let player of hTeam.roster.players) {
+            this.hBatters[player.id] = new BoxScoreBatter(player);
+            if (player.isHitter() == false) this.hPitchers[player.id] = new BoxScorePitcher(player);
+        }
+        this.batters = this.aBatters;
+        this.pitchers = this.hPitchers;
 
         // TODO Add home away defense (IF, OF, C)
     }
@@ -98,7 +114,7 @@ export class Game {
             this.theHoleBatter = this.aLineup.battingOrder[(this.awayCurrentBatterIndex+2)%9];
             this.defense = this.hLineup;
             this.pitcher = this.hLineup.pitcher;
-            this.batters = this.boxScore.aBatters;
+            this.batters = this.aBatters;
         } else {
             this.homeCurrentBatterIndex++;
             if (this.homeCurrentBatterIndex == 9) this.homeCurrentBatterIndex = 0;
@@ -107,7 +123,7 @@ export class Game {
             this.theHoleBatter = this.hLineup.battingOrder[(this.homeCurrentBatterIndex+2)%9];
             this.defense = this.aLineup;
             this.pitcher = this.aLineup.pitcher;
-            this.batters = this.boxScore.hBatters;
+            this.batters = this.hBatters;
         }
 
         this.offense = {
@@ -219,11 +235,11 @@ export class Game {
             this.inning++;
             return;
         }
-        this.batters = this.boxScore.aBatters;
-        this.pitchers = this.boxScore.hPitchers;
+        this.batters = this.aBatters;
+        this.pitchers = this.hPitchers;
         if (this.topHalf == false) {
-            this.batters = this.boxScore.hBatters;
-            this.pitchers = this.boxScore.aPitchers;
+            this.batters = this.hBatters;
+            this.pitchers = this.aPitchers;
         }
 
         // TODO: Need to pull this out into a method that can be externally called
@@ -245,39 +261,39 @@ export class Game {
 
     PlayGame() {
         while((this.inning < 10) || (this.awayScore == this.homeScore)) {
-            this.batters = this.boxScore.aBatters;
-            this.pitchers = this.boxScore.hPitchers;
+            this.batters = this.aBatters;
+            this.pitchers = this.hPitchers;
             if (this.topHalf == false) {
-                this.batters = this.boxScore.hBatters;
-                this.pitchers = this.boxScore.aPitchers;
+                this.batters = this.hBatters;
+                this.pitchers = this.aPitchers;
             }
 
             this.PlayAtBat();
         }
         if (this.awayScore > this.homeScore) {
-            for(let bs of Object.values(this.boxScore.aBatters)){
+            for(let bs of Object.values(this.aBatters)){
                 bs.teamWin++;
             }
-            for(let bs of Object.values(this.boxScore.aPitchers)){
+            for(let bs of Object.values(this.aPitchers)){
                 bs.teamWin++;
             }
-            for(let bs of Object.values(this.boxScore.hBatters)){
+            for(let bs of Object.values(this.hBatters)){
                 bs.teamLoss++;
             }
-            for(let bs of Object.values(this.boxScore.hPitchers)){
+            for(let bs of Object.values(this.hPitchers)){
                 bs.teamLoss++;
             }
         } else {
-            for(let bs of Object.values(this.boxScore.aBatters)){
+            for(let bs of Object.values(this.aBatters)){
                 bs.teamLoss++;
             }
-            for(let bs of Object.values(this.boxScore.aPitchers)){
+            for(let bs of Object.values(this.aPitchers)){
                 bs.teamLoss++;
             }
-            for(let bs of Object.values(this.boxScore.hBatters)){
+            for(let bs of Object.values(this.hBatters)){
                 bs.teamWin++;
             }
-            for(let bs of Object.values(this.boxScore.hPitchers)){
+            for(let bs of Object.values(this.hPitchers)){
                 bs.teamWin++;
             }
         }

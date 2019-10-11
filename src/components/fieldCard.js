@@ -8,16 +8,12 @@ export class FieldCard extends React.Component {
     constructor(props) {
         super(props);
         this.buttonClick = this.buttonClick.bind(this);
-        this.state = {
-            boxScore: this.props.game.boxScore
-        };
     }
 
     componentDidMount(){
         this.setState({
             ...this.state,
-            game: this.props.game,
-            boxScore: this.props.game.boxScore
+            game: this.props.game
         });
     }
 
@@ -25,8 +21,7 @@ export class FieldCard extends React.Component {
         if (prevProps.game !== this.props.game) {
             this.setState({
                 ...this.state,
-                game: this.props.game,
-                boxScore: this.props.game.boxScore
+                game: this.props.game
             });
         }
     }
@@ -35,8 +30,7 @@ export class FieldCard extends React.Component {
         this.props.game.PlayAtBat();
         this.setState({
             ...this.state,
-            game: this.props.game,
-            boxScore: this.props.game.boxScore
+            game: this.props.game
         });
     }
 
@@ -52,13 +46,13 @@ export class FieldCard extends React.Component {
                 <div className="boxScores">
                     <div className="awayBoxScore">
                         <div className="boxScoreHeading">Away Box</div>
-                        <div id="awayBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.state.boxScore.aBatters}/></div>
-                        <div id="awayPitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.state.boxScore.aPitchers}/></div>
+                        <div id="awayBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.props.game.aBatters}/></div>
+                        <div id="awayPitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.aPitchers}/></div>
                     </div>
                     <div className="homeBoxScore">
                         <div className="boxScoreHeading">Home Box</div>
-                        <div id="homeBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.state.boxScore.hBatters}/></div>
-                        <div id="homePitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.state.boxScore.hPitchers}/></div>
+                        <div id="homeBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.props.game.hBatters}/></div>
+                        <div id="homePitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.hPitchers}/></div>
                     </div>
                 </div>
             </div>

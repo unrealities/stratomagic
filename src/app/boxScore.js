@@ -54,7 +54,7 @@ export class BoxScore {
     }
 }
 
-class BoxScoreBatter {
+export class BoxScoreBatter {
     constructor(player) {
         this.player = player;
         this.ab = 0;
@@ -80,7 +80,7 @@ class BoxScoreBatter {
     }
 }
 
-class BoxScorePitcher {
+export class BoxScorePitcher {
     constructor(player) {
         this.player = player;
         this.ab = 0;
