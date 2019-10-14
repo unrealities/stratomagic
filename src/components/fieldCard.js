@@ -13,13 +13,7 @@ export class FieldCard extends React.Component {
     componentDidMount(){
         this.setState({
             ...this.state,
-            game: {
-                ...this.props.game,
-                aBatters: this.props.game.aBatters,
-                hBatters: this.props.game.hBatters,
-                aPitchers: this.props.game.aPitchers,
-                hPitchers: this.props.game.hPitchers
-            }
+            game: this.props.game
         });
     }
 
@@ -27,13 +21,7 @@ export class FieldCard extends React.Component {
         if (prevProps.game !== this.props.game) {
             this.setState({
                 ...this.state,
-                game: {
-                    ...this.props.game,
-                    aBatters: this.state.game.aBatters,
-                    hBatters: this.state.game.hBatters,
-                    aPitchers: this.state.game.aPitchers,
-                    hPitchers: this.state.game.hPitchers
-                }
+                game: this.props.game
             });
         }
     }
@@ -42,13 +30,7 @@ export class FieldCard extends React.Component {
         this.props.game.PlayAtBat();
         this.setState({
             ...this.state,
-            game: {
-                ...this.props.game,
-                aBatters: this.state.game.aBatters,
-                hBatters: this.state.game.hBatters,
-                aPitchers: this.state.game.aPitchers,
-                hPitchers: this.state.game.hPitchers
-            }
+            game: this.props.game
         });
     }
 
@@ -236,18 +218,6 @@ export class BattingBoxScoreCardContainer extends React.Component {
             ...this.state,
             cards: players,
         });
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.boxScore !== this.props.boxScore) {
-            let players = Object.values(this.props.boxScore);
-            let header = {'player': {'fullName': 'Batter Name', 'chart': []}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'teamWin': 'W', 'lob': 'LOB'};
-            players.unshift(header);
-            this.setState({
-                ...this.state,
-                cards: players,
-            });
-        }
     }
 
     render() {
