@@ -44,6 +44,7 @@ export class Game {
 
         this.awayCurrentBatterIndex = 0;
         this.homeCurrentBatterIndex = 0;
+        this.CurrentBatterIndex = 0;
 
         this.pitcher = this.hLineup.pitcher;
         this.batter = this.aLineup.battingOrder[0];
@@ -106,6 +107,7 @@ export class Game {
 
     NextBatter() {
         if (this.topHalf == true) {
+            this.aBatters = this.batters;
             this.aBatters[this.awayCurrentBatterIndex] = this.batter;
 
             this.awayCurrentBatterIndex++;
@@ -116,9 +118,10 @@ export class Game {
             this.defense = this.hLineup;
             this.pitcher = this.hLineup.pitcher;
             this.batters = this.aBatters;
+            this.CurrentBatterIndex = this.awayCurrentBatterIndex;
         } else {
-            this.hBatters[this.homeCurrentBatterIndex] = this.batter;
-
+            this.aBatters = this.batters;
+            this.aBatters[this.homeCurrentBatterIndex] = this.batter;
 
             this.homeCurrentBatterIndex++;
             if (this.homeCurrentBatterIndex == 9) this.homeCurrentBatterIndex = 0;
@@ -128,6 +131,7 @@ export class Game {
             this.defense = this.aLineup;
             this.pitcher = this.aLineup.pitcher;
             this.batters = this.hBatters;
+            this.CurrentBatterIndex = this.homeCurrentBatterIndex;
         }
 
         this.offense = {
@@ -163,7 +167,7 @@ export class Game {
 
         // TODO pull these into functions on BoxScore
         // Could each outcome have a set of other events that need to be updated?
-        for (let player of [this.batter, this.pitcher]) {
+        for (let player of [this.batters[this.CurrentBatterIndex], this.pitcher]) {
             for (let event of ['pa', atBat.resultingPlay]) {
                 player[event]++;
             }
@@ -184,9 +188,9 @@ export class Game {
         }
 
         if (atBat.resultingPlay == 'HR') {
-            this.batter.run++;
+            this.batters[this.CurrentBatterIndex].run++;
             this.pitcher.run++;
-            this.batter.rbi++;
+            this.batters[this.CurrentBatterIndex].rbi++;
             this.IncrementScore();
         }
 
@@ -195,7 +199,7 @@ export class Game {
             if (this.outs == 3) {
                 for (let runner of this.baseRunners) {
                     if (runner) {
-                        this.batter.lob++;
+                        this.batters[this.CurrentBatterIndex].lob++;
                     }
                 }
             }
@@ -220,7 +224,7 @@ export class Game {
             let baseRunner = afterAtBatBaseRunners[i];
             if (baseRunner) {
                 this.batters[baseRunner.id].run++;
-                this.batter.rbi++;
+                this.batters[this.CurrentBatterIndex].rbi++;
                 this.pitcher.run++;
                 this.IncrementScore();
             }
