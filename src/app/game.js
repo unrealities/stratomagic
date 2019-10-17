@@ -42,9 +42,8 @@ export class Game {
         this.outs = 0;
         this.baseRunners = [null, null, null];
 
-        this.awayCurrentBatterIndex = 0;
-        this.homeCurrentBatterIndex = 0;
-        this.CurrentBatterIndex = 0;
+        this.aCurrentBatterIndex = 0;
+        this.hCurrentBatterIndex = 0;
 
         this.pitcher = this.hLineup.pitcher;
         this.batter = this.aLineup.battingOrder[0];
@@ -76,6 +75,7 @@ export class Game {
             if (player.isHitter() == false) this.hPitchers[player.id] = new BoxScorePitcher(player);
         }
         this.batters = this.aBatters;
+        this.CurrentBatterID = this.batter.id;
         this.pitchers = this.hPitchers;
 
         // TODO Add home away defense (IF, OF, C)
@@ -97,10 +97,10 @@ export class Game {
         this.outs = 0;
         this.baseRunners = [null, null, null];
         if (this.topHalf == true) {
-            this.batter = this.aLineup.battingOrder[this.awayCurrentBatterIndex];
+            this.batter = this.aLineup.battingOrder[this.aCurrentBatterIndex];
             this.pitcher = this.hLineup.pitcher;
         } else {
-            this.batter = this.hLineup.battingOrder[this.homeCurrentBatterIndex];
+            this.batter = this.hLineup.battingOrder[this.hCurrentBatterIndex];
             this.pitcher = this.aLineup.pitcher;
         }
     }
@@ -108,30 +108,30 @@ export class Game {
     NextBatter() {
         if (this.topHalf == true) {
             this.aBatters = this.batters;
-            this.aBatters[this.awayCurrentBatterIndex] = this.batter;
+            this.aBatters[this.aCurrentBatterIndex] = this.batter;
 
-            this.awayCurrentBatterIndex++;
-            if (this.awayCurrentBatterIndex == 9) this.awayCurrentBatterIndex = 0;
-            this.batter = this.aLineup.battingOrder[this.awayCurrentBatterIndex];
-            this.onDeckBatter = this.aLineup.battingOrder[(this.awayCurrentBatterIndex+1)%9];
-            this.theHoleBatter = this.aLineup.battingOrder[(this.awayCurrentBatterIndex+2)%9];
+            this.aCurrentBatterIndex++;
+            if (this.aCurrentBatterIndex == 9) this.aCurrentBatterIndex = 0;
+            this.batter = this.aLineup.battingOrder[this.aCurrentBatterIndex];
+            this.onDeckBatter = this.aLineup.battingOrder[(this.aCurrentBatterIndex+1)%9];
+            this.theHoleBatter = this.aLineup.battingOrder[(this.aCurrentBatterIndex+2)%9];
             this.defense = this.hLineup;
             this.pitcher = this.hLineup.pitcher;
             this.batters = this.aBatters;
-            this.CurrentBatterIndex = this.awayCurrentBatterIndex;
+            this.CurrentBatterID = this.batters[aCurrentBatterIndex].id;
         } else {
             this.aBatters = this.batters;
-            this.aBatters[this.homeCurrentBatterIndex] = this.batter;
+            this.aBatters[this.hCurrentBatterIndex] = this.batter;
 
-            this.homeCurrentBatterIndex++;
-            if (this.homeCurrentBatterIndex == 9) this.homeCurrentBatterIndex = 0;
-            this.batter = this.hLineup.battingOrder[this.homeCurrentBatterIndex];
-            this.onDeckBatter = this.hLineup.battingOrder[(this.homeCurrentBatterIndex+1)%9];
-            this.theHoleBatter = this.hLineup.battingOrder[(this.homeCurrentBatterIndex+2)%9];
+            this.hCurrentBatterIndex++;
+            if (this.hCurrentBatterIndex == 9) this.hCurrentBatterIndex = 0;
+            this.batter = this.hLineup.battingOrder[this.hCurrentBatterIndex];
+            this.onDeckBatter = this.hLineup.battingOrder[(this.hCurrentBatterIndex+1)%9];
+            this.theHoleBatter = this.hLineup.battingOrder[(this.hCurrentBatterIndex+2)%9];
             this.defense = this.aLineup;
             this.pitcher = this.aLineup.pitcher;
             this.batters = this.hBatters;
-            this.CurrentBatterIndex = this.homeCurrentBatterIndex;
+            this.CurrentBatterID = this.batters[hCurrentBatterIndex].id;
         }
 
         this.offense = {
@@ -167,7 +167,7 @@ export class Game {
 
         // TODO pull these into functions on BoxScore
         // Could each outcome have a set of other events that need to be updated?
-        for (let player of [this.batters[this.CurrentBatterIndex], this.pitcher]) {
+        for (let player of [this.batters[this.CurrentBatterID], this.pitcher]) {
             for (let event of ['pa', atBat.resultingPlay]) {
                 player[event]++;
             }
@@ -188,9 +188,9 @@ export class Game {
         }
 
         if (atBat.resultingPlay == 'HR') {
-            this.batters[this.CurrentBatterIndex].run++;
+            this.batters[this.CurrentBatterID].run++;
             this.pitcher.run++;
-            this.batters[this.CurrentBatterIndex].rbi++;
+            this.batters[this.CurrentBatterID].rbi++;
             this.IncrementScore();
         }
 
@@ -199,7 +199,7 @@ export class Game {
             if (this.outs == 3) {
                 for (let runner of this.baseRunners) {
                     if (runner) {
-                        this.batters[this.CurrentBatterIndex].lob++;
+                        this.batters[this.CurrentBatterID].lob++;
                     }
                 }
             }
@@ -224,7 +224,7 @@ export class Game {
             let baseRunner = afterAtBatBaseRunners[i];
             if (baseRunner) {
                 this.batters[baseRunner.id].run++;
-                this.batters[this.CurrentBatterIndex].rbi++;
+                this.batters[this.CurrentBatterID].rbi++;
                 this.pitcher.run++;
                 this.IncrementScore();
             }
