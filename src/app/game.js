@@ -118,7 +118,7 @@ export class Game {
             this.defense = this.hLineup;
             this.pitcher = this.hLineup.pitcher;
             this.batters = this.aBatters;
-            this.CurrentBatterID = this.batters[aCurrentBatterIndex].id;
+            this.CurrentBatterID = this.batter.id;
         } else {
             this.aBatters = this.batters;
             this.aBatters[this.hCurrentBatterIndex] = this.batter;
@@ -131,7 +131,7 @@ export class Game {
             this.defense = this.aLineup;
             this.pitcher = this.aLineup.pitcher;
             this.batters = this.hBatters;
-            this.CurrentBatterID = this.batters[hCurrentBatterIndex].id;
+            this.CurrentBatterID = this.batter.id;
         }
 
         this.offense = {
@@ -175,7 +175,7 @@ export class Game {
 
 
         let bases = atBat.resultingPlayTotalBases;
-        for (let player of [this.batter, this.pitcher]) {
+        for (let player of [this.batters[this.CurrentBatterID], this.pitcher]) {
             atBat.resultingPlay == 'BB' ? player.bb++ : player.ab++;
             player.tb = player.tb + bases;
 
