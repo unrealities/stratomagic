@@ -107,7 +107,6 @@ export class Game {
 
     NextBatter() {
         if (this.topHalf == true) {
-            this.aBatters = this.batters;
             this.aBatters[this.aCurrentBatterIndex] = this.batter;
 
             this.aCurrentBatterIndex++;
@@ -118,10 +117,8 @@ export class Game {
             this.defense = this.hLineup;
             this.pitcher = this.hLineup.pitcher;
             this.batters = this.aBatters;
-            this.CurrentBatterID = this.batter.id;
         } else {
-            this.aBatters = this.batters;
-            this.aBatters[this.hCurrentBatterIndex] = this.batter;
+            this.hBatters[this.hCurrentBatterIndex] = this.batter;
 
             this.hCurrentBatterIndex++;
             if (this.hCurrentBatterIndex == 9) this.hCurrentBatterIndex = 0;
@@ -131,8 +128,9 @@ export class Game {
             this.defense = this.aLineup;
             this.pitcher = this.aLineup.pitcher;
             this.batters = this.hBatters;
-            this.CurrentBatterID = this.batter.id;
         }
+
+        this.CurrentBatterID = this.batter.id;
 
         this.offense = {
             'batter': this.batter,
