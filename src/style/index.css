@@ -64,7 +64,7 @@ body {
 }
 
 .battingBoxScoreCard .name, .pitchingBoxScoreCard .name {
-    min-width: 50%;
+    min-width: 52%;
 }
 
 .atBatCard div, .battingBoxScoreCard div, .pitchingBoxScoreCard div, .scoreCard div {
