@@ -75,8 +75,10 @@ export class Game {
             if (player.isHitter() == false) this.hPitchers[player.id] = new BoxScorePitcher(player);
         }
         this.batters = this.aBatters;
-        this.CurrentBatterID = this.batter.id;
         this.pitchers = this.hPitchers;
+
+        this.CurrentBatterID = this.batter.id;
+        this.CurrentPitcherID = this.pitcher.id;
 
         // TODO Add home away defense (IF, OF, C)
     }
@@ -131,6 +133,7 @@ export class Game {
         }
 
         this.CurrentBatterID = this.batter.id;
+        this.CurrentPitcherID = this.pitcher.id;
 
         this.offense = {
             'batter': this.batter,
@@ -148,6 +151,7 @@ export class Game {
 
         if (this.outs == 3) {
             this.pitcher.inn++;
+            this.pitchers[this.CurrentPitcherID].inn++;
             if (this.pitcher.inn >= this.pitcher.ip) {
                 this.pitcher.control--;
             } else {
@@ -165,7 +169,7 @@ export class Game {
 
         // TODO pull these into functions on BoxScore
         // Could each outcome have a set of other events that need to be updated?
-        for (let player of [this.batters[this.CurrentBatterID], this.pitcher]) {
+        for (let player of [this.batters[this.CurrentBatterID], this.pitchers[this.CurrentPitcherID]]) {
             for (let event of ['pa', atBat.resultingPlay]) {
                 player[event]++;
             }
@@ -173,7 +177,7 @@ export class Game {
 
 
         let bases = atBat.resultingPlayTotalBases;
-        for (let player of [this.batters[this.CurrentBatterID], this.pitcher]) {
+        for (let player of [this.batters[this.CurrentBatterID], this.pitchers[this.CurrentPitcherID]]) {
             atBat.resultingPlay == 'BB' ? player.bb++ : player.ab++;
             player.tb = player.tb + bases;
 
@@ -187,7 +191,7 @@ export class Game {
 
         if (atBat.resultingPlay == 'HR') {
             this.batters[this.CurrentBatterID].run++;
-            this.pitcher.run++;
+            this.pitchers[this.CurrentPitcherID].run++;
             this.batters[this.CurrentBatterID].rbi++;
             this.IncrementScore();
         }
@@ -223,7 +227,7 @@ export class Game {
             if (baseRunner) {
                 this.batters[baseRunner.id].run++;
                 this.batters[this.CurrentBatterID].rbi++;
-                this.pitcher.run++;
+                this.pitchers[this.CurrentPitcherID].run++;
                 this.IncrementScore();
             }
         }
