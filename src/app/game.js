@@ -170,6 +170,7 @@ export class Game {
         // TODO pull these into functions on BoxScore
         // Could each outcome have a set of other events that need to be updated?
         for (let player of [this.batters[this.CurrentBatterID], this.pitchers[this.CurrentPitcherID]]) {
+            console.log(`currentPitcherID: ${this.CurrentPitcherID}`);
             for (let event of ['pa', atBat.resultingPlay]) {
                 player[event]++;
             }
