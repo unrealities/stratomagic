@@ -108,6 +108,9 @@ export class Game {
     }
 
     NextBatter() {
+        this.CurrentBatterID = this.batter.id;
+        this.CurrentPitcherID = this.pitcher.id;
+
         if (this.topHalf == true) {
             this.aBatters[this.aCurrentBatterIndex] = this.batter;
 
@@ -132,6 +135,7 @@ export class Game {
             this.batters = this.hBatters;
         }
 
+        console.log(`this.pitcher.id: ${this.pitcher.id}`);
         this.CurrentBatterID = this.batter.id;
         this.CurrentPitcherID = this.pitcher.id;
 
