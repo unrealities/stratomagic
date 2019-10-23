@@ -100,17 +100,18 @@ export class Game {
         this.baseRunners = [null, null, null];
         if (this.topHalf == true) {
             this.batter = this.aLineup.battingOrder[this.aCurrentBatterIndex];
+            this.pitchers = this.hPitchers;
             this.pitcher = this.hLineup.pitcher;
         } else {
             this.batter = this.hLineup.battingOrder[this.hCurrentBatterIndex];
+            this.pitchers = this.aPitchers;
             this.pitcher = this.aLineup.pitcher;
         }
+
+        this.CurrentPitcherID = this.pitcher.id;
     }
 
     NextBatter() {
-        this.CurrentBatterID = this.batter.id;
-        this.CurrentPitcherID = this.pitcher.id;
-
         if (this.topHalf == true) {
             this.aBatters[this.aCurrentBatterIndex] = this.batter;
 
@@ -135,7 +136,6 @@ export class Game {
             this.batters = this.hBatters;
         }
 
-        console.log(`this.pitcher.id: ${this.pitcher.id}`);
         this.CurrentBatterID = this.batter.id;
         this.CurrentPitcherID = this.pitcher.id;
 
@@ -174,7 +174,6 @@ export class Game {
         // TODO pull these into functions on BoxScore
         // Could each outcome have a set of other events that need to be updated?
         for (let player of [this.batters[this.CurrentBatterID], this.pitchers[this.CurrentPitcherID]]) {
-            console.log(`currentPitcherID: ${this.CurrentPitcherID}`);
             for (let event of ['pa', atBat.resultingPlay]) {
                 player[event]++;
             }
