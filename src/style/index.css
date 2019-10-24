@@ -258,3 +258,8 @@ body {
     line-height: 700%;
     width: 20%;
 }
+
+.obc {
+    float: right;
+    font-weight: bold;
+}
