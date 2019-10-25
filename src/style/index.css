@@ -263,3 +263,9 @@ body {
     float: right;
     font-weight: bold;
 }
+
+.bases {
+    background-color: tan;
+    float: left;
+    width: 100%;
+}
