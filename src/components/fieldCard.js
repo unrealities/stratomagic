@@ -68,9 +68,11 @@ export class OffenseCard extends React.Component {
     render() {
         return (
             <div className="offenseCard">
-                <div className="batter"><PlayerCard player={this.props.offense.batter}/></div>
-                <div className="onDeck"><PlayerCard player={this.props.offense.onDeck}/></div>
-                <div className="theHole"><PlayerCard player={this.props.offense.theHole}/></div>
+                <div className="hitters">
+                    <div className="batter"><PlayerCard player={this.props.offense.batter}/></div>
+                    <div className="onDeck"><PlayerCard player={this.props.offense.onDeck}/></div>
+                    <div className="theHole"><PlayerCard player={this.props.offense.theHole}/></div>
+                </div>
                 <div className="bases">
                     <div className="firstBaseRunner"><PlayerCard player={this.props.offense.baseRunners[0]}/></div>
                     <div className="secondBaseRunner"><PlayerCard player={this.props.offense.baseRunners[1]}/></div>
@@ -89,15 +91,17 @@ export class DefenseCard extends React.Component {
     render() {
         return (
             <div className="defenseCard">
-                <div className="pitcher"><PlayerCard player={this.props.defense.pitcher}/></div>
-                <div className="catcher"><PlayerCard player={this.props.defense.catcher}/></div>
-                <div className="firstBase"><PlayerCard player={this.props.defense.firstBase}/></div>
-                <div className="secondBase"><PlayerCard player={this.props.defense.secondBase}/></div>
-                <div className="thirdBase"><PlayerCard player={this.props.defense.thirdBase}/></div>
-                <div className="shortstop"><PlayerCard player={this.props.defense.shortstop}/></div>
-                <div className="leftField"><PlayerCard player={this.props.defense.leftField}/></div>
-                <div className="centerField"><PlayerCard player={this.props.defense.centerField}/></div>
-                <div className="rightField"><PlayerCard player={this.props.defense.rightField}/></div>
+                <div className="defense">
+                    <div className="pitcher"><PlayerCard player={this.props.defense.pitcher}/></div>
+                    <div className="catcher"><PlayerCard player={this.props.defense.catcher}/></div>
+                    <div className="firstBase"><PlayerCard player={this.props.defense.firstBase}/></div>
+                    <div className="secondBase"><PlayerCard player={this.props.defense.secondBase}/></div>
+                    <div className="thirdBase"><PlayerCard player={this.props.defense.thirdBase}/></div>
+                    <div className="shortstop"><PlayerCard player={this.props.defense.shortstop}/></div>
+                    <div className="leftField"><PlayerCard player={this.props.defense.leftField}/></div>
+                    <div className="centerField"><PlayerCard player={this.props.defense.centerField}/></div>
+                    <div className="rightField"><PlayerCard player={this.props.defense.rightField}/></div>
+                </div>
             </div>
         )
     }

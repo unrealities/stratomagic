@@ -224,8 +224,9 @@ body {
 }
 
 .scoreboardCard {
-    background-color: #FFF;
+    background-color: #000;
     border-radius: 10px;
+    color: #FFF;
     float: left;
     margin: 1%;
     padding: 1%;
@@ -264,8 +265,19 @@ body {
     font-weight: bold;
 }
 
-.bases {
-    background-color: tan;
+.bases, .defense, .hitters {
     float: left;
     width: 100%;
+}
+
+.bases {
+    background-color: tan;
+}
+
+.defense {
+    background-color: #ff9f1c;
+}
+
+.hitters {
+    background-color: grey;
 }
