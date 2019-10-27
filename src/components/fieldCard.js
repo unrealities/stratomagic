@@ -196,7 +196,6 @@ export class PitchingBoxScoreCard extends React.Component {
                 <div className="hit">{this.props.hit}</div>
                 <div className="run">{this.props.run}</div>
                 <div className="bb">{this.props.bb}</div>
-                <div className="so">{this.props.so}</div>
                 <div className="hr">{this.props.hr}</div>
                 <div className="tb">{this.props.tb}</div>
                 <div className="so">{this.props.so}</div>
