@@ -43,6 +43,14 @@ export class FieldCard extends React.Component {
                 <div className="playAtBatButton">
                     <button onClick={this.buttonClick}>Play At Bat</button>
                 </div>
+                <div className="park">
+                    <div className="field-bases">
+                        <div className="first-base"></div>
+                        <div className="second-base"></div>
+                        <div className="third-base"></div>
+                        <div className="home-base"></div>
+                    </div>
+                </div>
                 <div className="boxScores">
                     <div className="awayBoxScore">
                         <div className="boxScoreHeading">Away Box</div>
