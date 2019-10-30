@@ -82,9 +82,15 @@ export class OffenseCard extends React.Component {
                     <div className="theHole"><PlayerCard player={this.props.offense.theHole}/></div>
                 </div>
                 <div className="bases">
-                    <div className="firstBaseRunner"><PlayerCard player={this.props.offense.baseRunners[0]}/></div>
-                    <div className="secondBaseRunner"><PlayerCard player={this.props.offense.baseRunners[1]}/></div>
-                    <div className="thirdBaseRunner"><PlayerCard player={this.props.offense.baseRunners[2]}/></div>
+                    <div className={`firstBaseRunner ${this.props.offense.baseRunners[0] != null && this.props.offense.baseRunners[0].length > 0 ? 'occupied':''}`}>
+                        <PlayerCard player={this.props.offense.baseRunners[0]}/>
+                    </div>
+                    <div className={`secondBaseRunner ${this.props.offense.baseRunners[1] != null &&this.props.offense.baseRunners[1].length > 0 ? 'occupied':''}`}>
+                        <PlayerCard player={this.props.offense.baseRunners[1]}/>
+                    </div>
+                    <div className={`thirdBaseRunner ${this.props.offense.baseRunners[2] != null &&this.props.offense.baseRunners[2].length > 0 ? 'occupied':''}`}>
+                        <PlayerCard player={this.props.offense.baseRunners[2]}/>
+                    </div>
                 </div>
             </div>
         )

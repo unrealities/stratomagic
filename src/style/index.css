@@ -322,3 +322,7 @@ body {
     top: 0px;
     left: 200px;
 }
+
+.occupied {
+    background-color: #fc5185;
+}
