@@ -82,13 +82,13 @@ export class OffenseCard extends React.Component {
                     <div className="theHole"><PlayerCard player={this.props.offense.theHole}/></div>
                 </div>
                 <div className="bases">
-                    <div className={`firstBaseRunner ${this.props.offense.baseRunners[0] != null && this.props.offense.baseRunners[0].length > 0 ? 'occupied':''}`}>
+                    <div className={"firstBaseRunner"}>
                         <PlayerCard player={this.props.offense.baseRunners[0]}/>
                     </div>
-                    <div className={`secondBaseRunner ${this.props.offense.baseRunners[1] != null &&this.props.offense.baseRunners[1].length > 0 ? 'occupied':''}`}>
+                    <div className={"secondBaseRunner"}>
                         <PlayerCard player={this.props.offense.baseRunners[1]}/>
                     </div>
-                    <div className={`thirdBaseRunner ${this.props.offense.baseRunners[2] != null &&this.props.offense.baseRunners[2].length > 0 ? 'occupied':''}`}>
+                    <div className={"thirdBaseRunner"}>
                         <PlayerCard player={this.props.offense.baseRunners[2]}/>
                     </div>
                 </div>
@@ -121,6 +121,7 @@ export class DefenseCard extends React.Component {
     }
 }
 
+//TODO: Make a BaseCard
 export class PlayerCard extends React.Component {
     constructor(props) {
         super(props);
@@ -128,7 +129,10 @@ export class PlayerCard extends React.Component {
 
     render() {
         return (
-            <div className="fieldPlayerCard">
+            <div className={`fieldPlayerCard ${
+                  this.props.player != null &&
+                  this.props.player.fullName != null &&
+                  this.props.player.fullName.length > 0 ? 'occupied':''}`}>
                 <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
                 <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>   
             </div>
