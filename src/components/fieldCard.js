@@ -45,10 +45,10 @@ export class FieldCard extends React.Component {
                 </div>
                 <div className="park">
                     <div className="field-bases">
-                        <div className="first-base"></div>
-                        <div className="second-base"></div>
-                        <div className="third-base"></div>
-                        <div className="home-base"></div>
+                        <BaseCard name="first" />
+                        <BaseCard name="second" />
+                        <BaseCard name="third" />
+                        <BaseCard name="home" />
                     </div>
                 </div>
                 <div className="boxScores">
@@ -116,6 +116,19 @@ export class DefenseCard extends React.Component {
                     <div className="centerField"><PlayerCard player={this.props.defense.centerField}/></div>
                     <div className="rightField"><PlayerCard player={this.props.defense.rightField}/></div>
                 </div>
+            </div>
+        )
+    }
+}
+
+export class BaseCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className={`${this.props.name}-base`}>
             </div>
         )
     }
