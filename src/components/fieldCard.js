@@ -45,10 +45,10 @@ export class FieldCard extends React.Component {
                 </div>
                 <div className="park">
                     <div className="field-bases">
-                        <BaseCard name="first" />
-                        <BaseCard name="second" />
-                        <BaseCard name="third" />
-                        <BaseCard name="home" />
+                        <BaseCard name="first" player={this.props.game.offense.baseRunners[0]}/>
+                        <BaseCard name="second" player={this.props.game.offense.baseRunners[1]}/>
+                        <BaseCard name="third" player={this.props.game.offense.baseRunners[2]}/>
+                        <BaseCard name="home" player={this.props.game.offense.batter}/>
                     </div>
                 </div>
                 <div className="boxScores">
@@ -128,7 +128,10 @@ export class BaseCard extends React.Component {
 
     render() {
         return (
-            <div className={`${this.props.name}-base`}>
+            <div className={`${this.props.name}-base ${
+                this.props.player != null &&
+                this.props.player.fullName != null &&
+                this.props.player.fullName.length > 0 ? 'occupied':''}`}>
             </div>
         )
     }

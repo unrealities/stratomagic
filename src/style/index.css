@@ -309,7 +309,7 @@ body {
 }
 
 .second-base {
-    top: 200px;
+    top: 0px;
     left: 200px;
 }
 
@@ -319,10 +319,10 @@ body {
 }
 
 .home-base {
-    top: 0px;
+    top: 200px;
     left: 200px;
 }
 
-.occupied {
+.field-bases .occupied {
     background-color: #fc5185;
 }
