@@ -132,6 +132,10 @@ export class BaseCard extends React.Component {
                 this.props.player != null &&
                 this.props.player.fullName != null &&
                 this.props.player.fullName.length > 0 ? 'occupied':''}`}>
+                    <p className="player-desc">{
+                        this.props.player != null &&
+                        this.props.player.fullName != null &&
+                        this.props.player.fullName.length > 0 ? this.props.player.fullName:''}</p>
             </div>
         )
     }
