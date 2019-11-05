@@ -290,11 +290,11 @@ body {
     width: 100%;
 }
 
-.field-bases {
+.field-base-container {
     position: relative;
 }
 
-.field-bases div {
+.field-base-container div {
     position: absolute;
     height: 20px;
     width: 20px;
@@ -323,27 +323,28 @@ body {
     left: 200px;
 }
 
-.field-bases .occupied {
+.field-base-container .occupied {
     background-color: #fc5185;
 }
 
-.player-desc {
+div.field-base-container div.player-desc {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-    padding: 50%;
-    -webkit-transform: rotate(45deg);
 
-    /* transition effect. not necessary */
+    background-color: #fff;
+    border-color: #fc5185;
+    border-radius: 1%;
+    color: #000;
+    opacity: 0;
     transition: opacity .2s, visibility .2s;
+    visibility: hidden;
+    -webkit-transform: rotate(45deg);
 }
 
-.occupied:hover .player-desc {
+div.field-base-container.occupied:hover .player-desc {
     visibility: visible;
     opacity: 1;
 }

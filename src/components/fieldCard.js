@@ -128,14 +128,17 @@ export class BaseCard extends React.Component {
 
     render() {
         return (
-            <div className={`${this.props.name}-base ${
-                this.props.player != null &&
-                this.props.player.fullName != null &&
-                this.props.player.fullName.length > 0 ? 'occupied':''}`}>
-                    <p className="player-desc">{
-                        this.props.player != null &&
-                        this.props.player.fullName != null &&
-                        this.props.player.fullName.length > 0 ? this.props.player.fullName:''}</p>
+            <div className="field-base-container">
+                <div className={`${this.props.name}-base ${
+                    this.props.player != null &&
+                    this.props.player.fullName != null &&
+                    this.props.player.fullName.length > 0 ? 'occupied':''}`}>
+                </div>
+                <div className="player-desc">{
+                    this.props.player != null &&
+                    this.props.player.fullName != null &&
+                    this.props.player.fullName.length > 0 ? this.props.player.fullName:''}
+                </div>
             </div>
         )
     }
