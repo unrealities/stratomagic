@@ -327,7 +327,7 @@ body {
     background-color: #fc5185;
 }
 
-div.field-base-container div.player-desc {
+.field-base-container div .player-desc {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -338,13 +338,15 @@ div.field-base-container div.player-desc {
     border-color: #fc5185;
     border-radius: 1%;
     color: #000;
+    height: 40px;
     opacity: 0;
     transition: opacity .2s, visibility .2s;
     visibility: hidden;
+    width: 140px;
     -webkit-transform: rotate(45deg);
 }
 
-div.field-base-container.occupied:hover .player-desc {
+.field-base-container:hover .player-desc {
     visibility: visible;
     opacity: 1;
 }
