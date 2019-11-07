@@ -338,7 +338,7 @@ body {
     border-color: #fc5185;
     border-radius: 1%;
     color: #000;
-    height: 40px;
+    margin: 50%;
     opacity: 0;
     transition: opacity .2s, visibility .2s;
     visibility: hidden;
