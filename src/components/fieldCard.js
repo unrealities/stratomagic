@@ -127,6 +127,7 @@ export class BaseCard extends React.Component {
         this.occupied = this.props.player != null && this.props.player.fullName != null && this.props.player.fullName.length > 0;
         this.occupiedClass =  this.occupied ? 'occupied':'';
         this.name = this.occupied ? this.props.player.fullName:'';
+        this.obc = this.occupied ? this.props.player.obc:'';
     }
 
     render() {
@@ -134,7 +135,8 @@ export class BaseCard extends React.Component {
             <div className="field-base-container">
                 <div className={`${this.props.name}-base ${this.occupiedClass}`}>
                     <div className="player-desc">
-                        {this.name}
+                        <div className="player-name">{this.name}</div>
+                        <div className="player-obc">{this.obc}</div>
                     </div>
                 </div>
             </div>

@@ -338,15 +338,24 @@ body {
     border-color: #fc5185;
     border-radius: 1%;
     color: #000;
-    padding: 50%;
+    height: 200px;
     opacity: 0;
+    padding: 50%;
     transition: opacity .2s, visibility .2s;
     visibility: hidden;
-    width: 140px;
+    width: 180px;
     -webkit-transform: rotate(45deg);
 }
 
 .field-base-container:hover .player-desc {
     visibility: visible;
     opacity: 1;
+}
+
+.field-base-container div .player-desc div {
+    border: 0px;
+    float: left;
+    position: relative;
+    width: 160px;
+    -webkit-transform: rotate(0deg);
 }
