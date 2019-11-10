@@ -228,24 +228,28 @@ body {
     border-radius: 10px;
     color: #FFF;
     float: left;
+    font-family: 'Codystar', monospace;
+    font-size: 80px;
     margin: 1%;
     padding: 1%;
     width: 70%;
 }
 
 .sbHeader {
-    font-weight: bold;
     padding-right: 1%;
 }
 
 .sbHeader, .sbValue {
     display: inline;
     float: left;
+    width: 100%;
 }
 
 .sbDiv {
     float: left;
     margin: 1%;
+    text-align: center;
+    width: 22%;
 }
 
 .playAtBatButton {
