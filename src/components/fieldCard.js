@@ -124,13 +124,13 @@ export class DefenseCard extends React.Component {
 export class BaseCard extends React.Component {
     constructor(props) {
         super(props);
-        this.occupied = this.props.player != null && this.props.player.fullName != null && this.props.player.fullName.length > 0;
-        this.occupiedClass =  this.occupied ? 'occupied':'';
-        this.name = this.occupied ? this.props.player.fullName:'';
-        this.obc = this.occupied ? this.props.player.obc:'';
     }
 
     render() {
+        this.occupied = this.props.player != null && this.props.player.fullName != null && this.props.player.fullName.length > 0;
+        this.occupiedClass = this.occupied ? 'occupied':'';
+        this.name = this.occupied ? this.props.player.fullName:'';
+        this.obc = this.occupied ? this.props.player.obc:'';
         return (
             <div className="field-base-container">
                 <div className={`${this.props.name}-base ${this.occupiedClass}`}>
