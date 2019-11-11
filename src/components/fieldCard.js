@@ -38,6 +38,7 @@ export class FieldCard extends React.Component {
         return (
             <div className="fieldCard">
                 <ScoreboardCard game={this.props.game}/>
+                <LastPlayCard pitcher={this.props.game.defense.pitcher} batter={this.props.game.offense.batter} playResult=""/>
                 <OffenseCard offense={this.props.game.offense}/>
                 <DefenseCard defense={this.props.game.defense}/>
                 <div className="playAtBatButton">
@@ -144,7 +145,6 @@ export class BaseCard extends React.Component {
     }
 }
 
-//TODO: Make a BaseCard
 export class PlayerCard extends React.Component {
     constructor(props) {
         super(props);
@@ -158,6 +158,20 @@ export class PlayerCard extends React.Component {
                   this.props.player.fullName.length > 0 ? 'occupied':''}`}>
                 <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
                 <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>   
+            </div>
+        )
+    }
+}
+
+export class LastPlayCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="lastPlay">
+                {this.props.pitcher.fullName} v. {this.props.batter.fullName} : {this.props.playResult}
             </div>
         )
     }
