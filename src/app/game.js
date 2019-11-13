@@ -148,6 +148,11 @@ export class Game {
     }
 
     PlayAtBat() {
+        // Check to see if the game is over
+        if ((this.inning >= 10) && (this.awayScore != this.homeScore) && (this.topHalf)) {
+            return;
+        }
+
         if ((this.inning >= 9) && (!this.topHalf) && (this.homeScore > this.awayScore)) {
             this.inning++;
             return;

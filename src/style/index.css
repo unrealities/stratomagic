@@ -366,3 +366,10 @@ body {
     width: 160px;
     -webkit-transform: rotate(0deg);
 }
+
+.lastPlay {
+    color: #FFF;
+    float: left;
+    margin: 1%;
+    width: 100%;
+}
