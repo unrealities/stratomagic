@@ -38,7 +38,7 @@ export class FieldCard extends React.Component {
         return (
             <div className="fieldCard">
                 <ScoreboardCard game={this.props.game}/>
-                <LastPlayCard pitcher={this.props.game.defense.pitcher} batter={this.props.game.offense.batter} playResult=""/>
+                <LastPlayCard game={this.props.game}/>
                 <OffenseCard offense={this.props.game.offense}/>
                 <DefenseCard defense={this.props.game.defense}/>
                 <div className="playAtBatButton">
@@ -169,9 +169,10 @@ export class LastPlayCard extends React.Component {
     }
 
     render() {
+        let lastAtBat = this.props.game.atBats.slice(-1)[0];
         return (
             <div className="lastPlay">
-                {this.props.pitcher.fullName} v. {this.props.batter.fullName} : {this.props.playResult}
+                {lastAtBat == null ? "game has not started" : `${lastAtBat.pitcher.fullName} vs. ${lastAtBat.batter.fullName} : ${lastAtBat.resultingPlay}`}
             </div>
         )
     }
