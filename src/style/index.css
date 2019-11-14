@@ -264,9 +264,15 @@ body {
     width: 20%;
 }
 
+.fullName {
+    float: left;
+    width: 80%;
+}
+
 .obc {
-    float: right;
+    float: left;
     font-weight: bold;
+    width: 20%;
 }
 
 .bases, .defense, .hitters {
@@ -283,7 +289,7 @@ body {
 }
 
 .hitters {
-    background-color: grey;
+    width: 20%;
 }
 
 .park {
