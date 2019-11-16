@@ -265,14 +265,14 @@ body {
 
 .fullName {
     float: left;
-    width: 80%;
+    width: 95%;
 }
 
 .obc {
     float: left;
     font-weight: bold;
     text-align: right;
-    width: 15%;
+    width: 4%;
 }
 
 .bases, .defense, .hitters {
@@ -293,11 +293,7 @@ body {
 }
 
 .park {
-    float: left;
-    margin: 10%;
-    min-height: 200px;
-    min-width: 100%;
-    width: 100%;
+    margin: 18% 0% 0% 15%;
 }
 
 .field-base-container {
@@ -376,6 +372,9 @@ body {
 .lastPlay {
     color: #FFF;
     float: left;
-    margin: 1%;
+    font-family: 'Press Start 2P';
+    font-size: 28px;
+    margin: 2%;
+    padding-left: 5%;
     width: 100%;
 }
