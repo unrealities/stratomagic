@@ -296,7 +296,7 @@ body {
     margin: 18% 0% 0% 15%;
 }
 
-.field-base-container {
+.field-base-container, .field-position-container {
     position: relative;
 }
 
@@ -308,6 +308,14 @@ body {
     width: 20px;
     z-index: 1;
     -webkit-transform: rotate(-45deg);
+}
+
+.field-position-container div {
+    border:1px solid #FFF;
+    height: 20px;
+    position: absolute;
+    width: 20px;
+    z-index: 1;
 }
 
 .first-base {
@@ -327,6 +335,11 @@ body {
 
 .home-base {
     top: 200px;
+    left: 200px;
+}
+
+.pos-pitcher {
+    top: 100px;
     left: 200px;
 }
 

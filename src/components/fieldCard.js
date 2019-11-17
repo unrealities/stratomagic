@@ -51,6 +51,9 @@ export class FieldCard extends React.Component {
                         <BaseCard name="third" player={this.props.game.offense.baseRunners[2]}/>
                         <BaseCard name="home" player={this.props.game.offense.batter}/>
                     </div>
+                    <div className="defense-positions">
+                        <PositionCard name="pitcher" player={this.props.game.defense.pitcher}/>
+                    </div>
                 </div>
                 <div className="boxScores">
                     <div className="awayBoxScore">
@@ -127,6 +130,24 @@ export class BaseCard extends React.Component {
                     <div className="player-desc">
                         <div className="player-name">{this.name}</div>
                         <div className="player-obc">{this.obc}</div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export class PositionCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="field-position-container">
+                <div className={`pos-${this.props.name}`}>
+                    <div className="pos-player-desc">
+                        <div className="pos-player-name">{this.name}</div>
                     </div>
                 </div>
             </div>
