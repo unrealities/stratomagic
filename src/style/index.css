@@ -347,7 +347,7 @@ body {
     background-color: #fc5185;
 }
 
-.field-base-container div .player-desc {
+.field-base-container div .player-desc, .field-position-container .pos-player-desc {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -368,13 +368,13 @@ body {
     -webkit-transform: rotate(45deg);
 }
 
-.field-base-container .occupied:hover .player-desc {
+.field-base-container .occupied:hover .player-desc, .field-position-container:hover .pos-player-desc {
     opacity: 1;
     visibility: visible;
     z-index: 2;
 }
 
-.field-base-container div .player-desc div {
+.field-base-container div .player-desc div, .field-position-container div .pos-player-desc div {
     border: 0px;
     float: left;
     position: relative;

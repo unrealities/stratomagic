@@ -147,7 +147,7 @@ export class PositionCard extends React.Component {
             <div className="field-position-container">
                 <div className={`pos-${this.props.name}`}>
                     <div className="pos-player-desc">
-                        <div className="pos-player-name">{this.name}</div>
+                        <div className="pos-player-name">{this.props.player.fullName}</div>
                     </div>
                 </div>
             </div>
