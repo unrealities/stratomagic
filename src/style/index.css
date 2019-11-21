@@ -344,6 +344,32 @@ body {
     left: 200px;
 }
 
+.pos-catcher {
+    top: 250px;
+    left: 200px;
+}
+
+.pos-firstBase {
+    top: 50px;
+    left: 400px;
+}
+
+.pos-secondBase {
+    top: 0px;
+    left: 300px;
+}
+
+.pos-thirdBase {
+    top: 50px;
+    left: 0px;
+}
+
+.pos-shortstop {
+    top: 0px;
+    left: 100px;
+}
+
+
 .field-base-container .occupied {
     background-color: #fc5185;
 }

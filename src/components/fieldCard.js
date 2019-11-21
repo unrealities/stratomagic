@@ -53,6 +53,14 @@ export class FieldCard extends React.Component {
                     </div>
                     <div className="defense-positions">
                         <PositionCard name="pitcher" player={this.props.game.defense.pitcher}/>
+                        <PositionCard name="catcher" player={this.props.game.defense.catcher}/>
+                        <PositionCard name="firstBase" player={this.props.game.defense.firstBase}/>
+                        <PositionCard name="secondBase" player={this.props.game.defense.secondBase}/>
+                        <PositionCard name="thirdBase" player={this.props.game.defense.thirdBase}/>
+                        <PositionCard name="shortstop" player={this.props.game.defense.shortstop}/>
+                        <PositionCard name="leftField" player={this.props.game.defense.leftField}/>
+                        <PositionCard name="centerField" player={this.props.game.defense.centerField}/>
+                        <PositionCard name="rightField" player={this.props.game.defense.rightField}/>
                     </div>
                 </div>
                 <div className="boxScores">
