@@ -216,10 +216,10 @@ body {
     width: 10%;
 }
 
-.defenseCard, .offenseCard {
+.offenseCard {
     display: inline;
     float: left;
-    width: 50%;
+    margin-left: 60%;
 }
 
 .scoreboardCard {
@@ -292,8 +292,14 @@ body {
     width: 20%;
 }
 
+.hitters div {
+    float: left;
+    margin: 2%;
+}
+
 .park {
-    margin: 18% 0% 0% 15%;
+    margin: 25% 0% 0% 15%;
+    height: 300px;
 }
 
 .field-base-container, .field-position-container {
@@ -311,7 +317,7 @@ body {
 }
 
 .field-position-container div {
-    border:0.5px solid #ff9f1c;
+    border:2px solid #ff9f1c;
     border-radius: 50%;
     height: 20px;
     position: absolute;
@@ -369,12 +375,26 @@ body {
     left: 100px;
 }
 
+.pos-leftField {
+    top: -50px;
+    left: 0px;
+}
+
+.pos-centerField {
+    top: -100px;
+    left: 200px;
+}
+
+.pos-rightField {
+    top: -50px;
+    left: 400px;
+}
 
 .field-base-container .occupied {
     background-color: #fc5185;
 }
 
-.field-base-container div .player-desc, .field-position-container .pos-player-desc {
+.field-base-container div .player-desc {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -395,17 +415,32 @@ body {
     -webkit-transform: rotate(45deg);
 }
 
+.field-position-container .pos-player-desc {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    visibility: hidden;
+}
+
+.pos-player-name {
+    color: #FFF;
+    margin-left: 30px;
+    margin-top: -30px;
+}
+
 .field-base-container .occupied:hover .player-desc, .field-position-container:hover .pos-player-desc {
     opacity: 1;
     visibility: visible;
-    z-index: 2;
 }
 
 .field-base-container div .player-desc div, .field-position-container div .pos-player-desc div {
     border: 0px;
     float: left;
     position: relative;
-    width: 160px;
+    width: 200px;
     -webkit-transform: rotate(0deg);
 }
 
