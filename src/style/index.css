@@ -317,9 +317,11 @@ body {
 }
 
 .field-position-container div {
-    border:2px solid #ff9f1c;
-    border-radius: 50%;
+    border: 1px solid #ff9f1c;
+    border-radius: 10px;
+    box-sizing: border-box;
     height: 20px;
+    padding: 0px;
     position: absolute;
     width: 20px;
     z-index: 1;
@@ -423,6 +425,7 @@ body {
     right: 0;
 
     visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .pos-player-name {
@@ -432,8 +435,12 @@ body {
 }
 
 .field-base-container .occupied:hover .player-desc, .field-position-container:hover .pos-player-desc {
-    opacity: 1;
+    opacity: 0.5;
     visibility: visible;
+}
+
+.field-position-container:hover {
+    visibility: hidden;
 }
 
 .field-base-container div .player-desc div, .field-position-container div .pos-player-desc div {
@@ -441,6 +448,7 @@ body {
     float: left;
     position: relative;
     width: 200px;
+    
     -webkit-transform: rotate(0deg);
 }
 
