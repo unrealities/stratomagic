@@ -39,6 +39,9 @@ export class FieldCard extends React.Component {
             <div className="fieldCard">
                 <ScoreboardCard game={this.props.game}/>
                 <LastPlayCard game={this.props.game}/>
+                <div className="playAtBatButton">
+                    <button onClick={this.buttonClick}>Play At Bat</button>
+                </div>
                 <OffenseCard offense={this.props.game.offense}/>
                 <div className="park">
                     <div className="field-bases">
@@ -84,9 +87,6 @@ export class OffenseCard extends React.Component {
     render() {
         return (
             <div className="offenseCard">
-                <div className="playAtBatButton">
-                    <button onClick={this.buttonClick}>Play At Bat</button>
-                </div>
                 <div className="hitters">
                     <div className="batter"><PlayerCard player={this.props.offense.batter}/></div>
                     <div className="onDeck"><PlayerCard player={this.props.offense.onDeck}/></div>
