@@ -58,7 +58,7 @@ body {
 
 .atBatCard .name, .battingBoxScoreCard .name, .lineupCard .name, .pitchingBoxScoreCard .name, .scoreCard .scoreValue, .playerCard h1 {
     font-family: 'Lato', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 20px;
     padding-left: 2%;
 }
@@ -182,6 +182,7 @@ body {
 
 .battingBoxScoreCard .hitterChartCard, .battingBoxScoreCard .playerName, .pitchingBoxScoreCard .hitterChartCard, .pitchingBoxScoreCard .playerName {
     min-width: 48%;
+    max-width: 50%;
 }
 
 .hitterChartItem0 {
@@ -231,7 +232,7 @@ body {
     font-family: 'Codystar', monospace;
     font-size: 80px;
     margin: 2%;
-    width: 98%;
+    width: 96%;
 }
 
 .sbHeader {
@@ -435,8 +436,13 @@ body {
     margin-top: -30px;
 }
 
-.field-base-container .occupied:hover .player-desc, .field-position-container:hover .pos-player-desc {
+.field-position-container:hover .pos-player-desc {
     opacity: 0.5;
+    visibility: visible;
+}
+
+.field-base-container .occupied:hover .player-desc {
+    opacity: 1;
     visibility: visible;
 }
 
@@ -448,7 +454,7 @@ body {
     border: 0px;
     float: left;
     position: relative;
-    width: 200px;
+    width: 100%;
     
     -webkit-transform: rotate(0deg);
 }
