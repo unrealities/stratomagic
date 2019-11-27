@@ -468,3 +468,20 @@ body {
     text-align: center;
     width: 100%;
 }
+
+.infield {
+    position: relative;
+    top: -110px;
+    bottom: 0;
+    left: 10px;
+    right: 0;
+
+    background-color: tan;
+    border-radius: 10%;
+    float: left;
+    height: 400px;
+    width: 400px;
+    z-index: -1;
+
+    -webkit-transform: rotate(45deg);
+}
