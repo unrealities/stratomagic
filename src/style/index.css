@@ -301,7 +301,7 @@ body {
 
 .park {
     height: 300px;
-    padding: 10% 0% 0% 38%;
+    padding: 20% 0% 10% 38%;
 }
 
 .field-base-container, .field-position-container {
@@ -335,7 +335,7 @@ body {
 }
 
 .second-base {
-    top: 0px;
+    top: -80px;
     left: 200px;
 }
 
@@ -345,7 +345,7 @@ body {
 }
 
 .home-base {
-    top: 200px;
+    top: 280px;
     left: 200px;
 }
 
@@ -355,7 +355,7 @@ body {
 }
 
 .pos-catcher {
-    top: 250px;
+    top: 320px;
     left: 200px;
 }
 
@@ -365,7 +365,7 @@ body {
 }
 
 .pos-secondBase {
-    top: 0px;
+    top: -50px;
     left: 300px;
 }
 
@@ -375,23 +375,23 @@ body {
 }
 
 .pos-shortstop {
-    top: 0px;
+    top: -50px;
     left: 100px;
 }
 
 .pos-leftField {
-    top: -50px;
-    left: 0px;
+    top: -120px;
+    left: -20px;
 }
 
 .pos-centerField {
-    top: -100px;
+    top: -280px;
     left: 200px;
 }
 
 .pos-rightField {
-    top: -50px;
-    left: 400px;
+    top: -120px;
+    left: 440px;
 }
 
 .field-base-container .occupied {
@@ -469,7 +469,7 @@ body {
     width: 100%;
 }
 
-.infield {
+.infield-dirt {
     position: relative;
     top: -110px;
     bottom: 0;
@@ -482,6 +482,23 @@ body {
     height: 400px;
     width: 400px;
     z-index: -1;
+
+    -webkit-transform: rotate(45deg);
+}
+
+.infield-grass {
+    position: relative;
+    top: 10px;
+    bottom: 0;
+    left: -289px;
+    right: 0;
+
+    background-color: green;
+    border-radius: 10%;
+    float: left;
+    height: 200px;
+    width: 200px;
+    z-index: -0.5;
 
     -webkit-transform: rotate(45deg);
 }
