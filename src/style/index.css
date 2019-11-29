@@ -502,3 +502,18 @@ body {
 
     -webkit-transform: rotate(45deg);
 }
+
+.infield-pitchers-mound {
+    position: relative;
+    top: 80px;
+    bottom: 0;
+    left: -420px;
+    right: 0;
+
+    background-color: tan;
+    border-radius: 50%;
+    float: left;
+    height: 60px;
+    width: 60px;
+    z-index: -0.25;
+}
