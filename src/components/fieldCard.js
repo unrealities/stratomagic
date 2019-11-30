@@ -47,6 +47,7 @@ export class FieldCard extends React.Component {
                     <div className="infield-dirt"></div>
                     <div className="infield-grass"></div>
                     <div className="infield-pitchers-mound"></div>
+                    <div className="outfield-grass"></div>
                     <div className="field-bases">
                         <BaseCard name="first" player={this.props.game.offense.baseRunners[0]}/>
                         <BaseCard name="second" player={this.props.game.offense.baseRunners[1]}/>

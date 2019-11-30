@@ -319,8 +319,8 @@ body {
 }
 
 .field-position-container div {
-    border: 1px solid #ff9f1c;
-    border-radius: 10px;
+    border: 2px solid #ff9f1c;
+    border-radius: 40%;
     box-sizing: border-box;
     height: 20px;
     padding: 0px;
@@ -380,17 +380,17 @@ body {
 }
 
 .pos-leftField {
-    top: -120px;
+    top: -80px;
     left: -20px;
 }
 
 .pos-centerField {
-    top: -280px;
+    top: -260px;
     left: 200px;
 }
 
 .pos-rightField {
-    top: -120px;
+    top: -80px;
     left: 440px;
 }
 
@@ -516,4 +516,23 @@ body {
     height: 60px;
     width: 60px;
     z-index: -0.25;
+}
+
+.outfield-grass {
+    position: relative;
+    top: -460px;
+    bottom: 0;
+    left: -440px;
+    right: 0;
+
+    background: green;
+    border-radius: 0 100px 0 0;
+    float: left;
+    height: 500px;
+    width: 500px;
+    z-index: -3;
+
+    -moz-border-radius: 0 100px 0 0;
+    -webkit-border-radius: 0 100px 0 0;
+    -webkit-transform: rotate(315deg);
 }
