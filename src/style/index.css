@@ -300,8 +300,10 @@ body {
 }
 
 .park {
-    height: 300px;
-    padding: 20% 0% 10% 38%;
+    float: left;
+    margin: 10% 0% 0% 10%;
+    width: 900px;
+    padding-left: 20%;
 }
 
 .field-base-container, .field-position-container {
@@ -534,5 +536,5 @@ body {
 
     -moz-border-radius: 0 100px 0 0;
     -webkit-border-radius: 0 100px 0 0;
-    -webkit-transform: rotate(315deg);
+    -webkit-transform: rotate(-45deg);
 }
