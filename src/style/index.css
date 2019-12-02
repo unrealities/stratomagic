@@ -538,3 +538,12 @@ body {
     -webkit-border-radius: 0 100px 0 0;
     -webkit-transform: rotate(-45deg);
 }
+
+.batter-img {
+    height: 200px;
+    width: 200px;
+}
+
+.batter-img img {
+    float: left;
+}

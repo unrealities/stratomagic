@@ -3,6 +3,7 @@
 import React from 'react';
 // import {BattingBoxScoreCardContainer} from '../components/boxScoreCard.js';
 import { HitterChartCard } from '../components/hitterChartCard.js';
+import Batter from '../style/batter.svg';
 
 export class FieldCard extends React.Component {
     constructor(props) {
@@ -154,7 +155,10 @@ export class PlayerCard extends React.Component {
                   this.props.player.fullName != null &&
                   this.props.player.fullName.length > 0 ? 'occupied':''}`}>
                 <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
-                <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>   
+                <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>
+                <div className="batter-img">
+                    <Batter className="batter" height={200} width={200}/>
+                </div>  
             </div>
         )
     }
