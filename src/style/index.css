@@ -220,7 +220,6 @@ body {
 .offenseCard {
     display: inline;
     float: left;
-    margin-left: 2%;
     width: 20%;
 }
 
@@ -300,10 +299,10 @@ body {
 }
 
 .park {
+    display: inline;
     float: left;
-    margin: 10% 0% 0% 10%;
-    width: 900px;
-    padding-left: 20%;
+    height: 1000px;
+    width: 80%;
 }
 
 .field-base-container, .field-position-container {
@@ -332,68 +331,68 @@ body {
 }
 
 .first-base {
-    top: 100px;
-    left: 400px;
+    top: 500px;
+    left: 700px;
 }
 
 .second-base {
-    top: -80px;
-    left: 200px;
+    top: 320px;
+    left: 500px;
 }
 
 .third-base {
-    top: 100px;
-    left: 0px;
-}
-
-.home-base {
-    top: 280px;
-    left: 200px;
-}
-
-.pos-pitcher {
-    top: 100px;
-    left: 200px;
-}
-
-.pos-catcher {
-    top: 320px;
-    left: 200px;
-}
-
-.pos-firstBase {
-    top: 50px;
-    left: 400px;
-}
-
-.pos-secondBase {
-    top: -50px;
+    top: 500px;
     left: 300px;
 }
 
+.home-base {
+    top: 680px;
+    left: 500px;
+}
+
+.pos-pitcher {
+    top: 500px;
+    left: 500px;
+}
+
+.pos-catcher {
+    top: 720px;
+    left: 500px;
+}
+
+.pos-firstBase {
+    top: 450px;
+    left: 700px;
+}
+
+.pos-secondBase {
+    top: 350px;
+    left: 600px;
+}
+
 .pos-thirdBase {
-    top: 50px;
-    left: 0px;
+    top: 450px;
+    left: 300px;
 }
 
 .pos-shortstop {
-    top: -50px;
-    left: 100px;
+    top: 350px;
+    left: 400px;
 }
 
 .pos-leftField {
-    top: -80px;
-    left: -20px;
+    top: 320px;
+    left: 280px;
 }
 
 .pos-centerField {
-    top: -260px;
-    left: 200px;
+    top: 140px;
+    left: 500px;
 }
 
 .pos-rightField {
-    top: -80px;
-    left: 440px;
+    top: 320px;
+    left: 740px;
 }
 
 .field-base-container .occupied {
@@ -473,9 +472,9 @@ body {
 
 .infield-dirt {
     position: relative;
-    top: -110px;
+    top: 310px;
     bottom: 0;
-    left: 10px;
+    left: 310px;
     right: 0;
 
     background-color: tan;
@@ -490,9 +489,9 @@ body {
 
 .infield-grass {
     position: relative;
-    top: 10px;
+    top: 410px;
     bottom: 0;
-    left: -289px;
+    left: 11px;
     right: 0;
 
     background-color: green;
@@ -507,9 +506,9 @@ body {
 
 .infield-pitchers-mound {
     position: relative;
-    top: 80px;
+    top: 480px;
     bottom: 0;
-    left: -420px;
+    left: -120px;
     right: 0;
 
     background-color: tan;
@@ -522,16 +521,16 @@ body {
 
 .outfield-grass {
     position: relative;
-    top: -460px;
+    top: 100px;
     bottom: 0;
-    left: -440px;
+    left: -450px;
     right: 0;
 
     background: green;
     border-radius: 0 100px 0 0;
     float: left;
-    height: 500px;
-    width: 500px;
+    height: 600px;
+    width: 600px;
     z-index: -3;
 
     -moz-border-radius: 0 100px 0 0;

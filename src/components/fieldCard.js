@@ -43,8 +43,9 @@ export class FieldCard extends React.Component {
                 <div className="playAtBatButton">
                     <button onClick={this.buttonClick}>Play At Bat</button>
                 </div>
-                <OffenseCard offense={this.props.game.offense}/>
-                <div className="park">
+                <div className="action">
+                    <OffenseCard offense={this.props.game.offense}/>
+                    <div className="park">
                     <div className="infield-dirt"></div>
                     <div className="infield-grass"></div>
                     <div className="infield-pitchers-mound"></div>
@@ -66,6 +67,7 @@ export class FieldCard extends React.Component {
                         <PositionCard name="centerField" player={this.props.game.defense.centerField}/>
                         <PositionCard name="rightField" player={this.props.game.defense.rightField}/>
                     </div>
+                </div>
                 </div>
                 <div className="boxScores">
                     <div className="awayBoxScore">
