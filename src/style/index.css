@@ -521,9 +521,9 @@ body {
 
 .outfield-grass {
     position: relative;
-    top: 100px;
+    top: -100px;
     bottom: 0;
-    left: -450px;
+    left: -190px;
     right: 0;
 
     background: green;

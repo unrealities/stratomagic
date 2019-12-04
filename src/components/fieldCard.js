@@ -159,7 +159,7 @@ export class PlayerCard extends React.Component {
                 <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
                 <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>
                 <div className="batter-img">
-                    <Batter className="batter" height={200} width={200}/>
+                    <Batter className="batter" height={"100%"} width={"100%"}/>
                 </div>  
             </div>
         )
