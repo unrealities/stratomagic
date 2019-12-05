@@ -220,7 +220,13 @@ body {
 .offenseCard {
     display: inline;
     float: left;
-    width: 20%;
+    width: 15%;
+}
+
+.pitcherCard {
+    display: inline;
+    float: right;
+    width: 15%;
 }
 
 .scoreboardCard {
