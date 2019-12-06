@@ -4,6 +4,7 @@ import React from 'react';
 // import {BattingBoxScoreCardContainer} from '../components/boxScoreCard.js';
 import { HitterChartCard } from '../components/hitterChartCard.js';
 import Batter from '../style/batter.svg';
+import Pitcher from '../style/pitcher.svg';
 
 export class FieldCard extends React.Component {
     constructor(props) {
@@ -46,31 +47,31 @@ export class FieldCard extends React.Component {
                 <div className="action">
                     <OffenseCard offense={this.props.game.offense}/>
                     <div className="park">
-                    <div className="infield-dirt"></div>
-                    <div className="infield-grass"></div>
-                    <div className="infield-pitchers-mound"></div>
-                    <div className="outfield-grass"></div>
-                    <div className="field-bases">
-                        <BaseCard name="first" player={this.props.game.offense.baseRunners[0]}/>
-                        <BaseCard name="second" player={this.props.game.offense.baseRunners[1]}/>
-                        <BaseCard name="third" player={this.props.game.offense.baseRunners[2]}/>
-                        <BaseCard name="home" player={this.props.game.offense.batter}/>
-                    </div>
-                    <div className="defense-positions">
-                        <PositionCard name="pitcher" player={this.props.game.defense.pitcher}/>
-                        <PositionCard name="catcher" player={this.props.game.defense.catcher}/>
-                        <PositionCard name="firstBase" player={this.props.game.defense.firstBase}/>
-                        <PositionCard name="secondBase" player={this.props.game.defense.secondBase}/>
-                        <PositionCard name="thirdBase" player={this.props.game.defense.thirdBase}/>
-                        <PositionCard name="shortstop" player={this.props.game.defense.shortstop}/>
-                        <PositionCard name="leftField" player={this.props.game.defense.leftField}/>
-                        <PositionCard name="centerField" player={this.props.game.defense.centerField}/>
-                        <PositionCard name="rightField" player={this.props.game.defense.rightField}/>
+                        <div className="infield-dirt"></div>
+                        <div className="infield-grass"></div>
+                        <div className="infield-pitchers-mound"></div>
+                        <div className="outfield-grass"></div>
+                        <div className="field-bases">
+                            <BaseCard name="first" player={this.props.game.offense.baseRunners[0]}/>
+                            <BaseCard name="second" player={this.props.game.offense.baseRunners[1]}/>
+                            <BaseCard name="third" player={this.props.game.offense.baseRunners[2]}/>
+                            <BaseCard name="home" player={this.props.game.offense.batter}/>
+                        </div>
+                        <div className="defense-positions">
+                            <PositionCard name="pitcher" player={this.props.game.defense.pitcher}/>
+                            <PositionCard name="catcher" player={this.props.game.defense.catcher}/>
+                            <PositionCard name="firstBase" player={this.props.game.defense.firstBase}/>
+                            <PositionCard name="secondBase" player={this.props.game.defense.secondBase}/>
+                            <PositionCard name="thirdBase" player={this.props.game.defense.thirdBase}/>
+                            <PositionCard name="shortstop" player={this.props.game.defense.shortstop}/>
+                            <PositionCard name="leftField" player={this.props.game.defense.leftField}/>
+                            <PositionCard name="centerField" player={this.props.game.defense.centerField}/>
+                            <PositionCard name="rightField" player={this.props.game.defense.rightField}/>
+                        </div>
                     </div>
                     <div className="pitcherCard">
-                        <div className="pitcher"><PlayerCard player={this.props.game.defense.pitcher}/></div>
+                        <div className="pitcher"><PlayerCard player={this.props.game.defense.pitcher} type="pitcher"/></div>
                     </div>
-                </div>
                 </div>
                 <div className="boxScores">
                     <div className="awayBoxScore">
@@ -98,9 +99,9 @@ export class OffenseCard extends React.Component {
         return (
             <div className="offenseCard">
                 <div className="hitters">
-                    <div className="batter"><PlayerCard player={this.props.offense.batter}/></div>
-                    <div className="onDeck"><PlayerCard player={this.props.offense.onDeck}/></div>
-                    <div className="theHole"><PlayerCard player={this.props.offense.theHole}/></div>
+                    <div className="batter"><PlayerCard player={this.props.offense.batter} type="batter"/></div>
+                    <div className="onDeck"><PlayerCard player={this.props.offense.onDeck} type="batter"/></div>
+                    <div className="theHole"><PlayerCard player={this.props.offense.theHole} type="batter"/></div>
                 </div>
             </div>
         )
@@ -154,6 +155,13 @@ export class PlayerCard extends React.Component {
     }
 
     render() {
+        let image;
+
+        if (this.props.type == "batter") {
+            image = <Batter className={this.props.type} height={"100%"} width={"100%"}/>;
+        } else {
+            image = <Pitcher className={this.props.type} height={"100%"} width={"100%"}/>
+        }
         return (
             <div className={`fieldPlayerCard ${
                   this.props.player != null &&
@@ -161,8 +169,8 @@ export class PlayerCard extends React.Component {
                   this.props.player.fullName.length > 0 ? 'occupied':''}`}>
                 <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
                 <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>
-                <div className="batter-img">
-                    <Batter className="batter" height={"100%"} width={"100%"}/>
+                <div className="player-img">
+                    {image}
                 </div>  
             </div>
         )

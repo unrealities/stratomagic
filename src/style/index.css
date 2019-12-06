@@ -308,7 +308,7 @@ body {
     display: inline;
     float: left;
     height: 1000px;
-    width: 80%;
+    width: 70%;
 }
 
 .field-base-container, .field-position-container {
@@ -544,11 +544,11 @@ body {
     -webkit-transform: rotate(-45deg);
 }
 
-.batter-img {
+.player-img {
     height: 200px;
     width: 200px;
 }
 
-.batter-img img {
+.player-img img {
     float: left;
 }
