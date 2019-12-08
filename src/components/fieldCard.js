@@ -168,7 +168,9 @@ export class PlayerCard extends React.Component {
                   this.props.player.fullName != null &&
                   this.props.player.fullName.length > 0 ? 'occupied':''}`}>
                 <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
-                <div className="obc">{this.props.player == null ? "" : this.props.player.obc}</div>
+                <div className="obc">
+                    <div>{this.props.player == null ? "" : this.props.player.obc}</div>
+                </div>
                 <div className="player-img">
                     {image}
                 </div>  
