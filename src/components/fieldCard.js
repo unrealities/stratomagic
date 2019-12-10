@@ -158,9 +158,9 @@ export class PlayerCard extends React.Component {
         let image;
 
         if (this.props.type == "batter") {
-            image = <Batter className={this.props.type} height={"100%"} width={"100%"}/>;
+            image = <Batter className={this.props.type} fill="#011627" height={"100%"} width={"100%"}/>;
         } else {
-            image = <Pitcher className={this.props.type} height={"100%"} width={"100%"}/>
+            image = <Pitcher className={this.props.type} fill="#011627" height={"100%"} width={"100%"}/>
         }
         return (
             <div className={`fieldPlayerCard ${
