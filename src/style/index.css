@@ -280,25 +280,40 @@ body {
     width: 95%;
 }
 
-.obc {
+.obc, .pos {
     position: relative;
     left: 160px;
 
-    background-color: #fc5185;
     border-radius: 50%;
     height: 50px;
     width: 50px;
 }
 
-.obc div {
+.obc div, .pos div {
     position: relative;
-    top: -15px;
 
     color: #fff;
     font-size: 28px;
     font-style: bold;
     text-align: center;
     width: 50px;
+}
+
+.obc {
+    background-color: #fc5185;
+}
+
+.obc div {
+    top: -15px;
+}
+
+.pos {
+    top: 190px;
+    background-color: #ff9f1c;
+}
+
+.pos div {
+    top: 10px;
 }
 
 .bases, .defense, .hitters {

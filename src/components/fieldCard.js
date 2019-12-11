@@ -171,6 +171,9 @@ export class PlayerCard extends React.Component {
                 <div className="obc">
                     <div>{this.props.player == null ? "" : this.props.player.obc}</div>
                 </div>
+                <div className="pos">
+                    <div>{this.props.player == null ? "" : this.props.player.playablePositions}</div>
+                </div>
                 <div className="player-img">
                     {image}
                 </div>  
