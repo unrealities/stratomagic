@@ -40,9 +40,9 @@ export class FieldCard extends React.Component {
         return (
             <div className="fieldCard">
                 <ScoreboardCard game={this.props.game}/>
-                <LastPlayCard game={this.props.game}/>
                 <div className="playAtBatButton">
                     <button onClick={this.buttonClick}>Play At Bat</button>
+                <LastPlayCard game={this.props.game}/>
                 </div>
                 <div className="action">
                     <OffenseCard offense={this.props.game.offense}/>
@@ -156,11 +156,12 @@ export class PlayerCard extends React.Component {
 
     render() {
         let image;
+        let posStrArr = ['DH','SP','C','1B','2B','3B','SS','LF','CF','RF','RP','CL'];
 
         if (this.props.type == "batter") {
-            image = <Batter className={this.props.type} fill="#011627" height={"100%"} width={"100%"}/>;
+            image = <Batter className={this.props.type} fill="#011627" height={"110%"} width={"100%"}/>;
         } else {
-            image = <Pitcher className={this.props.type} fill="#011627" height={"100%"} width={"100%"}/>
+            image = <Pitcher className={this.props.type} fill="#011627" height={"200%"} width={"200%"}/>
         }
         return (
             <div className={`fieldPlayerCard ${
@@ -172,7 +173,7 @@ export class PlayerCard extends React.Component {
                     <div>{this.props.player == null ? "" : this.props.player.obc}</div>
                 </div>
                 <div className="pos">
-                    <div>{this.props.player == null ? "" : this.props.player.playablePositions}</div>
+                    <div>{this.props.player == null ? "" : posStrArr[this.props.player.playablePositions[0]]}</div>
                 </div>
                 <div className="player-img">
                     {image}

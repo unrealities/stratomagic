@@ -266,7 +266,9 @@ body {
     background-color: #ff9f1c;
     border-color: #ff9f1c;
     border-radius: 10px;
-    line-height: 700%;
+    font-family: 'Press Start 2P';
+    font-size: 48px;
+    line-height: 200%;
     width: 100%;
 }
 
@@ -287,6 +289,8 @@ body {
     border-radius: 50%;
     height: 50px;
     width: 50px;
+
+    z-index: 1;
 }
 
 .obc div, .pos div {
@@ -575,10 +579,16 @@ body {
 }
 
 .player-img {
-    height: 200px;
+    height: 250px;
+    margin-top: -60px;
     width: 200px;
 }
 
 .player-img img {
     float: left;
+}
+
+.pitcher svg {
+    position: relative;
+    left: -120px;
 }
