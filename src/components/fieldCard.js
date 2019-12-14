@@ -100,8 +100,8 @@ export class OffenseCard extends React.Component {
             <div className="offenseCard">
                 <div className="hitters">
                     <div className="batter"><PlayerCard player={this.props.offense.batter} type="batter"/></div>
-                    <div className="onDeck"><PlayerCard player={this.props.offense.onDeck} type="batter"/></div>
-                    <div className="theHole"><PlayerCard player={this.props.offense.theHole} type="batter"/></div>
+                    <div className="onDeck"><MiniPlayerCard player={this.props.offense.onDeck} type="batter"/></div>
+                    <div className="theHole"><MiniPlayerCard player={this.props.offense.theHole} type="batter"/></div>
                 </div>
             </div>
         )
@@ -178,6 +178,37 @@ export class PlayerCard extends React.Component {
                 <div className="player-img">
                     {image}
                 </div>  
+            </div>
+        )
+    }
+}
+
+export class MiniPlayerCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        let image;
+        let posStrArr = ['DH','SP','C','1B','2B','3B','SS','LF','CF','RF','RP','CL'];
+
+        if (this.props.type == "batter") {
+            image = <Batter className={this.props.type} fill="#011627" height={"110%"} width={"100%"}/>;
+        } else {
+            image = <Pitcher className={this.props.type} fill="#011627" height={"200%"} width={"200%"}/>
+        }
+        return (
+            <div className={`fieldMiniPlayerCard ${
+                  this.props.player != null &&
+                  this.props.player.fullName != null &&
+                  this.props.player.fullName.length > 0 ? 'occupied':''}`}>
+                <div className="fullName">{this.props.player == null ? "" : this.props.player.fullName}</div>
+                <div className="mini-obc">
+                    <div>{this.props.player == null ? "" : this.props.player.obc}</div>
+                </div>
+                <div className="mini-pos">
+                    <div>{this.props.player == null ? "" : posStrArr[this.props.player.playablePositions[0]]}</div>
+                </div>
             </div>
         )
     }
