@@ -121,10 +121,7 @@ export class BaseCard extends React.Component {
         return (
             <div className="field-base-container">
                 <div className={`${this.props.name}-base ${this.occupiedClass}`}>
-                    <div className="player-desc">
-                        <div className="player-name">{this.name}</div>
-                        <div className="player-obc">{this.obc}</div>
-                    </div>
+                    <MiniPlayerCard player={this.props.player} type="batter"/>
                 </div>
             </div>
         )
