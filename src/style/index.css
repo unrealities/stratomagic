@@ -480,7 +480,7 @@ body {
     border-radius: 10px;
     display: inline;
     font-family: 'Bebas Neue', monospace;
-    height: 60px;
+    height: 40px;
     min-width: 180px;
 
     transition: opacity .2s, visibility .2s;
@@ -530,8 +530,32 @@ body {
 }
 
 .field-base-container div .fieldMiniPlayerCard div {
-    float: right;
     -webkit-transform: rotate(0deg);   
+}
+
+.field-base-container div .fieldMiniPlayerCard .fullName {
+    background-color: transparent;
+    border: none;
+    border-top: 2px solid #fc5185;
+    color: #fc5185;
+    font-size: 20px;
+    margin-top: 4px;
+    padding-left: 4px;
+    padding-top: 2px;
+    width: 95%;
+}
+
+.field-base-container div .fieldMiniPlayerCard .mini-obc, .field-base-container div .fieldMiniPlayerCard .mini-pos {
+    background-color: #ff9f1c;
+    position: relative;
+    top: 8px;
+    
+    float: right;
+}
+
+.field-base-container div .fieldMiniPlayerCard .mini-obc div, .field-base-container div .fieldMiniPlayerCard .mini-pos div {
+    background-color: #ff9f1c;
+    border: none;
 }
 
 .lastPlay {
