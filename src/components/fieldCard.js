@@ -204,7 +204,7 @@ export class MiniPlayerCard extends React.Component {
                     <div>{this.props.player == null ? "" : this.props.player.obc}</div>
                 </div>
                 <div className="mini-pos">
-                    <div>{this.props.player == null ? "" : posStrArr[this.props.player.playablePositions[0]]}</div>
+                    <div>{this.props.player == null ? "" : this.props.player.playablePositions == null ? "" : posStrArr[this.props.player.playablePositions[0]]}</div>
                 </div>
             </div>
         )

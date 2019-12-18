@@ -40,7 +40,7 @@ export class Game {
         this.awayScore = 0;
         this.homeScore = 0;
         this.outs = 0;
-        this.baseRunners = [null, null, null];
+        this.baseRunners = ["","",""];
 
         this.aCurrentBatterIndex = 0;
         this.hCurrentBatterIndex = 0;
@@ -97,7 +97,7 @@ export class Game {
         this.topHalf = !this.topHalf;
         if (this.topHalf == true) this.inning++;
         this.outs = 0;
-        this.baseRunners = [null, null, null];
+        this.baseRunners = ["","",""];
         if (this.topHalf == true) {
             this.batter = this.aLineup.battingOrder[this.aCurrentBatterIndex];
             this.pitchers = this.hPitchers;
@@ -233,7 +233,7 @@ export class Game {
         // Check for baserunners that have scored.
         for (let i=afterAtBatBaseRunners.length-1; i>2; i--) {
             let baseRunner = afterAtBatBaseRunners[i];
-            if (baseRunner) {
+            if (baseRunner != "") {
                 this.batters[baseRunner.id].run++;
                 this.batters[this.CurrentBatterID].rbi++;
                 this.pitchers[this.CurrentPitcherID].run++;
