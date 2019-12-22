@@ -317,9 +317,6 @@ export class BattingBoxScoreCardContainer extends React.Component {
 
     componentDidMount(){
         let players = Object.values(this.props.boxScore);
-        // players = players.filter( function(player) {
-        //     return player.pa > 0;
-        // });
 
         let header = {'player': {'fullName': 'Batter Name', 'chart': []}, 'pa': 'PA', 'ab': 'AB', 'run': 'R', 'hit': 'H', 'bb': 'BB', 'rbi': 'RBI', 'tb': 'TB', 'teamWin': 'W', 'lob': 'LOB'};
         players.unshift(header);
@@ -333,22 +330,24 @@ export class BattingBoxScoreCardContainer extends React.Component {
         return(
             <div className="battingBoxScoreCardContainer">
                 <div className="battingBoxScoreCardWrapper">
-                    {this.state.cards.map( (c,i) => { 
-                        return(
-                            <BattingBoxScoreCard key={i}
-                            chart={ c.player.chart }
-                            name={ c.player.fullName }
-                            pa={ c.pa }
-                            ab={ c.ab }
-                            run={ c.run }
-                            hit={ c.hit }
-                            bb={ c.bb }
-                            rbi={ c.rbi }
-                            tb={ c.tb }
-                            so={ c.so }
-                            lob={ c.lob }
-                            teamWin={ c.teamWin } />
-                        )
+                    {this.state.cards.map( (c,i) => {
+                        if (c.pa > 0 || c.pa == "PA") {
+                            return(
+                                <BattingBoxScoreCard key={i}
+                                chart={ c.player.chart }
+                                name={ c.player.fullName }
+                                pa={ c.pa }
+                                ab={ c.ab }
+                                run={ c.run }
+                                hit={ c.hit }
+                                bb={ c.bb }
+                                rbi={ c.rbi }
+                                tb={ c.tb }
+                                so={ c.so }
+                                lob={ c.lob }
+                                teamWin={ c.teamWin } />
+                            )
+                        }
                     })}
                 </div>
             </div>
@@ -380,20 +379,22 @@ export class PitchingBoxScoreCardContainer extends React.Component {
         return(
             <div className="pitchingBoxScoreCardContainer">
                 <div className="pitchingBoxScoreCardWrapper">
-                    {this.state.cards.map( (c,i) => { 
-                        return(
-                            <PitchingBoxScoreCard key={i}
-                            chart={ c.player.chart }
-                            name={ c.player.fullName }
-                            inn={ c.inn }
-                            run={ c.run }
-                            hit={ c.hit }
-                            bb={ c.bb }
-                            hr={ c.hr }
-                            tb={ c.tb }
-                            so={ c.so }
-                            teamWin={ c.teamWin } />
-                        )
+                    {this.state.cards.map( (c,i) => {
+                        if (c.inn > 0 || c.inn == "INN") {
+                            return(
+                                <PitchingBoxScoreCard key={i}
+                                chart={ c.player.chart }
+                                name={ c.player.fullName }
+                                inn={ c.inn }
+                                run={ c.run }
+                                hit={ c.hit }
+                                bb={ c.bb }
+                                hr={ c.hr }
+                                tb={ c.tb }
+                                so={ c.so }
+                                teamWin={ c.teamWin } />
+                            )
+                        }
                     })}
                 </div>
             </div>

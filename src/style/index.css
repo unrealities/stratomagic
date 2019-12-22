@@ -58,22 +58,24 @@ body {
 
 .atBatCard .name, .battingBoxScoreCard .name, .lineupCard .name, .pitchingBoxScoreCard .name, .scoreCard .scoreValue, .playerCard h1 {
     font-family: 'Lato', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     padding-left: 2%;
 }
 
 .battingBoxScoreCard .name, .pitchingBoxScoreCard .name {
     min-width: 52%;
+    text-align: left;
 }
 
 .atBatCard div, .battingBoxScoreCard div, .pitchingBoxScoreCard div, .scoreCard div {
     float: left;
-    padding: 0.5%;
+    padding: 0.4%;
 }
 
 .atBatCard div, .scoreCard div {
-    min-width: 4%;
+    min-width: 4.8%;
+    text-align: center;
 }
 
 .atBatCard .rolls {
@@ -81,7 +83,7 @@ body {
 }
 
 .battingBoxScoreCard div, .pitchingBoxScoreCard div {
-    min-width: 4%;
+    min-width: 4.8%;
 }
 
 .atBatsHeading, .boxScoreHeading, .scoreHeading {
@@ -90,13 +92,17 @@ body {
 
 .awayBoxScore, .homeBoxScore {
     float: left;
-    margin: 5%;
-    width: 40%;
+    margin: 1%;
+    width: 36%;
+}
+
+.homeBoxScore {
+    margin-left: 25%;
 }
 
 .boxScores {
     position: relative;
-    top: -300px;
+    top: -500px;
 }
 
 .playerCard h1 {
@@ -372,6 +378,9 @@ body {
 }
 
 .park {
+    position: relative;
+    top: -100px;
+
     display: inline;
     float: left;
     height: 1000px;
