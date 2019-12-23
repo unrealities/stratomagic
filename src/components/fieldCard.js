@@ -40,10 +40,7 @@ export class FieldCard extends React.Component {
         return (
             <div className="fieldCard">
                 <ScoreboardCard game={this.props.game}/>
-                <div className="playAtBatButton">
-                    <button onClick={this.buttonClick}>Play At Bat</button>
                 <LastPlayCard game={this.props.game}/>
-                </div>
                 <div className="action">
                     <OffenseCard offense={this.props.game.offense}/>
                     <div className="park">
@@ -72,6 +69,9 @@ export class FieldCard extends React.Component {
                     <div className="pitcherCard">
                         <div className="pitcher"><PlayerCard player={this.props.game.defense.pitcher} type="pitcher"/></div>
                     </div>
+                </div>
+                <div className="playAtBatButton">
+                    <button onClick={this.buttonClick}>Play At Bat</button>
                 </div>
                 <div className="boxScores">
                     <div className="awayBoxScore">

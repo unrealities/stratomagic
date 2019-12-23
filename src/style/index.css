@@ -5,6 +5,11 @@ body {
     font-family: 'Cousine', monospace;
 }
 
+.action {
+    position: relative;
+    top: -100px;
+}
+
 .battingOrder {
     float: left;
     margin: 0% 2%;
@@ -102,7 +107,7 @@ body {
 
 .boxScores {
     position: relative;
-    top: -500px;
+    top: -600px;
 }
 
 .playerCard h1 {
@@ -284,8 +289,11 @@ body {
 }
 
 .playAtBatButton {
-    margin-bottom: 20px;
-    width: 100%;
+    position: relative;
+    top: 0px;
+    
+    left: 78%;
+    width: 20%;
 }
 
 .playAtBatButton button {
@@ -293,7 +301,7 @@ body {
     border-color: #ff9f1c;
     border-radius: 10px;
     font-family: 'Press Start 2P';
-    font-size: 48px;
+    font-size: 24px;
     line-height: 200%;
     width: 100%;
 }
@@ -379,7 +387,7 @@ body {
 
 .park {
     position: relative;
-    top: -100px;
+    top: -80px;
 
     display: inline;
     float: left;
@@ -573,6 +581,9 @@ div .pos-player-name {
 }
 
 .lastPlay {
+    position: relative;
+    top: -40px;
+
     color: #FFF;
     float: left;
     font-family: 'Press Start 2P';
