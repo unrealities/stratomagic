@@ -107,7 +107,7 @@ body {
 
 .boxScores {
     position: relative;
-    top: -600px;
+    top: -620px;
 }
 
 .playerCard h1 {
@@ -267,7 +267,7 @@ body {
     float: left;
     font-family: 'Codystar', monospace;
     font-size: 80px;
-    margin: 2%;
+    margin: 1% 2% 2% 2%;
     width: 96%;
 }
 
@@ -290,7 +290,7 @@ body {
 
 .playAtBatButton {
     position: relative;
-    top: 0px;
+    top: -650px;
     
     left: 78%;
     width: 20%;
@@ -587,7 +587,7 @@ div .pos-player-name {
     color: #FFF;
     float: left;
     font-family: 'Press Start 2P';
-    font-size: 28px;
+    font-size: 22px;
     margin: 2%;
     text-align: center;
     width: 100%;
