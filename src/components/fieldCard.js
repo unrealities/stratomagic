@@ -95,6 +95,7 @@ export class OffenseCard extends React.Component {
         super(props);
     }
 
+    // TODO: Need to track batting orders and make sure right players are batting
     render() {
         return (
             <div className="offenseCard">
@@ -102,6 +103,7 @@ export class OffenseCard extends React.Component {
                     <div className="batter"><PlayerCard player={this.props.offense.batter} type="batter"/></div>
                     <div className="onDeck"><MiniPlayerCard player={this.props.offense.onDeck} type="batter"/></div>
                     <div className="theHole"><MiniPlayerCard player={this.props.offense.theHole} type="batter"/></div>
+                    <div className="battingOrder">{this.props.offense.battingOrder}</div>
                 </div>
             </div>
         )
