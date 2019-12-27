@@ -55,7 +55,8 @@ export class Game {
             'batter': this.batter,
             'onDeck': this.onDeckBatter,
             'theHole': this.theHoleBatter,
-            'baseRunners': this.baseRunners
+            'baseRunners': this.baseRunners,
+            'battingOrder': this.aLineup,
         };
 
         this.aBatters = {};
@@ -123,6 +124,7 @@ export class Game {
             this.defense = this.hLineup;
             this.pitcher = this.hLineup.pitcher;
             this.batters = this.aBatters;
+            this.battingOrder = this.aLineup.battingOrder;
         } else {
             this.hBatters[this.hCurrentBatterIndex] = this.batter;
 
@@ -134,6 +136,7 @@ export class Game {
             this.defense = this.aLineup;
             this.pitcher = this.aLineup.pitcher;
             this.batters = this.hBatters;
+            this.battingOrder = this.hLineup.battingOrder;
         }
 
         this.CurrentBatterID = this.batter.id;
@@ -143,7 +146,8 @@ export class Game {
             'batter': this.batter,
             'onDeck': this.onDeckBatter,
             'theHole': this.theHoleBatter,
-            'baseRunners': this.baseRunners
+            'baseRunners': this.baseRunners,
+            'battingOrder': this.battingOrder,
         };
     }
 
