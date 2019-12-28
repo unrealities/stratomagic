@@ -103,7 +103,7 @@ export class OffenseCard extends React.Component {
                     <div className="batter"><PlayerCard player={this.props.offense.batter} type="batter"/></div>
                     <div className="onDeck"><MiniPlayerCard player={this.props.offense.onDeck} type="batter"/></div>
                     <div className="theHole"><MiniPlayerCard player={this.props.offense.theHole} type="batter"/></div>
-                    <div className="battingOrder">{JSON.stringify(this.props.offense.battingOrder)}</div>
+                    {/* <div className="battingOrder"><BattingOrderCard battingOrder={this.props.offense.battingOrder}/></div> */}
                 </div>
             </div>
         )
@@ -143,6 +143,25 @@ export class PositionCard extends React.Component {
                         <div className="pos-player-name">{this.props.player.fullName}</div>
                     </div>
                 </div>
+            </div>
+        )
+    }
+}
+
+export class BattingOrderCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="battingOrder-container">
+                {JSON.stringify(this.props.battingOrder)}
+                {/* {this.props.battingOrder.map( (c,i) => {
+                    return(
+                        c.player.fullName
+                    )
+                })} */}
             </div>
         )
     }
