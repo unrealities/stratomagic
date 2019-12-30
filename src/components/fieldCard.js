@@ -158,7 +158,7 @@ export class BattingOrderCard extends React.Component {
             <div className="battingOrder-container">
                 {this.props.battingOrder.map( (b,i) => {
                     return(
-                        b.fullName
+                        <div>{b.fullName}</div>
                     )
                 })}
             </div>
