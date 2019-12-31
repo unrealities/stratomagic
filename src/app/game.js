@@ -46,9 +46,10 @@ export class Game {
         this.hCurrentBatterIndex = 0;
 
         this.pitcher = this.hLineup.pitcher;
-        this.batter = this.aLineup.battingOrder[0];
-        this.onDeckBatter = this.aLineup.battingOrder[1];
-        this.theHoleBatter = this.aLineup.battingOrder[2];
+        this.battingOrder = this.aLineup.battingOrder;
+        this.batter = this.battingOrder[0];
+        this.onDeckBatter = this.battingOrder[1];
+        this.theHoleBatter = this.battingOrder[2];
 
         this.defense = this.hLineup;
         this.offense = {
@@ -56,7 +57,7 @@ export class Game {
             'onDeck': this.onDeckBatter,
             'theHole': this.theHoleBatter,
             'baseRunners': this.baseRunners,
-            'battingOrder': this.aLineup,
+            'battingOrder': this.battingOrder,
         };
 
         this.aBatters = {};
@@ -103,10 +104,12 @@ export class Game {
             this.batter = this.aLineup.battingOrder[this.aCurrentBatterIndex];
             this.pitchers = this.hPitchers;
             this.pitcher = this.hLineup.pitcher;
+            this.battingOrder = this.aLineup.battingOrder
         } else {
             this.batter = this.hLineup.battingOrder[this.hCurrentBatterIndex];
             this.pitchers = this.aPitchers;
             this.pitcher = this.aLineup.pitcher;
+            this.battingOrder = this.hLineup.battingOrder;
         }
 
         this.CurrentPitcherID = this.pitcher.id;
@@ -260,9 +263,11 @@ export class Game {
         }
         this.batters = this.aBatters;
         this.pitchers = this.hPitchers;
+        this.battingOrder = this.aLineup.battingOrder;
         if (this.topHalf == false) {
             this.batters = this.hBatters;
             this.pitchers = this.aPitchers;
+            this.battingOrder = this.hLineup.battingOrder;
         }
 
         // TODO: Need to pull this out into a method that can be externally called
@@ -286,9 +291,11 @@ export class Game {
         while((this.inning < 10) || (this.awayScore == this.homeScore)) {
             this.batters = this.aBatters;
             this.pitchers = this.hPitchers;
+            this.battingOrder = this.aLineup.battingOrder;
             if (this.topHalf == false) {
                 this.batters = this.hBatters;
                 this.pitchers = this.aPitchers;
+                this.battingOrder = this.hLineup.battingOrder;
             }
 
             this.PlayAtBat();

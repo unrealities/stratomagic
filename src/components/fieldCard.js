@@ -103,7 +103,7 @@ export class OffenseCard extends React.Component {
                     <div className="batter"><PlayerCard player={this.props.offense.batter} type="batter"/></div>
                     <div className="onDeck"><MiniPlayerCard player={this.props.offense.onDeck} type="batter"/></div>
                     <div className="theHole"><MiniPlayerCard player={this.props.offense.theHole} type="batter"/></div>
-                    <div className="battingOrder"><BattingOrderCard battingOrder={this.props.offense.battingOrder.battingOrder}/></div>
+                    <div className="battingOrder"><BattingOrderCard battingOrder={this.props.offense.battingOrder}/></div>
                 </div>
             </div>
         )
@@ -158,7 +158,7 @@ export class BattingOrderCard extends React.Component {
             <div className="battingOrder-container">
                 {this.props.battingOrder.map( (b,i) => {
                     return(
-                        <div>{b.fullName}</div>
+                        <div key={i}>{b.fullName}</div>
                     )
                 })}
             </div>
