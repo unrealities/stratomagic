@@ -85,6 +85,9 @@ export class FieldCard extends React.Component {
                         <div id="homePitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.hPitchers}/></div>
                     </div>
                 </div>
+                <div className="player-select">
+                    <PlayerSelectContainer players={this.props.game.pitchers} />
+                </div>
             </div>
         );
     }
@@ -383,9 +386,6 @@ export class PitchingBoxScoreCardContainer extends React.Component {
 
     componentDidMount(){
         let players = Object.values(this.props.boxScore);
-        // players = players.filter( function(player) {
-        //     return player.inn > 0;
-        // });
 
         let header = {'player': {'fullName': 'Pitcher Name', 'chart': []}, 'inn': 'INN', 'run': 'ER', 'hit': 'H', 'bb': 'BB', 'hr': 'HR', 'tb': 'TB', 'so': 'K', 'teamWin': 'W'};
         players.unshift(header);
@@ -417,6 +417,22 @@ export class PitchingBoxScoreCardContainer extends React.Component {
                         }
                     })}
                 </div>
+            </div>
+        );
+    }
+}
+
+export class PlayerSelectContainer extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render(){
+        return (
+            <div className="drop-down">
+                {/* <select>
+                    { this.props.players.map((p, i) => <option key={i} >{p.player.fullName}</option>) }
+                </select> */}
             </div>
         );
     }
