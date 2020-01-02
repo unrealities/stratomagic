@@ -425,14 +425,24 @@ export class PitchingBoxScoreCardContainer extends React.Component {
 export class PlayerSelectContainer extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {players:[]};
+    }
+
+    componentDidMount(){
+        let players = Object.values(this.props.players);
+
+        this.setState({
+            ...this.state,
+            players: players,
+        });
     }
 
     render(){
         return (
             <div className="drop-down">
-                {/* <select>
-                    { this.props.players.map((p, i) => <option key={i} >{p.player.fullName}</option>) }
-                </select> */}
+                <select>
+                    { this.state.players.map((p, i) => <option key={i} >{p.player.fullName}</option>) }
+                </select>
             </div>
         );
     }
