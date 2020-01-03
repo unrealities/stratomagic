@@ -686,3 +686,12 @@ div .pos-player-name {
     color: white;
     width: 200px;
 }
+
+.drop-down select {
+    position: relative;
+    top: -500px;
+    
+    font-size: 24px;
+    margin: 1%;
+    padding: 4px 8px;
+}

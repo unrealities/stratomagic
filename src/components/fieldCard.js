@@ -441,7 +441,7 @@ export class PlayerSelectContainer extends React.Component {
         return (
             <div className="drop-down">
                 <select>
-                    { this.state.players.map((p, i) => <option key={i} >{p.player.fullName}</option>) }
+                    { this.state.players.map((p, i) => <option key={i} >{p.player.fullName} [{p.player.obc}]</option>) }
                 </select>
             </div>
         );
