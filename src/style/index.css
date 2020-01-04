@@ -695,3 +695,8 @@ div .pos-player-name {
     margin: 1%;
     padding: 4px 8px;
 }
+
+.player-select {
+    float:left;
+    margin: 0% 0% 0% 20%;
+}

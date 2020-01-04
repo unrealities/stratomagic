@@ -85,7 +85,10 @@ export class FieldCard extends React.Component {
                         <div id="homePitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.hPitchers}/></div>
                     </div>
                 </div>
-                <div className="player-select">
+                <div className="player-select batters">
+                    <PlayerSelectContainer players={this.props.game.batters} />
+                </div>
+                <div className="player-select pitchers">
                     <PlayerSelectContainer players={this.props.game.pitchers} />
                 </div>
             </div>
