@@ -437,18 +437,18 @@ export class PlayerSelectContainer extends React.Component {
         this.setState({
             ...this.state,
             players: players,
-            selectedPlayer: players[0],
+            selectedPlayer: players[0].player,
         });
     }
 
     render(){
         return (
             <div className="drop-down">
-                <select onChange={this.setState({...this.state, selectedPlayer: this.selected})}>
+                <select>
                     { this.state.players.map((p, i) => <option key={i} >{p.player.fullName} [{p.player.obc}]</option>) }
                 </select>
                 <div className="selected-player">
-                    {JSON.stringify(this.state.selectedPlayer)}
+                    <PlayerCard player={this.state.selectedPlayer} />
                 </div>
             </div>
         );
