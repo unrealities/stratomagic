@@ -428,7 +428,7 @@ export class PitchingBoxScoreCardContainer extends React.Component {
 export class PlayerSelectContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {players:[], playerSelect: this.props.players[0]};
+        this.state = {players:[]};
     }
 
     componentDidMount(){
@@ -437,12 +437,14 @@ export class PlayerSelectContainer extends React.Component {
         this.setState({
             ...this.state,
             players: players,
+            playerSelect: players[0].player,
         });
     }
 
-    onSelectChanged(value) {
+    onSelectChanged(event) {
         this.setState({
-            playerSelect: value
+            ...this.state,
+            playerSelect: this.state.players[event.target.selectedIndex].player,    
         });
     }
 
