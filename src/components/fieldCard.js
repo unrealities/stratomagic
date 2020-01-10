@@ -86,10 +86,10 @@ export class FieldCard extends React.Component {
                     </div>
                 </div>
                 <div className="player-select batters">
-                    <PlayerSelectContainer players={this.props.game.batters} />
+                    <PlayerSelectContainer players={this.props.game.batters} type="batter"/>
                 </div>
                 <div className="player-select pitchers">
-                    <PlayerSelectContainer players={this.props.game.pitchers} />
+                    <PlayerSelectContainer players={this.props.game.pitchers} type="pitcher"/>
                 </div>
             </div>
         );
@@ -455,7 +455,7 @@ export class PlayerSelectContainer extends React.Component {
                     { this.state.players.map((p, i) => <option key={i} >{p.player.fullName} [{p.player.obc}]</option>) }
                 </select>
                 <div className="selected-player">
-                    <PlayerCard player={this.state.playerSelect} />
+                    <PlayerCard player={this.state.playerSelect} type={this.props.type}/>
                 </div>
             </div>
         );
