@@ -706,9 +706,9 @@ div .pos-player-name {
     top: -480px;
 }
 
-.selected-player svg {
+.pitchers .selected-player svg {
     position: relative;
-    left: -50px;
+    left: -120px;
 }
 
 .player-selects {
