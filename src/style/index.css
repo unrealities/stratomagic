@@ -710,3 +710,8 @@ div .pos-player-name {
     position: relative;
     left: -50px;
 }
+
+.player-selects {
+    float: left;
+    width: 100%;
+}
