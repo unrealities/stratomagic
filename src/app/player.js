@@ -69,4 +69,39 @@ export class Player {
         return (Math.round((9 * (totalRuns/trials))*10)/10).toFixed(1);
     }
 
+    mlbTeamtoColor(team) {
+        let colors = {
+            "Angels": "",
+            "Astros": "",
+            "Athletics": "",
+            "Braves": "#002855",
+            "Brewers": "",
+            "Cardinals": "",
+            "Cubs": "",
+            "Diamondbacks": "#A71930",
+            "Dodgers": "",
+            "Giants": "",
+            "Indians": "",
+            "Jays": "",
+            "Mariners": "",
+            "Marlins": "",
+            "Mets": "",
+            "Nationals": "",
+            "Orioles": "",
+            "Padres": "",
+            "Phillies": "",
+            "Pirates": "",
+            "Rangers": "",
+            "Rays": "",
+            "Reds": "",
+            "Rockies": "",
+            "Royals": "",
+            "Sox": "",
+            "Sox": "",
+            "Tigers": "",
+            "Twins": "",
+            "Yankees": "",
+        };
+        return colors[team];
+    }
 }
