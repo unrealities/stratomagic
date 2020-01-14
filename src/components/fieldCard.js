@@ -182,7 +182,10 @@ export class PlayerCard extends React.Component {
     render() {
         let image;
         let posStrArr = ['DH','SP','C','1B','2B','3B','SS','LF','CF','RF','RP','CL'];
-        let fillColor = "#011627";
+        let fillColor = "#011627"; 
+        if (this.props.player != null) {
+            fillColor = this.props.player.color;
+        }
 
         if (this.props.type == "batter") {
             image = <Batter className={this.props.type} fill={fillColor} height={"110%"} width={"100%"}/>;

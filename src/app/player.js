@@ -40,6 +40,10 @@ export class Player {
         this.control = this.pitcher ? this.obc : -100 // track a pitcher's control separate of their obc to allow for decrease during the game
 
         this.playablePositions = this.playablePositions();
+        this.color = this.mlbTeamtoColor(this.mlbTeam);
+        if (this.color === undefined) {
+            this.color = "#011627";
+        }
     }
     
     isHitter(){
@@ -71,36 +75,36 @@ export class Player {
 
     mlbTeamtoColor(team) {
         let colors = {
-            "Angels": "",
-            "Astros": "",
-            "Athletics": "",
+            "Angels": "#BA0021",
+            "Astros": "#002D62",
+            "Athletics": "#003831",
+            "Blue Jays": "#134A8E",
             "Braves": "#002855",
-            "Brewers": "",
-            "Cardinals": "",
-            "Cubs": "",
+            "Brewers": "#13294B",
+            "Cardinals": "#BA0C2F",
+            "Cubs": "#002F6C",
             "Diamondbacks": "#A71930",
-            "Dodgers": "",
-            "Giants": "",
-            "Indians": "",
-            "Jays": "",
-            "Mariners": "",
-            "Marlins": "",
-            "Mets": "",
-            "Nationals": "",
-            "Orioles": "",
-            "Padres": "",
-            "Phillies": "",
-            "Pirates": "",
-            "Rangers": "",
-            "Rays": "",
-            "Reds": "",
-            "Rockies": "",
-            "Royals": "",
-            "Sox": "",
-            "Sox": "",
-            "Tigers": "",
-            "Twins": "",
-            "Yankees": "",
+            "Dodgers": "#002F6C",
+            "Giants": "#FA4616",
+            "Indians": "#0F223E",
+            "Mariners": "#0C2340",
+            "Marlins": "#000000",
+            "Mets": "#002D72",
+            "Nationals": "#BA122B",
+            "Orioles": "#DF4601",
+            "Padres": "#002D62",
+            "Phillies": "#BA0C2F",
+            "Pirates": "#111111",
+            "Rangers": "#003278",
+            "Rays": "#092C5C",
+            "Red Sox": "#C8102E",
+            "Reds": "#D50032",
+            "Rockies": "#333366",
+            "Royals": "#004687",
+            "Tigers": "#0C2C56",
+            "Twins": "#0C2341",
+            "White Sox": "#27251F",
+            "Yankees": "#162546",
         };
         return colors[team];
     }
