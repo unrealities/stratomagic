@@ -676,6 +676,8 @@ div .pos-player-name {
 .pitcher svg {
     position: relative;
     left: -120px;
+
+    clip-path: inset(0% 26% 50% 30%);
 }
 
 .battingOrder-container {
