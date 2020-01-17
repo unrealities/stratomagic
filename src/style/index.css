@@ -673,6 +673,10 @@ div .pos-player-name {
     float: left;
 }
 
+.batter svg {
+    clip-path: inset(0% 10% 9% 0%);
+}
+
 .pitcher svg {
     position: relative;
     left: -120px;
