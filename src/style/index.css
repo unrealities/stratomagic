@@ -263,12 +263,12 @@ body {
 }
 
 .scoreboardCard {
-    background-color: #000;
     border-radius: 10px;
-    color: #FFF;
+    color: #ff9f1c;
     float: left;
     font-family: 'Codystar', monospace;
     font-size: 80px;
+    font-weight: bold;
     margin: 1% 2% 2% 2%;
     width: 96%;
 }
