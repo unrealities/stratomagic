@@ -1,6 +1,7 @@
 // Need to be able to display live game
 // Put defensive players on the field and offensive players on the bases
 import React from 'react';
+import Select from 'react-select';
 // import {BattingBoxScoreCardContainer} from '../components/boxScoreCard.js';
 import { HitterChartCard } from '../components/hitterChartCard.js';
 import Batter from '../style/batter.svg';
@@ -447,19 +448,18 @@ export class PlayerSelectContainer extends React.Component {
         });
     }
 
-    onSelectChanged(event) {
+    onSelectChanged(index) {
         this.setState({
             ...this.state,
-            playerSelect: this.state.players[event.target.selectedIndex].player,    
+            playerSelect: this.state.players[index].player,    
         });
     }
 
     render(){
         return (
             <div className="drop-down">
-                <select onChange={this.onSelectChanged.bind(this)}>
-                    { this.state.players.map((p, i) => <option key={i} >{p.player.fullName} [{p.player.obc}]</option>) }
-                </select>
+                <Select options={this.state.players.map((opt,i) => ({ label: opt.player.fullName, value: i }))}
+                        onChange={(opt) => this.onSelectChanged.bind(opt.value)} />
                 <div className="selected-player">
                     <PlayerCard player={this.state.playerSelect} type={this.props.type}/>
                 </div>
