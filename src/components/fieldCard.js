@@ -436,6 +436,7 @@ export class PlayerSelectContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {players:[]};
+        this.onSelectChanged = this.onSelectChanged.bind(this);
     }
 
     componentDidMount(){
@@ -459,7 +460,8 @@ export class PlayerSelectContainer extends React.Component {
         return (
             <div className="drop-down">
                 <Select options={this.state.players.map((opt,i) => ({ label: opt.player.fullName, value: i }))}
-                        onChange={(opt) => this.onSelectChanged.bind(opt.value)} />
+                        onChange={(opt) => 
+                            this.onSelectChanged(opt.value)} />
                 <div className="selected-player">
                     <PlayerCard player={this.state.playerSelect} type={this.props.type}/>
                 </div>

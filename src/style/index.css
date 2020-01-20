@@ -694,9 +694,6 @@ div .pos-player-name {
 }
 
 .drop-down select {
-    position: relative;
-    top: -500px;
-    
     font-size: 24px;
     margin: 1%;
     padding: 4px 8px;
@@ -704,12 +701,12 @@ div .pos-player-name {
 
 .player-select {
     float:left;
-    margin: 0% 0% 0% 20%;
+    margin: 0% 0% 0% 24%;
 }
 
 .selected-player {
     position: relative;
-    top: -480px;
+    top: 20px;
 }
 
 .pitchers .selected-player svg {
@@ -718,6 +715,9 @@ div .pos-player-name {
 }
 
 .player-selects {
+    position: relative;
+    top: -500px;
+    
     float: left;
     width: 100%;
 }
