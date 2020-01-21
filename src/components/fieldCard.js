@@ -460,8 +460,8 @@ export class PlayerSelectContainer extends React.Component {
         return (
             <div className="drop-down">
                 <Select options={this.state.players.map((opt,i) => ({ label: opt.player.fullName, value: i }))}
-                        onChange={(opt) => 
-                            this.onSelectChanged(opt.value)} />
+                        onChange={(opt) => this.onSelectChanged(opt.value)}
+                        styles={{menu: provided => ({ ...provided, zIndex: 9999 })}}/>
                 <div className="selected-player">
                     <PlayerCard player={this.state.playerSelect} type={this.props.type}/>
                 </div>
