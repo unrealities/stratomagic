@@ -205,6 +205,7 @@ export class PlayerCard extends React.Component {
                 <div className="pos">
                     <div>{this.props.player == null ? "" : posStrArr[this.props.player.playablePositions[0]]}</div>
                 </div>
+                <PlayerCardChart chart={this.props.player == null ? "" : this.props.player.chart} />
                 <div className="player-img">
                     {image}
                 </div>  
@@ -241,6 +242,39 @@ export class MiniPlayerCard extends React.Component {
                 </div>
             </div>
         )
+    }
+}
+
+export class PlayerCardChart extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {chart: []};  
+    }
+
+    componentDidMount(){
+        let chartToTB = {"PU": 0, "SO": 0, "GB": 0, "FB": 0, "BB": 1, "1B": 1, "1B+": 1, "2B": 2, "3B": 3, "HR": 4};
+        let newChart = [];
+        if (!Array.isArray(this.props.chart)) {
+            return;
+        }
+        for( let i=0; i<20; i++ ) {
+            newChart[i] = chartToTB[this.props.chart[i]];
+        }
+
+        this.setState({
+            ...this.state,
+            chart: newChart,
+        });
+    }
+
+    render() {
+        return (
+            <div className="playerChartCard">
+                {this.state.chart.map( (c,i) => { 
+                    return( <div key={i} className={`hitterChartItem${c} chartItem`} /> )
+                })}
+            </div>
+        );
     }
 }
 
