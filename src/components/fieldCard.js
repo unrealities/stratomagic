@@ -86,7 +86,7 @@ export class FieldCard extends React.Component {
                         <div id="homePitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.hPitchers}/></div>
                     </div>
                 </div>
-                <div class="player-selects">
+                <div className="player-selects">
                     <div className="player-select batters">
                         <PlayerSelectContainer players={this.props.game.batters} type="batter"/>
                     </div>
@@ -248,7 +248,7 @@ export class MiniPlayerCard extends React.Component {
 export class PlayerCardChart extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {chart: []};  
+        this.state = {chart: [{'SO': [0,0]}]};  
     }
 
     componentDidMount(){
@@ -271,9 +271,10 @@ export class PlayerCardChart extends React.Component {
     render() {
         return (
             <div className="playerChartCard">
-                {this.state.chart.map( (c,i) => { 
-                    return( <div key={i} className={`hitterChartItem${c} chartItem`} /> )
-                })}
+                {JSON.stringify(this.state.chart)}
+                {/* {this.state.chart.map( (c,i) => { 
+                    return( <div key={i}>`${c} : ${i[0]} - ${i[1]}`</div> )
+                })} */}
             </div>
         );
     }
