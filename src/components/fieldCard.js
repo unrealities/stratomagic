@@ -267,14 +267,16 @@ export class PlayerCardChart extends React.Component {
             chart: newChart,
         });
     }
-
+ 
     render() {
         return (
             <div className="playerChartCard">
-                {JSON.stringify(this.state.chart)}
-                {/* {this.state.chart.map( (c,i) => { 
-                    return( <div key={i}>`${c} : ${i[0]} - ${i[1]}`</div> )
-                })} */}
+                { this.state.chart.forEach(function (chart, _) {
+                    console.log(JSON.stringify(chart))
+                    Object.entries(chart).forEach(([k,v])=>{
+                        return( <div key={k}>`${k} : ${v[0]} - ${v[1]}`</div> )
+                    })
+                }) }
             </div>
         );
     }
