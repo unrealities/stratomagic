@@ -271,11 +271,10 @@ export class PlayerCardChart extends React.Component {
     render() {
         return (
             <div className="playerChartCard">
-                { this.state.chart.forEach(function (chart, _) {
-                    console.log(JSON.stringify(chart))
-                    Object.entries(chart).forEach(([k,v])=>{
-                        return( <div key={k}>`${k} : ${v[0]} - ${v[1]}`</div> )
-                    })
+                { this.state.chart.map((chart, _) => {
+                    for (const [k, v] of Object.entries(chart)) {
+                        return(<div key={k}>{`${k} : ${v[0]} - ${v[1]}`}</div>);
+                    }
                 }) }
             </div>
         );
