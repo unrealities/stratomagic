@@ -258,9 +258,13 @@ export class PlayerCardChart extends React.Component {
 
         let newChart = [];
         newChart[0] = { [this.props.chart[0]]: [0,0] };
-        // for( let i=0; i<20; i++ ) {
-        //     newChart[i] = this.props.chart[i]
-        // 
+        this.props.chart.forEach((outcome, index) => {
+            if (outcome in newChart) {
+                newChart[outcome] = [index,index];
+            } else {
+                newChart[outcome][1] = index;
+            }
+        });
 
         this.setState({
             ...this.state,
