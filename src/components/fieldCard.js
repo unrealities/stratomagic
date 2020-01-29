@@ -257,14 +257,11 @@ export class PlayerCardChart extends React.Component {
         }
 
         let newChart = [];
-        newChart[0] = { [this.props.chart[0]]: [0,0] };
         this.props.chart.forEach((outcome, index) => {
-            if (outcome in newChart) {
-                newChart[outcome] = [index,index];
-            } else {
-                newChart[outcome][1] = index;
-            }
+            outcome in newChart ? newChart[outcome][1] = index : newChart[outcome] = [index,index];
         });
+
+        console.log(newChart);
 
         this.setState({
             ...this.state,
@@ -277,7 +274,7 @@ export class PlayerCardChart extends React.Component {
             <div className="playerChartCard">
                 { this.state.chart.map((chart, _) => {
                     for (const [k, v] of Object.entries(chart)) {
-                        return(<div key={k}>{`${k} : ${v[0]} - ${v[1]}`}</div>);
+                        return (<div key={k}>{`${k} : ${v[0]} - ${v[1]}`}</div>)
                     }
                 }) }
             </div>
