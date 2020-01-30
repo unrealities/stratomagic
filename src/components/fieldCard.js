@@ -248,7 +248,24 @@ export class MiniPlayerCard extends React.Component {
 export class PlayerCardChart extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {chart: [{'SO': [0,0]}]};  
+        if (!Array.isArray(this.props.chart)) {
+            return;
+        }
+
+        let newChart = [];
+        this.props.chart.forEach((outcome, index) => {
+            if (outcome in newChart) {
+                newChart[outcome][1] = index;
+            }
+            else {
+                newChart[outcome] = [index,index];
+            }
+        });
+
+        this.setState({
+            ...this.state,
+            chart: newChart,
+        });
     }
 
     componentDidMount(){
@@ -258,10 +275,13 @@ export class PlayerCardChart extends React.Component {
 
         let newChart = [];
         this.props.chart.forEach((outcome, index) => {
-            outcome in newChart ? newChart[outcome][1] = index : newChart[outcome] = [index,index];
+            if (outcome in newChart) {
+                newChart[outcome][1] = index;
+            }
+            else {
+                newChart[outcome] = [index,index];
+            }
         });
-
-        console.log(newChart);
 
         this.setState({
             ...this.state,
@@ -273,12 +293,31 @@ export class PlayerCardChart extends React.Component {
         return (
             <div className="playerChartCard">
                 { this.state.chart.map((chart, _) => {
+                    console.log(JSON.stringify(chart));
                     for (const [k, v] of Object.entries(chart)) {
-                        return (<div key={k}>{`${k} : ${v[0]} - ${v[1]}`}</div>)
+                        console.log(k);
+                        console.log(v);
+                        <PlayerCardChartValue k={k} v={v} />
                     }
                 }) }
             </div>
         );
+    }
+}
+
+export class PlayerCardChartValue extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
+    render() {
+        console.log(k);
+        console.log(v);
+        return (
+            <div key={this.props.k}>
+                {`${this.props.k} : ${this.props.v[0]} - ${this.props.v[1]}`}
+            </div>
+        )
     }
 }
 
