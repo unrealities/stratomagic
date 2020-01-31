@@ -248,51 +248,25 @@ export class MiniPlayerCard extends React.Component {
 export class PlayerCardChart extends React.Component {
     constructor(props) {
         super(props);
-        if (!Array.isArray(this.props.chart)) {
-            return;
-        }
-
-        let newChart = [];
-        this.props.chart.forEach((outcome, index) => {
-            if (outcome in newChart) {
-                newChart[outcome][1] = index;
-            }
-            else {
-                newChart[outcome] = [index,index];
-            }
-        });
-
-        this.setState({
-            ...this.state,
-            chart: newChart,
-        });
     }
 
-    componentDidMount(){
-        if (!Array.isArray(this.props.chart)) {
-            return;
-        }
-
-        let newChart = [];
-        this.props.chart.forEach((outcome, index) => {
-            if (outcome in newChart) {
-                newChart[outcome][1] = index;
-            }
-            else {
-                newChart[outcome] = [index,index];
-            }
-        });
-
-        this.setState({
-            ...this.state,
-            chart: newChart,
-        });
-    }
- 
     render() {
+        if (!Array.isArray(this.props.chart)) {
+            return "";
+        }
+        let newChart = [];
+        this.props.chart.forEach((outcome, index) => {
+            if (outcome in newChart) {
+                newChart[outcome][1] = index;
+            }
+            else {
+                newChart[outcome] = [index,index];
+            }
+        });
+        
         return (
             <div className="playerChartCard">
-                { this.state.chart.map((chart, _) => {
+                { newChart.map((chart, _) => {
                     console.log(JSON.stringify(chart));
                     for (const [k, v] of Object.entries(chart)) {
                         console.log(k);
