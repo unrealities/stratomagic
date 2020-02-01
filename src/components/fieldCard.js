@@ -263,17 +263,20 @@ export class PlayerCardChart extends React.Component {
                 newChart[outcome] = [index,index];
             }
         });
+
+        let chartValues= [];
+        for (const chart of Object.entries(newChart)) {
+            chartValues.push(chart);
+        }
+        console.log(chartValues);
         
         return (
-            <div className="playerChartCard">
-                { newChart.map((chart, _) => {
-                    console.log(JSON.stringify(chart));
-                    for (const [k, v] of Object.entries(chart)) {
-                        console.log(k);
-                        console.log(v);
-                        <PlayerCardChartValue k={k} v={v} />
-                    }
-                }) }
+            <div className="playerChartCard"> 
+            {
+                chartValues.map((cv, i) => {
+                    return(cv);
+                })
+            } 
             </div>
         );
     }
