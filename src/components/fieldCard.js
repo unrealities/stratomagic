@@ -268,33 +268,21 @@ export class PlayerCardChart extends React.Component {
         for (const chart of Object.entries(newChart)) {
             chartValues.push(chart);
         }
-        console.log(chartValues);
         
         return (
             <div className="playerChartCard"> 
             {
                 chartValues.map((cv, i) => {
-                    return(cv);
+                    return (
+                        <div className="playerChartContainer">
+                            <div className="playerCharCardHeader">{ cv[0] }</div>
+                            <div className="playerChartCardValue">{`${cv[1][0]} - ${cv[1][1]}`}</div>
+                        </div>
+                    );
                 })
             } 
             </div>
         );
-    }
-}
-
-export class PlayerCardChartValue extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
-    render() {
-        console.log(k);
-        console.log(v);
-        return (
-            <div key={this.props.k}>
-                {`${this.props.k} : ${this.props.v[0]} - ${this.props.v[1]}`}
-            </div>
-        )
     }
 }
 
