@@ -205,10 +205,10 @@ export class PlayerCard extends React.Component {
                 <div className="pos">
                     <div>{this.props.player == null ? "" : posStrArr[this.props.player.playablePositions[0]]}</div>
                 </div>
-                <PlayerCardChart chart={this.props.player == null ? "" : this.props.player.chart} />
                 <div className="player-img">
                     {image}
-                </div>  
+                </div>
+                <PlayerCardChart chart={this.props.player == null ? "" : this.props.player.chart} />
             </div>
         )
     }
@@ -274,9 +274,9 @@ export class PlayerCardChart extends React.Component {
             {
                 chartValues.map((cv, i) => {
                     return (
-                        <div className="playerChartContainer">
+                        <div className="playerChartContainer" key={i}>
                             <div className="playerCharCardHeader">{ cv[0] }</div>
-                            <div className="playerChartCardValue">{`${cv[1][0]} - ${cv[1][1]}`}</div>
+                            <div className="playerChartCardValue">{`${cv[1][0]}-${cv[1][1]}`}</div>
                         </div>
                     );
                 })
