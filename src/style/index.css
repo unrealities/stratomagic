@@ -228,6 +228,7 @@ body {
     display: inline;
     font-family: 'Bebas Neue', monospace;
     float: left;
+    height: 290px;
     min-width: 180px;
     margin: 2%;
     padding: 2%;
@@ -721,13 +722,21 @@ div .pos-player-name {
     width: 100%;
 }
 
-.playerChartContainer {
+.playerChartCard {
     position: relative;
+    top: -80px;
+    left: -1px;
 
+    background-color: #FFF;
+    float: left;
+    width: 180px;
+}
+
+.playerChartContainer {
     display: inline;
     float: left;
     margin: 1px;
-    width: 20px;
+    width: 18px;
 }
 
 .playerCharCardHeader {
@@ -737,6 +746,6 @@ div .pos-player-name {
 }
 
 .playerChartCardValue {
-    font-size: 10px;
+    font-size: 9px;
     text-align: center;
 }
