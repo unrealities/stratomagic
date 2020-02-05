@@ -266,6 +266,13 @@ export class PlayerCardChart extends React.Component {
 
         let chartValues= [];
         for (const chart of Object.entries(newChart)) {
+            if (chart[1][0] === chart[1][1]) {
+                chart[1] = chart[1][0];
+            } else if (chart[1][1] === 29){
+                chart[1] = `${chart[1][0]}+`;
+            } else {
+                chart[1] = `${chart[1][0]}-${chart[1][1]}`;
+            }
             chartValues.push(chart);
         }
         
@@ -276,7 +283,7 @@ export class PlayerCardChart extends React.Component {
                     return (
                         <div className="playerChartContainer" key={i}>
                             <div className="playerCharCardHeader">{ cv[0] }</div>
-                            <div className="playerChartCardValue">{`${cv[1][0]}-${cv[1][1]}`}</div>
+                            <div className="playerChartCardValue">{ cv[1] }</div>
                         </div>
                     );
                 })
