@@ -259,7 +259,7 @@ body {
 .pitcherCard {
     display: inline;
     float: right;
-    margin-top: 50px;
+    margin-top: 150px;
     width: 15%;
 }
 
@@ -293,7 +293,7 @@ body {
 
 .playAtBatButton {
     position: relative;
-    top: -650px;
+    top: -1050px;
     
     left: 78%;
     width: 20%;
