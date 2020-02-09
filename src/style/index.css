@@ -303,8 +303,8 @@ body {
     background-color: #ff9f1c;
     border-color: #ff9f1c;
     border-radius: 10px;
-    font-family: 'Press Start 2P';
-    font-size: 24px;
+    font-size: 32px;
+    font-weight: bold;
     line-height: 200%;
     width: 100%;
 }
