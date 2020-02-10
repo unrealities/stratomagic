@@ -728,14 +728,14 @@ div .pos-player-name {
     left: -1px;
 
     background-color: #FFF;
-    float: left;
-    width: 180px;
+    border-collapse: separate;
+    border-spacing: 1px;
+    display: table;
+    min-width: 180px;
 }
 
 .playerChartContainer {
-    display: inline;
-    float: left;
-    margin: 1px;
+    display: table-cell;
     width: 18px;
 }
 
