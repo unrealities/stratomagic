@@ -303,10 +303,11 @@ body {
     background-color: #ff9f1c;
     border-color: #ff9f1c;
     border-radius: 10px;
+    float: right;
     font-size: 32px;
     font-weight: bold;
     line-height: 200%;
-    width: 100%;
+    width: 190px;
 }
 
 .fullName {
