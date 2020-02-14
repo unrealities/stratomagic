@@ -78,6 +78,10 @@ body {
     padding: 0.4%;
 }
 
+.battingBoxScoreCard:first-of-type div, .pitchingBoxScoreCard:first-of-type div{
+    color: #e71d36;
+}
+
 .atBatCard div, .scoreCard div {
     min-width: 4.8%;
     text-align: center;
