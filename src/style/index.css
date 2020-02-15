@@ -99,6 +99,10 @@ body {
     float: left;
 }
 
+.boxScoreHeading.home {
+    text-align: right;
+}
+
 .awayBoxScore, .homeBoxScore {
     float: left;
     margin: 1%;
@@ -106,7 +110,7 @@ body {
 }
 
 .homeBoxScore {
-    margin-left: 25%;
+    margin-left: 24%;
 }
 
 .boxScores {

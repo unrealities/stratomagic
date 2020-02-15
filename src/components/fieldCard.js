@@ -76,12 +76,12 @@ export class FieldCard extends React.Component {
                 </div>
                 <div className="boxScores">
                     <div className="awayBoxScore">
-                        <div className="boxScoreHeading">Away Box</div>
+                        <div className="boxScoreHeading away">Away Box</div>
                         <div id="awayBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.props.game.aBatters}/></div>
                         <div id="awayPitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.aPitchers}/></div>
                     </div>
                     <div className="homeBoxScore">
-                        <div className="boxScoreHeading">Home Box</div>
+                        <div className="boxScoreHeading home">Home Box</div>
                         <div id="homeBattingBoxScore"><BattingBoxScoreCardContainer boxScore={this.props.game.hBatters}/></div>
                         <div id="homePitchingBoxScore"><PitchingBoxScoreCardContainer boxScore={this.props.game.hPitchers}/></div>
                     </div>
