@@ -22,7 +22,7 @@ body {
     font-size: 36px;
     font-weight: bold;
     margin: auto;
-    width: 100%
+    width: 100%;
 }
 
 .atBatCard, .battingBoxScoreCard, .lineupCard, .pitchingBoxScoreCard, .scoreCard {
@@ -267,6 +267,7 @@ body {
 .pitcherCard {
     display: inline;
     float: right;
+    margin-right: 40px;
     margin-top: 150px;
     width: 15%;
 }
@@ -303,7 +304,7 @@ body {
     position: relative;
     top: -1050px;
     
-    left: 78%;
+    left: 75%;
     width: 20%;
 }
 
@@ -394,6 +395,7 @@ body {
 }
 
 .hitters {
+    margin-left: 20px;
     width: 100%;
 }
 
@@ -684,6 +686,10 @@ div .pos-player-name {
 
 .batter svg, svg.batter {
     clip-path: inset(0% 10% 9% 0%);
+}
+
+.pitcher {
+    margin-right: 60px;
 }
 
 .pitcher svg, svg.pitcher {
