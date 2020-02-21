@@ -4,6 +4,7 @@ import React from 'react';
 import Select from 'react-select';
 import {BattingBoxScoreCardContainer, PitchingBoxScoreCardContainer} from '../components/boxScoreCard';
 import {PlayerCard, MiniPlayerCard} from '../components/playerCard';
+import {ScoreboardCard} from '../components/scoreCard';
 
 export class FieldCard extends React.Component {
     constructor(props) {
@@ -136,7 +137,6 @@ export class BaseCard extends React.Component {
         )
     }
 }
-
 export class PositionCard extends React.Component {
     constructor(props) {
         super(props);
@@ -183,35 +183,6 @@ export class LastPlayCard extends React.Component {
         return (
             <div className="lastPlay">
                 {lastAtBat == null ? "game has not started" : `${lastAtBat.pitcher.fullName} vs. ${lastAtBat.batter.fullName} : ${lastAtBat.resultingPlay}`}
-            </div>
-        )
-    }
-}
-
-export class ScoreboardCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="scoreboardCard">
-                <div className="sbDiv">
-                    <div className="sbHeader">Inn</div>
-                    <div className="sbValue">{this.props.game.inning}</div>
-                </div>
-                <div className="sbDiv">
-                    <div className="sbHeader">Outs</div>
-                    <div className="sbValue">{this.props.game.outs}</div>
-                </div>
-                <div className="sbDiv">
-                    <div className="sbHeader">Away</div>
-                    <div className="sbValue">{this.props.game.awayScore}</div>
-                </div>
-                <div className="sbDiv">
-                    <div className="sbHeader">Home</div>
-                    <div className="sbValue">{this.props.game.homeScore}</div>
-                </div>
             </div>
         )
     }

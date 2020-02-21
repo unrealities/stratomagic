@@ -37,3 +37,33 @@ export class ScoreCardContainer extends React.Component {
         );
     }
 }
+
+
+export class ScoreboardCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="scoreboardCard">
+                <div className="sbDiv">
+                    <div className="sbHeader">Inn</div>
+                    <div className="sbValue">{this.props.game.inning}</div>
+                </div>
+                <div className="sbDiv">
+                    <div className="sbHeader">Outs</div>
+                    <div className="sbValue">{this.props.game.outs}</div>
+                </div>
+                <div className="sbDiv">
+                    <div className="sbHeader">Away</div>
+                    <div className="sbValue">{this.props.game.awayScore}</div>
+                </div>
+                <div className="sbDiv">
+                    <div className="sbHeader">Home</div>
+                    <div className="sbValue">{this.props.game.homeScore}</div>
+                </div>
+            </div>
+        )
+    }
+}
