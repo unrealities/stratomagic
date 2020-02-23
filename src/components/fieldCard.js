@@ -1,9 +1,8 @@
 // Need to be able to display live game
 // Put defensive players on the field and offensive players on the bases
 import React from 'react';
-import Select from 'react-select';
 import {BattingBoxScoreCardContainer, PitchingBoxScoreCardContainer} from '../components/boxScoreCard';
-import {PlayerCard, MiniPlayerCard} from '../components/playerCard';
+import {PlayerCard, MiniPlayerCard, PlayerSelectContainer} from '../components/playerCard';
 import {ScoreboardCard} from '../components/scoreCard';
 
 export class FieldCard extends React.Component {
@@ -111,7 +110,6 @@ export class OffenseCard extends React.Component {
                     <div className="batter"><PlayerCard player={this.props.offense.batter} type="batter"/></div>
                     <div className="onDeck"><MiniPlayerCard player={this.props.offense.onDeck} type="batter"/></div>
                     <div className="theHole"><MiniPlayerCard player={this.props.offense.theHole} type="batter"/></div>
-                    {/* <div className="battingOrder"><BattingOrderCard battingOrder={this.props.offense.battingOrder}/></div> */}
                 </div>
             </div>
         )
@@ -155,24 +153,6 @@ export class PositionCard extends React.Component {
     }
 }
 
-export class BattingOrderCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="battingOrder-container">
-                {this.props.battingOrder.map( (b,i) => {
-                    return(
-                        <div key={i}>{b.fullName}</div>
-                    )
-                })}
-            </div>
-        )
-    }
-}
-
 export class LastPlayCard extends React.Component {
     constructor(props) {
         super(props);
@@ -185,42 +165,5 @@ export class LastPlayCard extends React.Component {
                 {lastAtBat == null ? "game has not started" : `${lastAtBat.pitcher.fullName} vs. ${lastAtBat.batter.fullName} : ${lastAtBat.resultingPlay}`}
             </div>
         )
-    }
-}
-export class PlayerSelectContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {players:[]};
-        this.onSelectChanged = this.onSelectChanged.bind(this);
-    }
-
-    componentDidMount(){
-        let players = Object.values(this.props.players);
-
-        this.setState({
-            ...this.state,
-            players: players,
-            playerSelect: players[0].player,
-        });
-    }
-
-    onSelectChanged(index) {
-        this.setState({
-            ...this.state,
-            playerSelect: this.state.players[index].player,    
-        });
-    }
-
-    render(){
-        return (
-            <div className="drop-down">
-                <Select options={this.state.players.map((opt,i) => ({ label: opt.player.fullName, value: i }))}
-                        onChange={(opt) => this.onSelectChanged(opt.value)}
-                        styles={{menu: provided => ({ ...provided, zIndex: 9999 })}}/>
-                <div className="selected-player">
-                    <PlayerCard player={this.state.playerSelect} type={this.props.type}/>
-                </div>
-            </div>
-        );
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select';
 
 import Batter from '../style/batter.svg';
 import Pitcher from '../style/pitcher.svg';
@@ -115,6 +116,44 @@ export class PlayerCardChart extends React.Component {
                     );
                 })
             } 
+            </div>
+        );
+    }
+}
+
+export class PlayerSelectContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {players:[]};
+        this.onSelectChanged = this.onSelectChanged.bind(this);
+    }
+
+    componentDidMount(){
+        let players = Object.values(this.props.players);
+
+        this.setState({
+            ...this.state,
+            players: players,
+            playerSelect: players[0].player,
+        });
+    }
+
+    onSelectChanged(index) {
+        this.setState({
+            ...this.state,
+            playerSelect: this.state.players[index].player,    
+        });
+    }
+
+    render(){
+        return (
+            <div className="drop-down">
+                <Select options={this.state.players.map((opt,i) => ({ label: opt.player.fullName, value: i }))}
+                        onChange={(opt) => this.onSelectChanged(opt.value)}
+                        styles={{menu: provided => ({ ...provided, zIndex: 9999 })}}/>
+                <div className="selected-player">
+                    <PlayerCard player={this.state.playerSelect} type={this.props.type}/>
+                </div>
             </div>
         );
     }
